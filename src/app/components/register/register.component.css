@@ -1,11 +1,15 @@
 .register-container {
   /* Estilos de registro */
-  background-color: #fff;
+  background-color: hsl(0, 0%, 100%);
   padding: 50px;
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
+}
+
+.titulaso{
+  color: #4bb6b7;
 }
 
 .form-control {

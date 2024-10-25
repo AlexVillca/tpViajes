@@ -1,46 +1,60 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../interface/usuario.interface';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
-  
-  constructor(private http:HttpClient) { }
-  //http2 = inject(HttpClient)
 
-  urlBase: string = 'http://localhost:3000/usuarios'
+  constructor(private http: HttpClient) { }
 
-  getUsuario(): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.urlBase)
-  }
-  postUsuario(usuario:Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>(this.urlBase,usuario);
-  }
-  putUsuario(usuario:Usuario): Observable<Usuario>{
-    return this.http.put<Usuario>(`${this.urlBase}/${usuario}`,usuario);
+  private apiUrl = 'http://localhost:3000/usuarios';
+
+  getUsuario(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Error al obtener usuarios:', error);
+        return throwError(() => new Error('Error al obtener usuarios'));
+      })
+    );
   }
 
-/*
-  logUsuario(nombreIngresado: string,contraseñaIngresada: string): Observable<Usuario>{
-    const params = new HttpParams()
-    .set('nombre', nombreIngresado)
-    .set('contraseña', contraseñaIngresada);
-    return this.http.get<Usuario>(this.urlBase, { params });
+  postUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
+      catchError(error => {
+        console.error('Error al crear usuario:', error);
+        return throwError(() => new Error('Error al crear usuario'));
+      })
+    );
   }
-*/
- 
 
+  putUsuario(usuario: Usuario): Observable<Usuario> {
+    const url = `${this.apiUrl}/${usuario.id}`;
+    return this.http.put<Usuario>(url, usuario).pipe(
+      catchError(error => {
+        console.error('Error al actualizar usuario:', error);
+        return throwError(() => new Error('Error al actualizar usuario'));
+      })
+    );
+  }
 
-  logUsuario(nombreIngresado: string, contraseñaIngresada: string): Observable<number | null> {
+  // **IMPORTANTE:** Este método de login aún necesita una implementación
+  // de seguridad adecuada (cifrado de contraseñas, uso de JWT).
+  // Esto es solo un ejemplo básico.
+logUsuario(nombreIngresado: string, contraseñaIngresada: string): Observable<number | null> {
+    // En una aplicación real, usa una petición POST y cifra la contraseña
     const params = new HttpParams()
       .set('nombre', nombreIngresado)
       .set('contraseña', contraseñaIngresada);
-    
-    return this.http.get<Usuario>(this.urlBase, { params }).pipe(
-      map(usuario => usuario ? usuario.id : null),
-      catchError(() => of(null)) // Maneja el error y devuelve null
+
+      return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
+        map(usuario => usuario ? Number(usuario.id) : null),
+        catchError(error => {
+          console.error('Error during login:', error);
+          return of(null);
+        })
     );
   }
 }
