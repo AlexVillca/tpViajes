@@ -1,58 +1,53 @@
-<!-- <div class="container" id="container">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="register.component.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+  <div class="container" id="container">
     <div class="form-container register-container">
-      <form>
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
         <h1>Regístrate aquí</h1>
         <div class="form-control">
-          <input type="text" id="username" placeholder="Nombre" />
-          <small id="username-error"></small>
+          <input type="text" id="username" name="username" [(ngModel)]="user.username" required minlength="4" maxlength="20" placeholder="Nombre" />
+          <div *ngIf="registerForm.controls['username']?.invalid && (registerForm.controls['username']?.dirty || registerForm.controls['username']?.touched)">
+            <small *ngIf="registerForm.controls['username']?.errors?.['required']">*Nombre es requerido</small>
+            <small *ngIf="registerForm.controls['username']?.errors?.['minlength']">*Nombre debe tener al menos 4 caracteres</small>
+            <small *ngIf="registerForm.controls['username']?.errors?.['maxlength']">*Nombre debe tener máximo 20 caracteres</small>
+          </div>
           <span></span>
         </div>
         <div class="form-control">
-          <input type="email" id="email" placeholder="Correo electrónico" />
-          <small id="email-error"></small>
+          <input type="email" id="email" name="email" [(ngModel)]="user.email" required email placeholder="Correo electrónico" />
+          <div *ngIf="registerForm.controls['email']?.invalid && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)">
+            <small *ngIf="registerForm.controls['email']?.errors?.['required']">*Correo electrónico es requerido</small>
+            <small *ngIf="registerForm.controls['email']?.errors?.['email']">*Correo electrónico no válido</small>
+          </div>
           <span></span>
         </div>
         <div class="form-control">
-          <input type="password" id="password" placeholder="Contraseña" />
-          <small id="password-error"></small>
+          <input type="password" id="password" name="password" [(ngModel)]="user.password" required minlength="8" maxlength="20" placeholder="Contraseña" />
+          <div *ngIf="registerForm.controls['password']?.invalid && (registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched)">
+            <small *ngIf="registerForm.controls['password']?.errors?.['required']">*Contraseña es requerida</small>
+            <small *ngIf="registerForm.controls['password']?.errors?.['minlength']">*Contraseña debe tener al menos 8 caracteres</small>
+            <small *ngIf="registerForm.controls['password']?.errors?.['maxlength']">*Contraseña debe tener máximo 20 caracteres</small>
+          </div>
           <span></span>
         </div>
-        <button type="submit" value="submit">Registrar</button>
-        <span>o usa tu cuenta</span>
-        <div class="social-container">
-          <a href="#" class="social"
-            ><i class="fa-brands fa-facebook-f"></i
-          ></a>
-          <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
-          <a href="#" class="social"><i class="fa-brands fa-tiktok"></i></a>
-        </div>
-      </form>
-    </div> -->
-
-    <div class="register-container">
-        <form>
-          <h1>Regístrate aquí</h1>
-          <div class="form-control">
-            <input type="text" id="username" placeholder="Nombre" />
-            <small id="username-error"></small>
-            <span></span>
-          </div>
-          <div class="form-control">
-            <input type="email" id="email" placeholder="Correo electrónico" />
-            <small id="email-error"></small>
-            <span></span>
-          </div>
-          <div class="form-control">
-            <input type="password" id="password" placeholder="Contraseña" />
-            <small id="password-error"></small>
-            <span></span>
-          </div>
-          <button type="submit" value="submit">Registrar</button>
-          <span>o usa tu cuenta</span>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="social"><i class="fa-brands fa-tiktok"></i></a>
-          </div>
-        </form>
-      </div>
+        <button type="submit">Registrar</button>
+        <button type="submit" routerLink = "/login">Volver</button>
+     </form>
+    </div>
+  </div>
+</body>
+</html>

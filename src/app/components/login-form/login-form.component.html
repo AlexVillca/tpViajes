@@ -33,14 +33,6 @@
             <span></span>
           </div>
           <button type="submit" value="submit">Registrar</button>
-          <span>o usa tu cuenta</span>
-          <div class="social-container">
-            <a href="#" class="social"
-              ><i class="fa-brands fa-facebook-f"></i
-            ></a>
-            <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="social"><i class="fa-brands fa-tiktok"></i></a>
-          </div>
         </form>
       </div>
 
@@ -48,12 +40,12 @@
         <form class="form-lg">
           <h1>Inicia sesión aquí</h1>
           <div class="form-control2">
-            <input type="email" class="email-2" placeholder="Correo electrónico" />
+            <input type="email" class="email-2" (input)="setCorreo($event)" placeholder="Correo electrónico" />
             <small class="email-error-2"></small>
             <span></span>
           </div>
           <div class="form-control2">
-            <input type="password" class="password-2" placeholder="Contraseña" />
+            <input type="password" class="password-2" (input)="setContr($event)" placeholder="Contraseña" />
             <small class="password-error-2"></small>
             <span></span>
           </div>
@@ -67,49 +59,19 @@
               <a href="#">¿Olvidaste la contraseña?</a>
             </div>
           </div>
-          <button type="submit" value="submit">Iniciar sesión</button>
-          <span>O usa tu cuenta</span>
-          <div class="social-container">
-            <a href="#" class="social"
-              ><i class="fa-brands fa-facebook-f"></i
-            ></a>
-            <a href="#" class = "social"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="social"><i class="fa-brands fa-tiktok"></i></a>
-          </div>
+          <button type="submit" value="submit" (click)="funRespuesta()">Iniciar sesión</button>
         </form>
       </div>
 
       <div class="overlay-container">
         <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <h1 class="title">
-              Hola <br />
-              amigos
-            </h1>
-            <p>Si tienes una cuenta, inicia sesión aquí y diviértete</p>
-            <button class="ghost" id="login">
-              Iniciar sesión
-              <i class="fa-solid fa-arrow-left"></i>
-            </button>
-          </div>
-
           <div class="overlay-panel overlay-right">
-            <h1 class="title">
-              Comienza tu <br />
-              viaje ahora
-            </h1>
-            <p>
-              Si aún no tienes una cuenta, únete a nosotros y comienza tu viaje
-            </p>
-            <button class="ghost" id="register">
-              Registrarse
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
+            <h1 class="title">Comienza tu <br />viaje ahora</h1>
+            <p>Si aún no tienes una cuenta, únete a nosotros y comienza tu viaje</p>
+            <button routerLink="/register" class="ghost">Registrarse <i class="fa-solid fa-arrow-right"></i></button>          </div>
         </div>
       </div>
     </div>
   </body>
   <script src="main.js"></script>
 </html>
-
