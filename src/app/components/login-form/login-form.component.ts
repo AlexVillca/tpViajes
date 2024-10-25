@@ -26,6 +26,7 @@ export class LoginFormComponent {
   }
 
 
+
   // Método para cambiar a la vista de inicio de sesión
   switchToLogin() {
     this.isRegistering = false;
@@ -35,25 +36,3 @@ export class LoginFormComponent {
     )
   }
 }
-
-
-
-/*
-document.addEventListener("DOMContentLoaded", () => {
-  const registerData = document.getElementById("btnRegister");
-  const loginData = document.getElementById("btnLogin");
-
-  if (loginData) {
-    console.log("Botón de inicio de sesión encontrado");
-    loginData.addEventListener("click", () => {
-      alert("Todavía no hay datos registrados");
-    });
-  } else {
-    console.log("Botón de inicio de sesión NO encontrado");
-  }
-
-  registerData?.addEventListener("click", () => {
-    alert("Todavía no hay datos registrados");
-  });
-});
-*/
