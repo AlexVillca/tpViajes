@@ -26,12 +26,15 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registerForm.valid) {
       // Lógica para enviar los datos del formulario (this.user) al servidor
-       this.usuarioService.postUsuario(this.user);
-       console.log(this.user);
-      console.log('Formulario enviado:', this.user);
-    } else {
-      // No es necesario hacer nada aquí, ya que las validaciones de Angular
-      // se encargan de mostrar los mensajes de error en el template.
+       this.usuarioService.postUsuario(this.user).subscribe({
+        next: (response) => {
+          console.log('Usuario creado exitosamente:', response);
+        },
+        error: (error) => {
+          console.error('Error al crear usuario:', error);
+        }
+      });
+
     }
   }
 }

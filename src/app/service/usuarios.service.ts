@@ -21,7 +21,7 @@ export class UsuariosService {
     );
   }
 
-  
+
   getUsuario(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.apiUrl).pipe(
       catchError(error => {
@@ -42,9 +42,9 @@ export class UsuariosService {
     );
   }
 
- 
+
 logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<number | null> {
-    
+
     const params = new HttpParams()
       .set('email', emailIngresado)
       .set('password', contraseñaIngresada);
@@ -75,7 +75,7 @@ comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
     }),
     catchError(error => {
       console.error('Error during email check:', error);
-      
+
       return of(true);
     })
   );
@@ -87,18 +87,19 @@ comprobarNombreUsuario(nombreIngresado: string): Observable<boolean> {
   return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
     map(usuario => {
       if (usuario) {
-       
+
         return false;
       }
- 
+
       return true;
     }),
     catchError(error => {
       console.error('Error during email check:', error);
-     
+
       return of(true);
     })
   );
 }
 
 }
+
