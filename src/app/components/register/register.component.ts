@@ -1,20 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UsuariosService } from '../../service/usuarios.service';
+import { Usuario } from '../../interface/usuario.interface'
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule,CommonModule,RouterModule], // Asegúrate de importar los módulos necesarios aquí
+  imports: [FormsModule,CommonModule,RouterModule,], // Asegúrate de importar los módulos necesarios aquí
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
 
- usuarioService = inject(UsuariosService);
+ usuarioService = inject (UsuariosService);
   user:Usuario = {
     username: '',
     email: '',

@@ -1,0 +1,11 @@
+<h2>{{ pais.nombre }}</h2>
+<p>Capital: {{ pais.capital }}</p>
+<p>Idioma: {{ pais.idiomaOficial }}</p>
+<img [src]="pais.bandera" alt="Bandera de {{ pais.nombre }}">
+
+<h3>Ciudades</h3>
+<ul>
+  <li *ngFor= "let ciudad of pais.ciudades">
+    {{ ciudad.nombre }}
+  </li>
+</ul>
