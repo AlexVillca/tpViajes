@@ -1,0 +1,36 @@
+.navbar {
+  background-color: #007bff; /* Color del fondo del navbar */
+  padding: 10px 20px; /* Espaciado del navbar */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between; /* Espacia el logo y el menú */
+  align-items: center; /* Centra los elementos verticalmente */
+  font-family: 'Verdana', sans-serif;
+}
+
+.navbar-logo {
+  color: white; /* Color del texto del logo */
+  text-decoration: none; /* Sin subrayado */
+  font-size: 24px; /* Tamaño de la fuente del logo */
+}
+.navbar-menu {
+  list-style: none; /* Quita los puntos de la lista */
+  display: flex; /* Muestra el menú en línea */
+  gap: 15px; /* Espaciado entre los enlaces */
+  align-items: flex-end;
+  font-family: 'Verdana', sans-serif;
+}
+
+.navbar-menu li a {
+  color: white; /* Color de los enlaces */
+  text-decoration: none; /* Sin subrayado */
+  font-size: 16px; /* Tamaño de la fuente de los enlaces */
+  font-family: 'Verdana', sans-serif;
+
+}
+
+.navbar-menu li a:hover {
+  text-decoration: underline; /* Subraya el enlace al pasar el mouse */
+}
