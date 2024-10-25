@@ -1,28 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { PaisesService } from '../paises.service';
-import { CommonModule } from '@angular/common'; // Importar CommonModule para usar *ngFor
-import { HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
+import { CommonModule } from '@angular/common';
 import { Pais } from '../pais';
+import { RouterModule } from '@angular/router';
+import { PaisDataService } from '../pais-data.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-paises-list',
-  standalone: true, // Indicar que es un componente standalone
-  imports: [CommonModule, HttpClientModule], // Importar los módulos necesarios
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './paises-list.component.html',
   styleUrls: ['./paises-list.component.css']
 })
-
 export class PaisesListComponent implements OnInit {
-  paises:  
- Pais[] = [];
+  paises: Pais[] = [];
 
-  constructor(private paisesService: PaisesService) { }
+  constructor(
+    private paisDataService: PaisDataService,
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
-    this.paisesService.getPaises().subscribe(data => {
-      this.paises = data;  
-
-    });
+    this.http.get<Pais[]>('http://localhost:3000/paises') // Obtener datos de la API
+      .subscribe(data => {
+        this.paises = data;
+      });
   }
 
+  seleccionarPais(pais: Pais) {
+    this.paisDataService.setPais(pais);
+    this.router.navigate(['/pais']);
+  }
 }

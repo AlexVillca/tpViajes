@@ -1,29 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PaisesService } from '../paises.service';
-import { Pais } from '../pais'
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PaisDataService } from '../pais-data.service';
 
 @Component({
   selector: 'app-pais-detail',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './pais-detail.component.html',
-  styleUrl: './pais-detail.component.css'
+  styleUrls: ['./pais-detail.component.css']
 })
+export class PaisDetailComponent {
+  pais$ = this.paisDataService.pais$;
 
-export class PaisDetailComponent implements OnInit {
-  pais!: Pais;
-
-  constructor(
-    private route: ActivatedRoute,
-    private paisesService: PaisesService
-  ) { }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const codigo = params['codigo'];
-      this.paisesService.getPais(codigo).subscribe(pais => this.pais = pais);
-    });
-  }
+  constructor(private paisDataService: PaisDataService) { }
 }

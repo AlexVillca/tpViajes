@@ -1,5 +1,17 @@
-<ul>
-  <li *ngFor="let pais of paises">
-    <a routerLink="/pais', pais.codigo">{{ pais.nombre }}</a>
-  </li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+  <title>Lista Paises</title>
+</head>
+<body>
+<h1>A donde viajamos?</h1>
+  <ul>
+    <li *ngFor="let pais of paises">
+      <a (click)="seleccionarPais(pais)">{{ pais.nombre }}</a>
+    </li>
+  </ul>
+</body>
+</html>

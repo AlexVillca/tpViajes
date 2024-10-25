@@ -7,15 +7,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from "./components/footer/footer.component";
 import { PaisesListComponent } from './paises/paises-list/paises-list.component';
 import { PaisDetailComponent } from './paises/pais-detail/pais-detail.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginFormComponent, RegisterComponent, NavbarComponent, HttpClientModule, FooterComponent,FooterComponent,PaisesListComponent],
+  imports: [
+    RouterOutlet,
+    LoginFormComponent,
+    RegisterComponent,
+    NavbarComponent,
+    HttpClientModule,
+    FooterComponent,
+    FooterComponent,
+    PaisesListComponent,
+    PaisDetailComponent
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'tpFinal';
+
 }
