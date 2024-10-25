@@ -12,15 +12,6 @@ export class UsuariosService {
 
   private apiUrl = 'http://localhost:3000/usuarios';
 
-  getUsuario(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl).pipe(
-      catchError(error => {
-        console.error('Error al obtener usuarios:', error);
-        return throwError(() => new Error('Error al obtener usuarios'));
-      })
-    );
-  }
-
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
       catchError(error => {
@@ -30,8 +21,19 @@ export class UsuariosService {
     );
   }
 
+  
+  getUsuario(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Error al obtener usuarios:', error);
+        return throwError(() => new Error('Error al obtener usuarios'));
+      })
+    );
+  }
+
+
   putUsuario(usuario: Usuario): Observable<Usuario> {
-    const url = `${this.apiUrl}/${usuario.id}`;
+    const url = `${this.apiUrl}/${usuario.email}`;
     return this.http.put<Usuario>(url, usuario).pipe(
       catchError(error => {
         console.error('Error al actualizar usuario:', error);
@@ -40,20 +42,63 @@ export class UsuariosService {
     );
   }
 
-
-
-logUsuario(nombreIngresado: string, contraseñaIngresada: string): Observable<number | null> {
-    // En una aplicación real, usa una petición POST y cifra la contraseña
+ 
+logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<number | null> {
+    
     const params = new HttpParams()
-      .set('nombre', nombreIngresado)
-      .set('contraseña', contraseñaIngresada);
+      .set('email', emailIngresado)
+      .set('password', contraseñaIngresada);
 
       return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
-        map(usuario => usuario ? Number(usuario.id) : null),
+        map(usuario => usuario ? Number(usuario.email) : null),
         catchError(error => {
           console.error('Error during login:', error);
           return of(null);
         })
     );
   }
+
+
+
+
+
+comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
+  const params = new HttpParams().set('email', emailIngresado);
+
+  return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
+    map(usuario => {
+      if (usuario) {
+        return false;
+      }
+
+      return true;
+    }),
+    catchError(error => {
+      console.error('Error during email check:', error);
+      
+      return of(true);
+    })
+  );
+}
+
+comprobarNombreUsuario(nombreIngresado: string): Observable<boolean> {
+  const params = new HttpParams().set('email', nombreIngresado);
+
+  return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
+    map(usuario => {
+      if (usuario) {
+       
+        return false;
+      }
+ 
+      return true;
+    }),
+    catchError(error => {
+      console.error('Error during email check:', error);
+     
+      return of(true);
+    })
+  );
+}
+
 }
