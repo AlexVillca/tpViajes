@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class IdUsuarioSkipTestService {
+export class IdUsuarioService {
   private userId: String|null = null;
   setUserId(id:string){
     this.userId = id;
