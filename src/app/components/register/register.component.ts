@@ -9,14 +9,14 @@ import { Usuario } from '../../interface/usuario.interface'
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule,CommonModule,RouterModule,], // Asegúrate de importar los módulos necesarios aquí
+  imports: [FormsModule,CommonModule,RouterModule], // Asegúrate de importar los módulos necesarios aquí
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
 
- usuarioService = inject (UsuariosService);
+ usuarioService = inject(UsuariosService);
   user:Usuario = {
     username: '',
     email: '',
@@ -27,6 +27,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       // Lógica para enviar los datos del formulario (this.user) al servidor
        this.usuarioService.postUsuario(this.user);
+       console.log(this.user);
       console.log('Formulario enviado:', this.user);
     } else {
       // No es necesario hacer nada aquí, ya que las validaciones de Angular
