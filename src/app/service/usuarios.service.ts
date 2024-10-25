@@ -33,7 +33,7 @@ export class UsuariosService {
  
 
 
-  logUsuario(nombreIngresado: string, contraseñaIngresada: string): Observable<string | null> {
+  logUsuario(nombreIngresado: string, contraseñaIngresada: string): Observable<number | null> {
     const params = new HttpParams()
       .set('nombre', nombreIngresado)
       .set('contraseña', contraseñaIngresada);
