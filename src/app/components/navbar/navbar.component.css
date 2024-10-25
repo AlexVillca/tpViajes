@@ -1,6 +1,11 @@
+
+
 .navbar {
-  background-color: #007bff; /* Color del fondo del navbar */
+  background-color: #4bb6b7; /* Color del fondo del navbar */
   padding: 10px 20px; /* Espaciado del navbar */
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
 }
 
 .navbar-container {
@@ -8,6 +13,7 @@
   justify-content: space-between; /* Espacia el logo y el menú */
   align-items: center; /* Centra los elementos verticalmente */
   font-family: 'Verdana', sans-serif;
+  width: 100%;
 }
 
 .navbar-logo {
@@ -18,7 +24,7 @@
 .navbar-menu {
   list-style: none; /* Quita los puntos de la lista */
   display: flex; /* Muestra el menú en línea */
-  gap: 15px; /* Espaciado entre los enlaces */
+  gap: 40px; /* Espaciado entre los enlaces */
   align-items: flex-end;
   font-family: 'Verdana', sans-serif;
 }

@@ -40,9 +40,8 @@ export class UsuariosService {
     );
   }
 
-  // **IMPORTANTE:** Este método de login aún necesita una implementación
-  // de seguridad adecuada (cifrado de contraseñas, uso de JWT).
-  // Esto es solo un ejemplo básico.
+
+
 logUsuario(nombreIngresado: string, contraseñaIngresada: string): Observable<number | null> {
     // En una aplicación real, usa una petición POST y cifra la contraseña
     const params = new HttpParams()

@@ -8,3 +8,20 @@ h1{
   image-rendering:optimizeQuality;
 
 }
+
+button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 10px;
+  background-color: #4bb6b7;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+p{
+  text-align: center;
+  
+}

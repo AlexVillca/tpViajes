@@ -1,39 +1,36 @@
 .footer {
-    background-color: #007bff; /* Color del fondo del navbar */
+    background-color: #4bb6b7; /* Color del fondo del navbar */
     color: white; /* Color del texto */
     text-align: center; /* Centrar el texto */
     width: 100%; /* Ancho completo */
   }
-  
+
   .footer-content {
     max-width: 1200px; /* Ancho máximo del contenido */
     margin: 0 auto; /* Centrar el contenido */
   }
-  
+
   .footer nav ul {
     list-style-type: none; /* Eliminar puntos de lista */
     padding: 10px; /* Sin padding */
   }
-  
+
   .footer nav ul li {
     display: inline; /* Mostrar en línea */
     margin: 0 15px; /* Espacio entre elementos */
   }
-  
+
   .footer a {
     color: white; /* Color de los enlaces */
-    text-decoration: underline; /* Sin subrayado */
     transition: transform 0.6s ease-in-out, text-decoration 0.3s ease; /* Transición para el efecto */
   }
-  
+
   /* Efecto de desplazamiento al hacer hover */
   .footer-link {
     display: inline-block; /* Permitir transformaciones en línea */
     position: relative; /* Necesario para el efecto de desplazamiento */
   }
-  
+
   .footer-link:hover {
     transform: translateY(-3px); /* Mover hacia la derecha */
-    text-decoration: underline; /* Subrayar al hacer hover */
   }
-  

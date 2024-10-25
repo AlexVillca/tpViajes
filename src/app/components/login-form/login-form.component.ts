@@ -35,4 +35,6 @@ export class LoginFormComponent {
     alert(this.correoInput +  ' ' + this.contrInput
     )
   }
+
+
 }
