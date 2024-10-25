@@ -14,7 +14,8 @@ import { RouterModule } from '@angular/router';
 export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
 
-  user = {
+ usuarioService = inject(UsuariosService);
+  user:Usuario = {
     username: '',
     email: '',
     password: ''
@@ -23,6 +24,7 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registerForm.valid) {
       // Lógica para enviar los datos del formulario (this.user) al servidor
+       this.usuarioService.postUsuario(this.user);
       console.log('Formulario enviado:', this.user);
     } else {
       // No es necesario hacer nada aquí, ya que las validaciones de Angular
