@@ -10,6 +10,7 @@ import { PaisDetailComponent } from './paises/pais-detail/pais-detail.component'
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { FiltroPaisesPipe } from './paises/filtro-paises.pipe';
+import { CiudadDetailComponent } from './paises/ciudad-detail/ciudad-detail.component';
 
 
 @Component({
@@ -25,7 +26,8 @@ import { FiltroPaisesPipe } from './paises/filtro-paises.pipe';
     FooterComponent,
     PaisesListComponent,
     PaisDetailComponent,
-    FiltroPaisesPipe
+    FiltroPaisesPipe,
+    CiudadDetailComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
