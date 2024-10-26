@@ -43,20 +43,48 @@ export class UsuariosService {
   }
 
 
-logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<number | null> {
+  logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<string|null> {
+    const params = new HttpParams()
+      .set('email', emailIngresado)
+      .set('password', contraseñaIngresada);
+
+    return this.http.get<Usuario[]>(this.apiUrl, { params }).pipe(
+      map(usuario => {
+        if (usuario) {
+          console.log("log usuario" + usuario[0].username);
+          return String(usuario[0].id);
+        } else {
+          console.log("contraseña incorrecta");
+          return null;
+        }
+      }),
+      catchError(error => {
+        console.error('Error durante el login:', error);
+        return throwError(() => error.message || 'Error de red');
+      })
+    );
+  }
+
+
+
+
+
+
+/*
+logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<String | null> {
 
     const params = new HttpParams()
       .set('email', emailIngresado)
       .set('password', contraseñaIngresada);
 
       return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
-        map(usuario => usuario ? Number(usuario.email) : null),
+        map(usuario => usuario ? String (usuario.id) : null),
         catchError(error => {
           console.error('Error during login:', error);
           return of(null);
         })
     );
-  }
+  }*/
 
 
 

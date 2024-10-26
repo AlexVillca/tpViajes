@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IdUsuarioService {
-  private userId: String|null = null;
-  setUserId(id:string){
-    this.userId = id;
+  private id = new BehaviorSubject<string | null>(null);
+
+  // Getter para exponer el Observable del ID
+  get id$(): Observable<string | null> {
+    return this.id.asObservable();
   }
-  getUserId(){
-    return this.userId;
+
+  // Setter para actualizar el valor del ID
+  setId(nuevoId: string | null): void {
+    this.id.next(nuevoId);
+  }
+  clearUserId(){
+    this.id.next(null);
   }
   constructor() { }
 }
