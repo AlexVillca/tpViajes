@@ -51,7 +51,7 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(this.apiUrl, { params }).pipe(
       map(usuario => {
         if (usuario) {
-
+          console.log("log usuario" + usuario[0].username);
           return String(usuario[0].id);
         } else {
           console.log("contraseña incorrecta");

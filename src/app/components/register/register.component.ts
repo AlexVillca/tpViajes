@@ -29,6 +29,7 @@ export class RegisterComponent {
        this.usuarioService.postUsuario(this.user).subscribe({
         next: (response) => {
           console.log('Usuario creado exitosamente:', response);
+
         },
         error: (error) => {
           console.error('Error al crear usuario:', error);
