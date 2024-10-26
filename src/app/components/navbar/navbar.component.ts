@@ -1,8 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { IdUsuarioService } from '../../service/id-usuario.service';
 import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +15,15 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   idUsuarioService = inject(IdUsuarioService);
+  routerService = inject(Router);
   flag:boolean = false;
   ngOnInit() {
     this.idUsuarioService.id$.subscribe((valor) => {
 
       if(valor !== null){
         this.flag = true;
+
+
       }else{
         this.flag = false;
       }
@@ -26,5 +31,6 @@ export class NavbarComponent {
   }
   logOut(){
     this.idUsuarioService.clearUserId();
+    this.routerService.navigate(['home']);
   }
 }

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UsuariosService } from '../../service/usuarios.service';
 import { IdUsuarioService } from '../../service/id-usuario.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-form',
   standalone: true,
@@ -16,16 +16,16 @@ import { IdUsuarioService } from '../../service/id-usuario.service';
 export class LoginFormComponent {
   usuarioService = inject(UsuariosService);
   idUsuario = inject(IdUsuarioService);
-
+  routerService = inject(Router);
 
 
   isRegistering: boolean = false; // Estado para controlar si se muestra el registro
 
 
+
   correoInput: string= '';
   contrInput: string = '';
    setCorreo(event:any){
-    console.log("se actualizao");
       this.correoInput = event.target.value;
    }
    setContr(event:any){
@@ -36,6 +36,7 @@ export class LoginFormComponent {
     this.usuarioService.logUsuario(this.correoInput, this.contrInput).subscribe(id => {
       if(id){
         this.idUsuario.setId(id);
+        this.routerService.navigate(['home']);
       }else{
         console.log("usuario no registrado funResp");
       }
