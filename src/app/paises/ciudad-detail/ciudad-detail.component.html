@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+  <title>Ciudad</title>
+</head>
+<body>
+  <div *ngIf="ciudad$ | async as ciudad">
+    <h2>{{ ciudad.nombre }}</h2>
+    <p>{{ ciudad.infoWikipedia }}</p>
+    <p>Actividades: {{ ciudad.actividades }}</p>
+    <p>Consejos: {{ ciudad.consejos }}</p>
+    <p>Comentarios: {{ ciudad.comentarios }}</p>
+
+    <h3>Atracciones</h3>
+    <ul>
+
+      <li *ngFor="let atraccion of ciudad.atracciones">
+        <h4>{{ atraccion.nombre }}</h4>
+        <p>{{ atraccion.descripcion }}</p>
+        <img *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}">
+        <p>Horario: {{ atraccion.horario }}</p>
+        <p>Página web: {{ atraccion.paginaWeb }}</p>
+        <p *ngIf="atraccion.ubicacion">Ubicación: {{ atraccion.ubicacion.direccion }}</p>
+        <p>Tipo: {{ atraccion.tipo }}</p>
+        <p>Valoración: {{ atraccion.valoracion }}</p>
+      </li>
+    </ul>
+    <button type="button" (click)="volver()">Volver</button>
+  </div>
+</body>
+</html>

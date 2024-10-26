@@ -31,12 +31,11 @@
     <h3>Ciudades</h3>
     <ul>
       <li *ngFor="let ciudad of pais.ciudades">
-        {{ ciudad.nombre }}
+        <a (click)="seleccionarCiudad(ciudad)">{{ ciudad.nombre }}</a>
       </li>
     </ul>
   </div>
-
-
+  <button type="button" (click)="volver()">Volver</button>
 </body>
 </html>
 

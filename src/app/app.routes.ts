@@ -5,6 +5,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { PaisesListComponent } from './paises/paises-list/paises-list.component';
 import { PaisDetailComponent } from './paises/pais-detail/pais-detail.component';
+import { CiudadDetailComponent } from './paises/ciudad-detail/ciudad-detail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'paises', component: PaisesListComponent },
+  { path: 'ciudad', component: CiudadDetailComponent },
   { path: 'pais', component: PaisDetailComponent } // Ruta sin parámetro
 ];
