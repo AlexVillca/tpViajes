@@ -51,7 +51,7 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(this.apiUrl, { params }).pipe(
       map(usuario => {
         if (usuario) {
-          console.log("log usuario" + usuario[0].username);
+
           return String(usuario[0].id);
         } else {
           console.log("contraseña incorrecta");
@@ -65,35 +65,10 @@ export class UsuariosService {
     );
   }
 
-
-
-
-
-
-/*
-logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<String | null> {
-
-    const params = new HttpParams()
-      .set('email', emailIngresado)
-      .set('password', contraseñaIngresada);
-
-      return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
-        map(usuario => usuario ? String (usuario.id) : null),
-        catchError(error => {
-          console.error('Error during login:', error);
-          return of(null);
-        })
-    );
-  }*/
-
-
-
-
-
-comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
+  comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
   const params = new HttpParams().set('email', emailIngresado);
 
-  return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
+    return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
     map(usuario => {
       if (usuario) {
         return false;
