@@ -1,0 +1,62 @@
+h1 {
+  text-align: center; /* Centra el título */
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif; /* Cambia la fuente si lo deseas */
+}
+
+ul {
+  list-style: none;   /* Quita los puntos de la lista */
+  padding: 0;
+  margin: 0 auto;     /* Centra la lista */
+  width: 80%;         /* Ajusta el ancho según tus necesidades */
+  display: flex;      /* Usa Flexbox para distribuir los elementos */
+  flex-wrap: wrap;    /* Permite que los elementos se ajusten en varias líneas */
+  justify-content: center; /* Centra los elementos horizontalmente */
+  gap: 20px;          /* Espacio entre los elementos */
+}
+
+li {
+  width: calc(33.33% - 20px); /* Calcula el ancho de cada elemento */
+  /* Ajusta el 33.33% si quieres más o menos elementos por fila */
+  box-sizing: border-box;   /* Incluye el padding y el border en el ancho */
+}
+
+a {
+  display: block;         /*  Hace que el enlace ocupe todo el ancho del elemento */
+  padding: 15px;
+  background-color: #f0f0f0; /* Color de fondo */
+  border: 1px solid #ddd;   /* Borde */
+  text-align: center;
+  text-decoration: none;  /* Quita el subrayado */
+  color: #333;            /* Color del texto */
+  border-radius: 5px;     /* Bordes redondeados */
+  transition: all 0.3s ease; /* Transición suave para el hover */
+}
+
+a:hover {
+  background-color: #ddd;  /* Cambia el color de fondo al pasar el mouse */
+  transform: translateY(-2px); /* Efecto de elevación sutil */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra */
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+}
+
+.abecedario {
+  display: flex;
+  justify-content: center; /* Centra las letras */
+  gap: 10px;
+  margin-bottom: 20px;   /* Espacio entre el abecedario y la lista */
+}
+
+.abecedario a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #333;
+  border-radius: 5px;
+}

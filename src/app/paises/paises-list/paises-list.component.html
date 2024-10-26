@@ -7,11 +7,19 @@
   <title>Lista Paises</title>
 </head>
 <body>
-<h1>A donde viajamos?</h1>
-  <ul>
-    <li *ngFor="let pais of paises">
-      <a (click)="seleccionarPais(pais)">{{ pais.nombre }}</a>
-    </li>
-  </ul>
+
+  <div class="contenedor">
+    <div class="abecedario">
+      <a (click)="filtrarPaises('todos')">Todos</a>
+      <a *ngFor="let letra of letras" (click)="filtrarPaises(letra)">{{ letra }}</a>
+    </div>
+
+    <ul>
+      <li *ngFor="let pais of paisesFiltrados">
+        <a (click)="seleccionarPais(pais)">{{ pais.nombre }}</a>
+      </li>
+    </ul>
+  </div>
+
 </body>
 </html>

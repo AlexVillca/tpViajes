@@ -9,6 +9,7 @@ import { PaisesListComponent } from './paises/paises-list/paises-list.component'
 import { PaisDetailComponent } from './paises/pais-detail/pais-detail.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
+import { FiltroPaisesPipe } from './paises/filtro-paises.pipe';
 
 
 @Component({
@@ -23,7 +24,8 @@ import { routes } from './app.routes';
     FooterComponent,
     FooterComponent,
     PaisesListComponent,
-    PaisDetailComponent
+    PaisDetailComponent,
+    FiltroPaisesPipe
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
