@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Pais } from './pais';
+import { Pais } from '../models/interface/pais.interface';
 
 @Pipe({
   name: 'filtroPaises',

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UsuariosService } from '../../service/usuarios.service';
-import { Usuario } from '../../interface/usuario.interface'
+import { Usuario } from '../../../models/interface/usuario.interface'
 
 @Component({
   selector: 'app-register',
@@ -25,7 +25,6 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      // Lógica para enviar los datos del formulario (this.user) al servidor
        this.usuarioService.postUsuario(this.user).subscribe({
         next: (response) => {
           console.log('Usuario creado exitosamente:', response);
