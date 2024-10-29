@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Pais } from '../pais';
+import { Pais } from '../../../models/interface/pais.interface';
 import { RouterModule } from '@angular/router';
-import { PaisDataService } from '../pais-data.service';
+import { PaisDataService } from '../../../core/service/pais-data.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
