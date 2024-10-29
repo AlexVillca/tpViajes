@@ -1,4 +1,25 @@
 {
+  "usuarios": [
+    {
+      "id": "1fb3",
+      "username": "pepe3",
+      "email": "peper@gmail.com",
+      "password": "987654321"
+    },
+    {
+      "id": "3419",
+      "username": "arjona",
+      "email": "acorde@gmail.com",
+      "password": "541sdgdgsdg"
+    },
+    {
+      "id": "47fe",
+      "username": "probando",
+      "email": "probando@gmail.com",
+      "password": "12345678"
+    }
+
+  ],
   "paises": [
     {
       "nombre": "Marruecos",
