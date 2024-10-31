@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment.development';
   providedIn: 'root'
 })
 export class PaisesService {
-  private apiUrl = environment.urlBase;
+  private apiUrl = environment.urlBasePaises;
 
   constructor(private http: HttpClient) { }
 
@@ -18,8 +18,7 @@ export class PaisesService {
   }
 
   getPais(codigo: string): Observable<Pais> {
-    const codigoLimpio = codigo.replace(/\u200B/g, '');
-    const url = `${this.apiUrl}/${codigoLimpio}`;
+    const url = `${this.apiUrl}`;
     return this.http.get<Pais>(url).pipe(
       catchError(error => {
         if (error.status === 404) {

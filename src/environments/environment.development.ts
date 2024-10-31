@@ -1,3 +1,4 @@
 export const environment = {
-  urlBase: 'http://localhost:3000/paises'
+  urlBasePaises: 'http://localhost:3000/paises',
+  urlBaseUsuarios: 'http://localhost:3000/usuarios'
 };
