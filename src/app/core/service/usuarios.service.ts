@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../../models/interface/usuario.interface';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:3000/usuarios';
+  private apiUrl = environment.urlBase;
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
