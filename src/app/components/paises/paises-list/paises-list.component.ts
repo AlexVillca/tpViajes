@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Pais } from '../../../models/interface/pais.interface';
 import { RouterModule } from '@angular/router';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
+import { PaisesService } from '../../../core/service/paises.service';
 
 @Component({
   selector: 'app-paises-list',
@@ -14,13 +13,16 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './paises-list.component.html',
   styleUrls: ['./paises-list.component.css']
 })
+
 export class PaisesListComponent implements OnInit {
   paises: Pais[] = [];
+
+  paisesService = inject(PaisesService);
 
   constructor(
     private paisDataService: PaisDataService,
     private router: Router,
-    private http: HttpClient
+
   ) { }
 
   letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -41,12 +43,10 @@ export class PaisesListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.http.get<Pais[]>('http://localhost:3000/paises') // Obtener datos de la API
-      .subscribe(data => {
-        this.paises = data;
-      });
+    this.paisesService.getPaises().subscribe(data => {
+      this.paises = data;
       this.paisesFiltrados = this.paises;
-  }
+    });  }
 
   seleccionarPais(pais: Pais) {
     this.paisDataService.setPais(pais);

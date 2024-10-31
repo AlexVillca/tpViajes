@@ -18,6 +18,7 @@ export class PaisDetailComponent{
 
   pais$ = this.paisDataService.pais$;
 
+
   constructor(
     private paisDataService: PaisDataService,
     private ciudadDataService: CiudadDataService, // Inyectar el servicio
