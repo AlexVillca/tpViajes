@@ -11,7 +11,7 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = environment.urlBase;
+  private apiUrl = environment.urlBaseUsuarios;
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
