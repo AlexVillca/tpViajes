@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Pais } from '../../models/interface/pais.interface';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaisesService {
-  private apiUrl = 'http://localhost:3000/paises';
+  private apiUrl = environment.urlBase;
 
   constructor(private http: HttpClient) { }
 
