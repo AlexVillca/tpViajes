@@ -19,7 +19,7 @@ export interface Pais {
   cultura?: string;
   seguridad?: string;
   transporte?: string;
-  ciudades: Ciudad[];
+  ciudades?: Ciudad[];
 }
 
 export interface Ciudad {
@@ -28,7 +28,7 @@ export interface Ciudad {
   actividades?: string;
   consejos?: string;
   comentarios?: string;
-  atracciones: Atraccion[];
+  atracciones?: Atraccion[];
 }
 
 export interface Atraccion {
