@@ -19,7 +19,7 @@ export class LoginFormComponent {
   routerService = inject(Router);
 
 
-  isRegistering: boolean = false; // Estado para controlar si se muestra el registro
+   // Estado para controlar si se muestra el registro
 
 
 
@@ -44,13 +44,6 @@ export class LoginFormComponent {
 
   }
 
-  switchToRegister() {
-    this.isRegistering = true;
-  }
-  // Método para cambiar a la vista de inicio de sesión
-  switchToLogin() {
-    this.isRegistering = false;
-  }
 
   }
 
