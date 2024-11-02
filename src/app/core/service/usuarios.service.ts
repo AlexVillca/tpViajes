@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../../models/interface/usuario.interface';
-import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { catchError, concatMap, map, Observable, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable({
@@ -66,40 +66,30 @@ export class UsuariosService {
     );
   }
 
-  comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
-  const params = new HttpParams().set('email', emailIngresado);
+comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
 
-    return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
+
+  return this.http.get<Usuario | null>(`${this.apiUrl}?email=${encodeURIComponent(emailIngresado)}`).pipe(
     map(usuario => {
-      if (usuario) {
-        return false;
-      }
 
-      return true;
+      return usuario === null || Object.keys(usuario).length === 0;
     }),
     catchError(error => {
-      console.error('Error during email check:', error);
-
+      console.error('Error durante la verificación del email:', error);
       return of(true);
     })
   );
 }
+comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
 
-comprobarNombreUsuario(nombreIngresado: string): Observable<boolean> {
-  const params = new HttpParams().set('email', nombreIngresado);
 
-  return this.http.get<Usuario>(this.apiUrl, { params }).pipe(
+  return this.http.get<Usuario | null>(`${this.apiUrl}?username=${encodeURIComponent(usernameIngresado)}`).pipe(
     map(usuario => {
-      if (usuario) {
 
-        return false;
-      }
-
-      return true;
+      return usuario === null || Object.keys(usuario).length === 0;
     }),
     catchError(error => {
-      console.error('Error during email check:', error);
-
+      console.error('Error durante la verificación del email:', error);
       return of(true);
     })
   );

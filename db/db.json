@@ -18,7 +18,6 @@
       "email": "probando@gmail.com",
       "password": "12345678"
     }
-
   ],
   "paises": [
     {
@@ -116,7 +115,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "0e36"
     },
     {
       "nombre": "Egipto (parte africana)",
@@ -213,7 +213,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "930c"
     },
     {
       "nombre": "Egipto (parte asiática)",
@@ -310,7 +311,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "eea0"
     },
     {
       "nombre": "Sudáfrica",
@@ -407,7 +409,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "4222"
     },
     {
       "nombre": "Túnez",
@@ -504,7 +507,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "6267"
     },
     {
       "nombre": "Zimbabue",
@@ -564,7 +568,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "9d19"
     },
     {
       "nombre": "Kenia",
@@ -661,14 +666,15 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "65aa"
     },
     {
       "nombre": "Tanzania",
       "nombreOficial": "República Unida de Tanzania",
       "capital": "Dodoma",
       "codigo": "TZ",
-      "latitud": -6.3690,
+      "latitud": -6.369,
       "longitud": 34.8888,
       "bandera": "https://flagcdn.com/w320/tz.png",
       "idiomaOficial": "Swahili, Inglés",
@@ -758,7 +764,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "72b7"
     },
     {
       "nombre": "Botsuana",
@@ -841,7 +848,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "1658"
     },
     {
       "nombre": "Cabo Verde",
@@ -938,7 +946,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "117f"
     },
     {
       "nombre": "Senegal",
@@ -1035,7 +1044,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "da29"
     },
     {
       "nombre": "Argentina",
@@ -1132,7 +1142,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "f09c"
     },
     {
       "nombre": "Chile",
@@ -1140,7 +1151,7 @@
       "capital": "Santiago",
       "codigo": "CL",
       "latitud": -35.6751,
-      "longitud": -71.5430,
+      "longitud": -71.543,
       "bandera": "https://flagcdn.com/w320/cl.png",
       "idiomaOficial": "Español",
       "moneda": "Peso chileno (CLP)",
@@ -1229,7 +1240,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "0641"
     },
     {
       "nombre": "Colombia",
@@ -1326,14 +1338,15 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "923d"
     },
     {
       "nombre": "Perú",
       "nombreOficial": "República del Perú",
       "capital": "Lima",
       "codigo": "PE",
-      "latitud": -9.1900,
+      "latitud": -9.19,
       "longitud": -75.0152,
       "bandera": "https://flagcdn.com/w320/pe.png",
       "idiomaOficial": "Español, Quechua,  Aimara",
@@ -1402,7 +1415,7 @@
               "ubicacion": {
                 "direccion": "Machu Picchu,  Cusco",
                 "latitud": -13.1631,
-                "longitud": -72.5450
+                "longitud": -72.545
               },
               "tipo": "Sitio arqueológico",
               "valoracion": 4.9
@@ -1423,7 +1436,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "e685"
     },
     {
       "nombre": "Ecuador",
@@ -1475,8 +1489,8 @@
               "paginaWeb": "https://www.mitaddelmundo.com/",
               "ubicacion": {
                 "direccion": "Ciudad Mitad del Mundo,  Quito",
-                "latitud": 0.0000,
-                "longitud": -78.4500
+                "latitud": 0,
+                "longitud": -78.45
               },
               "tipo": "Monumento,  museo",
               "valoracion": 4.5
@@ -1520,7 +1534,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "b11a"
     },
     {
       "nombre": "Bolivia",
@@ -1617,7 +1632,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "34fb"
     },
     {
       "nombre": "Paraguay",
@@ -1714,7 +1730,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "e286"
     },
     {
       "nombre": "Belice",
@@ -1811,7 +1828,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "038b"
     },
     {
       "nombre": "Guatemala",
@@ -1908,7 +1926,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "5bec"
     },
     {
       "nombre": "Costa Rica",
@@ -1946,7 +1965,7 @@
               "paginaWeb": "https://www.museocostarica.go.cr/",
               "ubicacion": {
                 "direccion": "Cuesta de Moras,  San José",
-                "latitud": 9.9350,
+                "latitud": 9.935,
                 "longitud": -84.0764
               },
               "tipo": "Museo",
@@ -2005,7 +2024,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "3aca"
     },
     {
       "nombre": "El Salvador",
@@ -2102,15 +2122,16 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "becd"
     },
     {
       "nombre": "Honduras",
       "nombreOficial": "República de Honduras",
       "capital": "Tegucigalpa",
       "codigo": "HN",
-      "latitud": 15.0000,
-      "longitud": -86.7500,
+      "latitud": 15,
+      "longitud": -86.75,
       "bandera": "https://flagcdn.com/w320/hn.png",
       "idiomaOficial": "Español",
       "moneda": "Lempira hondureño (HNL)",
@@ -2199,7 +2220,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "bbf1"
     },
     {
       "nombre": "Nicaragua",
@@ -2296,14 +2318,15 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "ca2f"
     },
     {
       "nombre": "Panamá",
       "nombreOficial": "República de Panamá",
       "capital": "Ciudad de Panamá",
       "codigo": "PA",
-      "latitud": 8.5380,
+      "latitud": 8.538,
       "longitud": -80.7821,
       "bandera": "https://flagcdn.com/w320/pa.png",
       "idiomaOficial": "Español",
@@ -2393,7 +2416,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "d586"
     },
     {
       "nombre": "Cuba",
@@ -2490,7 +2514,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "be69"
     },
     {
       "nombre": "Estados Unidos",
@@ -2624,7 +2649,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "f727"
     },
     {
       "nombre": "Canadá",
@@ -2721,7 +2747,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "115b"
     },
     {
       "nombre": "Alemania",
@@ -2818,7 +2845,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "7b2a"
     },
     {
       "nombre": "Francia",
@@ -2893,7 +2921,7 @@
               "paginaWeb": "https://en.nicetourisme.com/promenade-des-anglais",
               "ubicacion": {
                 "direccion": "Promenade des Anglais,  Niza",
-                "latitud": 43.6950,
+                "latitud": 43.695,
                 "longitud": 7.2664
               },
               "tipo": "Paseo marítimo",
@@ -2915,7 +2943,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "416d"
     },
     {
       "nombre": "España",
@@ -3012,7 +3041,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "3da8"
     },
     {
       "nombre": "Italia",
@@ -3088,7 +3118,7 @@
               "ubicacion": {
                 "direccion": "Piazza del Duomo,  Florencia",
                 "latitud": 43.7731,
-                "longitud": 11.2560
+                "longitud": 11.256
               },
               "tipo": "Catedral",
               "valoracion": 4.8
@@ -3109,7 +3139,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "8cf4"
     },
     {
       "nombre": "Reino Unido",
@@ -3117,7 +3148,7 @@
       "capital": "Londres",
       "codigo": "GB",
       "latitud": 55.3781,
-      "longitud": -3.4360,
+      "longitud": -3.436,
       "bandera": "https://flagcdn.com/w320/gb.png",
       "idiomaOficial": "Inglés",
       "moneda": "Libra esterlina (GBP)",
@@ -3206,7 +3237,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "6711"
     },
     {
       "nombre": "Portugal",
@@ -3303,7 +3335,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "03ba"
     },
     {
       "nombre": "Austria",
@@ -3400,7 +3433,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "198d"
     },
     {
       "nombre": "Países Bajos",
@@ -3497,7 +3531,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "554d"
     },
     {
       "nombre": "Turquía (parte europea)",
@@ -3550,14 +3585,15 @@
               "ubicacion": {
                 "direccion": "Sultanahmet,  Fatih,  Estambul",
                 "latitud": 41.0054,
-                "longitud": 28.9770
+                "longitud": 28.977
               },
               "tipo": "Mezquita",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "fffa"
     },
     {
       "nombre": "Bélgica",
@@ -3647,14 +3683,15 @@
               "ubicacion": {
                 "direccion": "Grote Markt,  Brujas",
                 "latitud": 51.2086,
-                "longitud": 3.2250
+                "longitud": 3.225
               },
               "tipo": "Torre,  mirador",
               "valoracion": 4.6
             }
           ]
         }
-      ]
+      ],
+      "id": "4cf3"
     },
     {
       "nombre": "Suiza",
@@ -3751,7 +3788,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "9fa8"
     },
     {
       "nombre": "República Checa",
@@ -3759,7 +3797,7 @@
       "capital": "Praga",
       "codigo": "CZ",
       "latitud": 49.8175,
-      "longitud": 15.4730,
+      "longitud": 15.473,
       "bandera": "https://flagcdn.com/w320/cz.png",
       "idiomaOficial": "Checo",
       "moneda": "Corona checa (CZK)",
@@ -3848,7 +3886,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "45ae"
     },
     {
       "nombre": "Hungría",
@@ -3945,7 +3984,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "9858"
     },
     {
       "nombre": "Polonia",
@@ -4034,7 +4074,7 @@
               "paginaWeb": "https://pkin.pl/en/",
               "ubicacion": {
                 "direccion": "Plac Defilad 1,  00-901 Varsovia",
-                "latitud": 52.2300,
+                "latitud": 52.23,
                 "longitud": 21.0042
               },
               "tipo": "Edificio histórico",
@@ -4042,7 +4082,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "f8a0"
     },
     {
       "nombre": "Rumania",
@@ -4139,7 +4180,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "1d9f"
     },
     {
       "nombre": "Croacia",
@@ -4214,7 +4256,7 @@
               "paginaWeb": "https://www.infozagreb.hr/plan-your-visit/things-to-do/attractions/ban-jelacic-square",
               "ubicacion": {
                 "direccion": "Trg bana Josipa Jelačića,  Zagreb",
-                "latitud": 45.8150,
+                "latitud": 45.815,
                 "longitud": 15.9781
               },
               "tipo": "Plaza",
@@ -4236,7 +4278,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "0a21"
     },
     {
       "nombre": "Bulgaria",
@@ -4325,7 +4368,7 @@
               "paginaWeb": "https://www.visitplovdiv.com/en/sights/old-town/",
               "ubicacion": {
                 "direccion": "Plovdiv",
-                "latitud": 42.1450,
+                "latitud": 42.145,
                 "longitud": 24.7453
               },
               "tipo": "Barrio histórico",
@@ -4333,15 +4376,16 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "8a36"
     },
     {
       "nombre": "Eslovaquia",
       "nombreOficial": "República Eslovaca",
       "capital": "Bratislava",
       "codigo": "SK",
-      "latitud": 48.6690,
-      "longitud": 19.6990,
+      "latitud": 48.669,
+      "longitud": 19.699,
       "bandera": "https://flagcdn.com/w320/sk.png",
       "idiomaOficial": "Eslovaco",
       "moneda": "Euro (EUR)",
@@ -4422,7 +4466,7 @@
               "paginaWeb": "https://www.strbskepleso.sk/en/",
               "ubicacion": {
                 "direccion": "Altos Tatras,  Eslovaquia",
-                "latitud": 49.1250,
+                "latitud": 49.125,
                 "longitud": 20.0667
               },
               "tipo": "Lago",
@@ -4430,7 +4474,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "194f"
     },
     {
       "nombre": "Eslovenia",
@@ -4527,7 +4572,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "08b9"
     },
     {
       "nombre": "Malta",
@@ -4624,7 +4670,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "0be3"
     },
     {
       "nombre": "Chipre",
@@ -4721,7 +4768,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "bb1c"
     },
     {
       "nombre": "Andorra",
@@ -4818,7 +4866,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "893e"
     },
     {
       "nombre": "Turquía (parte asiática)",
@@ -4915,7 +4964,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "2113"
     },
     {
       "nombre": "Grecia (islas)",
@@ -5004,7 +5054,7 @@
               "paginaWeb": "https://www.samaria.gr/en/",
               "ubicacion": {
                 "direccion": "Montañas Blancas,  Creta",
-                "latitud": 35.2750,
+                "latitud": 35.275,
                 "longitud": 23.9583
               },
               "tipo": "Parque Nacional",
@@ -5012,7 +5062,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "2d18"
     },
     {
       "nombre": "Finlandia",
@@ -5064,7 +5115,7 @@
               "paginaWeb": "https://www.suomenlinna.fi/en/",
               "ubicacion": {
                 "direccion": "Suomenlinna,  Helsinki",
-                "latitud": 60.1450,
+                "latitud": 60.145,
                 "longitud": 24.9847
               },
               "tipo": "Fortaleza",
@@ -5101,15 +5152,16 @@
               "paginaWeb": "https://www.nationalparks.fi/urhokekkonen",
               "ubicacion": {
                 "direccion": "Laponia,  Finlandia",
-                "latitud": 68.2500,
-                "longitud": 27.7500
+                "latitud": 68.25,
+                "longitud": 27.75
               },
               "tipo": "Parque Nacional",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "c7a3"
     },
     {
       "nombre": "Islandia",
@@ -5161,7 +5213,7 @@
               "paginaWeb": "https://www.bluelagoon.com/",
               "ubicacion": {
                 "direccion": "Grindavík,  Islandia",
-                "latitud": 63.8800,
+                "latitud": 63.88,
                 "longitud": -22.4483
               },
               "tipo": "Spa",
@@ -5199,21 +5251,22 @@
               "ubicacion": {
                 "direccion": "Círculo Dorado,  Islandia",
                 "latitud": 64.3103,
-                "longitud": -20.3000
+                "longitud": -20.3
               },
               "tipo": "Área geotermal",
               "valoracion": 4.8
             }
           ]
         }
-      ]
+      ],
+      "id": "f835"
     },
     {
       "nombre": "Noruega",
       "nombreOficial": "Reino de Noruega",
       "capital": "Oslo",
       "codigo": "NO",
-      "latitud": 60.4720,
+      "latitud": 60.472,
       "longitud": 8.4689,
       "bandera": "https://flagcdn.com/w320/no.png",
       "idiomaOficial": "Noruego",
@@ -5303,7 +5356,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "69bb"
     },
     {
       "nombre": "Suecia",
@@ -5400,7 +5454,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "1bae"
     },
     {
       "nombre": "Dinamarca",
@@ -5453,7 +5508,7 @@
               "ubicacion": {
                 "direccion": "Nyhavn,  Copenhague",
                 "latitud": 55.6967,
-                "longitud": 12.5900
+                "longitud": 12.59
               },
               "tipo": "Canal",
               "valoracion": 4.7
@@ -5497,7 +5552,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "5567"
     },
     {
       "nombre": "Irlanda",
@@ -5594,7 +5650,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "2d76"
     },
     {
       "nombre": "Montenegro",
@@ -5683,7 +5740,7 @@
               "paginaWeb": "https://www.visit-montenegro.com/sveti-stefan/",
               "ubicacion": {
                 "direccion": "Sveti Stefan,  Montenegro",
-                "latitud": 42.2550,
+                "latitud": 42.255,
                 "longitud": 18.8917
               },
               "tipo": "Isla,  pueblo",
@@ -5691,7 +5748,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "acbc"
     },
     {
       "nombre": "Estonia",
@@ -5729,7 +5787,7 @@
               "paginaWeb": "https://www.visittallinn.ee/eng/visitor/see-do/sights/pid-293/tallinn-old-town",
               "ubicacion": {
                 "direccion": "Tallin",
-                "latitud": 59.4370,
+                "latitud": 59.437,
                 "longitud": 24.7536
               },
               "tipo": "Centro histórico",
@@ -5781,14 +5839,15 @@
               "ubicacion": {
                 "direccion": "Muuseumi tee 2,  51003 Tartu",
                 "latitud": 58.3708,
-                "longitud": 26.7250
+                "longitud": 26.725
               },
               "tipo": "Museo",
               "valoracion": 4.4
             }
           ]
         }
-      ]
+      ],
+      "id": "7f24"
     },
     {
       "nombre": "Letonia",
@@ -5864,7 +5923,7 @@
               "ubicacion": {
                 "direccion": "Jūrmala",
                 "latitud": 56.9719,
-                "longitud": 23.7750
+                "longitud": 23.775
               },
               "tipo": "Playa",
               "valoracion": 4.7
@@ -5877,7 +5936,7 @@
               "paginaWeb": "https://www.visitjurmala.lv/en/things-to-do/nature/kemeri-national-park",
               "ubicacion": {
                 "direccion": "Ķemeri,  Letonia",
-                "latitud": 56.9500,
+                "latitud": 56.95,
                 "longitud": 23.4833
               },
               "tipo": "Parque Nacional",
@@ -5885,7 +5944,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "72fe"
     },
     {
       "nombre": "Lituania",
@@ -5982,7 +6042,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "cf94"
     },
     {
       "nombre": "Luxemburgo",
@@ -6021,7 +6082,7 @@
               "ubicacion": {
                 "direccion": "Ciudad de Luxemburgo",
                 "latitud": 49.6117,
-                "longitud": 6.1300
+                "longitud": 6.13
               },
               "tipo": "Centro histórico",
               "valoracion": 4.6
@@ -6058,14 +6119,15 @@
               "ubicacion": {
                 "direccion": "Montée du Château,  Vianden",
                 "latitud": 49.9333,
-                "longitud": 6.2000
+                "longitud": 6.2
               },
               "tipo": "Castillo",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "ad48"
     },
     {
       "nombre": "San Marino",
@@ -6148,7 +6210,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "5d8c"
     },
     {
       "nombre": "Vaticano",
@@ -6208,7 +6271,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "f453"
     },
     {
       "nombre": "Liechtenstein",
@@ -6291,7 +6355,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "3637"
     },
     {
       "nombre": "Islas Feroe",
@@ -6374,7 +6439,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "eca1"
     },
     {
       "nombre": "China",
@@ -6471,7 +6537,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "4571"
     },
     {
       "nombre": "Japón",
@@ -6568,7 +6635,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "f091"
     },
     {
       "nombre": "Corea del Sur",
@@ -6665,7 +6733,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "af29"
     },
     {
       "nombre": "Mongolia",
@@ -6704,7 +6773,7 @@
               "ubicacion": {
                 "direccion": "Ulán Bator",
                 "latitud": 47.9211,
-                "longitud": 106.9050
+                "longitud": 106.905
               },
               "tipo": "Monasterio",
               "valoracion": 4.6
@@ -6741,7 +6810,7 @@
               "ubicacion": {
                 "direccion": "Parque Nacional Gorkhi-Terelj",
                 "latitud": 47.8333,
-                "longitud": 107.4500
+                "longitud": 107.45
               },
               "tipo": "Formación rocosa",
               "valoracion": 4.6
@@ -6754,7 +6823,7 @@
               "paginaWeb": "https://www.mongoliatravelguide.com/attractions/terelj-national-park/aryabal-meditation-temple.html",
               "ubicacion": {
                 "direccion": "Parque Nacional Gorkhi-Terelj",
-                "latitud": 47.8500,
+                "latitud": 47.85,
                 "longitud": 107.4667
               },
               "tipo": "Monasterio",
@@ -6762,7 +6831,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "2a8f"
     },
     {
       "nombre": "Taiwán",
@@ -6800,7 +6870,7 @@
               "paginaWeb": "https://www.taipei-101.com.tw/en/",
               "ubicacion": {
                 "direccion": "No. 7,  Section 5,  Xinyi Rd,  Xinyi District,  Taipéi",
-                "latitud": 25.0330,
+                "latitud": 25.033,
                 "longitud": 121.5654
               },
               "tipo": "Rascacielos,  mirador",
@@ -6859,7 +6929,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "cd6b"
     },
     {
       "nombre": "Hong Kong",
@@ -6911,7 +6982,7 @@
               "paginaWeb": "https://www.discoverhongkong.com/es/see-do/highlights-in-hong-kong/top-10/tsim-sha-tsui-promenade.html",
               "ubicacion": {
                 "direccion": "Tsim Sha Tsui,  Kowloon,  Hong Kong",
-                "latitud": 22.2950,
+                "latitud": 22.295,
                 "longitud": 114.1717
               },
               "tipo": "Paseo marítimo",
@@ -6956,7 +7027,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "ca1c"
     },
     {
       "nombre": "Macao",
@@ -7039,14 +7111,15 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "8c0c"
     },
     {
       "nombre": "Tailandia",
       "nombreOficial": "Reino de Tailandia",
       "capital": "Bangkok",
       "codigo": "TH",
-      "latitud": 15.8700,
+      "latitud": 15.87,
       "longitud": 100.9925,
       "bandera": "https://flagcdn.com/w320/th.png",
       "idiomaOficial": "Tailandés",
@@ -7136,7 +7209,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "15b3"
     },
     {
       "nombre": "Vietnam",
@@ -7233,7 +7307,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "28ad"
     },
     {
       "nombre": "Malasia",
@@ -7330,7 +7405,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "e5a3"
     },
     {
       "nombre": "Singapur",
@@ -7406,7 +7482,7 @@
               "ubicacion": {
                 "direccion": "Isla de Sentosa,  Singapur",
                 "latitud": 1.2536,
-                "longitud": 103.8300
+                "longitud": 103.83
               },
               "tipo": "Parque temático",
               "valoracion": 4.7
@@ -7427,7 +7503,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "4533"
     },
     {
       "nombre": "Indonesia",
@@ -7480,7 +7557,7 @@
               "ubicacion": {
                 "direccion": "Tegalalang,  Gianyar Regency,  Bali",
                 "latitud": -8.4131,
-                "longitud": 115.2750
+                "longitud": 115.275
               },
               "tipo": "Paisaje natural",
               "valoracion": 4.7
@@ -7524,7 +7601,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "9ce2"
     },
     {
       "nombre": "Filipinas",
@@ -7532,7 +7610,7 @@
       "capital": "Manila",
       "codigo": "PH",
       "latitud": 12.8797,
-      "longitud": 121.7740,
+      "longitud": 121.774,
       "bandera": "https://flagcdn.com/w320/ph.png",
       "idiomaOficial": "Filipino,  Inglés",
       "moneda": "Peso filipino (PHP)",
@@ -7614,14 +7692,15 @@
               "ubicacion": {
                 "direccion": "Station 1,  Boracay,  Filipinas",
                 "latitud": 11.9722,
-                "longitud": 121.9250
+                "longitud": 121.925
               },
               "tipo": "Zona comercial",
               "valoracion": 4.4
             }
           ]
         }
-      ]
+      ],
+      "id": "02f7"
     },
     {
       "nombre": "Camboya",
@@ -7629,7 +7708,7 @@
       "capital": "Nom Pen",
       "codigo": "KH",
       "latitud": 12.5657,
-      "longitud": 104.9910,
+      "longitud": 104.991,
       "bandera": "https://flagcdn.com/w320/kh.png",
       "idiomaOficial": "Jemer",
       "moneda": "Riel camboyano (KHR)",
@@ -7710,7 +7789,7 @@
               "paginaWeb": "https://www.tourismcambodia.com/attractions/silver-pagoda.htm",
               "ubicacion": {
                 "direccion": "Dentro del Palacio Real,  Nom Pen",
-                "latitud": 11.5700,
+                "latitud": 11.57,
                 "longitud": 104.9172
               },
               "tipo": "Templo",
@@ -7718,7 +7797,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "a4de"
     },
     {
       "nombre": "Laos",
@@ -7815,7 +7895,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "50ee"
     },
     {
       "nombre": "Myanmar (Birmania)",
@@ -7823,7 +7904,7 @@
       "capital": "Naipyidó",
       "codigo": "MM",
       "latitud": 21.9162,
-      "longitud": 95.9560,
+      "longitud": 95.956,
       "bandera": "https://flagcdn.com/w320/mm.png",
       "idiomaOficial": "Birmano",
       "moneda": "Kyat birmano (MMK)",
@@ -7912,7 +7993,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "7cda"
     },
     {
       "nombre": "India",
@@ -7951,7 +8033,7 @@
               "ubicacion": {
                 "direccion": "Netaji Subhash Marg,  Chandni Chowk,  Delhi",
                 "latitud": 28.6562,
-                "longitud": 77.2410
+                "longitud": 77.241
               },
               "tipo": "Fuerte",
               "valoracion": 4.7
@@ -8009,7 +8091,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "b725"
     },
     {
       "nombre": "Pakistán",
@@ -8106,14 +8189,15 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "fc43"
     },
     {
       "nombre": "Bangladesh",
       "nombreOficial": "República Popular de Bangladesh",
       "capital": "Daca",
       "codigo": "BD",
-      "latitud": 23.6850,
+      "latitud": 23.685,
       "longitud": 90.3563,
       "bandera": "https://flagcdn.com/w320/bd.png",
       "idiomaOficial": "Bengalí",
@@ -8181,15 +8265,16 @@
               "paginaWeb": "https://www.tourism.gov.bd/visit-bangladesh/khulna/sundarbans-national-park",
               "ubicacion": {
                 "direccion": "Sundarbans,  Bangladesh",
-                "latitud": 22.0000,
-                "longitud": 89.5000
+                "latitud": 22,
+                "longitud": 89.5
               },
               "tipo": "Parque Nacional",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "2973"
     },
     {
       "nombre": "Sri Lanka",
@@ -8286,7 +8371,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "ade4"
     },
     {
       "nombre": "Nepal",
@@ -8294,7 +8380,7 @@
       "capital": "Katmandú",
       "codigo": "NP",
       "latitud": 28.3949,
-      "longitud": 84.1240,
+      "longitud": 84.124,
       "bandera": "https://flagcdn.com/w320/np.png",
       "idiomaOficial": "Nepalí",
       "moneda": "Rupia nepalí (NPR)",
@@ -8383,7 +8469,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "c562"
     },
     {
       "nombre": "Bután",
@@ -8473,7 +8560,7 @@
               "paginaWeb": "https://www.tourism.gov.bt/places-to-visit/rinpung-dzong",
               "ubicacion": {
                 "direccion": "Paro",
-                "latitud": 27.4600,
+                "latitud": 27.46,
                 "longitud": 89.4183
               },
               "tipo": "Fortaleza,  monasterio",
@@ -8481,7 +8568,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "c651"
     },
     {
       "nombre": "Maldivas",
@@ -8519,7 +8607,7 @@
               "paginaWeb": "https://www.visitmaldives.com/en/things-to-do/see-and-visit/male-friday-mosque",
               "ubicacion": {
                 "direccion": "Malé",
-                "latitud": 4.1750,
+                "latitud": 4.175,
                 "longitud": 73.5083
               },
               "tipo": "Mezquita",
@@ -8557,7 +8645,7 @@
               "ubicacion": {
                 "direccion": "Atolón de Malé Norte,  Maldivas",
                 "latitud": 4.2167,
-                "longitud": 73.5000
+                "longitud": 73.5
               },
               "tipo": "Atolón",
               "valoracion": 4.8
@@ -8571,14 +8659,15 @@
               "ubicacion": {
                 "direccion": "Atolón de Baa,  Maldivas",
                 "latitud": 5.3333,
-                "longitud": 73.0000
+                "longitud": 73
               },
               "tipo": "Atolón,  reserva natural",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "d3cf"
     },
     {
       "nombre": "Kazajstán",
@@ -8617,7 +8706,7 @@
               "ubicacion": {
                 "direccion": "Medeu,  Almaty",
                 "latitud": 43.1333,
-                "longitud": 76.9500
+                "longitud": 76.95
               },
               "tipo": "Pista de patinaje",
               "valoracion": 4.6
@@ -8631,7 +8720,7 @@
               "ubicacion": {
                 "direccion": "Shymbulak,  Almaty",
                 "latitud": 43.1167,
-                "longitud": 77.0000
+                "longitud": 77
               },
               "tipo": "Estación de esquí",
               "valoracion": 4.5
@@ -8675,7 +8764,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "4773"
     },
     {
       "nombre": "Kirguistán",
@@ -8764,7 +8854,7 @@
               "paginaWeb": "https://www.advantour.com/es/kyrgyzstan/issyk-kul-lake/fairytale-canyon.htm",
               "ubicacion": {
                 "direccion": "Costa sur del Lago Issyk-Kul",
-                "latitud": 42.2500,
+                "latitud": 42.25,
                 "longitud": 77.6667
               },
               "tipo": "Cañón",
@@ -8772,14 +8862,15 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "c30a"
     },
     {
       "nombre": "Tayikistán",
       "nombreOficial": "República de Tayikistán",
       "capital": "Dusambé",
       "codigo": "TJ",
-      "latitud": 38.8610,
+      "latitud": 38.861,
       "longitud": 71.2761,
       "bandera": "https://flagcdn.com/w320/tj.png",
       "idiomaOficial": "Tayiko",
@@ -8810,7 +8901,7 @@
               "paginaWeb": "http://www.museum.tj/",
               "ubicacion": {
                 "direccion": "Dusambé",
-                "latitud": 38.5800,
+                "latitud": 38.58,
                 "longitud": 68.7739
               },
               "tipo": "Museo",
@@ -8847,7 +8938,7 @@
               "paginaWeb": "https://www.advantour.com/es/tajikistan/pamir-highway/karakul-lake.htm",
               "ubicacion": {
                 "direccion": "Pamir Highway,  Tayikistán",
-                "latitud": 39.0000,
+                "latitud": 39,
                 "longitud": 73.4167
               },
               "tipo": "Lago",
@@ -8869,7 +8960,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "296c"
     },
     {
       "nombre": "Turkmenistán",
@@ -8907,7 +8999,7 @@
               "paginaWeb": "No disponible",
               "ubicacion": {
                 "direccion": "Asjabad",
-                "latitud": 37.9500,
+                "latitud": 37.95,
                 "longitud": 58.3833
               },
               "tipo": "Mezquita",
@@ -8952,7 +9044,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "f38f"
     },
     {
       "nombre": "Uzbekistán",
@@ -9028,7 +9121,7 @@
               "ubicacion": {
                 "direccion": "Samarcanda",
                 "latitud": 39.6569,
-                "longitud": 66.9750
+                "longitud": 66.975
               },
               "tipo": "Plaza,  madrasas",
               "valoracion": 4.8
@@ -9049,7 +9142,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "f756"
     },
     {
       "nombre": "Emiratos Árabes Unidos",
@@ -9146,7 +9240,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "c2a4"
     },
     {
       "nombre": "Arabia Saudita",
@@ -9202,7 +9297,7 @@
                 "longitud": 39.8262
               },
               "tipo": "Santuario",
-              "valoracion": 5.0
+              "valoracion": 5
             }
           ]
         },
@@ -9229,7 +9324,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "df7d"
     },
     {
       "nombre": "Irán",
@@ -9237,7 +9333,7 @@
       "capital": "Teherán",
       "codigo": "IR",
       "latitud": 32.4279,
-      "longitud": 53.6880,
+      "longitud": 53.688,
       "bandera": "https://flagcdn.com/w320/ir.png",
       "idiomaOficial": "Persa",
       "moneda": "Rial iraní (IRR)",
@@ -9326,7 +9422,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "90da"
     },
     {
       "nombre": "Israel",
@@ -9423,7 +9520,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "6339"
     },
     {
       "nombre": "Jordania",
@@ -9498,7 +9596,7 @@
               "paginaWeb": "https://www.visitjordan.com/Wheretogo/Amman/TheCitadel.aspx",
               "ubicacion": {
                 "direccion": "Amán",
-                "latitud": 31.9550,
+                "latitud": 31.955,
                 "longitud": 35.9331
               },
               "tipo": "Sitio arqueológico",
@@ -9520,7 +9618,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "1acc"
     },
     {
       "nombre": "Líbano",
@@ -9617,7 +9716,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "c4e8"
     },
     {
       "nombre": "Omán",
@@ -9669,7 +9769,7 @@
               "paginaWeb": "No disponible",
               "ubicacion": {
                 "direccion": "Mascate",
-                "latitud": 23.6100,
+                "latitud": 23.61,
                 "longitud": 58.5939
               },
               "tipo": "Palacio",
@@ -9700,7 +9800,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "863e"
     },
     {
       "nombre": "Qatar",
@@ -9775,7 +9876,7 @@
               "paginaWeb": "https://www.thepearlqatar.com/",
               "ubicacion": {
                 "direccion": "The Pearl-Qatar,  Doha",
-                "latitud": 25.3500,
+                "latitud": 25.35,
                 "longitud": 51.5333
               },
               "tipo": "Zona comercial",
@@ -9783,7 +9884,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "3c1f"
     },
     {
       "nombre": "Kuwait",
@@ -9859,14 +9961,15 @@
               "ubicacion": {
                 "direccion": "Isla Failaka,  Kuwait",
                 "latitud": 29.4833,
-                "longitud": 48.2500
+                "longitud": 48.25
               },
               "tipo": "Sitio arqueológico",
               "valoracion": 4.4
             }
           ]
         }
-      ]
+      ],
+      "id": "3010"
     },
     {
       "nombre": "Australia",
@@ -9963,7 +10066,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "c29c"
     },
     {
       "nombre": "Fiji",
@@ -9971,7 +10075,7 @@
       "capital": "Suva",
       "codigo": "FJ",
       "latitud": -17.7134,
-      "longitud": 178.0650,
+      "longitud": 178.065,
       "bandera": "https://flagcdn.com/w320/fj.png",
       "idiomaOficial": "Inglés,  Fiyiano,  Hindi de Fiji",
       "moneda": "Dólar fiyiano (FJD)",
@@ -10001,7 +10105,7 @@
               "paginaWeb": "https://www.fiji.travel/es/ubicacion/nadi",
               "ubicacion": {
                 "direccion": "Viti Levu,  Fiji",
-                "latitud": -17.8000,
+                "latitud": -17.8,
                 "longitud": 177.4167
               },
               "tipo": "Ciudad",
@@ -10038,7 +10142,7 @@
               "paginaWeb": "https://www.fiji.travel/es/ubicacion/savusavu",
               "ubicacion": {
                 "direccion": "Vanua Levu,  Fiji",
-                "latitud": -16.7500,
+                "latitud": -16.75,
                 "longitud": 179.3333
               },
               "tipo": "Ciudad",
@@ -10053,14 +10157,15 @@
               "ubicacion": {
                 "direccion": "Vanua Levu,  Fiji",
                 "latitud": -16.6667,
-                "longitud": 179.5000
+                "longitud": 179.5
               },
               "tipo": "Reserva natural",
               "valoracion": 4.6
             }
           ]
         }
-      ]
+      ],
+      "id": "8243"
     },
     {
       "nombre": "Kiribati",
@@ -10099,7 +10204,7 @@
               "ubicacion": {
                 "direccion": "Bairiki,  Tarawa Sur",
                 "latitud": 1.3292,
-                "longitud": 172.9750
+                "longitud": 172.975
               },
               "tipo": "Edificio gubernamental",
               "valoracion": 4.2
@@ -10143,7 +10248,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "ffb7"
     },
     {
       "nombre": "Islas Marshall",
@@ -10182,7 +10288,7 @@
               "ubicacion": {
                 "direccion": "Majuro",
                 "latitud": 7.1031,
-                "longitud": 171.3750
+                "longitud": 171.375
               },
               "tipo": "Museo",
               "valoracion": 4.3
@@ -10203,7 +10309,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "bf98"
     },
     {
       "nombre": "Micronesia",
@@ -10241,7 +10348,7 @@
               "paginaWeb": "https://whc.unesco.org/en/list/571",
               "ubicacion": {
                 "direccion": "Pohnpei,  Micronesia",
-                "latitud": 6.8500,
+                "latitud": 6.85,
                 "longitud": 158.3333
               },
               "tipo": "Sitio arqueológico",
@@ -10264,15 +10371,16 @@
               "paginaWeb": "https://www.visit-fsm.org/chuuk.html",
               "ubicacion": {
                 "direccion": "Chuuk,  Micronesia",
-                "latitud": 7.4500,
-                "longitud": 151.7500
+                "latitud": 7.45,
+                "longitud": 151.75
               },
               "tipo": "Laguna,  buceo",
               "valoracion": 4.8
             }
           ]
         }
-      ]
+      ],
+      "id": "dd00"
     },
     {
       "nombre": "Micronesia",
@@ -10310,7 +10418,7 @@
               "paginaWeb": "https://whc.unesco.org/en/list/571",
               "ubicacion": {
                 "direccion": "Pohnpei,  Micronesia",
-                "latitud": 6.8500,
+                "latitud": 6.85,
                 "longitud": 158.3333
               },
               "tipo": "Sitio arqueológico",
@@ -10333,15 +10441,16 @@
               "paginaWeb": "https://www.visit-fsm.org/chuuk.html",
               "ubicacion": {
                 "direccion": "Chuuk,  Micronesia",
-                "latitud": 7.4500,
-                "longitud": 151.7500
+                "latitud": 7.45,
+                "longitud": 151.75
               },
               "tipo": "Laguna,  buceo",
               "valoracion": 4.8
             }
           ]
         }
-      ]
+      ],
+      "id": "2cce"
     },
     {
       "nombre": "Nauru",
@@ -10379,7 +10488,7 @@
               "paginaWeb": "No disponible",
               "ubicacion": {
                 "direccion": "Yaren,  Nauru",
-                "latitud": -0.5500,
+                "latitud": -0.55,
                 "longitud": 166.9167
               },
               "tipo": "Lago",
@@ -10394,14 +10503,15 @@
               "ubicacion": {
                 "direccion": "Nauru",
                 "latitud": -0.5333,
-                "longitud": 166.9500
+                "longitud": 166.95
               },
               "tipo": "Playa",
               "valoracion": 4.5
             }
           ]
         }
-      ]
+      ],
+      "id": "0e97"
     },
     {
       "nombre": "Nueva Zelanda",
@@ -10409,7 +10519,7 @@
       "capital": "Wellington",
       "codigo": "NZ",
       "latitud": -40.9006,
-      "longitud": 174.8860,
+      "longitud": 174.886,
       "bandera": "https://flagcdn.com/w320/nz.png",
       "idiomaOficial": "Inglés,  Maorí,  Lengua de señas neozelandesa",
       "moneda": "Dólar neozelandés (NZD)",
@@ -10490,22 +10600,23 @@
               "paginaWeb": "https://www.nzski.com/mountains/the-remarkables/",
               "ubicacion": {
                 "direccion": "Queenstown",
-                "latitud": -45.0000,
-                "longitud": 168.7500
+                "latitud": -45,
+                "longitud": 168.75
               },
               "tipo": "Montañas,  esquí,  senderismo",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "c04d"
     },
     {
       "nombre": "Palaos",
       "nombreOficial": "República de Palaos",
       "capital": "Ngerulmud",
       "codigo": "PW",
-      "latitud": 7.5150,
+      "latitud": 7.515,
       "longitud": 134.5825,
       "bandera": "https://flagcdn.com/w320/pw.png",
       "idiomaOficial": "Inglés,  Palaoano",
@@ -10558,7 +10669,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "2c4e"
     },
     {
       "nombre": "Papúa Nueva Guinea",
@@ -10610,7 +10722,7 @@
               "paginaWeb": "http://www.pnggardens.org/",
               "ubicacion": {
                 "direccion": "Waigani,  Port Moresby",
-                "latitud": -9.4500,
+                "latitud": -9.45,
                 "longitud": 147.1833
               },
               "tipo": "Jardín botánico",
@@ -10634,14 +10746,15 @@
               "ubicacion": {
                 "direccion": "Monte Hagen",
                 "latitud": -5.8667,
-                "longitud": 144.2000
+                "longitud": 144.2
               },
               "tipo": "Festival",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "b2e2"
     },
     {
       "nombre": "Samoa",
@@ -10694,7 +10807,7 @@
               "ubicacion": {
                 "direccion": "Cerca de Apia,  Samoa",
                 "latitud": -13.8667,
-                "longitud": -171.7500
+                "longitud": -171.75
               },
               "tipo": "Cascadas",
               "valoracion": 4.6
@@ -10724,7 +10837,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "9da9"
     },
     {
       "nombre": "Islas Salomón",
@@ -10763,7 +10877,7 @@
               "ubicacion": {
                 "direccion": "Honiara",
                 "latitud": -9.4333,
-                "longitud": 159.9500
+                "longitud": 159.95
               },
               "tipo": "Museo",
               "valoracion": 4.3
@@ -10807,14 +10921,15 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "d9c8"
     },
     {
       "nombre": "Tonga",
       "nombreOficial": "Reino de Tonga",
       "capital": "Nukualofa",
       "codigo": "TO",
-      "latitud": -21.1790,
+      "latitud": -21.179,
       "longitud": -175.1982,
       "bandera": "https://flagcdn.com/w320/to.png",
       "idiomaOficial": "Tongano,  Inglés",
@@ -10846,7 +10961,7 @@
               "ubicacion": {
                 "direccion": "Nukualofa",
                 "latitud": -21.1333,
-                "longitud": -175.2000
+                "longitud": -175.2
               },
               "tipo": "Palacio",
               "valoracion": 4.3
@@ -10883,14 +10998,15 @@
               "ubicacion": {
                 "direccion": "Vava'u,  Tonga",
                 "latitud": -18.6667,
-                "longitud": -174.0000
+                "longitud": -174
               },
               "tipo": "Parque Nacional",
               "valoracion": 4.7
             }
           ]
         }
-      ]
+      ],
+      "id": "6a6f"
     },
     {
       "nombre": "Tuvalu",
@@ -10928,7 +11044,7 @@
               "paginaWeb": "https://www.tuvaluislands.com/conservation.htm",
               "ubicacion": {
                 "direccion": "Funafuti,  Tuvalu",
-                "latitud": -8.5200,
+                "latitud": -8.52,
                 "longitud": 179.2167
               },
               "tipo": "Área protegida",
@@ -10950,7 +11066,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "0f5a"
     },
     {
       "nombre": "Vanuatu",
@@ -10988,7 +11105,7 @@
               "paginaWeb": "https://www.vanuatu.travel/en/accommodation/mele-cascades",
               "ubicacion": {
                 "direccion": "Cerca de Port Vila,  Efate",
-                "latitud": -17.7500,
+                "latitud": -17.75,
                 "longitud": 168.3333
               },
               "tipo": "Cascadas",
@@ -11033,7 +11150,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "465f"
     }
   ]
 }

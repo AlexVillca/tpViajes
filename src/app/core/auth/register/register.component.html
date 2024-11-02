@@ -19,18 +19,21 @@
         <h1 class="titulaso">Regístrate aquí</h1>
         <div class="form-control">
           <input type="text" id="username" name="username" [(ngModel)]="user.username" required minlength="4" maxlength="20" placeholder="Nombre" />
-          <div *ngIf="registerForm.controls['username']?.invalid && (registerForm.controls['username']?.dirty || registerForm.controls['username']?.touched)">
+          <div *ngIf="(registerForm.controls['username']?.invalid && (registerForm.controls['username']?.dirty) || registerForm.controls['username']?.touched) || userNameInvalid">
             <small *ngIf="registerForm.controls['username']?.errors?.['required']">*Nombre es requerido</small>
             <small *ngIf="registerForm.controls['username']?.errors?.['minlength']">*Nombre debe tener al menos 4 caracteres</small>
             <small *ngIf="registerForm.controls['username']?.errors?.['maxlength']">*Nombre debe tener máximo 20 caracteres</small>
+            <small *ngIf="userNameInvalid === true">*Username en uso</small>
           </div>
           <span></span>
         </div>
         <div class="form-control">
           <input type="email" id="email" name="email" [(ngModel)]="user.email" required email placeholder="Correo electrónico" />
-          <div *ngIf="registerForm.controls['email']?.invalid && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)">
+          <div *ngIf="registerForm.controls['email']?.invalid && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched) || emailInvalid">
             <small *ngIf="registerForm.controls['email']?.errors?.['required']">*Correo electrónico es requerido</small>
             <small *ngIf="registerForm.controls['email']?.errors?.['email']">*Correo electrónico no válido</small>
+            <small *ngIf="emailInvalid === true" >*Correo electrónico no válido</small>
+
           </div>
           <span></span>
         </div>
