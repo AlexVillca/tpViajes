@@ -16,25 +16,75 @@ import { Usuario } from '../../../models/interface/usuario.interface'
 export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
 
- usuarioService = inject(UsuariosService);
+  usuarioService = inject(UsuariosService);
   user:Usuario = {
     username: '',
     email: '',
     password: ''
   };
+  emailInvalid:Boolean = false;
+  userNameInvalid:Boolean = false;
+
+  /*
+  this.usuarioService.postUsuario(this.user).subscribe({
+              next: (response) => {
+                console.log('Usuario creado exitosamente:', response);
+              },
+              error: (error) => {
+                console.error('Error al crear usuario:', error);
+              }
+            });
+  */
+
+
+
 
   onSubmit() {
+
     if (this.registerForm.valid) {
-       this.usuarioService.postUsuario(this.user).subscribe({
-        next: (response) => {
-          console.log('Usuario creado exitosamente:', response);
 
+      this.usuarioService.comprobarEmailUsuario(this.user.email).subscribe(
+        {
+        next: (emailDisponible) => {
+          if (emailDisponible) {
+            this.emailInvalid = false;
+            this.usuarioService.comprobarUserNameUsuario(this.user.username).subscribe(
+              {
+                next: (usernameDisponible) => {
+                  if(usernameDisponible){
+                    console.log("username aceptado");
+                    this.userNameInvalid = false;
+
+                    this.usuarioService.postUsuario(this.user)
+                    .subscribe(
+                      {
+                      next: (response) => { console.log('Usuario creado exitosamente:', response); },
+                      error: (error) => { console.error('Error al crear usuario:', error); }
+                      }
+                    );
+
+                  }else{
+                    console.error('El username esta en uso');
+                    this.userNameInvalid = true;
+                  }
+                },
+              error: (error) => {
+                console.error('Error al comprobar el username:', error);
+              }
+              }
+            );
+          } else {
+            console.log('El email ya está en uso.');
+            this.emailInvalid = true;
+
+          }
         },
-        error: (error) => {
-          console.error('Error al crear usuario:', error);
+        error: (error) => { console.error('Error al comprobar el email:', error); }
         }
-      });
-
+      );
     }
   }
+
+
+
 }
