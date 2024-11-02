@@ -4,19 +4,22 @@
       "id": "1fb3",
       "username": "pepe3",
       "email": "peper@gmail.com",
-      "password": "987654321"
+      "password": "987654321",
+      "listasFavs":[]
     },
     {
       "id": "3419",
       "username": "arjona",
       "email": "acorde@gmail.com",
-      "password": "541sdgdgsdg"
+      "password": "541sdgdgsdg",
+      "listasFavs":[]
     },
     {
       "id": "47fe",
       "username": "probando",
       "email": "probando@gmail.com",
-      "password": "12345678"
+      "password": "12345678",
+      "listasFavs":[]
     }
   ],
   "paises": [
