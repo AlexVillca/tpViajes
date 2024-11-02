@@ -20,7 +20,8 @@ export class RegisterComponent {
   user:Usuario = {
     username: '',
     email: '',
-    password: ''
+    password: '',
+    listasFavs:[]
   };
   emailInvalid:Boolean = false;
   userNameInvalid:Boolean = false;
