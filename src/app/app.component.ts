@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
 import { LoginFormComponent } from './core/auth/login-form/login-form.component';
 import { RegisterComponent } from './core/auth/register/register.component';
 import { NavbarComponent } from "./components/navbar/navbar.component";
@@ -10,6 +10,8 @@ import { PaisDetailComponent } from './components/paises/pais-detail/pais-detail
 
 import { FiltroPaisesPipe } from './pipes/filtro-paises.pipe';
 import { CiudadDetailComponent } from './components/paises/ciudad-detail/ciudad-detail.component';
+import { GameComponent } from './game/game.component';
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -26,6 +28,7 @@ import { CiudadDetailComponent } from './components/paises/ciudad-detail/ciudad-
     PaisesListComponent,
     PaisDetailComponent,
     FiltroPaisesPipe,
+    GameComponent,
     CiudadDetailComponent
   ],
   templateUrl: './app.component.html',
