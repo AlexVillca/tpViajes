@@ -1,0 +1,17 @@
+<section>
+    <h1>Que pais es?</h1>
+        <div *ngIf="paisAleatorio" class="banderas">
+            <img [src]="paisAleatorio.bandera">
+            
+        </div>
+        <div *ngIf="opciones" class="opcionesJuego">
+            <p>Selecciona el país correcto:</p>
+            <ul>
+                <li> @for (opcion of opciones; track $index) {
+                    <button (click)="verificarRespuesta(opcion)">{{ opcion.nombre }}</button>
+                    }
+                </li>
+            </ul>
+        </div>
+        <p>{{ mensaje }}</p>
+</section>
