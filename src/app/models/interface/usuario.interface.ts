@@ -6,6 +6,7 @@ export interface Usuario{
     listasFavs: ListaFav[]
 }
 export interface ListaFav{
+  idLista:string,
   nombreLista:string,
   listaCiudades:CiudadEnLista[]
 }

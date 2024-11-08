@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Usuario } from '../../models/interface/usuario.interface';
+import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 import { catchError, concatMap, map, Observable, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,69 +15,38 @@ export class UsuariosService {
   private apiUrl = environment.urlBaseUsuarios;
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
-      catchError(error => {
-        console.error('Error al crear usuario:', error);
-        return throwError(() => new Error('Error al crear usuario'));
-      })
-    );
+    return this.http.post<Usuario>(this.apiUrl, usuario);
   }
 
 
-  getUsuario(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl).pipe(
-      catchError(error => {
-        console.error('Error al obtener usuarios:', error);
-        return throwError(() => new Error('Error al obtener usuarios'));
-      })
-    );
+  getUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl);
   }
 
-
-  putUsuario(usuario: Usuario): Observable<Usuario> {
-    const url = `${this.apiUrl}/${usuario.email}`;
-    return this.http.put<Usuario>(url, usuario).pipe(
-      catchError(error => {
-        console.error('Error al actualizar usuario:', error);
-        return throwError(() => new Error('Error al actualizar usuario'));
-      })
-    );
+  getUsuarioById(id:string):Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
-
-
   logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<string|null> {
     const params = new HttpParams()
       .set('email', emailIngresado)
       .set('password', contraseñaIngresada);
-
     return this.http.get<Usuario[]>(this.apiUrl, { params }).pipe(
       map(usuario => {
         if (usuario) {
-
           return String(usuario[0].id);
         } else {
           console.log("contraseña incorrecta");
           return null;
         }
-      }),
-      catchError(error => {
-        console.error('Error durante el login:', error);
-        return throwError(() => error.message || 'Error de red');
       })
     );
   }
 
 comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
-
-
   return this.http.get<Usuario | null>(`${this.apiUrl}?email=${encodeURIComponent(emailIngresado)}`).pipe(
     map(usuario => {
 
       return usuario === null || Object.keys(usuario).length === 0;
-    }),
-    catchError(error => {
-      console.error('Error durante la verificación del email:', error);
-      return of(true);
     })
   );
 }
@@ -87,13 +57,33 @@ comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
     map(usuario => {
 
       return usuario === null || Object.keys(usuario).length === 0;
-    }),
-    catchError(error => {
-      console.error('Error durante la verificación del email:', error);
-      return of(true);
     })
   );
 }
+obtenerListasFav(id:string):Observable<ListaFav[]>{
+  return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
+    map(usuario => usuario.listasFavs),
+
+  );
+}
+actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
+
+  const url = `${this.apiUrl}/${aActualizar.id}`;
+
+  return this.http.put<Usuario>(url, aActualizar);
+
+  }
+
+
+
+
+
+
+
+
+
 
 }
+
+
 
