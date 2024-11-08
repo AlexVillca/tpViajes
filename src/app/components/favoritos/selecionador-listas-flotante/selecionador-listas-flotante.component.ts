@@ -96,7 +96,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
   private mapDBaFront(lista: ListaFav):ListaCheckbox{
     let selec;
-    if(lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado.codigo && c.nombre === this.ciudadSeleccionada.nombre)){
+    if(lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado?.codigo && c.nombre === this.ciudadSeleccionada?.nombre)){
         selec = true;
     }else{
       selec = false;

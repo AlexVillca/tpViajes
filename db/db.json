@@ -19,7 +19,36 @@
       "username": "probando",
       "email": "p",
       "password": "p",
-      "listasFavs": []
+      "listasFavs": [
+        {
+          "idLista": "2px5rdk",
+          "nombreLista": "no ir",
+          "listaCiudades": [
+            {
+              "codigoPais": "MA",
+              "nombre": "Marrakech"
+            },
+            {
+              "codigoPais": "KE",
+              "nombre": "Mombasa"
+            }
+          ]
+        },
+        {
+          "idLista": "yihypix",
+          "nombreLista": "capaz ir",
+          "listaCiudades": [
+            {
+              "codigoPais": "MA",
+              "nombre": "Fez"
+            },
+            {
+              "codigoPais": "KE",
+              "nombre": "Mombasa"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "079f",
