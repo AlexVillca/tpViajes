@@ -6,7 +6,7 @@
     <ol>
       <div *ngFor="let l of listasFront">
         <label>
-          <input type="checkbox" [(ngModel)]="l.seleccionada" name="{{l.nombre}}" />
+          <input type="checkbox" [checked]="l.seleccionada" [(ngModel)]="l.seleccionada" name="{{l.nombre}}" />
           {{ l.nombre }}
         </label>
       </div>

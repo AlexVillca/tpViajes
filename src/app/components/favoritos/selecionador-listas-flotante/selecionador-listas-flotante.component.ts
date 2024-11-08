@@ -68,7 +68,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     );
     this.ciudadDataService.ciudad$.subscribe(
       {
-        next:(c) => {this.ciudadSeleccionada =c},
+        next:(c) => {this.ciudadSeleccionada = c},
         error:(error) => {console.log(error)}
       }
     );
@@ -96,7 +96,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
   private mapDBaFront(lista: ListaFav):ListaCheckbox{
     let selec;
-    if(lista.listaCiudades.some(c => c.idPais === this.paisSeleccionado.codigo && c.nombreCiudad === this.ciudadSeleccionada)){
+    if(lista.listaCiudades.some(c => c.idPais === this.paisSeleccionado.codigo && c.nombre === this.ciudadSeleccionada)){
         selec = true;
     }else{
       selec = false;
@@ -108,9 +108,10 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     };
   }
 
+
   private pasajeCambiosFrontaDB(){
     this.listasFront.forEach(l => {
-      let listaOriginal = this.listaDeListasDB.find(ldb => {ldb.idLista === l.id});
+      let listaOriginal = this.listaDeListasDB.find(ldb => ldb.idLista === l.id);
       if(listaOriginal === undefined){ // se es una lista nueva
         listaOriginal = { //la agrega
           idLista:l.id,
@@ -121,16 +122,17 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
       }
       //veo si concuerda
       //si posee la ciudad en la lista y
-      if(listaOriginal.listaCiudades.some(cl => cl.idPais === this.paisSeleccionado.codigo && cl.nombreCiudad === this.ciudadSeleccionada.nombre) && l.seleccionada ||
-        !listaOriginal.listaCiudades.some(cl => cl.idPais === this.paisSeleccionado.codigo && cl.nombreCiudad === this.ciudadSeleccionada.nombre) && !l.seleccionada){
+      if(listaOriginal.listaCiudades.some(cl => cl.idPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && l.seleccionada ||
+        !listaOriginal.listaCiudades.some(cl => cl.idPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && !l.seleccionada){
           ///sin cambios
           console.log("la lista se mantiene");
       }else if(l.seleccionada){
         console.log("agrega");
-          listaOriginal.listaCiudades.push({idPais:this.paisSeleccionado.codigo,nombreCiudad:this.ciudadSeleccionada.nombreCiudad});
+          listaOriginal.listaCiudades.push({idPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
       }else{
           console.log("saca");
-          listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => {elementoFav.idPais !== this.paisSeleccionado.codigo && elementoFav.nombreCiudad !== this.ciudadSeleccionada.nombre});
+          listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.idPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
+
       }
     });
 
@@ -149,7 +151,7 @@ export interface ListaFav{
 }
 export interface CiudadEnLista{
   idPais:string,
-  nombreCiudad:string
+  nombre:string
 }
 
 */
