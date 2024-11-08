@@ -12,5 +12,5 @@ export interface ListaFav{
 }
 export interface CiudadEnLista{
   idPais:string,
-  nombreCiudad:string
+  nombre:string
 }
