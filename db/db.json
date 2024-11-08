@@ -22,12 +22,8 @@
       "listasFavs": [
         {
           "idLista": "2px5rdk",
-          "nombreLista": "no ir",
+          "nombreLista": "lagares1",
           "listaCiudades": [
-            {
-              "codigoPais": "MA",
-              "nombre": "Marrakech"
-            },
             {
               "codigoPais": "KE",
               "nombre": "Mombasa"
@@ -36,7 +32,7 @@
         },
         {
           "idLista": "yihypix",
-          "nombreLista": "capaz ir",
+          "nombreLista": "lugares",
           "listaCiudades": [
             {
               "codigoPais": "MA",
@@ -45,6 +41,10 @@
             {
               "codigoPais": "KE",
               "nombre": "Mombasa"
+            },
+            {
+              "codigoPais": "MA",
+              "nombre": "Marrakech"
             }
           ]
         }
