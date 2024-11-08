@@ -17,8 +17,8 @@
     {
       "id": "47fe",
       "username": "probando",
-      "email": "probando@gmail.com",
-      "password": "12345678",
+      "email": "p",
+      "password": "p",
       "listasFavs": []
     },
     {
@@ -26,18 +26,7 @@
       "username": "facu",
       "email": "akdsaksd@gmail.com",
       "password": "facu1234",
-      "listasFavs": [
-        {
-          "idLista": "8ruro2o",
-          "nombreLista": "playa",
-          "listaCiudades": [
-            {
-              "idPais": "MA",
-              "nombre": "Marrakech"
-            }
-          ]
-        }
-      ]
+      "listasFavs": []
     }
   ],
   "paises": [
