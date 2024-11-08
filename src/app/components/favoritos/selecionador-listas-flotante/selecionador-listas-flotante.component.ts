@@ -96,7 +96,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
   private mapDBaFront(lista: ListaFav):ListaCheckbox{
     let selec;
-    if(lista.listaCiudades.some(c => c.idPais === this.paisSeleccionado.codigo && c.nombre === this.ciudadSeleccionada.nombre)){
+    if(lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado.codigo && c.nombre === this.ciudadSeleccionada.nombre)){
         selec = true;
     }else{
       selec = false;
@@ -122,16 +122,16 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
       }
       //veo si concuerda
       //si posee la ciudad en la lista y
-      if(listaOriginal.listaCiudades.some(cl => cl.idPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && l.seleccionada ||
-        !listaOriginal.listaCiudades.some(cl => cl.idPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && !l.seleccionada){
+      if(listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && l.seleccionada ||
+        !listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && !l.seleccionada){
           ///sin cambios
           console.log("la lista se mantiene");
       }else if(l.seleccionada){
         console.log("agrega");
-          listaOriginal.listaCiudades.push({idPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
+          listaOriginal.listaCiudades.push({codigoPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
       }else{
           console.log("saca");
-          listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.idPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
+          listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.codigoPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
 
       }
     });

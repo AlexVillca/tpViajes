@@ -11,6 +11,6 @@ export interface ListaFav{
   listaCiudades:CiudadEnLista[]
 }
 export interface CiudadEnLista{
-  idPais:string,
+  codigoPais:string,
   nombre:string
 }
