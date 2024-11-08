@@ -7,8 +7,20 @@
   <title>Ciudad</title>
 </head>
 <body>
+
+
+    <app-selecionador-listas-flotante *ngIf="showPopup" (close)="showPopup = false"></app-selecionador-listas-flotante>
+
+
   <div *ngIf="ciudad$ | async as ciudad">
-    <h2>{{ ciudad.nombre }}</h2>
+    <div class="container">
+      <h2>{{ ciudad.nombre }}</h2>
+      @if("usuarioLogueado"){
+      <button  (click)="showPopup = true">Guardar</button>
+      }
+    </div>
+
+
     <p>{{ ciudad.infoWikipedia }}</p>
     <p>Actividades: {{ ciudad.actividades }}</p>
     <p>Consejos: {{ ciudad.consejos }}</p>

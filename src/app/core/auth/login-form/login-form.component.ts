@@ -33,14 +33,19 @@ export class LoginFormComponent {
    }
 
   funRespuesta(){
-    this.usuarioService.logUsuario(this.correoInput, this.contrInput).subscribe(id => {
-      if(id){
-        this.idUsuario.setId(id);
-        this.routerService.navigate(['home']);
-      }else{
-        console.log("usuario no registrado funResp");
+    this.usuarioService.logUsuario(this.correoInput, this.contrInput).subscribe(
+      {
+        next: (id)=>{
+          if(id){
+            this.idUsuario.setId(id);
+            this.routerService.navigate(['home']);
+          }else{
+            console.log("usuario no registrado funResp");
+          }
+         },
+         error: (error) => { console.error('Error al loguear:', error); }
       }
-    } );
+    );
 
   }
 

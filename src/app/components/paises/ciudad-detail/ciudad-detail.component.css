@@ -9,3 +9,8 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+.container {
+  display: flex;
+  justify-content: space-between; /* Espacia los elementos al máximo posible */
+  align-items: center; /* Alinea verticalmente el contenido al centro */
+}

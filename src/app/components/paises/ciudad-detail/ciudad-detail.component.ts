@@ -1,9 +1,10 @@
 // En ciudad-detail.component.ts
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
 import { Location } from '@angular/common';
 import { SelecionadorListasFlotanteComponent } from '../../favoritos/selecionador-listas-flotante/selecionador-listas-flotante.component';
+import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 
 
 
@@ -14,11 +15,24 @@ import { SelecionadorListasFlotanteComponent } from '../../favoritos/selecionado
   templateUrl: './ciudad-detail.component.html',
   styleUrls: ['./ciudad-detail.component.css']
 })
-export class CiudadDetailComponent {
+export class CiudadDetailComponent implements OnInit{
   ciudad$ = this.ciudadDataService.ciudad$;
-
+  idus = inject(IdUsuarioService);
+  usuarioLogueado = false;
   showPopup = false;
-
+  ngOnInit(){
+    this.idus.id$.subscribe({
+      next:(id) => {
+        if(id){
+          this.usuarioLogueado = true;
+        console.log("logueado");
+      }else{
+        this.usuarioLogueado = false;
+        console.log("no logueado");
+      }},
+      error:() => {console.log("error al comprobar log")}
+    });
+  }
   constructor(private ciudadDataService: CiudadDataService,  private location: Location) { }
 
   volver() {

@@ -1,0 +1,22 @@
+<div class="popup-overlay" (click)="closePopup()"></div>
+<div class="popup-content">
+
+  <h3>Guardar en colección</h3>
+  <form (ngSubmit)="saveSelection()">
+    <ol>
+      <div *ngFor="let l of listasFront">
+        <label>
+          <input type="checkbox" [(ngModel)]="l.seleccionada" name="{{l.nombre}}" />
+          {{ l.nombre }}
+        </label>
+      </div>
+    <input type="text" placeholder="Nueva lista" [(ngModel)] = "vacio" name="inputNombreNuevaLista" (keydown.enter)=" agregaNuevaLista($event)">
+
+  </ol>
+  <div class="container">
+    <button  (click)="closePopup()">Cancelar</button>
+    <button type="submit">Guardar</button>
+  </div>
+
+  </form>
+</div>
