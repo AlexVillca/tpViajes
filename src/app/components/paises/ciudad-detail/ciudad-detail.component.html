@@ -15,9 +15,9 @@
   <div *ngIf="ciudad$ | async as ciudad">
     <div class="container">
       <h2>{{ ciudad.nombre }}</h2>
-      @if("usuarioLogueado"){
-      <button  (click)="showPopup = true">Guardar</button>
-      }
+
+      <button *ngIf="usuarioLogueado" (click)="showPopup = true">Guardar</button>
+
     </div>
 
 
