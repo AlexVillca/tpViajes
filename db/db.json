@@ -20,6 +20,24 @@
       "email": "probando@gmail.com",
       "password": "12345678",
       "listasFavs": []
+    },
+    {
+      "id": "079f",
+      "username": "facu",
+      "email": "akdsaksd@gmail.com",
+      "password": "facu1234",
+      "listasFavs": [
+        {
+          "idLista": "8ruro2o",
+          "nombreLista": "playa",
+          "listaCiudades": [
+            {
+              "idPais": "MA",
+              "nombre": "Marrakech"
+            }
+          ]
+        }
+      ]
     }
   ],
   "paises": [
@@ -385,7 +403,7 @@
             {
               "nombre": "Museo del Apartheid",
               "descripcion": "Museo que documenta la historia del apartheid en Sudáfrica.",
-              "imagen": "url_imagen_museo_apartheid.jpg",
+              "imagen": "https://cdn.getyourguide.com/img/location/587607133ad2a-wide.jpeg/49.webp",
               "horario": "De 9:00 a 17:00 horas",
               "paginaWeb": "https://www.apartheidmuseum.org/",
               "ubicacion": {
@@ -801,7 +819,7 @@
             {
               "nombre": "Delta del Okavango",
               "descripcion": "Un delta interior que alberga una gran diversidad de fauna y flora.",
-              "imagen": "url_imagen_delta_okavango.jpg",
+              "imagen": "https://www.shutterstock.com/image-illustration/okavango-delta-beautiful-place-on-600nw-2056993142.jpg",
               "horario": "La mejor época para visitarlo es durante la estación seca (de mayo a octubre).",
               "paginaWeb": "https://www.okavangodelta.com/",
               "ubicacion": {
@@ -1767,7 +1785,7 @@
             {
               "nombre": "Museo de Belice",
               "descripcion": "Museo que exhibe la historia y la cultura de Belice.",
-              "imagen": "url_imagen_museo_belice.jpg",
+              "imagen": "https://d1ay7qnb0dqwzm.cloudfront.net/330627.900.737cd74e55.jpg",
               "horario": "De lunes a viernes,  de 9:00 a 16:30 horas. Sábados,  de 9:00 a 13:00 horas.",
               "paginaWeb": "http://www.nichbelize.org/belize-museum/",
               "ubicacion": {
@@ -1781,7 +1799,7 @@
             {
               "nombre": "Catedral de San Juan",
               "descripcion": "La catedral anglicana más antigua de América Central.",
-              "imagen": "url_imagen_catedral_san_juan_belice.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/St._John%27s_Anglican_Church%2C_Belize_City.jpg/375px-St._John%27s_Anglican_Church%2C_Belize_City.jpg",
               "horario": "Abierta todos los días,  de 8:00 a 17:00 horas.",
               "paginaWeb": "https://www.belizeaudubon.org/st-johns-cathedral/",
               "ubicacion": {
@@ -1804,7 +1822,7 @@
             {
               "nombre": "Cahal Pech",
               "descripcion": "Ruinas mayas con templos y palacios,  con vistas panorámicas de San Ignacio.",
-              "imagen": "url_imagen_cahal_pech.jpg",
+              "imagen": "https://www.cahalpech.com/wp-content/uploads/Cahal-Pech-Maya-Ruins.jpg",
               "horario": "Abierto todos los días,  de 8:00 a 17:00 horas.",
               "paginaWeb": "https://www.nichbelize.org/cahal-pech/",
               "ubicacion": {
@@ -1818,7 +1836,7 @@
             {
               "nombre": "Xunantunich",
               "descripcion": "Ruinas mayas con la estructura El Castillo,  que ofrece vistas del valle.",
-              "imagen": "url_imagen_xunantunich.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Xunantunich_Belize_1_19.jpg/1280px-Xunantunich_Belize_1_19.jpg",
               "horario": "Abierto todos los días,  de 8:00 a 17:00 horas.",
               "paginaWeb": "https://www.nichbelize.org/xunantunich/",
               "ubicacion": {
@@ -1865,7 +1883,7 @@
             {
               "nombre": "Palacio Nacional de la Cultura",
               "descripcion": "Edificio histórico que alberga el Museo Nacional de Historia y el Palacio Presidencial.",
-              "imagen": "url_imagen_palacio_nacional_guatemala.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Guatemala_National_Palace_%28reflection%29.jpg/1200px-Guatemala_National_Palace_%28reflection%29.jpg",
               "horario": "De martes a domingo,  de 9:00 a 16:00 horas.",
               "paginaWeb": "https://www.mcd.gob.gt/palacio-nacional-de-la-cultura/",
               "ubicacion": {
@@ -1879,7 +1897,7 @@
             {
               "nombre": "Mapa en Relieve",
               "descripcion": "Maqueta a escala de Guatemala,  con volcanes,  ríos y ciudades.",
-              "imagen": "url_imagen_mapa_en_relieve_guatemala.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mapa_en_Relieve_de_Guatemala_-_51575580031.jpg/1920px-Mapa_en_Relieve_de_Guatemala_-_51575580031.jpg",
               "horario": "De martes a domingo,  de 9:00 a 16:00 horas.",
               "paginaWeb": "https://www.mcd.gob.gt/mapa-en-relieve/",
               "ubicacion": {
@@ -1902,7 +1920,7 @@
             {
               "nombre": "Arco de Santa Catalina",
               "descripcion": "Arco colonial que conecta dos conventos.",
-              "imagen": "url_imagen_arco_santa_catalina.jpg",
+              "imagen": "https://lugaresantigua.com/assets/images/blog/23-007-datos-arco/1.jpg",
               "horario": "Acceso libre las 24 horas.",
               "paginaWeb": "https://www.guatemala.com/guias/antiguas/arco-de-santa-catalina/",
               "ubicacion": {
@@ -1916,7 +1934,7 @@
             {
               "nombre": "Convento de las Capuchinas",
               "descripcion": "Ruinas de un convento del siglo XVIII con un diseño único.",
-              "imagen": "url_imagen_convento_capuchinas.jpg",
+              "imagen": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/27/71/1e.jpg",
               "horario": "De lunes a domingo,  de 9:00 a 17:00 horas.",
               "paginaWeb": "https://www.guatemala.com/guias/antiguas/convento-de-las-capuchinas/",
               "ubicacion": {
@@ -1963,7 +1981,7 @@
             {
               "nombre": "Museo Nacional de Costa Rica",
               "descripcion": "Museo que exhibe la historia y la cultura de Costa Rica.",
-              "imagen": "url_imagen_museo_nacional_costa_rica.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Museo_Nacional_CR_2.JPG/2560px-Museo_Nacional_CR_2.JPGg",
               "horario": "De martes a sábado,  de 8:30 a 16:30 horas. Domingos,  de 9:00 a 16:30 horas.",
               "paginaWeb": "https://www.museocostarica.go.cr/",
               "ubicacion": {
@@ -1977,7 +1995,7 @@
             {
               "nombre": "Teatro Nacional de Costa Rica",
               "descripcion": "Teatro histórico con una arquitectura neoclásica.",
-              "imagen": "url_imagen_teatro_nacional_costa_rica.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/6/61/CostaRica44_%288415726720%29.jpg",
               "horario": "Visitas guiadas de lunes a viernes,  de 9:00 a 16:00 horas.",
               "paginaWeb": "https://www.teatronacional.go.cr/",
               "ubicacion": {
@@ -2000,7 +2018,7 @@
             {
               "nombre": "Volcán Arenal",
               "descripcion": "Volcán activo con forma cónica,  ideal para la observación y el senderismo.",
-              "imagen": "url_imagen_volcan_arenal.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Arenal_Volcano_as_seen_from_Monteverde.jpg",
               "horario": "Se puede observar desde diferentes puntos de la zona.",
               "paginaWeb": "https://www.arenal.net/volcan-arenal/",
               "ubicacion": {
@@ -2014,7 +2032,7 @@
             {
               "nombre": "Catarata La Fortuna",
               "descripcion": "Cascada de 70 metros de altura con una piscina natural para nadar.",
-              "imagen": "url_imagen_catarata_la_fortuna.jpg",
+              "imagen": "https://i0.wp.com/montanaycorazon.com/wp-content/uploads/2024/04/IMG_8371.jpeg?resize=950%2C598&ssl=1",
               "horario": "Abierta todos los días,  de 7:00 a 17:00 horas.",
               "paginaWeb": "https://www.lafortunawaterfall.com/",
               "ubicacion": {
@@ -2061,7 +2079,7 @@
             {
               "nombre": "Catedral Metropolitana de San Salvador",
               "descripcion": "Catedral católica con una arquitectura moderna.",
-              "imagen": "url_imagen_catedral_san_salvador.jpg",
+              "imagen": "https://static.wixstatic.com/media/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png/v1/fill/w_640,h_488,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png",
               "horario": "Abierta todos los días,  de 7:00 a 18:00 horas.",
               "paginaWeb": "https://catedralmetropolitana.org.sv/",
               "ubicacion": {
@@ -2075,7 +2093,7 @@
             {
               "nombre": "Palacio Nacional",
               "descripcion": "Edificio histórico que alberga el Museo Nacional de Antropología Dr. David J. Guzmán.",
-              "imagen": "url_imagen_palacio_nacional_el_salvador.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Palacio_Nacional_de_El_Salvador_en_2024.png/1200px-Palacio_Nacional_de_El_Salvador_en_2024.png",
               "horario": "De martes a domingo,  de 9:00 a 17:00 horas.",
               "paginaWeb": "https://www.cultura.gob.sv/temas/museos/museo-nacional-de-antropologia-dr-david-j-guzman/",
               "ubicacion": {
@@ -2098,7 +2116,7 @@
             {
               "nombre": "Lago Suchitlán",
               "descripcion": "Lago artificial con paisajes escénicos,  ideal para paseos en bote y la observación de aves.",
-              "imagen": "url_imagen_lago_suchitlan.jpg",
+              "imagen": "https://www.visitcentroamerica.com/wp-content/uploads/2017/08/ver-centroamerica-el-salvador-lago-suchjlan-02.jpg",
               "horario": "Se puede visitar durante el día.",
               "paginaWeb": "https://elsalvador.travel/lago-suchitlan/",
               "ubicacion": {
@@ -2112,7 +2130,7 @@
             {
               "nombre": "Iglesia de Santa Lucía",
               "descripcion": "Iglesia colonial del siglo XVII con una arquitectura barroca.",
-              "imagen": "url_imagen_iglesia_santa_lucia_suchitoto.jpg",
+              "imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/7d/e6/7a/iglesia-santa-lucia.jpg?w=1200&h=1200&s=1",
               "horario": "Abierta todos los días,  de 8:00 a 17:00 horas.",
               "paginaWeb": "https://elsalvador.travel/iglesia-santa-lucia-suchitoto/",
               "ubicacion": {
@@ -2159,7 +2177,7 @@
             {
               "nombre": "Catedral Metropolitana de Tegucigalpa",
               "descripcion": "Catedral católica con una arquitectura barroca.",
-              "imagen": "url_imagen_catedral_tegucigalpa.jpg",
+              "imagen": "https://live.staticflickr.com/65535/49579265401_48aaf068ce_b.jpg",
               "horario": "Abierta todos los días,  de 7:00 a 18:00 horas.",
               "paginaWeb": "https://catedraltegucigalpa.org/",
               "ubicacion": {
