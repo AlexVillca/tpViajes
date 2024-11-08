@@ -8,6 +8,7 @@ import { CiudadDetailComponent } from './components/paises/ciudad-detail/ciudad-
 import { Component } from '@angular/core';
 import { GameComponent } from './game/game.component';
 import { Routes } from '@angular/router';
+import { ListaDeListasComponent } from './components/favoritos/lista-de-listas/lista-de-listas.component';
 
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'paises', component: PaisesListComponent },
   { path: 'ciudad', component: CiudadDetailComponent },
   { path: 'Juego', component: GameComponent},
-  { path: 'pais', component: PaisDetailComponent }
+  { path: 'pais', component: PaisDetailComponent },
+  { path: 'favoritos', component: ListaDeListasComponent}
 
 ];
