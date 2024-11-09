@@ -1,3 +1,20 @@
+.popup-content label,
+.popup-content input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.popup-content input[type="text"] {
+  background-color: white;
+  color: black;
+}
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -27,28 +44,10 @@
 h3{
   color: #333;
 }
-.popup-content label {
-  display: block;
-  padding: 8px 12px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.popup-content label:hover {
-  background-color: #e0e0e0;
-}
 
-.popup-content input[type="checkbox"] {
-  margin-right: 8px;
-}
 
-.popup-content input[type="text"] {
-  margin-right: 8px;
-}
+
 .container {
   display: flex;
   justify-content: space-between;
