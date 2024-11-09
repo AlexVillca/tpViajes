@@ -24,7 +24,7 @@ export class ListaComponent implements OnInit{
   router = inject(Router);
   ps = inject(PaisesService);
   lista:any;
-
+  nombre:string ="";
   ngOnInit(): void {
     this.ars.paramMap.subscribe(
       {
@@ -38,6 +38,7 @@ export class ListaComponent implements OnInit{
                     {
                       next:(listas)=>{
                         this.lista = listas.find(l => l.idLista === idListaRecibido);
+
                       },
                       error:(error)=>{console.log(error)}
                     }
