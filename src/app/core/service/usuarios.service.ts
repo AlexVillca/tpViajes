@@ -33,7 +33,11 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(this.apiUrl, { params }).pipe(
       map(usuario => {
         if (usuario) {
-          return String(usuario[0].id);
+          if(usuario[0].password === contraseñaIngresada){
+            return String(usuario[0].id);
+          }else{
+            return null;
+          }
         } else {
           console.log("contraseña incorrecta");
           return null;
@@ -66,6 +70,11 @@ obtenerListasFav(id:string):Observable<ListaFav[]>{
 
   );
 }
+
+
+
+
+
 actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
 
   const url = `${this.apiUrl}/${aActualizar.id}`;
@@ -73,12 +82,6 @@ actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
   return this.http.put<Usuario>(url, aActualizar);
 
   }
-
-
-
-
-
-
 
 
 
