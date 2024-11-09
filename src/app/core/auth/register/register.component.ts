@@ -21,7 +21,14 @@ export class RegisterComponent {
     username: '',
     email: '',
     password: '',
-    listasFavs:[]
+    listasFavs:
+    [
+      {
+        idLista:Math.random().toString(36).substring(2, 9),
+        nombreLista:"Guardadas",
+        listaCiudades:[]
+      }
+    ]
   };
   emailInvalid:Boolean = false;
   userNameInvalid:Boolean = false;
