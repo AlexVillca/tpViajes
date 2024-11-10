@@ -1,12 +1,13 @@
+import { CiudadEnLista } from './../../../models/interface/usuario.interface';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { CiudadEnLista, ListaFav } from '../../../models/interface/usuario.interface';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
 import { Ciudad, Pais } from '../../../models/interface/pais.interface';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { PaisesService } from '../../../core/service/paises.service';
+
 
 @Component({
   selector: 'app-lista',
@@ -23,7 +24,7 @@ export class ListaComponent implements OnInit{
   paisesService = inject(PaisDataService);
   router = inject(Router);
   ps = inject(PaisesService);
-  lista:any;
+  lista:any; //listaFav
   nombre:string ="";
   ngOnInit(): void {
     this.ars.paramMap.subscribe(
@@ -45,7 +46,7 @@ export class ListaComponent implements OnInit{
                   )
                 }
               },
-              error:()=>{}
+              error:(e)=>{console.log(e)}
             }
           );
         },
@@ -86,5 +87,36 @@ export class ListaComponent implements OnInit{
     console.log("termina la funcion");
 
   }
+  eliminarDeLaLista(ciudad:CiudadEnLista){
+      this.lista.listaCiudades = this.lista.listaCiudades.filter( (c:CiudadEnLista)=> c.nombre !== ciudad.nombre && c.codigoPais !== ciudad.codigoPais );
+      this.ids.id$.subscribe(
+        {
+          next:(id) => {
+            if(id){
+              this.us.getUsuarioById(id).subscribe(
+                {
+                  next:(u) => {
+                    if(u){
+                      const pos = u.listasFavs.findIndex(l => l.idLista === this.lista.idLista);
+                      u.listasFavs[pos] = this.lista;
+                      this.us.actualizarUsuario(u).subscribe(
+                        {
+                          next:() => {console.log("lista favs actualizada")},
+                          error:(e) => {console.log(e)}
+                        }
+                      );
+                    }
 
+                  },
+                  error:() => {console.log("ERROR:no se encontro al usuario")}
+                }
+              );
+            }
+
+
+          },
+          error:() => {console.log("ERROR:no se pudo obtener el id");}
+        }
+      );
+  }
 }
