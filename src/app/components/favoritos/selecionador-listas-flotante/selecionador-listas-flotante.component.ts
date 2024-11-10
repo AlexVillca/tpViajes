@@ -2,13 +2,15 @@ import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, View
 import { ListaFav } from '../../../models/interface/usuario.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ListaCheckbox } from '../../../models/interface/datoInterno.interface';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { PaisDataService } from '../../../core/service/pais-data.service';
-import { Ciudad } from '../../../models/interface/pais.interface';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
-
+interface ListaCheckbox {
+  id:string;
+  nombre: string;
+  seleccionada:boolean;
+}
 
 /* boton para ciudad
   <button (click)="showPopup = true">Guardar</button>
@@ -138,23 +140,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
   }
 
-/*
-export interface ListaCheckbox {
-  id:string;
-  nombre: string;
-  seleccionada:boolean;
-}
-export interface ListaFav{
-  idLista:string,
-  nombreLista:string,
-  listaCiudades:CiudadEnLista[]
-}
-export interface CiudadEnLista{
-  idPais:string,
-  nombre:string
-}
 
-*/
 
   saveSelection() {
     this.pasajeCambiosFrontaDB();

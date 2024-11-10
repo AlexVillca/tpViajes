@@ -1,4 +1,4 @@
-<div class="popup-overlay" (click)="closePopup()"></div>
+<div class="popup-overlay" ></div>
 <div class="popup-content">
 
   <h3>Guardar en colección</h3>
@@ -25,15 +25,19 @@
       {{ l.nombre }}
     </label>
   </div>
-  <div class="container">
-    <input
-      type="text"
-      placeholder="Nueva lista"
-      [(ngModel)]="vacio"
-      name="inputNombreNuevaLista"
-      (keydown.enter)="agregaNuevaLista($event)"
-    />
-  </div>
+  @if(this.listasFront.length < 10){
+    <div class="container">
+      <input
+        type="text"
+        placeholder="Nueva lista"
+        [(ngModel)]="vacio"
+        name="inputNombreNuevaLista"
+        (keydown.enter)="agregaNuevaLista($event)"
+      />
+    </div>
+  }@else{
+    <small class="error">     *Se llego al maximo de listas</small>
+  }
 </ol>
 
   <div class="container">
