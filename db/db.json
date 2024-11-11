@@ -2209,7 +2209,7 @@
             {
               "nombre": "Museo Nacional de Antropología e Historia",
               "descripcion": "Museo que exhibe la historia y la cultura de Honduras.",
-              "imagen": "url_imagen_museo_antropologia_honduras.jpg",
+              "imagen": "https://www.honduras.com/wp-content/uploads/2020/08/museo-de-antropolog%C3%ADa-e-historia-2-1024x683.jpg",
               "horario": "De martes a domingo,  de 9:00 a 16:00 horas.",
               "paginaWeb": "https://ihah.hn/",
               "ubicacion": {
@@ -2232,7 +2232,7 @@
             {
               "nombre": "Parque Central",
               "descripcion": "Plaza principal de San Pedro Sula,  con la Catedral y edificios históricos.",
-              "imagen": "url_imagen_parque_central_san_pedro_sula.jpg",
+              "imagen": "https://paradigma.hn/wp-content/uploads/2021/01/WhatsApp-Image-2021-01-22-at-10.22.35-AM.jpeg",
               "horario": "Abierto las 24 horas.",
               "paginaWeb": "https://www.sanpedrosula.hn/turismo/parque-central/",
               "ubicacion": {
@@ -2246,7 +2246,7 @@
             {
               "nombre": "Museo de Antropología e Historia",
               "descripcion": "Museo que exhibe la historia y la cultura de la región.",
-              "imagen": "url_imagen_museo_antropologia_san_pedro_sula.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Casain2.jpg",
               "horario": "De martes a domingo,  de 9:00 a 16:00 horas.",
               "paginaWeb": "https://www.hondurastips.hn/museo-de-antropologia-e-historia-de-san-pedro-sula/",
               "ubicacion": {
@@ -2293,7 +2293,7 @@
             {
               "nombre": "Catedral de Managua",
               "descripcion": "Catedral católica con una arquitectura neoclásica,  dañada por terremotos.",
-              "imagen": "url_imagen_catedral_managua.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/2/20/Antigua_catedral_de_Managua.jpg",
               "horario": "Abierta todos los días,  de 8:00 a 17:00 horas.",
               "paginaWeb": "https://www.catedraldemanagua.org/",
               "ubicacion": {
@@ -2307,7 +2307,7 @@
             {
               "nombre": "Palacio Nacional de la Cultura",
               "descripcion": "Edificio histórico que alberga el Museo Nacional y la Biblioteca Nacional.",
-              "imagen": "url_imagen_palacio_nacional_nicaragua.jpg",
+              "imagen": "https://hotelloscisneros.com/wp-content/uploads/2016/09/Palacio-Nacional-de-la-Cultura-Hotel-Los-Cisneros.jpg",
               "horario": "De lunes a viernes,  de 8:00 a 17:00 horas.",
               "paginaWeb": "https://www.palacionacional.gob.ni/",
               "ubicacion": {
@@ -2330,7 +2330,7 @@
             {
               "nombre": "Catedral de Granada",
               "descripcion": "Catedral católica con una arquitectura neoclásica.",
-              "imagen": "url_imagen_catedral_granada_nicaragua.jpg",
+              "imagen": "https://catedraldegranada.com/wp-content/uploads/Catedral_de_Granada_-_Arquitectura_exterior_1.jpg",
               "horario": "Abierta todos los días,  de 8:00 a 17:00 horas.",
               "paginaWeb": "https://www.catedraldegranada.org/",
               "ubicacion": {
@@ -2344,7 +2344,7 @@
             {
               "nombre": "Parque Nacional Volcán Mombacho",
               "descripcion": "Volcán con vistas panorámicas de la ciudad,  senderos y una reserva natural.",
-              "imagen": "url_imagen_volcan_mombacho.jpg",
+              "imagen": "https://nicadestino.com/wp-content/uploads/listing-uploads/gallery/2022/01/Volcan-Mombacho.jpg",
               "horario": "Abierto todos los días,  de 8:00 a 16:00 horas.",
               "paginaWeb": "https://www.mombacho.org/",
               "ubicacion": {
@@ -2391,7 +2391,7 @@
             {
               "nombre": "Canal de Panamá",
               "descripcion": "Canal artificial que conecta el Océano Atlántico con el Océano Pacífico.",
-              "imagen": "url_imagen_canal_panama.jpg",
+              "imagen": "https://web.splogistics.com/public/news/canal-de-panama-12761.jpg",
               "horario": "El Centro de Visitantes de Miraflores está abierto todos los días,  de 8:00 a 18:00 horas.",
               "paginaWeb": "https://visitcanaldepanama.com/",
               "ubicacion": {
@@ -2405,7 +2405,7 @@
             {
               "nombre": "Casco Viejo",
               "descripcion": "Centro histórico de la ciudad,  Patrimonio de la Humanidad por la UNESCO,  con plazas,  iglesias y edificios coloniales.",
-              "imagen": "url_imagen_casco_viejo_panama.jpg",
+              "imagen": "https://es.wikipedia.org/wiki/Casco_Antiguo_de_Panam%C3%A1#/media/Archivo:Casco_Antiguo_(San_Felipe)_-_Pamama.jpg",
               "horario": "Abierto todo el año.",
               "paginaWeb": "https://visitpanama.com/que-hacer-en-panama/ciudad-de-panama/casco-antiguo/",
               "ubicacion": {
@@ -2428,7 +2428,7 @@
             {
               "nombre": "Isla Colón",
               "descripcion": "Isla principal del archipiélago,  con playas,  restaurantes y hoteles.",
-              "imagen": "url_imagen_isla_colon_bocas_del_toro.jpg",
+              "imagen": "https://go.bocasdeltoro.travel/wp-content/uploads/2024/10/isla-colon-panama-bocas-del-toro.jpg",
               "horario": "Abierta todo el año.",
               "paginaWeb": "https://visitpanama.com/que-hacer-en-panama/bocas-del-toro/isla-colon/",
               "ubicacion": {
@@ -2442,7 +2442,7 @@
             {
               "nombre": "Parque Nacional Marino Isla Bastimentos",
               "descripcion": "Parque nacional con arrecifes de coral,  manglares y playas.",
-              "imagen": "url_imagen_parque_nacional_isla_bastimentos.jpg",
+              "imagen": "https://es.wikipedia.org/wiki/Parque_nacional_Isla_Bastimentos#/media/Archivo:Isla_Bastimentos_La_Mochila.jpg",
               "horario": "Abierto todo el año.",
               "paginaWeb": "https://visitpanama.com/que-hacer-en-panama/bocas-del-toro/parque-nacional-marino-isla-bastimentos/",
               "ubicacion": {
@@ -2489,7 +2489,7 @@
             {
               "nombre": "La Habana Vieja",
               "descripcion": "Centro histórico de la ciudad,  Patrimonio de la Humanidad por la UNESCO,  con plazas,  iglesias y edificios coloniales.",
-              "imagen": "url_imagen_habana_vieja.jpg",
+              "imagen": "https://es.wikipedia.org/wiki/La_Habana_Vieja#/media/Archivo:Habana_Vieja_de_noche.jpg",
               "horario": "Abierta todo el año.",
               "paginaWeb": "https://www.cuba.travel/es/destinos/la-habana/la-habana-vieja",
               "ubicacion": {
@@ -2503,7 +2503,7 @@
             {
               "nombre": "El Capitolio",
               "descripcion": "Edificio emblemático que alberga el Museo Nacional de Historia Natural.",
-              "imagen": "url_imagen_capitolio_cuba.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/11/Havana_Capitol_Building_in_2019.jpg",
               "horario": "De martes a domingo,  de 9:00 a 17:00 horas.",
               "paginaWeb": "https://www.cuba.travel/es/destinos/la-habana/el-capitolio",
               "ubicacion": {
@@ -2526,7 +2526,7 @@
             {
               "nombre": "Playa Varadero",
               "descripcion": "Playa de arena blanca y aguas turquesas,  considerada una de las mejores del mundo.",
-              "imagen": "url_imagen_playa_varadero.jpg",
+              "imagen": "https://es.wikipedia.org/wiki/Varadero#/media/Archivo:Varaderobeach1.JPG",
               "horario": "Abierta todo el año.",
               "paginaWeb": "https://www.cuba.travel/es/destinos/varadero/playa-varadero",
               "ubicacion": {
@@ -2540,7 +2540,7 @@
             {
               "nombre": "Cueva de Ambrosio",
               "descripcion": "Cueva con pinturas rupestres aborígenes.",
-              "imagen": "url_imagen_cueva_ambrosio.jpg",
+              "imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/6d/97/4a/inside-pictures-of-the.jpg?w=900&h=500&s=1",
               "horario": "De 9:00 a 16:00 horas.",
               "paginaWeb": "https://www.cuba.travel/es/destinos/varadero/cueva-de-ambrosio",
               "ubicacion": {
@@ -2587,7 +2587,7 @@
             {
               "nombre": "Estatua de la Libertad",
               "descripcion": "Símbolo de la libertad y la democracia,  ubicada en Liberty Island.",
-              "imagen": "url_imagen_estatua_libertad.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Statue_of_Liberty_7.jpg",
               "horario": "Abierta todos los días,  de 8:30 a 16:00 horas.",
               "paginaWeb": "https://www.nps.gov/stli/index.htm",
               "ubicacion": {
@@ -2601,7 +2601,7 @@
             {
               "nombre": "Times Square",
               "descripcion": "Plaza icónica con pantallas gigantes,  teatros y tiendas.",
-              "imagen": "url_imagen_times_square.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg",
               "horario": "Abierta las 24 horas.",
               "paginaWeb": "https://www.timessquarenyc.org/",
               "ubicacion": {
@@ -2624,7 +2624,7 @@
             {
               "nombre": "Paseo de la Fama de Hollywood",
               "descripcion": "Acera con estrellas que homenajean a celebridades.",
-              "imagen": "url_imagen_paseo_de_la_fama.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/45/Hollywood_Walk_of_Fame.jpg",
               "horario": "Abierto las 24 horas.",
               "paginaWeb": "https://www.walkoffame.com/",
               "ubicacion": {
@@ -2638,7 +2638,7 @@
             {
               "nombre": "Universal Studios Hollywood",
               "descripcion": "Parque temático con atracciones basadas en películas.",
-              "imagen": "url_imagen_universal_studios_hollywood.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Universal_Studios_Hollywood_%28recorte%29.jpg",
               "horario": "Varía según la temporada.",
               "paginaWeb": "https://www.universalstudioshollywood.com/",
               "ubicacion": {
@@ -2661,7 +2661,7 @@
             {
               "nombre": "Parque Nacional Denali",
               "descripcion": "Parque nacional con el Monte Denali (McKinley),  la montaña más alta de América del Norte.",
-              "imagen": "url_imagen_parque_nacional_denali.jpg",
+              "imagen": "https://es.wikipedia.org/wiki/Parque_nacional_y_reserva_Denali#/media/Archivo:Mount_McKinley_Alaska.jpg",
               "horario": "Abierto todo el año,  con acceso limitado en invierno.",
               "paginaWeb": "https://www.nps.gov/dena/index.htm",
               "ubicacion": {
@@ -2675,7 +2675,7 @@
             {
               "nombre": "Glaciar Mendenhall",
               "descripcion": "Glaciar accesible con cuevas de hielo y cascadas.",
-              "imagen": "url_imagen_glaciar_mendenhall.jpg",
+              "imagen": "https://es.wikipedia.org/wiki/Glaciar_Mendenhall#/media/Archivo:Mendenhall_Glacier_(Winter).jpg",
               "horario": "Se puede visitar todo el año.",
               "paginaWeb": "https://www.fs.usda.gov/mendenhall/",
               "ubicacion": {
@@ -2722,7 +2722,7 @@
             {
               "nombre": "CN Tower",
               "descripcion": "Torre de comunicaciones con vistas panorámicas de la ciudad.",
-              "imagen": "url_imagen_cn_tower.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/9/96/Toronto_-_ON_-_Toronto_Harbourfront7.jpg",
               "horario": "Abierto todos los días,  con horarios variables según la temporada.",
               "paginaWeb": "https://www.cntower.ca/",
               "ubicacion": {
@@ -2736,7 +2736,7 @@
             {
               "nombre": "Royal Ontario Museum",
               "descripcion": "Museo de historia natural y cultura mundial.",
-              "imagen": "url_imagen_royal_ontario_museum.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/7/72/Royal_Ontario_Museum_in_Fall_2021.jpg",
               "horario": "De martes a domingo,  de 10:00 a 17:30 horas.",
               "paginaWeb": "https://www.rom.on.ca/",
               "ubicacion": {
@@ -2759,7 +2759,7 @@
             {
               "nombre": "Stanley Park",
               "descripcion": "Parque urbano con bosques,  playas,  jardines y atracciones.",
-              "imagen": "url_imagen_stanley_park.jpg",
+              "imagen": "https://es.wikipedia.org/wiki/Parque_Stanley#/media/Archivo:Vista_de_Vancouver_desde_el_parque_Stanley,_Canad%C3%A1,_2017-08-14,_DD_02-03_PAN.jpg",
               "horario": "Abierto las 24 horas.",
               "paginaWeb": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
               "ubicacion": {
@@ -2773,7 +2773,7 @@
             {
               "nombre": "Granville Island",
               "descripcion": "Isla con un mercado público,  tiendas,  restaurantes y teatros.",
-              "imagen": "url_imagen_granville_island.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/6/62/Granville_Island.jpg",
               "horario": "Abierto todos los días,  con horarios variables según la temporada.",
               "paginaWeb": "https://granvilleisland.com/",
               "ubicacion": {
@@ -2820,7 +2820,7 @@
             {
               "nombre": "Puerta de Brandeburgo",
               "descripcion": "Monumento histórico que simboliza la reunificación alemana.",
-              "imagen": "url_imagen_puerta_brandeburgo.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Brandenburger_Tor_abends.jpg",
               "horario": "Acceso libre las 24 horas.",
               "paginaWeb": "https://www.berlin.de/en/brandenburg-gate/",
               "ubicacion": {
@@ -2834,7 +2834,7 @@
             {
               "nombre": "Reichstag",
               "descripcion": "Edificio del Parlamento alemán,  con una cúpula de cristal que ofrece vistas panorámicas.",
-              "imagen": "url_imagen_reichstag.jpg",
+              "imagen": "https://media.gettyimages.com/id/161820951/es/foto/reichstag-dome-berl%C3%ADn.jpg?s=612x612&w=0&k=20&c=sOBybQPwdcFaxDvdMqT3DwVKuf0zvvi57chNnCOvk7Y=",
               "horario": "Visitas con reserva previa.",
               "paginaWeb": "https://www.bundestag.de/en/visitthebundestag",
               "ubicacion": {
@@ -2857,7 +2857,7 @@
             {
               "nombre": "Marienplatz",
               "descripcion": "Plaza principal de Múnich,  con el Nuevo Ayuntamiento y el carillón.",
-              "imagen": "url_imagen_marienplatz.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/7/73/Rathaus_and_Marienplatz_from_Peterskirche_-_August_2006.jpg",
               "horario": "Abierta las 24 horas.",
               "paginaWeb": "https://www.muenchen.de/int/en/sights/squares/marienplatz.html",
               "ubicacion": {
@@ -2871,7 +2871,7 @@
             {
               "nombre": "Hofbräuhaus",
               "descripcion": "Cervecería tradicional bávara con música en vivo y un ambiente festivo.",
-              "imagen": "url_imagen_hofbraeuhaus.jpg",
+              "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/88/M%C3%BCnchen_Hofbr%C3%A4uhaus_Postcard_late_19th_century.jpg",
               "horario": "Abierto todos los días,  de 9:00 a 0:00 horas.",
               "paginaWeb": "https://www.hofbraeuhaus.de/en/welcome.html",
               "ubicacion": {
