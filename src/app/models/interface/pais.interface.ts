@@ -1,4 +1,4 @@
-// paises/pais.ts
+// paises/pais.interface.ts
 export interface Pais {
   nombre: string;
   nombreOficial?: string;
