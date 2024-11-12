@@ -7,8 +7,9 @@ li {
 }
 
 .content{
+  width: 100%;       /* O un ancho específico como '300px' */
+  min-height: 400px;
 
-  height: 600px;
   justify-content: center;
 }
 .acces-button {
@@ -68,5 +69,20 @@ p{
   cursor: pointer;
 }
 .button-volver:hover {
+  background-color: #3aa2a3
+}
+.button-redirigir-paises{
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  padding: 10px 40px;
+  background-color: #4bb6b7;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.utton-redirigir-paises:hover {
   background-color: #3aa2a3
 }
