@@ -5,7 +5,7 @@ div{
   height: 500px;
   justify-content: center;
 }
-button {
+.button-seleccion {
 
   justify-content: center;
   width: 100%;
@@ -16,7 +16,23 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
+.button-seleccion:hover {
+  background-color: #3aa2a3
+}
+.button-volver{
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  padding: 10px 10px;
+  background-color: #4bb6b7;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button-volver:hover {
+  background-color: #3aa2a3
+}
 p{
   text-align: center;
 

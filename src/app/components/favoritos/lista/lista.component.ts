@@ -21,6 +21,7 @@ export class ListaComponent implements OnInit,OnDestroy{
   ars = inject(ActivatedRoute);
   us = inject(UsuariosService);
   ids = inject(IdUsuarioService);
+
   ciudadService = inject(CiudadDataService);
   paisesService = inject(PaisDataService);
   router = inject(Router);
@@ -52,7 +53,7 @@ export class ListaComponent implements OnInit,OnDestroy{
                             nombreLista: "",
                             listaCiudades: []
                           };
-
+                          this.nombre = this.lista.nombreLista;
 
                       },
                       error:(error)=>{console.log(error)}
@@ -124,6 +125,7 @@ export class ListaComponent implements OnInit,OnDestroy{
                   if(u){
                     const pos = u.listasFavs.findIndex(l => l.idLista === this.lista.idLista);
                     u.listasFavs[pos] = this.lista;
+                    u.listasFavs[pos].nombreLista = this.nombre;
                     this.us.actualizarUsuario(u).subscribe(
                       {
                         next:() => {console.log("lista favs actualizada")},
@@ -145,8 +147,71 @@ export class ListaComponent implements OnInit,OnDestroy{
     );
   }
   eliminarLista(){
+    this.ars.paramMap.subscribe(
+      {
+        next:(param)=>{
+          let idListaRecibido = param.get('idLista');
+          this.ids.id$.subscribe(
+            {
+              next:(idUsuario)=>{
+                if(idUsuario){
+                  this.us.obtenerListasFav(idUsuario).subscribe(
+                    {
+                      next:(listas)=>{
 
-    this.locationService.back();
+                        for(let i = 0;i<listas.length;i++){
+                          if(listas[i].idLista === idListaRecibido){
+                            listas.splice(i,1);
+                          }
+                        }
+
+
+                        this.ids.id$.subscribe(
+                          {
+                            next:(id) => {
+                              if(id){
+                                this.us.getUsuarioById(id).subscribe(
+                                  {
+                                    next:(u) => {
+                                      if(u){
+                                        u.listasFavs = listas;
+
+                                        this.us.actualizarUsuario(u).subscribe(
+                                          {
+                                            next:() => {this.router.navigate(['/favoritos']);},
+                                            error:(e) => {console.log(e)}
+                                          }
+                                        );
+                                      }
+
+                                    },
+                                    error:() => {console.log("ERROR:no se encontro al usuario")}
+                                  }
+                                );
+                              }
+
+
+                            },
+                            error:() => {console.log("ERROR:no se pudo obtener el id");}
+                          }
+                        );
+
+
+
+                      },
+                      error:(error)=>{console.log(error)}
+                    }
+                  )
+                }
+              },
+              error:(e)=>{console.log(e)}
+            }
+          );
+        },
+        error:(e) =>{console.log(e)}
+      }
+    );
+
 
   }
 
