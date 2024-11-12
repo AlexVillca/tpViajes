@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Favoritos</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
 </head>
 <body>
+  <h1>Favoritos</h1>
   <div>
     @for(l of listaDeListas;track $index){
-      <button [routerLink]="['listaCiudadesComp',l.idLista]" >{{l.nombreLista}}</button>
+      <button class="button-seleccion" [routerLink]="['listaCiudadesComp',l.idLista]" >{{l.nombreLista}}</button>
     }
   </div>
-
+  <button type="button" class="button-volver" (click)="volver()">Volver</button>
 </body>
 </html>

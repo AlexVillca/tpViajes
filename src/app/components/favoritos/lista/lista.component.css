@@ -22,7 +22,9 @@ li {
   border-radius: 5px;
   cursor: pointer;
 }
-
+.acces-button:hover {
+  background-color: #3aa2a3
+}
 p{
   text-align: center;
 
@@ -46,17 +48,25 @@ p{
   background-color: #ff1a1a;
 }
 
-.trash-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  background-image: url('https://image.shutterstock.com/image-vector/trash-can-icon-260nw-193280150.jpg'); /* Reemplaza con una URL de ícono */
-  background-size: cover;
-}
 
 
-.button-list{
+
+.buttons-list{
   display: flex;
   gap: 10px; /* Espacio entre los botones */
 }
 
+.button-volver{
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  padding: 10px 10px;
+  background-color: #4bb6b7;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button-volver:hover {
+  background-color: #3aa2a3
+}
