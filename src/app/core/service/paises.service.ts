@@ -17,17 +17,5 @@ export class PaisesService {
     return this.http.get<Pais[]>(this.apiUrl);
   }
 
-  getPais(codigo: string): Observable<Pais> {
-    const url = `${this.apiUrl}`;
-    return this.http.get<Pais>(url).pipe(
-      catchError(error => {
-        if (error.status === 404) {
-          console.error('Error 404:', url, error); // Muestra la URL que falló
-        } else {
-          console.error('Error en la petición:', error);
-        }
-        return throwError(() => new Error('No se pudo obtener el país'));
-      })
-    );
-  }
+
 }

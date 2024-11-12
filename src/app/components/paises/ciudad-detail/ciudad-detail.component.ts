@@ -8,6 +8,7 @@ import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 
 
 
+
 @Component({
   selector: 'app-ciudad-detail',
   standalone: true,
@@ -20,6 +21,7 @@ export class CiudadDetailComponent implements OnInit{
   idus = inject(IdUsuarioService);
   usuarioLogueado = false;
   showPopup = false;
+
   ngOnInit(){
     this.idus.id$.subscribe({
       next:(id) => {
