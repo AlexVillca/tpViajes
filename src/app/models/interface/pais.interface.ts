@@ -1,4 +1,5 @@
-// paises/pais.interface.ts
+import { Usuario } from "./usuario.interface";
+
 export interface Pais {
   nombre: string;
   nombreOficial?: string;
@@ -20,7 +21,11 @@ export interface Pais {
   seguridad?: string;
   transporte?: string;
   ciudades?: Ciudad[];
+<<<<<<< HEAD
   id?: string;
+=======
+  id: string;
+>>>>>>> 154361d95302d21cf45957c68e469ba5d1810648
 }
 
 export interface Ciudad {
@@ -28,8 +33,14 @@ export interface Ciudad {
   infoWikipedia?: string;
   actividades?: string;
   consejos?: string;
-  comentarios?: string;
+  comentarios?: Comentario[];
   atracciones?: Atraccion[];
+}
+export interface Comentario {
+  mensaje : string,
+  ciudad : string,              
+  usuarioId : string,
+  usuario: string;
 }
 
 export interface Atraccion {

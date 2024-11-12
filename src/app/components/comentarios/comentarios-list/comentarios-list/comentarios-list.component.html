@@ -1,0 +1,16 @@
+<div *ngIf="flag === true">
+<app-comentarios (emitirComentario)="agregarComentarioDb($event) "> </app-comentarios>
+</div>
+<section>
+  <h1>Lista de comentarios</h1>
+    <ul>
+      <div *ngFor="let comentarioActual of listaComentarios; let i = index">
+        <div *ngIf="comentarioActual.ciudad === getCiudadActual()">
+          <fieldset>
+            {{ comentarioActual.usuario }}:  {{ comentarioActual.mensaje }} 
+         </fieldset>
+      </div>
+    </div>
+    </ul>
+  </section>
+  
