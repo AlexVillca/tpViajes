@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuariosService } from '../../service/usuarios.service';
 import { Usuario } from '../../../models/interface/usuario.interface'
 
@@ -15,7 +15,7 @@ import { Usuario } from '../../../models/interface/usuario.interface'
 })
 export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
-
+  routerService = inject(Router);
   usuarioService = inject(UsuariosService);
   user:Usuario = {
     username: '',
@@ -66,7 +66,10 @@ export class RegisterComponent {
                     this.usuarioService.postUsuario(this.user)
                     .subscribe(
                       {
-                      next: (response) => { console.log('Usuario creado exitosamente:', response); },
+                      next: (response) => {
+                        console.log('Usuario creado exitosamente:', response);
+                        this.routerService.navigate(['login']);
+                       },
                       error: (error) => { console.error('Error al crear usuario:', error); }
                       }
                     );
