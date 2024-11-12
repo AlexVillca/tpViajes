@@ -3,6 +3,7 @@ import { UsuariosService } from '../../../core/service/usuarios.service';
 import { ListaFav } from '../../../models/interface/usuario.interface';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lista-de-listas',
@@ -37,4 +38,10 @@ export class ListaDeListasComponent implements OnInit{
     accederLista(lista:any){
         this.router.navigate(['listaCiudades']);
     }
+
+
+    locationService = inject(Location);
+  volver() {
+    this.locationService.back();
+  }
 }
