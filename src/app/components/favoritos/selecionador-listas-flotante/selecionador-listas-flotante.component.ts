@@ -81,7 +81,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
     evento.preventDefault(); // Evita el envío del formulario
 
-    if(this.listasFront.length < 10){
+    if(this.listasFront.length < 9){
       if (nombreLista.trim()) { // Verifica que no esté vacío
         this.listasFront.push({id:Math.random().toString(36).substring(2, 9),nombre:nombreLista,seleccionada:true});
         console.log(...this.listasFront);
