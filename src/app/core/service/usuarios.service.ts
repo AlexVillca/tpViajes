@@ -23,7 +23,7 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(this.apiUrl);
   }
 
-  getUsuarioById(id:string):Observable<Usuario>{
+  getUsuarioById(id:string | null):Observable<Usuario>{
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
   logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<string|null> {
