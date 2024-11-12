@@ -4,24 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
-<div>
   <h1>{{lista.nombreLista}}</h1>
-  <ul>
-      @for (c of lista?.listaCiudades; track $index) {
-        <li>
-          <button class="acces-button" (click) = "accederCiudad(c)">
-            {{c.nombre}}
-          </button>
+  <div class="content">
 
-          <button class="delete-button" (click)="eliminarDeLaLista(c)">
-            <i class="fas fa-trash" ></i>
-          </button>
-        </li>
-      }
-  </ul>
-</div>
+
+    <div class="button-list">
+
+      <button class="delete-button">
+        <i class="material-icons" (click)="eliminarLista()">delete</i>
+      </button>
+
+    </div>
+    <ul>
+      @for (c of lista.listaCiudades; track $index) {
+          <li>
+            <button class="acces-button" (click) = "accederCiudad(c)">
+              {{c.nombre}}
+            </button>
+            <button class="delete-button" (click)="eliminarDeLaLista(c)">
+              <i class="material-icons">delete</i>
+            </button>
+          </li>
+        }
+    </ul>
+  </div>
 </body>
 </html>

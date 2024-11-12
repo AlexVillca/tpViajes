@@ -3,21 +3,7 @@
 
   <h3>Guardar en colección</h3>
   <form (ngSubmit)="saveSelection()">
-    <!--
-    <ol>
-      <div *ngFor="let l of listasFront">
-      <label>
-          <input type="checkbox" [checked]="l.seleccionada" [(ngModel)]="l.seleccionada" name="{{l.nombre}}" />
-          {{ l.nombre }}
-        </label>
-      </div>
-      @if(this.listasFront.length < 10){
-        <input type="text" placeholder="Nueva lista" [(ngModel)] = "vacio" name="inputNombreNuevaLista" (keydown.enter)=" agregaNuevaLista($event)">
-      }
 
-
-  </ol>
--->
 <ol>
   <div *ngFor="let l of listasFront">
     <label>
@@ -25,7 +11,7 @@
       {{ l.nombre }}
     </label>
   </div>
-  @if(this.listasFront.length < 10){
+  @if(this.listasFront.length < 9){
     <div class="container">
       <input
         type="text"
@@ -36,7 +22,7 @@
       />
     </div>
   }@else{
-    <small class="error">     *Se llego al maximo de listas</small>
+    <small class="error">*Se llego al maximo de listas</small>
   }
 </ol>
 
