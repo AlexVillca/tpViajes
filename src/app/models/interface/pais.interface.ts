@@ -20,6 +20,7 @@ export interface Pais {
   seguridad?: string;
   transporte?: string;
   ciudades?: Ciudad[];
+  id?: string;
 }
 
 export interface Ciudad {

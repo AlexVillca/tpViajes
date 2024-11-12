@@ -5,6 +5,7 @@ import { Ciudad } from '../../models/interface/pais.interface'; // Importar la i
 @Injectable({
   providedIn: 'root'
 })
+
 export class CiudadDataService {
   private ciudadSource = new BehaviorSubject<Ciudad | null>(null);
   ciudad$ = this.ciudadSource.asObservable();

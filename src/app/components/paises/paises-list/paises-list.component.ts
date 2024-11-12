@@ -15,13 +15,14 @@ import { PaisesService } from '../../../core/service/paises.service';
 })
 export class PaisesListComponent implements OnInit {
 
-    ngOnInit(): void {
-      this.paisesService.getPaises().subscribe(data => {
-        this.paises = data; // Almacena la lista de países en la variable paises
-        this.paisesFiltrados = this.paises; // Inicialmente, la lista de países filtrados es igual a la lista completa
-      });
-    }
-
+  ngOnInit(): void {
+    this.paisesService.getPaises().subscribe({
+      next: (paises: Pais[]) => {
+        this.paises = paises;
+        this.paisesFiltrados = this.paises;
+      }
+    });
+  }
 
   paises: Pais[] = [];
 
