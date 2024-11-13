@@ -74,7 +74,7 @@ export class RegisterComponent {
 
                       setTimeout(() => {
                         this.routerService.navigate(['login']);
-                      }, 3000);
+                      }, 4000);
                      },
                     error: (error) => { console.error('Error al crear usuario:', error); }
                     }
