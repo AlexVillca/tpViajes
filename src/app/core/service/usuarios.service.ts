@@ -47,20 +47,33 @@ export class UsuariosService {
   }
 
 comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
-  return this.http.get<Usuario | null>(`${this.apiUrl}?email=${encodeURIComponent(emailIngresado)}`).pipe(
-    map(usuario => {
-
-      return usuario === null || Object.keys(usuario).length === 0;
+  return this.http.get<Usuario[]|undefined>(this.apiUrl).pipe(
+    map(usuarios => {
+      if(usuarios){
+        if (usuarios?.find(u => u.email === emailIngresado) !== undefined) {
+          return false;
+        } else {
+          return true;
+        }
+      }else{
+        return false;
+      }
     })
   );
 }
 comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
 
-
-  return this.http.get<Usuario | null>(`${this.apiUrl}?username=${encodeURIComponent(usernameIngresado)}`).pipe(
-    map(usuario => {
-
-      return usuario === null || Object.keys(usuario).length === 0;
+  return this.http.get<Usuario[]>(this.apiUrl).pipe(
+    map(usuarios => {
+      if(usuarios){
+        if (usuarios?.find(u => u.username === usernameIngresado) !== undefined) {
+          return false;
+        } else {
+          return true;
+        }
+      }else{
+        return false;
+      }
     })
   );
 }
@@ -82,10 +95,6 @@ actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
   return this.http.put<Usuario>(url, aActualizar);
 
   }
-
-
-
-
 }
 
 
