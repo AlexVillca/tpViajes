@@ -27,6 +27,8 @@
     <p>Seguridad: {{ pais.seguridad }}</p>
     <p>Transporte: {{ pais.transporte }}</p>
 
+    <app-map [location]= "pais.nombre"></app-map>
+
     <h3>Ciudades</h3>
     <ul>
       <li *ngFor="let ciudad of pais.ciudades">
