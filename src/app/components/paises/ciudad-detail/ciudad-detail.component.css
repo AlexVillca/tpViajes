@@ -11,6 +11,6 @@ button {
 }
 .container {
   display: flex;
-  justify-content: space-between; /* Espacia los elementos al máximo posible */
-  align-items: center; /* Alinea verticalmente el contenido al centro */
+  justify-content: space-between;
+  align-items: center; 
 }

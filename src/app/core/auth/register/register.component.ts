@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { UsuariosService } from '../../service/usuarios.service';
 import { Usuario } from '../../../models/interface/usuario.interface'

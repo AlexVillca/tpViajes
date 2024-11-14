@@ -1,7 +1,7 @@
 import { Component, inject, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaisDataService } from '../../../core/service/pais-data.service';
-import { CiudadDataService } from '../../../core/service/ciudad-data.service'; // Importar el servicio
+import { CiudadDataService } from '../../../core/service/ciudad-data.service'; 
 import { Router } from '@angular/router'; //
 import { Ciudad } from '../../../models/interface/pais.interface';
 import { RouterModule } from '@angular/router';
