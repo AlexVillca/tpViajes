@@ -6,9 +6,9 @@
         </div>
         <div *ngIf="opciones" class="opcionesJuego">
             <p>Selecciona el país correcto:</p>
-            <ul>
+            <ul class="lista-opciones">
                 <li> @for (opcion of opciones; track $index) {
-                    <button (click)="verificarRespuesta(opcion)">{{ opcion.nombre }}</button>
+                    <button (click)="verificarRespuesta(opcion)" [disabled]="opcionesDesHabilitadas">{{ opcion.nombre }}</button>
                     }
                 </li>
             </ul>
