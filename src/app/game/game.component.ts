@@ -21,6 +21,7 @@ export class GameComponent {
   opciones: Pais[] = [];
   mensaje: string = '';
   intentos: number = 0;
+  opcionesDesHabilitadas: boolean = false;
 
   ngOnInit(): void{
     this.listar()
@@ -41,6 +42,7 @@ listar(){
    }
 
   generarPregunta() {
+    this.opcionesDesHabilitadas = false;
     // Selecciona el país correcto al azar
     const indiceCorrecto = Math.floor(Math.random() * this.arregloPaises.length);
     this.paisAleatorio = this.arregloPaises[indiceCorrecto];
@@ -59,11 +61,13 @@ listar(){
   verificarRespuesta(pais: Pais) {
     if (pais === this.paisAleatorio) {
       this.mensaje = '¡Correcto!';
+      this.opcionesDesHabilitadas = true;
       setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos
     } else {
       this.intentos++;
       if(this.intentos>=2){
         this.mensaje = 'Intentos agotados. Reiniciando...';
+        this.opcionesDesHabilitadas = true;
         setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos 
       }else{
         this.mensaje = 'Incorrecto, intenta de nuevo.';
