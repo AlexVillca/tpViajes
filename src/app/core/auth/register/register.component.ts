@@ -8,7 +8,7 @@ import { Usuario } from '../../../models/interface/usuario.interface'
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,RouterModule], // Asegúrate de importar los módulos necesarios aquí
+  imports: [ReactiveFormsModule,CommonModule,RouterModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

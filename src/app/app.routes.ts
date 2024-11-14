@@ -10,6 +10,8 @@ import { GameComponent } from './game/game.component';
 import { Routes } from '@angular/router';
 import { ListaDeListasComponent } from './components/favoritos/lista-de-listas/lista-de-listas.component';
 import { ListaComponent } from './components/favoritos/lista/lista.component';
+import { ContactUsComponent } from './components/home/contact-us/contact-us.component';
+import { AboutUsComponent } from './components/home/about-us/about-us.component';
 
 
 export const routes: Routes = [
@@ -22,6 +24,8 @@ export const routes: Routes = [
   { path: 'Juego', component: GameComponent},
   { path: 'pais', component: PaisDetailComponent },
   { path: 'favoritos', component: ListaDeListasComponent},
-  { path: 'favoritos/listaCiudadesComp/:idLista', component:ListaComponent}
+  { path: 'favoritos/listaCiudadesComp/:idLista', component:ListaComponent},
+  { path: 'contact', component:ContactUsComponent},
+  { path: 'about', component:AboutUsComponent}
 
 ];
