@@ -4,9 +4,11 @@
       <ul class="navbar-menu">
           <li><a routerLink ="home">Home</a></li>
           <li *ngIf="flag === true" ><a  routerLink ="favoritos">Favoritos</a></li>
-          <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
-          <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
           <li><a routerLink="Juego">Minijuego</a></li>
+
+          <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
+          <li *ngIf="flag !== true" ><a  routerLink ="register">Registro</a></li>
+          <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
       </ul>
    </div>
 </nav>
