@@ -8,7 +8,20 @@ h1{
   image-rendering:optimizeQuality;
 
 }
+.fade-in {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  animation: fadeIn 2s 1s forwards;
+}
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 button {
   display: flex;
   justify-content: center;
