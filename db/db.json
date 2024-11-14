@@ -27,6 +27,13 @@
       "ciudad": "La Paz",
       "usuarioId": "47fe",
       "usuario": "probando"
+    },
+    {
+      "id": "3f16",
+      "mensaje": "adsasd",
+      "ciudad": "La Paz",
+      "usuarioId": "47fe",
+      "usuario": "probando"
     }
   ],
   "usuarios": [
@@ -57,6 +64,10 @@
             {
               "codigoPais": "KE",
               "nombre": "Mombasa"
+            },
+            {
+              "codigoPais": "MA",
+              "nombre": "Fez"
             }
           ]
         },
@@ -64,10 +75,6 @@
           "idLista": "yihypix",
           "nombreLista": "lugares",
           "listaCiudades": [
-            {
-              "codigoPais": "MA",
-              "nombre": "Fez"
-            },
             {
               "codigoPais": "KE",
               "nombre": "Mombasa"
