@@ -52,3 +52,8 @@ button {
   line-height: 40px;
   text-align: center;
 }
+
+.error{
+  color: red;
+
+}
