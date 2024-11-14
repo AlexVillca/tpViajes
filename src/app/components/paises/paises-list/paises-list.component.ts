@@ -31,25 +31,25 @@ export class PaisesListComponent implements OnInit {
   router =  inject(Router);
 
   letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  letraSeleccionada = 'todos'; // Almacena la letra seleccionada para filtrar
-  paisesFiltrados: Pais[] = []; // Almacena los paises filtrados
+  letraSeleccionada = 'todos';
+  paisesFiltrados: Pais[] = [];
 
-  seleccionarLetra(letra: string) { // Metodo que actualiza la letra seleccionada
+  seleccionarLetra(letra: string) {
     this.letraSeleccionada = letra;
   }
 
-  filtrarPaises(letra: string) { // Metodo para filtrar los paies por letras
+  filtrarPaises(letra: string) {
     if (!letra || letra === 'todos') {
-      this.paisesFiltrados = this.paises; // Si no se selecciona una letra o se selecciona "todos", muestra todos los países
+      this.paisesFiltrados = this.paises;
     } else {
       this.paisesFiltrados = this.paises.filter(pais =>
-        pais.nombre.toLowerCase().startsWith(letra.toLowerCase()) // Filtra los países cuyo nombre empieza con la letra seleccionada (ignorando mays/min)
+        pais.nombre.toLowerCase().startsWith(letra.toLowerCase())
       );
     }
   }
 
-  seleccionarPais(pais: Pais) { // Metodo para seleccionar pais
-    this.paisDataService.setPais(pais); // Guarda el país seleccionado en el servicio PaisDataService
-    this.router.navigate(['/pais']); // Navega a la ruta '/pais' para mostrar el detalle del país
+  seleccionarPais(pais: Pais) {
+    this.paisDataService.setPais(pais);
+    this.router.navigate(['/pais']); 
   }
 }
