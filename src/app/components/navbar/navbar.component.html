@@ -1,5 +1,6 @@
 <nav class="navbar">
   <div class="navbar-container">
+<<<<<<< HEAD
     <!-- Logo -->
     <a href="#" class="navbar-logo">
       <img src="../../../assets/logo.png"	 alt="Logo" class="logo-image" />
@@ -25,3 +26,17 @@
     </ul>
   </div>
 </nav>
+=======
+      <a href="#" class="navbar-logo"></a>
+      <ul class="navbar-menu">
+          <li><a routerLink ="home">Home</a></li>
+          <li *ngIf="flag === true" ><a  routerLink ="favoritos">Favoritos</a></li>
+          <li><a routerLink="Juego">Minijuego</a></li>
+
+          <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
+          <li *ngIf="flag !== true" ><a  routerLink ="register">Registro</a></li>
+          <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
+      </ul>
+   </div>
+</nav>
+>>>>>>> 625c44d9e946a2902d74e5780c681ee745fa1f48

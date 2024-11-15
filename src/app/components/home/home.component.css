@@ -21,6 +21,7 @@
   image-rendering:optimizeQuality;
 
 }
+<<<<<<< HEAD
 .logo-image {
   display: block;
   width: 700px;
@@ -29,6 +30,23 @@
 
 /* Estilo para el div del juego */
 .div-game {
+=======
+.fade-in {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  animation: fadeIn 2s 1s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+button {
+>>>>>>> 625c44d9e946a2902d74e5780c681ee745fa1f48
   display: flex;
   justify-content: center;
   background-color: rgba(13, 10, 185, 0.8); /* Fondo semi-transparente blanco */
