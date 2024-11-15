@@ -1,21 +1,17 @@
 <section>
-    <h1>Juega con nosotros!</h1>
-    <p>¿Qué país es?</p>
-    <div *ngIf="paisAleatorio" class="banderas">
-        <img [src]="paisAleatorio.bandera" alt="Bandera">
-    </div>
-    <div *ngIf="opciones" class="opcionesJuego">
-        <p>Selecciona el país correcto:</p>
-        <ul class="lista-opciones">
-            <li *ngFor="let opcion of opciones; let i = index">
-                <button 
-      [ngClass]="{'correcto': opcion === paisAleatorio && opcionesDesHabilitadas, 'incorrecto': opcion !== paisAleatorio && opcionesDesHabilitadas}" 
-      (click)="verificarRespuesta(opcion)" 
-      [disabled]="opcionesDesHabilitadas">
-      {{ opcion.nombre }}
-    </button>
-            </li>
-        </ul>
-    </div>
-    <p>{{ mensaje }}</p>
+    <h1>Que pais es?</h1>
+        <div *ngIf="paisAleatorio" class="banderas">
+            <img [src]="paisAleatorio.bandera">
+
+        </div>
+        <div *ngIf="opciones" class="opcionesJuego">
+            <p>Selecciona el país correcto:</p>
+            <ul class="lista-opciones">
+                <li> @for (opcion of opciones; track $index) {
+                    <button (click)="verificarRespuesta(opcion)" [disabled]="opcionesDesHabilitadas">{{ opcion.nombre }}</button>
+                    }
+                </li>
+            </ul>
+        </div>
+        <p>{{ mensaje }}</p>
 </section>

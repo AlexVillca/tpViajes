@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, AfterViewInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Pais } from '../../../models/interface/pais.interface';
 import { RouterModule } from '@angular/router';
@@ -13,15 +13,7 @@ import { PaisesService } from '../../../core/service/paises.service';
   templateUrl: './paises-list.component.html',
   styleUrls: ['./paises-list.component.css']
 })
-export class PaisesListComponent implements OnInit, AfterViewInit {
-  paises: Pais[] = [];
-  paisesFiltrados: Pais[] = [];
-  letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  letraSeleccionada = 'todos'; // Almacena la letra seleccionada para filtrar
-
-  paisesService = inject(PaisesService);
-  paisDataService = inject(PaisDataService);
-  router = inject(Router);
+export class PaisesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.paisesService.getPaises().subscribe({
@@ -32,26 +24,6 @@ export class PaisesListComponent implements OnInit, AfterViewInit {
     });
   }
 
-<<<<<<< HEAD
-  ngAfterViewInit(): void {
-    // Agregar la clase 'visible' después de que la vista esté completamente renderizada
-    setTimeout(() => {
-      const contenedor = document.querySelector('.contenedor');
-      if (contenedor) {
-        contenedor.classList.add('visible');
-      }
-    }, 100); // Esperar un pequeño intervalo para asegurar que el DOM esté listo
-  }
-
-  seleccionarLetra(letra: string) {
-    this.letraSeleccionada = letra;
-    this.filtrarPaises(letra); // Filtrar países al seleccionar una letra
-  }
-
-  filtrarPaises(letra: string) {
-    if (!letra || letra === 'todos') {
-      this.paisesFiltrados = this.paises; // Mostrar todos los países si no se selecciona una letra
-=======
   paises: Pais[] = [];
 
   paisesService = inject(PaisesService);
@@ -69,7 +41,6 @@ export class PaisesListComponent implements OnInit, AfterViewInit {
   filtrarPaises(letra: string) {
     if (!letra || letra === 'todos') {
       this.paisesFiltrados = this.paises;
->>>>>>> 625c44d9e946a2902d74e5780c681ee745fa1f48
     } else {
       this.paisesFiltrados = this.paises.filter(pais =>
         pais.nombre.toLowerCase().startsWith(letra.toLowerCase())
@@ -79,10 +50,6 @@ export class PaisesListComponent implements OnInit, AfterViewInit {
 
   seleccionarPais(pais: Pais) {
     this.paisDataService.setPais(pais);
-<<<<<<< HEAD
-    this.router.navigate(['/pais']);
-=======
     this.router.navigate(['/pais']); 
->>>>>>> 625c44d9e946a2902d74e5780c681ee745fa1f48
   }
 }

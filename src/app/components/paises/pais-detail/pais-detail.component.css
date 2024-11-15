@@ -1,101 +1,11 @@
 button {
-  display: block; /* Centra el botón automáticamente */
-  margin: 20px auto; /* Espaciado alrededor del botón y centrado horizontal */
-  padding: 10px 20px; /* Ajusta el tamaño del botón */
-  background-color: #007BFF; /* Azul predeterminado */
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  padding: 10px 10px;
+  background-color: #4bb6b7;
   border: none;
   color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
-}
-
-button:hover {
-  background-color: #0056b3; /* Azul más oscuro */
-  transform: translateY(-3px); /* Efecto de elevación */
-  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4); /* Sombra más pronunciada */
-}
-
-button:active {
-  transform: translateY(0); /* Efecto de presionado */
-  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2); /* Sombra más ligera */
-}
-
-.container {
-  margin: 100px auto; /* Espaciado vertical y centrado horizontal */
-  padding: 20px;
-  max-width: 800px; /* Ancho máximo del contenedor */
-  background-color: #f4e1c1; /* Color de fondo similar al papel antiguo */
-  border: 1px solid #d5a96d; /* Bordes con color dorado oscuro */
-  border-radius: 12px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  font-family: 'Georgia', serif; /* Fuente estilo manuscrita */
-  background-image: url('https://www.transparenttextures.com/patterns/old-map.png'); /* Texto de fondo con textura de mapa antiguo (puedes cambiarla por otra textura de papiro) */
-  background-size: cover;
-  color: #4b2e12; /* Color oscuro para el texto, parecido a tinta en papiro */
-  
-  opacity: 0; /* Inicia invisible */
-  transform: translateY(20px); /* Inicia desplazado hacia abajo */
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición suave para opacidad y desplazamiento */
-}
-
-/* Activamos la visibilidad y desplazamiento al agregar la clase "visible" */
-.container.visible {
-  opacity: 1; /* Se vuelve visible */
-  transform: translateY(0); /* Se desplaza a su posición original */
-}
-
-.container h2 {
-  text-align: center;
-  color: #2f1b07; /* Color oscuro para los títulos */
-  margin-bottom: 10px;
-  font-size: 2em; /* Tamaño mayor para los títulos */
-}
-
-.container p {
-  color: #4b2e12; /* Color oscuro para el texto */
-  margin-bottom: 10px;
-  line-height: 1.6; /* Espaciado entre líneas */
-  font-size: 1.1em; /* Tamaño de texto legible */
-}
-
-.container img {
-  display: block;
-  max-width: 100%; /* Imagen responsiva */
-  margin: 20px auto; /* Centrado y espaciado */
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra en la imagen */
-}
-
-.container ul {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-.container li a {
-  color: #1a6920; /* Color de enlace similar al de la tinta */
-  text-decoration: none; /* Sin subrayado por defecto */
-  font-weight: bold;
-  transition: color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  padding: 5px 10px; /* Añadimos un padding para darle un espacio alrededor del texto */
-  border-radius: 4px; /* Bordes redondeados */
-  border: 2px solid transparent; /* Borde transparente por defecto */
-}
-
-.container li a:hover {
-  color: #3e2611; /* Cambia a un tono aún más oscuro en hover */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añadimos sombra para que se vea más elevado */
-  transform: translateY(-2px); /* Elevación sutil al pasar el mouse */
-  border-color: #d5a96d; /* Borde dorado oscuro al hacer hover */
-  background-color: #f4e1c1; /* Fondo más claro al hacer hover */
-}
-
-.container li a:active {
-  transform: translateY(0); /* Efecto de presionado */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más ligera al hacer clic */
-  background-color: #e4c1a6; /* Fondo más oscuro al hacer clic */
 }
