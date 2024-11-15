@@ -1,11 +1,27 @@
 <nav class="navbar">
   <div class="navbar-container">
-      <a href="#" class="navbar-logo"></a>
-      <ul class="navbar-menu">
-          <li><a routerLink ="home">Home</a></li>
-          <li *ngIf="flag === true" ><a  routerLink ="favoritos">Favoritos</a></li>
-          <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
-          <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
-      </ul>
-   </div>
+    <!-- Logo -->
+    <a href="#" class="navbar-logo">
+      <img src="../../../assets/logo.png"	 alt="Logo" class="logo-image" />
+    </a>
+
+    <!-- Título del navbar -->
+    <!-- <span class="navbar-title" routerLink="home">deRuta</span> -->
+
+    <!-- Botón de menú para móviles -->
+    <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+
+    <!-- Menú de navegación -->
+    <ul class="navbar-menu" [class.active]="menuOpen">
+      <li><a routerLink="home">Home</a></li>
+      <li><a routerLink="paises">Paises</a></li>
+      <li *ngIf="flag === true"><a routerLink="favoritos">Favoritos</a></li>
+    </ul>
+    <ul class="navbar-menu-usuario" [class.active]="menuOpen">
+      <li *ngIf="flag === true"><a routerLink="favoritos">Favoritos</a></li>
+      <li *ngIf="flag !== true"><a routerLink="login">Inicio Sesión</a></li>
+      <li *ngIf="flag !== true"><a routerLink="register">Registrarse</a></li>
+      <li *ngIf="flag === true"><a (click)="logOut()">Cerrar Sesión</a></li>
+    </ul>
+  </div>
 </nav>
