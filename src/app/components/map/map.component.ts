@@ -1,50 +1,50 @@
-import { map } from 'rxjs';
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-map',
+
   standalone: true,
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
-
-  @Input() location!: string;
-
+export class MapComponent implements AfterViewInit, OnChanges {
+  @Input() lat!: number;
+  @Input() lon!: number;
+  @Input() nombre!: string;
   private map!: L.Map;
 
-  constructor(private http: HttpClient) {}
+  /// Recibo latitud y longitud, defino map
 
-  ngOnInit(): void {
-    this.initializeMap();
+
+
+  private initMap(lat: number, lon: number, nombre: string): void { /// Inic map
+
+    if(this.map){
+      this.map.remove(); /// Borrar mapa si ya se creo uno
+    }
+    this.map = L.map('map', {
+      center: [lat, lon],
+      zoom: 6
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(this.map);
+
+    L.marker([lat, lon]).addTo(this.map)
+      .bindPopup(nombre)
+      .openPopup();
   }
+
+  ngAfterViewInit(): void {
+    this.initMap(this.lat, this.lon, this.nombre);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['location'] && this.location) {
-      this.searchLocation(this.location);
+    if (changes['lat'] || changes['lon']) {
+      this.initMap(this.lat, this.lon, this.nombre); /// Redefinir en caso de cambios
     }
   }
-
-
-  private initializeMap(): void {
-    this.map = L.map('map').setView([0, 0], 2); // Vista inicial del mapa
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(this.map);
-  }
-
-  private searchLocation(location: string): void {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${location}`;
-    this.http.get<any[]>(url).subscribe(data => {
-      if (data && data.length > 0) {
-        const { lat, lon } = data[0];
-        this.map.setView([+lat, +lon], 6); // Centrar mapa en la ubicación
-        L.marker([+lat, +lon]).addTo(this.map).bindPopup(location).openPopup();
-      } else {
-        alert('Ubicación no encontrada');
-      }
-    });
-  }
 }
-
