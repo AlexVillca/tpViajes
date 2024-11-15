@@ -32,6 +32,7 @@ export class PaisesListComponent implements OnInit, AfterViewInit {
     });
   }
 
+<<<<<<< HEAD
   ngAfterViewInit(): void {
     // Agregar la clase 'visible' después de que la vista esté completamente renderizada
     setTimeout(() => {
@@ -50,6 +51,25 @@ export class PaisesListComponent implements OnInit, AfterViewInit {
   filtrarPaises(letra: string) {
     if (!letra || letra === 'todos') {
       this.paisesFiltrados = this.paises; // Mostrar todos los países si no se selecciona una letra
+=======
+  paises: Pais[] = [];
+
+  paisesService = inject(PaisesService);
+  paisDataService = inject(PaisDataService);
+  router =  inject(Router);
+
+  letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  letraSeleccionada = 'todos';
+  paisesFiltrados: Pais[] = [];
+
+  seleccionarLetra(letra: string) {
+    this.letraSeleccionada = letra;
+  }
+
+  filtrarPaises(letra: string) {
+    if (!letra || letra === 'todos') {
+      this.paisesFiltrados = this.paises;
+>>>>>>> 625c44d9e946a2902d74e5780c681ee745fa1f48
     } else {
       this.paisesFiltrados = this.paises.filter(pais =>
         pais.nombre.toLowerCase().startsWith(letra.toLowerCase())
@@ -59,6 +79,10 @@ export class PaisesListComponent implements OnInit, AfterViewInit {
 
   seleccionarPais(pais: Pais) {
     this.paisDataService.setPais(pais);
+<<<<<<< HEAD
     this.router.navigate(['/pais']);
+=======
+    this.router.navigate(['/pais']); 
+>>>>>>> 625c44d9e946a2902d74e5780c681ee745fa1f48
   }
 }
