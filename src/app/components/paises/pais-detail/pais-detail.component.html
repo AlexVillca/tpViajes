@@ -27,7 +27,7 @@
     <p>Seguridad: {{ pais.seguridad }}</p>
     <p>Transporte: {{ pais.transporte }}</p>
 
-    <app-map [lat]= "pais.latitud ?? 0" [lon]= "pais.longitud ?? 0" [nombre]="pais.nombre"></app-map>
+    <app-map [lat]= "pais.latitud ?? 0" [lon]= "pais.longitud ?? 0" [nombre]="pais.nombre" [flagUrl]="pais.bandera!"></app-map>
 
     <h3>Ciudades</h3>
     <ul>
