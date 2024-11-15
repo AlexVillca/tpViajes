@@ -1,32 +1,5 @@
 <nav class="navbar">
   <div class="navbar-container">
-<<<<<<< HEAD
-    <!-- Logo -->
-    <a href="#" class="navbar-logo">
-      <img src="../../../assets/logo.png"	 alt="Logo" class="logo-image" />
-    </a>
-
-    <!-- Título del navbar -->
-    <!-- <span class="navbar-title" routerLink="home">deRuta</span> -->
-
-    <!-- Botón de menú para móviles -->
-    <button class="menu-toggle" (click)="toggleMenu()">☰</button>
-
-    <!-- Menú de navegación -->
-    <ul class="navbar-menu" [class.active]="menuOpen">
-      <li><a routerLink="home">Home</a></li>
-      <li><a routerLink="paises">Paises</a></li>
-      <li *ngIf="flag === true"><a routerLink="favoritos">Favoritos</a></li>
-    </ul>
-    <ul class="navbar-menu-usuario" [class.active]="menuOpen">
-      <li *ngIf="flag === true"><a routerLink="favoritos">Favoritos</a></li>
-      <li *ngIf="flag !== true"><a routerLink="login">Inicio Sesión</a></li>
-      <li *ngIf="flag !== true"><a routerLink="register">Registrarse</a></li>
-      <li *ngIf="flag === true"><a (click)="logOut()">Cerrar Sesión</a></li>
-    </ul>
-  </div>
-</nav>
-=======
       <a href="#" class="navbar-logo"></a>
       <ul class="navbar-menu">
           <li><a routerLink ="home">Home</a></li>
@@ -39,4 +12,3 @@
       </ul>
    </div>
 </nav>
->>>>>>> 625c44d9e946a2902d74e5780c681ee745fa1f48

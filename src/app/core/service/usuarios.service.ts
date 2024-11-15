@@ -26,6 +26,7 @@ export class UsuariosService {
   getUsuarioById(id:string | null):Observable<Usuario>{
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
+
   logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<string|null> {
     const params = new HttpParams()
       .set('email', emailIngresado)
@@ -84,6 +85,9 @@ obtenerListasFav(id:string):Observable<ListaFav[]>{
   );
 }
 
+putUsuario(usuario: Usuario, id: string): Observable<Usuario>{
+  return this.http.put<Usuario>(`${this.apiUrl}/${id}`, usuario)
+}
 
 
 

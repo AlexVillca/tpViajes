@@ -12,11 +12,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-  }
 
 }

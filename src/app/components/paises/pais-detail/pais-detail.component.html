@@ -8,7 +8,7 @@
 <body>
 
 
-  <div class="container" *ngIf="pais$ | async as pais">
+  <div *ngIf="pais$ | async as pais">
     <h2>{{ pais.nombre }}</h2>
     <p>Nombre oficial: {{ pais.nombreOficial }}</p>
     <p>Capital: {{ pais.capital }}</p>
