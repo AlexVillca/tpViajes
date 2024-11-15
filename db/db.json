@@ -93,6 +93,19 @@
       "email": "akdsaksd@gmail.com",
       "password": "facu1234",
       "listasFavs": []
+    },
+    {
+      "id": "ae28",
+      "username": "gustavo",
+      "email": "gustavo94fi@gmail.com",
+      "password": "abcd1234",
+      "listasFavs": [
+        {
+          "idLista": "vwzg4wq",
+          "nombreLista": "Guardadas",
+          "listaCiudades": []
+        }
+      ]
     }
   ],
   "paises": [

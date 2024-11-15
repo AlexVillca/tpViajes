@@ -1,62 +1,124 @@
 h1 {
-  text-align: center; /* Centra el título */
+  text-align: center;
   margin-bottom: 20px;
-  font-family: 'Arial', sans-serif; /* Cambia la fuente si lo deseas */
+  font-family: 'Arial', sans-serif;
+  color: #0056b3; /* Azul oscuro */
 }
 
 ul {
-  list-style: none;   /* Quita los puntos de la lista */
+  list-style: none;
   padding: 0;
-  margin: 0 auto;     /* Centra la lista */
-  width: 80%;         /* Ajusta el ancho según tus necesidades */
-  display: flex;      /* Usa Flexbox para distribuir los elementos */
-  flex-wrap: wrap;    /* Permite que los elementos se ajusten en varias líneas */
-  justify-content: center; /* Centra los elementos horizontalmente */
-  gap: 20px;          /* Espacio entre los elementos */
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 li {
-  width: calc(33.33% - 20px); /* Calcula el ancho de cada elemento */
-  /* Ajusta el 33.33% si quieres más o menos elementos por fila */
-  box-sizing: border-box;   /* Incluye el padding y el border en el ancho */
+  width: calc(33.33% - 20px);
+  box-sizing: border-box;
 }
 
 a {
-  display: block;         /*  Hace que el enlace ocupe todo el ancho del elemento */
+  display: block;
   padding: 15px;
-  background-color: #f0f0f0; /* Color de fondo */
-  border: 1px solid #ddd;   /* Borde */
+  background-color: #e6f2ff; /* Azul claro */
+  border: 1px solid #99c2ff; /* Borde azul suave */
   text-align: center;
-  text-decoration: none;  /* Quita el subrayado */
-  color: #333;            /* Color del texto */
-  border-radius: 5px;     /* Bordes redondeados */
-  transition: all 0.3s ease; /* Transición suave para el hover */
+  text-decoration: none;
+  color: #0056b3; /* Azul oscuro */
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 86, 179, 0.1); /* Sombra ligera */
 }
 
 a:hover {
-  background-color: #ddd;  /* Cambia el color de fondo al pasar el mouse */
-  transform: translateY(-2px); /* Efecto de elevación sutil */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra */
+  background-color: #99c2ff; /* Azul medio al pasar el mouse */
+  transform: translateY(-3px); /* Elevación sutil */
+  box-shadow: 0px 6px 12px rgba(0, 86, 179, 0.2); /* Sombra más profunda */
 }
 
 .contenedor {
   display: flex;
-  flex-direction: column; /* Alinea los elementos en columna */
+  flex-direction: column;
+  margin-top: 100px;
+  align-items: center;
+  opacity: 0; /* Inicialmente invisible */
+  transform: translateY(20px); /* Comienza desplazado */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para opacidad y desplazamiento */
+}
+
+.contenedor.visible {
+  opacity: 1; /* Cuando tiene la clase visible, se vuelve opaco */
+  transform: translateY(0); /* Se coloca en su posición original */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #0056b3; /* Azul oscuro */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+li {
+  width: calc(33.33% - 20px);
+  box-sizing: border-box;
+}
+
+a {
+  display: block;
+  padding: 15px;
+  background-color: #e6f2ff; /* Azul claro */
+  border: 1px solid #99c2ff; /* Borde azul suave */
+  text-align: center;
+  text-decoration: none;
+  color: #0056b3; /* Azul oscuro */
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 86, 179, 0.1); /* Sombra ligera */
+}
+
+a:hover {
+  background-color: #99c2ff; /* Azul medio al pasar el mouse */
+  transform: translateY(-3px); /* Elevación sutil */
+  box-shadow: 0px 6px 12px rgba(0, 86, 179, 0.2); /* Sombra más profunda */
 }
 
 .abecedario {
   display: flex;
-  justify-content: center; /* Centra las letras */
+  justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;   /* Espacio entre el abecedario y la lista */
+  margin-bottom: 20px;
 }
 
 .abecedario a {
   display: inline-block;
   padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: #e6f2ff;
+  border: 1px solid #99c2ff;
+  color: #0056b3;
   text-decoration: none;
-  color: #333;
   border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.abecedario a:hover {
+  background-color: #99c2ff;
+  box-shadow: 0px 4px 8px rgba(0, 86, 179, 0.2);
+  transform: translateY(-2px);
 }

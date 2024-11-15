@@ -1,42 +1,168 @@
+  /* Navbar general */
+  .navbar {
+    background-color: #363b98;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    
+  }
+
+  /* Contenedor del navbar */
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Verdana', sans-serif;
+    width: 100%;
+    max-width: fixed;
+    gap: 20px;
+    padding: fixed;
+  }
+
+  /* Titulo del navbar */
+  .navbar-title {
+    display: flex;
+    color: white;
+    font-size: 24px;
+  }
+
+  /* Logo e imagen */
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .logo-image {
+    width: 50px;
+    height: auto;
+  }
+
+  /* Menú de navegación usuario */
+  .navbar-menu-usuario {
+    list-style: none;
+    display: flex;
+    padding-right: 20px;
+    gap: 20px;
+    align-items: center;
+    margin: 0;
+    margin-left: auto;
+    transition: transform 0.3s ease;
+  }
+  /* Enlaces como botones usuario*/
+  .navbar-menu-usuario li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .navbar-menu-usuario li a:hover {
+    background-color: #c91515;
+    color: #363b98;
+    transform: scale(1.05);
+  }
 
 
-.navbar {
-  background-color: #4bb6b7; /* Color del fondo del navbar */
-  padding: 10px 20px; /* Espaciado del navbar */
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
-}
+  /* Botón de menú siempre visible en móviles */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1010; /* Más alto que el menú desplegable */
+    position: relative;
+  }
 
-.navbar-container {
-  display: flex;
-  justify-content: space-between; /* Espacia el logo y el menú */
-  align-items: center; /* Centra los elementos verticalmente */
-  font-family: 'Verdana', sans-serif;
-  width: 100%;
-}
+  /* Menú de navegación */
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: leftr;
+    margin: -40px;
+    transition: transform 0.3s ease;
+  }
 
-.navbar-logo {
-  color: white; /* Color del texto del logo */
-  text-decoration: none; /* Sin subrayado */
-  font-size: 24px; /* Tamaño de la fuente del logo */
-}
-.navbar-menu {
-  list-style: none; /* Quita los puntos de la lista */
-  display: flex; /* Muestra el menú en línea */
-  gap: 40px; /* Espaciado entre los enlaces */
-  align-items: flex-end;
-  font-family: 'Verdana', sans-serif;
-}
+  /* Enlaces como botones */
+  .navbar-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
 
-.navbar-menu li a {
-  color: white; /* Color de los enlaces */
-  text-decoration: none; /* Sin subrayado */
-  font-size: 16px; /* Tamaño de la fuente de los enlaces */
-  font-family: 'Verdana', sans-serif;
+  .navbar-menu li a:hover {
+    background-color: #ffd700;
+    color: #363b98;
+    transform: scale(1.05);
+  }
 
-}
+  /* Estilos responsivos para pantallas pequeñas */
+  @media (max-width: 768px) {
+    
+    .menu-toggle {
+      display: block; /* Muestra el botón de hamburguesa */
+      margin-left: 20px;
+    }
+    .navbar-logo {
+      display: none; /* Oculta el logo en móviles */
+    }
+    
+    .navbar-title {
+      display: none;
+    }
 
-.navbar-menu li a:hover {
-  text-decoration: underline; /* Subraya el enlace al pasar el mouse */
-}
+    .navbar-menu {
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #363b98;
+      padding-top: 60px; /* Para que el menú no se superponga con el botón */
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      z-index: 1001; /* Menú debajo del botón */
+    }
+
+    .navbar-menu.active {
+      transform: translateY(0); /* Desliza el menú desde arriba */
+      opacity: 1;
+    }
+
+    .navbar-menu li {
+      text-align: left;
+      width: 100%;
+      padding-left: 20px;
+    }
+
+    .navbar-menu li a {
+      display: block;
+      padding: 8px 15px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar-menu.active li a {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .navbar-menu.active li:nth-child(1) a { transition-delay: 0.1s; }
+    .navbar-menu.active li:nth-child(2) a { transition-delay: 0.2s; }
+    .navbar-menu.active li:nth-child(3) a { transition-delay: 0.3s; }
+    .navbar-menu.active li:nth-child(4) a { transition-delay: 0.4s; }
+  }
+
