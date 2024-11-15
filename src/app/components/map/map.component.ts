@@ -37,7 +37,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     L.marker([lat, lon]).addTo(this.map)
       .bindPopup(nombre + `
         <div style="text-align: center;">
-          <img src="${flagUrl}" alt="Ubicación" style="width: 150px; height: auto; border: 1px solid #ccc;" />
+          <img src="${flagUrl}" alt="Ubicación" style="width: 30px; height: auto; border: 1px solid #ccc;" />
         </div>
       `)
       .openPopup();
@@ -53,7 +53,5 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
   }
 }
-function bindPopup(arg0: string) {
-  throw new Error('Function not implemented.');
-}
+
 
