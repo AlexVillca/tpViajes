@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, AfterViewInit, Input, OnChanges, SimpleChanges, Output } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -12,13 +12,14 @@ export class MapComponent implements AfterViewInit, OnChanges {
   @Input() lat!: number;
   @Input() lon!: number;
   @Input() nombre!: string;
+  @Input() flagUrl!: string;
+
   private map!: L.Map;
 
-  /// Recibo latitud y longitud, defino map
 
 
 
-  private initMap(lat: number, lon: number, nombre: string): void { /// Inic map
+  private initMap(lat: number, lon: number, nombre: string ,flagUrl: string): void { /// Inic map
 
     if(this.map){
       this.map.remove(); /// Borrar mapa si ya se creo uno
@@ -34,17 +35,25 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }).addTo(this.map);
 
     L.marker([lat, lon]).addTo(this.map)
-      .bindPopup(nombre)
+      .bindPopup(nombre + `
+        <div style="text-align: center;">
+          <img src="${flagUrl}" alt="Ubicación" style="width: 150px; height: auto; border: 1px solid #ccc;" />
+        </div>
+      `)
       .openPopup();
   }
 
   ngAfterViewInit(): void {
-    this.initMap(this.lat, this.lon, this.nombre);
+    this.initMap(this.lat, this.lon, this.nombre, this.flagUrl);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['lat'] || changes['lon']) {
-      this.initMap(this.lat, this.lon, this.nombre); /// Redefinir en caso de cambios
+      this.initMap(this.lat, this.lon, this.nombre,this.flagUrl); /// Redefinir en caso de cambios
     }
   }
 }
+function bindPopup(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
