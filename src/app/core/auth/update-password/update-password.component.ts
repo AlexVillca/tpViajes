@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../service/usuarios.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { IdUsuarioService } from '../../service/id-usuario.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +18,7 @@ export class UpdatePasswordComponent implements OnInit {
   fb = inject(FormBuilder);
   usuariosService = inject(UsuariosService);
   router = inject(Router);
-  activatedRoute = inject(ActivatedRoute);
+  idUsuarioService = inject(IdUsuarioService);
 
   formularioUpdate = this.fb.nonNullable.group({
     password: ['', [Validators.required]],
@@ -25,11 +26,11 @@ export class UpdatePasswordComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe({
-      next: (param) => {
-        this.id = param.get('id');
+    this.idUsuarioService.id$.subscribe({
+      next: (id) => {
+        this.id = id;
         if (!this.id) {
-          console.error('No se recibió el ID del usuario');
+          console.error('No se recibió el ID del usuario logueado');
         }
       },
       error: (e) => console.error(e),
@@ -50,14 +51,14 @@ export class UpdatePasswordComponent implements OnInit {
     }
 
     if (!this.id) {
-      console.error('No se recibió el ID del usuario');
+      console.error('No se recibió el ID del usuario logueado');
       return;
     }
 
     this.usuariosService.cambiarContrasena(this.id, password).subscribe({
       next: () => {
         alert('La contraseña ha sido actualizada con éxito');
-        this.router.navigateByUrl('home'); // Redirige a la página de inicio
+        this.router.navigateByUrl('home'); 
       },
       error: (e) => {
         console.error('Error al actualizar la contraseña:', e.message);
