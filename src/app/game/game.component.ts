@@ -22,6 +22,8 @@ export class GameComponent {
   mensaje: string = '';
   intentos: number = 0;
   opcionesDesHabilitadas: boolean = false;
+  puntaje: number = 0;
+  mejorPuntaje: number = 0;
 
   ngOnInit(): void{
     this.listar()
@@ -61,12 +63,18 @@ listar(){
   verificarRespuesta(pais: Pais) {
     if (pais === this.paisAleatorio) {
       this.mensaje = '¡Correcto!';
+      this.puntaje++; //Aumenta el puntaje
       this.opcionesDesHabilitadas = true;
       setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos
     } else {
       this.intentos++;
       if(this.intentos>=2){
         this.mensaje = 'Intentos agotados. Reiniciando...';
+        // Si el puntaje actual supera el mejor puntaje, actualiza el mejor puntaje
+      if (this.puntaje > this.mejorPuntaje) {
+        this.mejorPuntaje = this.puntaje;
+      }
+        this.puntaje = 0; // Reinicia el puntaje actual si pierde
         this.opcionesDesHabilitadas = true;
         setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos 
       }else{

@@ -100,6 +100,33 @@
       "email": "akdsaksd@gmail.com",
       "password": "facu1234",
       "listasFavs": []
+    },
+    {
+      "id": "2b2c",
+      "username": "alex",
+      "email": "villcaalex@gmail.com",
+      "password": "12345678",
+      "listasFavs": [
+        {
+          "idLista": "n5sweyw",
+          "nombreLista": "Guardadas",
+          "listaCiudades": []
+        },
+        {
+          "idLista": "6k69w5f",
+          "nombreLista": "mi lista",
+          "listaCiudades": [
+            {
+              "codigoPais": "AR",
+              "nombre": "Buenos Aires"
+            },
+            {
+              "codigoPais": "BW",
+              "nombre": "Gaborone"
+            }
+          ]
+        }
+      ]
     }
   ],
   "paises": [

@@ -1,4 +1,11 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
 <section>
+    <ul class="lista-puntaje">
+        <li>Puntaje Actual: {{this.puntaje}}</li>
+        <li>Mejor Puntaje: {{this.mejorPuntaje}}</li>
+    </ul>
     <h1>Que pais es?</h1>
         <div *ngIf="paisAleatorio" class="banderas">
             <img [src]="paisAleatorio.bandera">
