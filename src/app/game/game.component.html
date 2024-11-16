@@ -1,22 +1,25 @@
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-<section>
-    <ul class="lista-puntaje">
+<section class="section">
+    <ul class="lista-puntaje" [ngClass]="{'visible': paisAleatorio}">
         <li>Puntaje Actual: {{this.puntaje}}</li>
         <li>Mejor Puntaje: {{this.mejorPuntaje}}</li>
-    </ul>
+      </ul>
     <h1>Que pais es?</h1>
-        <div *ngIf="paisAleatorio" class="banderas">
-            <img [src]="paisAleatorio.bandera">
-
-        </div>
-        <div *ngIf="opciones" class="opcionesJuego">
+    <div *ngIf="paisAleatorio" class="banderas" [ngClass]="{'visible': paisAleatorio}">
+        <img [src]="paisAleatorio.bandera" alt="Bandera">
+      </div>
+        <div *ngIf="opciones" class="opcionesJuego" [ngClass]="{'visible': opciones.length > 0}">
             <p>Selecciona el país correcto:</p>
             <ul class="lista-opciones">
-                <li> @for (opcion of opciones; track $index) {
-                    <button (click)="verificarRespuesta(opcion)" [disabled]="opcionesDesHabilitadas">{{ opcion.nombre }}</button>
-                    }
+                <li *ngFor="let opcion of opciones; let i = index" [ngClass]="{'visible': true}">
+                    <button 
+                        [ngClass]="{'correcto': opcion === paisAleatorio && opcionesDesHabilitadas, 'incorrecto': opcion !== paisAleatorio && opcionesDesHabilitadas}" 
+                        (click)="verificarRespuesta(opcion)" 
+                        [disabled]="opcionesDesHabilitadas">
+                        {{ opcion.nombre }}
+                    </button>
                 </li>
             </ul>
         </div>

@@ -7,14 +7,18 @@
 </head>
 <body>
 
-  <H1 class="fade-in">Proyecto Viajes</H1>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>  
+  <img class="logo-image" src="../../../assets/logo_grande.png"	 alt="Logo"/>  
   <div class="div-botones">
-  <button type="button" routerLink="/paises">Empecemos!</button>
+  
+    <button type="button" routerLink="/paises">Empecemos!</button>
   </div>
-  <div>
-    <img class = "img1" src="https://www.bbva.com/wp-content/uploads/2017/12/billetes-avion-viajes-tarifas-comparacion-precios-ahorro-compra-vuelos-bbva-e1513873444593.jpg">
 
-  </div>
   <p>Proveemos informacion para facilitar tus viajes!</p>
 
 

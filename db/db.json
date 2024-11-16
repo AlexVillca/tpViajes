@@ -146,6 +146,19 @@
         }
       ],
       "mejorPuntaje": 2
+    },
+    {
+      "id": "9398",
+      "username": "gustavo",
+      "email": "gustavo94fi@gmail.com",
+      "password": "asdf1234",
+      "listasFavs": [
+        {
+          "idLista": "l44m80b",
+          "nombreLista": "Guardadas",
+          "listaCiudades": []
+        }
+      ]
     }
   ],
   "paises": [

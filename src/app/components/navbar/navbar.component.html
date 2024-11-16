@@ -1,10 +1,21 @@
 <nav class="navbar">
   <div class="navbar-container">
-      <a href="#" class="navbar-logo"></a>
-      <ul class="navbar-menu">
-          <li *ngIf="flag === true">  Bienvenido {{ username }}!</li>
+      <!-- Logo -->
+    <a href="#" class="navbar-logo">
+        <img src="../../../assets/logo.png"	 alt="Logo" class="logo-image" />
+      </a>
+
+      <!-- Botón de menú para móviles -->
+      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+
+      <!-- Menú izquierda -->
+      <ul class="navbar-menu" [class.active]="menuOpen">
           <li><a routerLink ="home">Home</a></li>
           <li><a routerLink="Juego">Minijuego</a></li>
+      </ul>
+      <!-- Menú derecha -->
+      <ul class="navbar-menu-usuario">
+        <li *ngIf="flag === true">  Bienvenido {{ username }}!</li>
           <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
           <li *ngIf="flag !== true" ><a  routerLink ="register">Registro</a></li>
           <li *ngIf="flag === true" ><a routerLink="fichaUser">Panel {{ username }}</a></li>
