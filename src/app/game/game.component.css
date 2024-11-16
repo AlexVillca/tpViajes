@@ -2,17 +2,47 @@ h1{
     text-align: center;
     font-size: 60px;
 }
-
-.banderas{
+.section{
+    display: auto;
     text-align: center;
+    margin: 70px;
 }
 
-.opcionesJuego{
+.banderas {
     text-align: center;
-}
+    opacity: 0;
+    transform: scale(0.9); /* Empieza ligeramente más pequeña */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .banderas.visible {
+    opacity: 1;
+    transform: scale(1); /* Toma su tamaño original */
+  }
+
+/* Transición suave en el contenedor de las opciones */
+.opcionesJuego {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición suave */
+  }
+
+  .opcionesJuego.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
 .lista-opciones{
     list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;       /* Quita el padding predeterminado */
+    margin: 0; 
     font-family: 'Press Start 2P', cursive; /* Fuente estilo Mario Bros */
     font-size:x-small;
 }
@@ -25,17 +55,77 @@ h1{
     color: #ffcc00; /* Color amarillo estilo retro */
     text-shadow: 2px 2px #000; /* Sombra negra para efecto retro */
     list-style: none; /* Quita los puntos de la lista */
-    padding: 10px; /* Espaciado interno */
+    padding: 30px; /* Espaciado interno */
     margin: 0;
     border: 2px solid #000; /* Bordes estilo retro */
     background-color: #333; /* Fondo oscuro */
     border-radius: 5px; /* Bordes redondeados */
+    opacity: 0;
+    transform: translateY(-20px); /* Empieza desplazado hacia arriba */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .lista-puntaje.visible {
+    opacity: 1;
+    transform: translateY(0); /* Vuelve a su posición original */
   }
   
   .lista-puntaje li {
     flex: 1; /* Los elementos ocupan el espacio proporcionalmente */
     text-align: center; /* Centra el texto en su área asignada */
   }
+
+
+  /* Botones dentro de la lista */
+  .lista-opciones button {
+    background-color: #007BFF; /* Azul predeterminado */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s, opacity 0.6s ease-out; /* Añadir transición en opacidad */
+  }
+  
+  .lista-opciones button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Efecto de ampliación */
+  }
+  
+  .lista-opciones button:active {
+    transform: scale(1); /* Vuelve al tamaño normal al hacer clic */
+    box-shadow: none;
+  }
+  
+  .lista-opciones button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .correcto {
+    background-color: #28a745 !important; /* Verde para respuesta correcta */
+    color: white;
+  }
+  
+  .incorrecto {
+    background-color: #dc3545 !important; /* Rojo para respuesta incorrecta */
+    color: white;
+  }
+
+/* Opciones de lista con transición suave */
+.lista-opciones li {
+    margin: 0 0px; /* Espacio entre cada botón */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.lista-opciones li.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 p{
     text-align: center;

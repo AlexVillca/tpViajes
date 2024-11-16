@@ -28,6 +28,8 @@ export class GameComponent {
   puntaje: number = 0;
   mejorPuntaje: number = 0;
 
+  banderaVisible: boolean = false;
+
   idUsuarioService = inject(IdUsuarioService);
   servicioUsuario = inject(UsuariosService);
   routerService = inject(Router);
@@ -87,7 +89,21 @@ listar(){
       }
     }
     this.opciones = this.opciones.sort(() => Math.random() - 0.5);
+
+    // Añadir la clase "visible" con un retraso para activar la animación
+  setTimeout(() => {
+    this.banderaVisible = true;
+  }, 100);
+     // Añadir la clase "visible" después de un pequeño retraso para que la animación funcione
+  setTimeout(() => {
+    const listaOpciones = document.querySelectorAll('.lista-opciones li');
+    listaOpciones.forEach((li, index) => {
+      li.classList.add('visible');
+    });
+  }, 100); // Esto aplica la clase después de un pequeño retraso
   }
+
+  
 
   verificarRespuesta(pais: Pais) {
     if (pais === this.paisAleatorio) {
