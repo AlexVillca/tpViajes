@@ -99,6 +99,15 @@ actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
   return this.http.put<Usuario>(url, aActualizar);
 
   }
+
+
+  cambiarContrasena(id: string, nuevaContrasena: string): Observable<Partial<Usuario>> {
+    const url = `${this.apiUrl}/${id}`;
+    const body: Partial<Usuario> = { password: nuevaContrasena }; 
+    return this.http.patch<Partial<Usuario>>(url, body);
+  }
+
+
 }
 
 
