@@ -8,6 +8,7 @@
 
           <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
           <li *ngIf="flag !== true" ><a  routerLink ="register">Registro</a></li>
+          <li *ngIf="flag === true" ><a routerLink="updateP">Cambiar Contraseña</a></li>
           <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
       </ul>
    </div>
