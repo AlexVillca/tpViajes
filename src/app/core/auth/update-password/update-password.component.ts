@@ -4,6 +4,8 @@ import { UsuariosService } from '../../service/usuarios.service';
 import { Router } from '@angular/router';
 import { IdUsuarioService } from '../../service/id-usuario.service';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-update-password',
@@ -19,11 +21,13 @@ export class UpdatePasswordComponent implements OnInit {
   usuariosService = inject(UsuariosService);
   router = inject(Router);
   idUsuarioService = inject(IdUsuarioService);
+  location = inject(Location);
 
   formularioUpdate = this.fb.nonNullable.group({
     password: ['', [Validators.required]],
     confirmPassword: ['', [Validators.required]]
   });
+  locationService: any;
 
   ngOnInit(): void {
     this.idUsuarioService.id$.subscribe({
@@ -58,12 +62,16 @@ export class UpdatePasswordComponent implements OnInit {
     this.usuariosService.cambiarContrasena(this.id, password).subscribe({
       next: () => {
         alert('La contraseña ha sido actualizada con éxito');
-        this.router.navigateByUrl('home'); 
+        this.router.navigateByUrl('home');
       },
       error: (e) => {
         console.error('Error al actualizar la contraseña:', e.message);
         alert('Ocurrió un error al actualizar la contraseña');
       },
     });
+  }
+
+  volver(): void {
+    this.location.back();
   }
 }

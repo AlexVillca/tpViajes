@@ -12,6 +12,7 @@ import { ListaComponent } from './components/favoritos/lista/lista.component';
 import { ContactUsComponent } from './components/home/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/home/about-us/about-us.component';
 import { UpdatePasswordComponent } from './core/auth/update-password/update-password.component';
+import { FichaUserComponent } from './core/auth/ficha-user/ficha-user.component';
 
 
 export const routes: Routes = [
@@ -29,6 +30,7 @@ export const routes: Routes = [
   { path: 'contact', component:ContactUsComponent},
   { path: 'about', component:AboutUsComponent},
   { path:'updateP', component:UpdatePasswordComponent},
+  { path: 'fichaUser', component:FichaUserComponent},
   { path:'**',redirectTo: ''}
 
 ];
