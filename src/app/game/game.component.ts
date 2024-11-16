@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { PaisesService } from '../core/service/paises.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { IdUsuarioService } from '../core/service/id-usuario.service';
+import { Router } from '@angular/router';
+import { UsuariosService } from '../core/service/usuarios.service';
 
 
 @Component({
@@ -25,8 +28,34 @@ export class GameComponent {
   puntaje: number = 0;
   mejorPuntaje: number = 0;
 
+  idUsuarioService = inject(IdUsuarioService);
+  servicioUsuario = inject(UsuariosService);
+  routerService = inject(Router);
+  flag:boolean = false;
+
+  id: string | null = null;
+
+
   ngOnInit(): void{
     this.listar()
+    this.idUsuarioService.id$.subscribe((id) => {
+      if (id !== null) {
+        this.flag = true;
+        this.id = id;
+        this.servicioUsuario.getUsuarioById(id).subscribe({
+          next: (usuario) => {
+            this.mejorPuntaje = usuario.mejorPuntaje || 0;
+          },
+          error: (e) => {
+            console.error('Error al obtener el usuario:', e);
+            this.mejorPuntaje = 0; // Resetea el nombre si hay un error
+          },
+        });
+      } else {
+        this.flag = false;
+        this.mejorPuntaje = 0; // Resetea el nombre si no hay usuario logueado
+      }
+    });
   }
 
 listar(){
@@ -73,6 +102,12 @@ listar(){
         // Si el puntaje actual supera el mejor puntaje, actualiza el mejor puntaje
       if (this.puntaje > this.mejorPuntaje) {
         this.mejorPuntaje = this.puntaje;
+        if (this.flag) {
+          this.servicioUsuario.actualizarPuntajeMaximo(this.id!, this.mejorPuntaje).subscribe({
+            next: () => console.log('Puntaje actualizado correctamente'),
+            error: (e) => console.error('Error al actualizar el puntaje:', e)
+          });
+        }
       }
         this.puntaje = 0; // Reinicia el puntaje actual si pierde
         this.opcionesDesHabilitadas = true;
@@ -89,4 +124,6 @@ listar(){
     this.mensaje = '';       // Borra el mensaje de feedback
     this.generarPregunta();  // Genera una nueva pregunta
   }
+
+
 }
