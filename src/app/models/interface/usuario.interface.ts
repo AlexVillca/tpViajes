@@ -3,7 +3,7 @@ export interface Usuario{
     username: string,
     email: string,
     password: string,
-    mejorPuntaje: number,
+    mejorPuntaje?: number,
     listasFavs: ListaFav[]
 }
 export interface ListaFav{
