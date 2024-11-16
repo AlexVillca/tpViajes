@@ -41,6 +41,13 @@
       "ciudad": "Buenos Aires",
       "usuarioId": "47fe",
       "usuario": "probando"
+    },
+    {
+      "id": "41f4",
+      "mensaje": "gdfgfg",
+      "ciudad": "Johannesburgo",
+      "usuarioId": "47fe",
+      "usuario": "probando"
     }
   ],
   "usuarios": [
@@ -89,6 +96,16 @@
             {
               "codigoPais": "MA",
               "nombre": "Marrakech"
+            }
+          ]
+        },
+        {
+          "idLista": "zahn4xa",
+          "nombreLista": "otra",
+          "listaCiudades": [
+            {
+              "codigoPais": "TN",
+              "nombre": "Túnez"
             }
           ]
         }
