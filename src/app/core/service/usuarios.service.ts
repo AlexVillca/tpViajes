@@ -99,6 +99,8 @@ actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
   return this.http.put<Usuario>(url, aActualizar);
 
   }
+  
+
 }
 
 
