@@ -42,7 +42,8 @@ export class PaisDetailComponent implements OnInit{
   }
 
   volver() {
-    this.router.navigate(['/paises']);
+    this.router.navigate(['paises']); 
+
   }
 
   videoLoaded = false;

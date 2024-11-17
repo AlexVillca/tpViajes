@@ -18,9 +18,15 @@
         <li *ngIf="flag === true">  Bienvenido {{ username }}!</li>
           <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
           <li *ngIf="flag !== true" ><a  routerLink ="register">Registro</a></li>
-          <li *ngIf="flag === true" ><a routerLink="fichaUser">Panel {{ username }}</a></li>
-          <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
-          <li *ngIf="flag === true" > <img src="../../../assets/user.png" alt="user"></li>
+          <li *ngIf="flag === true" > <img class="user-image" src="../../../assets/user.png" alt="user"(click)="toggleDropdown()">
+        </li>
       </ul>
+      <!-- Solapa desplegable -->
+        <ul class="user-dropdown" [class.active]="dropdownOpen">
+            <li><a (click)="goToUserProfile()">Panel de Usuario</a></li>
+            <li *ngIf="flag === true" ><a  routerLink ="/favoritos">Favoritos</a></li>
+            <li *ngIf="flag === true" ><a routerLink="/updateP">Cambiar Contraseña</a></li>
+            <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
+        </ul>
    </div>
 </nav>
