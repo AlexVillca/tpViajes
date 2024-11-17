@@ -3,11 +3,11 @@
     color: white; /* Color del texto */
     text-align: center; /* Centrar el texto */
     width: 100%; /* Ancho completo */
-    margin: 0px 0px 0px 10px; /* Sin margen */
     padding: 0; /* Sin padding */
     position: fixed;
     bottom: 0;
-    left: 0;    
+    left: 0; 
+    z-index: 1000;   
   }
 
   .footer-content {

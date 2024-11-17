@@ -38,6 +38,16 @@ export class PaisesListComponent implements OnInit {
     this.letraSeleccionada = letra;
   }
 
+  ngAfterViewInit(): void {
+    // Agregar la clase 'visible' después de que la vista esté completamente renderizada
+    setTimeout(() => {
+      const contenedor = document.querySelector('.contenedor');
+      if (contenedor) {
+        contenedor.classList.add('visible');
+      }
+    }, 100); // Esperar un pequeño intervalo para asegurar que el DOM esté listo
+  }
+
   filtrarPaises(letra: string) {
     if (!letra || letra === 'todos') {
       this.paisesFiltrados = this.paises;
@@ -52,4 +62,18 @@ export class PaisesListComponent implements OnInit {
     this.paisDataService.setPais(pais);
     this.router.navigate(['/pais']); 
   }
+  videoLoaded = false;
+
+  // Esta función se llama cuando el video se carga completamente
+  onVideoLoaded() {
+    this.videoLoaded = true;
+    setTimeout(() => {
+      const buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+      });
+    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+  }
+
 }

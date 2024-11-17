@@ -15,7 +15,7 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
 @Component({
   selector: 'app-ciudad-detail',
   standalone: true,
-  imports: [ComentariosListComponent,CommonModule,SelecionadorListasFlotanteComponent,ComentariosComponent],
+  imports: [ComentariosListComponent,CommonModule,SelecionadorListasFlotanteComponent],
   templateUrl: './ciudad-detail.component.html',
   styleUrls: ['./ciudad-detail.component.css']
 })
