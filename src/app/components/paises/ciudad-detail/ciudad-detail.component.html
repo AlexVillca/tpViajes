@@ -26,7 +26,8 @@
         </div>
         <div class="container">
           <h2>{{ ciudad.nombre }}</h2>
-          <button *ngIf="usuarioLogueado" (click)="showPopup = true">Guardar</button>
+          <app-selecionador-listas-flotante></app-selecionador-listas-flotante>
+
         </div>
         <div class="container-2">
           <p>{{ ciudad.infoWikipedia }}</p>
@@ -41,7 +42,7 @@
     <div class="atracciones-detail-container">
       <ul class="video-background-ul">
         <div class="video-container">
-          <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded">
+          <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
             <source src="assets/background-video.mp4" type="video/mp4" />
             Tu navegador no soporta reproducción de vídeos.
           </video>
@@ -63,8 +64,8 @@
   </div>
 
 </div>
-
-</body>
 <app-comentarios-list > </app-comentarios-list>
+</body>
+
 
 </html>
