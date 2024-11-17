@@ -6,8 +6,15 @@
   <title>Lista Paises</title>
 </head>
 <body>
-
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>
   <div class="contenedor">
+    
+    
     <div class="abecedario">
       <a (click)="filtrarPaises('todos')">Todos</a>
       <a *ngFor="let letra of letras" (click)="filtrarPaises(letra)">{{ letra }}</a>
