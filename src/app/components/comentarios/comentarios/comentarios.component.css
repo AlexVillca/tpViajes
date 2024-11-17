@@ -1,9 +1,11 @@
 .container {
   margin-left:20px;
-  max-width: 600px;
+  max-width: 600px ;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.621);
   background-color: transparent;
   background-color: rgba(255, 255, 255, 0.6);
+  min-height: 90px;
+  border-radius: 10px;
 }
 
 input {
