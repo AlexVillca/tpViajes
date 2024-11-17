@@ -3,8 +3,7 @@
 }
 
 .register-container {
-  /* Estilos de registro */
-  background-color: hsl(0, 0%, 100%);
+  background-color: #363b98;
   padding: 50px;
   border-radius: 10px;
   width: 100%;
@@ -14,7 +13,8 @@
 }
 
 .titulaso{
-  color: #4bb6b7;
+  font-family: 'Verdana', sans-serif;
+  color: #ffffff;
 }
 
 .form-control {
@@ -31,27 +31,37 @@ input {
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4bb6b7;
+  width: auto;
+  padding: 10px 20px;
+  background-color: #545ad8;
   border: none;
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
 }
 
 small{
   color: red;
 }
+
 .div-content{
   display: flex;
-
   min-height: 200px;
   align-items: center;
   justify-content: center;
   height: 200px;
   border: 2px solid  #4bb6b7;
 }
+
+
+.minireg{
+  color: white;
+  text-decoration: none;
+}
+
 .video-background {
   position: fixed;
   top: 0;

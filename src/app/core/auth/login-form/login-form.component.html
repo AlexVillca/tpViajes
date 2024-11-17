@@ -1,52 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
 
-  <body>
-    <div class="video-background">
-      <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-        <source src="assets/background-video.mp4" type="video/mp4" />
-        Tu navegador no soporta reproducción de vídeos.
-      </video>
-    </div>  
-      <div class="form-container login-container" >
-        <form [formGroup]="formulario" (ngSubmit)="(funRespuesta())" class="form-lg">
-          <h1 class="titulaso">Inicia sesión aquí</h1>
-          <div class="form-control2">
-            <input type="email" class="email-2" formControlName="email" placeholder="Correo electrónico" />
-            <div>
-              @if(formulario.controls['email'].getError('required')&& formulario.controls['email'].touched){
-                <div class="error">
-                  Campo requerido
-                </div>
-              }
-            </div>
-            <span></span>
+<body>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>
+
+  <div class="container" id="container">
+    <div class="login-container" >
+      <form [formGroup]="formulario" (ngSubmit)="(funRespuesta())" class="form-lg">
+        <h1 class="titulaso">Inicia sesión aquí</h1>
+        <div class="form-control2">
+          <input type="email" class="email-2" formControlName="email" placeholder="Correo electrónico" />
+          <div>
+            @if(formulario.controls['email'].getError('required')&& formulario.controls['email'].touched){
+              <div class="error">
+                Campo requerido
+              </div>
+            }
           </div>
+          <span></span>
+        </div>
 
 
-          <div class="form-control2">
-            <input type="password" class="password-2" formControlName="password" placeholder="Contraseña" />
-            <small class="password-error-2"></small>
-            <div>
-              @if(formulario.controls['password'].getError('required')&& formulario.controls['password'].touched){
-                <div class="error">
-                  Campo requerido
-                </div>
-              }
+        <div class="form-control">
+          <input type="password" formControlName="password" placeholder="Contraseña" />
+          <small class="error"></small>
+              <div>
+                @if(formulario.controls['password'].getError('required')&& formulario.controls['password'].touched){
+                  <div class="error">
+                    Campo requerido
+                  </div>
+                }
+              </div>
+              <span></span>
             </div>
-            <span></span>
-          </div>
 
-          <button type="submit" value="submit" (click)="funRespuesta()">Iniciar sesión</button>
-        </form>
-      </div>
-
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-right">
-            <h1 class="titulaso">Comienza tu viaje ahora!</h1>
-            <p class = "lodeabajo">Si aún no tienes una cuenta, únete a nosotros y comienza tu viaje</p>
-            <button class = "ghost" routerLink="/register">Registrarse <i class="fa-solid fa-arrow-right"></i></button>          </div>
+            <button type="submit" value="submit" (click)="funRespuesta()">Iniciar sesión</button>
+            <small class="minireg">No tienes cuenta? <a class="minireg" routerLink="/register"><strong>Registrate aqui</strong></a></small>
+          </form>
         </div>
       </div>
 
-  </body>
+      </body>
 
+      </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro</title>
+  <title>Register</title>
   <link>  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -28,38 +28,40 @@
         <div class="form-control">
           <input type="text" formControlName="username"  placeholder="Nombre" />
           <div *ngIf="(formulario.controls['username']?.invalid && (formulario.controls['username']?.dirty) || formulario.controls['username']?.touched)">
-            <small *ngIf="formulario.controls['username']?.errors?.['required']">*Nombre es requerido</small>
-            <small *ngIf="formulario.controls['username']?.errors?.['minlength']">*Nombre debe tener al menos 4 caracteres</small>
-            <small *ngIf="formulario.controls['username']?.errors?.['maxlength']">*Nombre debe tener máximo 20 caracteres</small>
+            <small *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</small>
+            <small *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</small>
+            <small *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</small>
           </div>
           <!--backend-->
           <div *ngIf="userNameInvalid">
-            <small >*El nombre ya esta en uso</small>
+            <small >El nombre ya esta en uso</small>
           </div>
           <span></span>
         </div>
         <div class="form-control">
           <input type="email" formControlName="email"  placeholder="Correo electrónico" />
           <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.dirty || formulario.controls['email']?.touched) ">
-            <small *ngIf="formulario.controls['email']?.errors?.['required']">*Correo electrónico es requerido</small>
-            <small *ngIf="formulario.controls['email']?.errors?.['email']">*Correo electrónico no válido</small>
+            <small *ngIf="formulario.controls['email']?.errors?.['required']">Correo electrónico es requerido</small>
+            <small *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</small>
           </div>
           <div *ngIf="emailInvalid">
             <!--backend-->
-            <small>*Correo electrónico en uso, intente con otro</small>
+            <small>Correo electrónico en uso, intente con otro</small>
           </div>
           <span></span>
         </div>
         <div class="form-control">
           <input type="password" id="password" name="password" formControlName="password" placeholder="Contraseña" />
           <div *ngIf="formulario.controls['password']?.invalid && (formulario.controls['password']?.dirty || formulario.controls['password']?.touched)">
-            <small *ngIf="formulario.controls['password']?.errors?.['required']">*Contraseña es requerida</small>
-            <small *ngIf="formulario.controls['password']?.errors?.['minlength']">*Contraseña debe tener al menos 8 caracteres</small>
-            <small *ngIf="formulario.controls['password']?.errors?.['maxlength']">*Contraseña debe tener máximo 20 caracteres</small>
+            <small *ngIf="formulario.controls['password']?.errors?.['required']">Contraseña es requerida</small>
+            <small *ngIf="formulario.controls['password']?.errors?.['minlength']">Contraseña debe tener al menos 8 caracteres</small>
+            <small *ngIf="formulario.controls['password']?.errors?.['maxlength']">Contraseña debe tener máximo 20 caracteres</small>
           </div>
           <span></span>
         </div>
         <button type="submit">Registrame!</button>
+        <small class="minireg">Ya tienes cuenta? <a class="minireg" routerLink="/login"><strong>Inicia sesion aqui</strong></a></small>
+
      </form>
      }@else{
       <div class="div-content">
