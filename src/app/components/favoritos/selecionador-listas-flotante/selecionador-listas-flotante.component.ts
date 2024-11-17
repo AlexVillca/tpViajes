@@ -12,10 +12,7 @@ interface ListaCheckbox {
   seleccionada:boolean;
 }
 
-/* boton para ciudad
-  <button (click)="showPopup = true">Guardar</button>
-  <app-selecionador-listas-flotante *ngIf="showPopup" (close)="showPopup = false"></app-selecionador-listas-flotante>
-*/
+
 @Component({
   selector: 'app-selecionador-listas-flotante',
   standalone: true,
@@ -25,7 +22,7 @@ interface ListaCheckbox {
 })
 export class SelecionadorListasFlotanteComponent implements OnInit{
 
-  @Output() close = new EventEmitter<void>();
+  visible = false;
 
 
   listaDeListasDB:ListaFav[] = [];
@@ -177,7 +174,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   }
 
   closePopup() {
-    this.close.emit();
+    this.visible = false;
   }
 
 }
