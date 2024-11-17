@@ -7,44 +7,63 @@
   <title>Ciudad</title>
 </head>
 <body>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>
+
+     <div *ngIf="ciudad$ | async as ciudad">
+
+      <div class="city-detail-container">
+        <div class="video-container">
+          <video autoplay loop muted playsinline class="background-video">
+            <source src="assets/background-video.mp4" type="video/mp4" />
+            Tu navegador no soporta reproducción de vídeos.
+          </video>
+        </div>
+        <div class="container">
+          <h2>{{ ciudad.nombre }}</h2>
+          <button *ngIf="usuarioLogueado" (click)="showPopup = true">Guardar</button>
+        </div>
+        <div class="container-2">
+          <p>{{ ciudad.infoWikipedia }}</p>
+          <p>Actividades: {{ ciudad.actividades }}</p>
+          <p>Consejos: {{ ciudad.consejos }}</p>
+          <p>Comentarios: {{ ciudad.comentarios }}</p>
+        </div>
+
+      </div>
 
 
-    <app-selecionador-listas-flotante *ngIf="showPopup" (close)="showPopup = false"></app-selecionador-listas-flotante>
-
-
-  <div *ngIf="ciudad$ | async as ciudad">
-    <div class="container">
-      <h2>{{ ciudad.nombre }}</h2>
-
-      <button *ngIf="usuarioLogueado" (click)="showPopup = true">Guardar</button>
-
+    <div class="atracciones-detail-container">
+      <ul class="video-background-ul">
+        <div class="video-container">
+          <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded">
+            <source src="assets/background-video.mp4" type="video/mp4" />
+            Tu navegador no soporta reproducción de vídeos.
+          </video>
+        </div>
+        <li *ngFor="let atraccion of ciudad.atracciones">
+          <h4>{{ atraccion.nombre }}</h4>
+          <p>{{ atraccion.descripcion }}</p>
+          <img *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}">
+          <p>Horario: {{ atraccion.horario }}</p>
+          <p>Página web: {{ atraccion.paginaWeb }}</p>
+          <p *ngIf="atraccion.ubicacion">Ubicación: {{ atraccion.ubicacion.direccion }}</p>
+          <p>Tipo: {{ atraccion.tipo }}</p>
+          <p>Valoración: {{ atraccion.valoracion }}</p>
+        </li>
+      </ul>
+      <button type="button" (click)="volver()">Volver</button>
     </div>
 
-
-    <p>{{ ciudad.infoWikipedia }}</p>
-    <p>Actividades: {{ ciudad.actividades }}</p>
-    <p>Consejos: {{ ciudad.consejos }}</p>
-    <p>Comentarios: {{ ciudad.comentarios }}</p>
-    <h3>Atracciones</h3>
-    <ul>
-
-      <li *ngFor="let atraccion of ciudad.atracciones">
-        <h4>{{ atraccion.nombre }}</h4>
-        <p>{{ atraccion.descripcion }}</p>
-        <img *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}">
-        <p>Horario: {{ atraccion.horario }}</p>
-        <p>Página web: {{ atraccion.paginaWeb }}</p>
-        <p *ngIf="atraccion.ubicacion">Ubicación: {{ atraccion.ubicacion.direccion }}</p>
-        <p>Tipo: {{ atraccion.tipo }}</p>
-        <p>Valoración: {{ atraccion.valoracion }}</p>
-      </li>
-    </ul>
-    <button type="button" (click)="volver()">Volver</button>
   </div>
+
+
+
 </body>
-
-
 <app-comentarios-list > </app-comentarios-list>
-
 
 </html>
