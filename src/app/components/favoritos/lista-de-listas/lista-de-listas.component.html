@@ -11,8 +11,9 @@
       Tu navegador no soporta reproducción de vídeos.
     </video>
   </div>
-  <h1>Favoritos</h1>
+  
   <div class="container" [class.visible]="containerVisible">
+    <h1>Favoritos</h1>
     <ul>
       @for(l of listaDeListas;track $index){
         <li>
