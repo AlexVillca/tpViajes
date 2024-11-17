@@ -8,8 +8,7 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    box-sizing: border-box;
-    
+    box-sizing: border-box; 
   }
 
   /* Contenedor del navbar */
@@ -225,4 +224,9 @@
 .user-dropdown li a:hover {
   background-color: #ffd700;
   color: #363b98;
+}
+
+.titulo {
+  font-weight: bold;
+  color: white;
 }

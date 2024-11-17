@@ -20,7 +20,7 @@
     </video>
   </div>
 
-  <div class="container" id="container">
+  <div class="container" id="container" [class.visible]="containerVisible">
     <div class="form-container register-container">
      @if(!registroExitoso){
       <form [formGroup]="formulario" (ngSubmit)="onSubmit()">

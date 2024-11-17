@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "leaflet/dist/leaflet.css";
+
+body {
+    font-family: 'Roboto', sans-serif; /* Cambia "Roboto" por la fuente elegida */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Aplica la fuente a todos los elementos si es necesario */
+  * {
+    font-family: 'Roboto', sans-serif;
+  }

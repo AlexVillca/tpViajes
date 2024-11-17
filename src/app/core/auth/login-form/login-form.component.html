@@ -14,7 +14,7 @@
     </video>
   </div>
 
-  <div class="container" id="container">
+  <div class="container" id="container" [class.visible]="containerVisible">
     <div class="login-container" >
       <form [formGroup]="formulario" (ngSubmit)="(funRespuesta())" class="form-lg">
         <h1 class="titulaso">Inicia sesión aquí</h1>
