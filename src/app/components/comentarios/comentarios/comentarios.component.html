@@ -1,15 +1,17 @@
-<form [formGroup] = "formulario"(ngSubmit)="agregarComentarioDb()">
+<div class="container">
 
-   
-    <label for="">Comentario: </label>
-    <input type="text" formControlName="comentario">
-    
+  <form  [formGroup] = "formulario"(ngSubmit)="agregarComentarioDb()">
 
-    <div class="error" *ngIf="formulario.controls['comentario'].getError('minlength') && formulario.controls['comentario'].touched">
-      Debe tener 3 letras o mas
-    </div>  
-    
-    <button>Agregar</button>
-  
-</form>
-  
+
+      <input type="text" formControlName="comentario" placeholder="Ingresa tu comentario aqui">
+
+      <div class="error" *ngIf="formulario.controls['comentario'].getError('minlength') && formulario.controls['comentario'].touched">
+        Debe tener 3 letras o mas
+      </div>
+
+      <button>Agregar</button>
+
+  </form>
+
+</div>
+
