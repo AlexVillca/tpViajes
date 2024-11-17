@@ -20,6 +20,16 @@ export class PaisDetailComponent{
   router = inject(Router);
   pais$ = this.paisDataService.pais$;
 
+  ngOnInit(): void {
+    // Añadir la clase 'visible' después de que el componente esté completamente cargado
+    setTimeout(() => {
+      const container = document.querySelector('.container');
+      if (container) {
+        container.classList.add('visible');
+      }
+    }, 100); // Esperamos 100ms para garantizar que el componente esté completamente renderizado
+  }
+
 
   seleccionarCiudad(ciudad: Ciudad) {
     this.ciudadDataService.setCiudad(ciudad);
@@ -28,5 +38,19 @@ export class PaisDetailComponent{
 
   volver() {
     this.router.navigate(['/paises']);
+  }
+
+  videoLoaded = false;
+
+  // Esta función se llama cuando el video se carga completamente
+  onVideoLoaded() {
+    this.videoLoaded = true;
+    setTimeout(() => {
+      const buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+      });
+    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
   }
 }
