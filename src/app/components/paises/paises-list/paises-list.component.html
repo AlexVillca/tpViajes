@@ -12,9 +12,9 @@
       Tu navegador no soporta reproducción de vídeos.
     </video>
   </div>
+
   <div class="contenedor">
-    
-    
+
     <div class="abecedario">
       <a (click)="filtrarPaises('todos')">Todos</a>
       <a *ngFor="let letra of letras" (click)="filtrarPaises(letra)">{{ letra }}</a>
