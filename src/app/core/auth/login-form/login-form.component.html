@@ -1,5 +1,11 @@
 
   <body>
+    <div class="video-background">
+      <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+        <source src="assets/background-video.mp4" type="video/mp4" />
+        Tu navegador no soporta reproducción de vídeos.
+      </video>
+    </div>  
       <div class="form-container login-container" >
         <form [formGroup]="formulario" (ngSubmit)="(funRespuesta())" class="form-lg">
           <h1 class="titulaso">Inicia sesión aquí</h1>
