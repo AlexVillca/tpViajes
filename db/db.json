@@ -99,6 +99,16 @@
               "nombre": "Mombasa"
             }
           ]
+        },
+        {
+          "idLista": "c045lwd",
+          "nombreLista": "otra mas ",
+          "listaCiudades": [
+            {
+              "codigoPais": "TZ",
+              "nombre": "Arusha"
+            }
+          ]
         }
       ]
     },
