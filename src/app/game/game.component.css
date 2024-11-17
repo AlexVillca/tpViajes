@@ -23,7 +23,7 @@ h1{
 .section{
     display: auto;
     text-align: center;
-    margin: 70px;
+    margin: 55px;
     z-index: 1;
 }
 
@@ -135,8 +135,8 @@ h1{
   }
   
   .lista-opciones button:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #e86c4f; /* Azul más oscuro al pasar el mouse */
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.726);
     transform: scale(1.05); /* Efecto de ampliación */
   }
   

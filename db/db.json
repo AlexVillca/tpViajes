@@ -142,13 +142,8 @@
       "username": "gustavo",
       "email": "gustavo94fi@gmail.com",
       "password": "asdf1234",
-      "listasFavs": [
-        {
-          "idLista": "l44m80b",
-          "nombreLista": "Guardadas",
-          "listaCiudades": []
-        }
-      ]
+      "listasFavs": [],
+      "mejorPuntaje": 11
     }
   ],
   "paises": [

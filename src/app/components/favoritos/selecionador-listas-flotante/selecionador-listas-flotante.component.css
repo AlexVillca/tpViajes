@@ -10,10 +10,6 @@
   box-sizing: border-box;
 }
 
-input[type="text"] {
-  background-color: white;
-  color: black;
-}
 
 .popup-overlay {
   position: fixed;
@@ -54,4 +50,32 @@ h3{
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+button {
+  width: auto;
+  padding: 10px 20px;
+  background-color: #fc943d;
+  border: none;
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  padding: 10px 20px; /* Tamaño del botón */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  margin: 20px auto 140px;
+}
+
+button:hover {
+  background-color: #c06820;
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px); /* Animación al pasar el cursor */
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }

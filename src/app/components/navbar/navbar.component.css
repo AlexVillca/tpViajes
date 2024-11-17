@@ -1,9 +1,9 @@
   /* Navbar general */
   .navbar {
-    background-color: #363b98;
-    padding: 10px 0;
+    background-color: #fc943d;
+    padding: 3px 0;
     width: 100%;
-    height: 75px;
+    height: 60px;
     position: fixed;
     top: 0;
     left: 0;
@@ -62,9 +62,10 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
   .navbar-menu-usuario li a:hover {
-    background-color: #c91515;
-    color: #363b98;
-    transform: scale(1.05);
+    background-color: #c06820;
+    color: rgba(0, 0, 0, 0.605);
+    transform: translateY(-3px); /* Animación al pasar el cursor */
+    box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
   }
 
 
@@ -101,9 +102,10 @@
   }
 
   .navbar-menu li a:hover {
-    background-color: #ffd700;
-    color: #363b98;
-    transform: scale(1.05);
+    background-color: #c06820;
+    color: rgba(0, 0, 0, 0.605);
+    transform: translateY(-3px); /* Animación al pasar el cursor */
+    box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
   }
 
   /* Estilos responsivos para pantallas pequeñas */
@@ -128,7 +130,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #363b98;
+      background-color: #fc943d;
       padding-top: 60px; /* Para que el menú no se superponga con el botón */
       transform: translateY(-100%);
       opacity: 0;
@@ -190,13 +192,13 @@
   visibility: hidden; /* Inicia oculta */
   position: absolute;
   list-style: none;
-  top: 55px; /* Se coloca debajo del navbar */
+  top: 42px; /* Se coloca debajo del navbar */
   right: -5px; /* Se alinea a la derecha */
-  background-color: #363b98;
+  background-color: #fc943d;
   padding: 10px;
   border-radius: 5px;
   width: 200px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.608);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0s 0.6s; /* Añadimos un retardo a visibility */
   opacity: 0;
   transform: translateY(-20px); /* Inicialmente está oculta por arriba */
@@ -218,12 +220,15 @@
   padding: 10px;
   display: block;
   border-radius: 5px;
+  margin-top: 5px;
   transition: background-color 0.3s ease;
 }
 
 .user-dropdown li a:hover {
-  background-color: #ffd700;
-  color: #363b98;
+  background-color: #c06820;
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px); /* Animación al pasar el cursor */
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
 
 .titulo {

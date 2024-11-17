@@ -12,12 +12,13 @@
 
 
 .register-container {
-  background-color: #363b98;
+  background-color: #fc943d;
+  border: #c06820 1px solid;
   padding: 50px;
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  border: black 1px solid;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.621);
   margin: 0 auto;
 }
 
@@ -42,14 +43,30 @@ input {
 button {
   width: auto;
   padding: 10px 20px;
-  background-color: #545ad8;
-  border: none;
+  background-color: #fc943d;
+  border: #c06820 1px solid;
   color: white;
   border-radius: 25px;
+  font-weight: bold;
   cursor: pointer;
   display: block;
-  margin: 10px auto;
   text-align: center;
+  padding: 10px 20px; /* Tamaño del botón */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  margin: 20px auto 30px;
+}
+
+button:hover {
+  background-color: #c06820;
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px); /* Animación al pasar el cursor */
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
 .error{

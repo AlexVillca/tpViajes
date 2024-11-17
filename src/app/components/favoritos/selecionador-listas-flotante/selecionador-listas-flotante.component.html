@@ -1,4 +1,5 @@
-<div class="popup-overlay" ></div>
+@if(visible){
+  <div class="popup-overlay" ></div>
 <div class="popup-content">
 
   <h3>Guardar en colección</h3>
@@ -33,3 +34,7 @@
 
   </form>
 </div>
+
+}@else{
+  <button (click) = "visible=true">Guardar</button>
+}

@@ -80,7 +80,7 @@
 }
 
 .container li a {
-  color: #1a6920; /* Color de enlace similar al de la tinta */
+  color: #714723e1; /* Color de enlace similar al de la tinta */
   text-decoration: none; /* Sin subrayado por defecto */
   font-weight: bold;
   transition: color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
@@ -113,7 +113,7 @@
 
 button {
   position: relative;
-  background-color: #007BFF;
+  background-color: #fc943d;
   border: none;
   color: white;
   font-size: 16px;
@@ -127,7 +127,8 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #fc943d;
+  color: rgba(0, 0, 0, 0.605);
   transform: translateY(-3px); /* Animación al pasar el cursor */
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
