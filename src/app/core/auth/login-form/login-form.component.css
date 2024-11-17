@@ -1,3 +1,4 @@
+
 .login-container {
   /* Estilos de registro */
   background-color: hsl(0, 0%, 100%);
@@ -5,7 +6,7 @@
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 .overlay-right{
 
