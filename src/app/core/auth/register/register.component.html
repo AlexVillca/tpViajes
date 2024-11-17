@@ -28,9 +28,9 @@
         <div class="form-control">
           <input type="text" formControlName="username"  placeholder="Nombre" />
           <div *ngIf="(formulario.controls['username']?.invalid && (formulario.controls['username']?.dirty) || formulario.controls['username']?.touched)">
-            <small *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</small>
-            <small *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</small>
-            <small *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</small>
+            <div class="error" *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</div>
+            <div class="error" *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</div>
+            <div class="error" *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</div>
           </div>
           <!--backend-->
           <div *ngIf="userNameInvalid">
@@ -41,8 +41,8 @@
         <div class="form-control">
           <input type="email" formControlName="email"  placeholder="Correo electrónico" />
           <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.dirty || formulario.controls['email']?.touched) ">
-            <small *ngIf="formulario.controls['email']?.errors?.['required']">Correo electrónico es requerido</small>
-            <small *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</small>
+            <div class="error" *ngIf="formulario.controls['email']?.errors?.['required']">Correo electrónico es requerido</div>
+            <div class="error" *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</div>
           </div>
           <div *ngIf="emailInvalid">
             <!--backend-->
@@ -53,9 +53,9 @@
         <div class="form-control">
           <input type="password" id="password" name="password" formControlName="password" placeholder="Contraseña" />
           <div *ngIf="formulario.controls['password']?.invalid && (formulario.controls['password']?.dirty || formulario.controls['password']?.touched)">
-            <small *ngIf="formulario.controls['password']?.errors?.['required']">Contraseña es requerida</small>
-            <small *ngIf="formulario.controls['password']?.errors?.['minlength']">Contraseña debe tener al menos 8 caracteres</small>
-            <small *ngIf="formulario.controls['password']?.errors?.['maxlength']">Contraseña debe tener máximo 20 caracteres</small>
+            <div class="error" *ngIf="formulario.controls['password']?.errors?.['required']">Contraseña es requerida</div>
+            <div class="error" *ngIf="formulario.controls['password']?.errors?.['minlength']">Contraseña debe tener al menos 8 caracteres</div>
+            <div class="error" *ngIf="formulario.controls['password']?.errors?.['maxlength']">Contraseña debe tener máximo 20 caracteres</div>
           </div>
           <span></span>
         </div>
