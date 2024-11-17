@@ -142,7 +142,18 @@
       "username": "gustavo",
       "email": "gustavo94fi@gmail.com",
       "password": "asdf1234",
-      "listasFavs": [],
+      "listasFavs": [
+        {
+          "idLista": "21mdh63",
+          "nombreLista": "asd",
+          "listaCiudades": [
+            {
+              "codigoPais": "BW",
+              "nombre": "Maun"
+            }
+          ]
+        }
+      ],
       "mejorPuntaje": 11
     }
   ],
