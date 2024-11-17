@@ -52,7 +52,7 @@ img {
   border: 1px solid #ddd; /* Borde gris claro */
   border-radius: 10px; /* Bordes redondeados */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  background-color: #fff; /* Fondo blanco para resaltar el contenido */
+  background-color: transparent; /* Fondo transparente */
 }
 
 
