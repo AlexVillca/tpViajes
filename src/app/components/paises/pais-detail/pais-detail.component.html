@@ -6,36 +6,45 @@
   <title>Pais</title>
 </head>
 <body>
-
-
-  <div class="container" *ngIf="pais$ | async as pais">
-    <h2>{{ pais.nombre }}</h2>
-    <p>Nombre oficial: {{ pais.nombreOficial }}</p>
-    <p>Capital: {{ pais.capital }}</p>
-    <p>Código: {{ pais.codigo }}</p>
-    <img [src]="pais.bandera" alt="Bandera de {{ pais.nombre }}">
-    <p>Idioma oficial: {{ pais.idiomaOficial }}</p>
-    <p>Moneda: {{ pais.moneda }}</p>
-    <p>Continente: {{ pais.continente }}</p>
-    <div *ngIf="pais.visa">
-      <p>Visa necesaria: {{ pais.visa.necesaria }}</p>
-      <p>Descripción de visa: {{ pais.visa.descripcion }}</p>
-    </div>
-    <p>Clima: {{ pais.clima }}</p>
-    <p>Gastronomía: {{ pais.gastronomia }}</p>
-    <p>Cultura: {{ pais.cultura }}</p>
-    <p>Seguridad: {{ pais.seguridad }}</p>
-    <p>Transporte: {{ pais.transporte }}</p>
-
-    <app-map [lat]= "pais.latitud ?? 0" [lon]= "pais.longitud ?? 0" [nombre]="pais.nombre" [flagUrl]="pais.bandera!"></app-map>
-
-    <h3>Ciudades</h3>
-    <ul>
-      <li *ngFor="let ciudad of pais.ciudades">
-        <a (click)="seleccionarCiudad(ciudad)">{{ ciudad.nombre }}</a>
-      </li>
-    </ul>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
   </div>
+
+  <div class="papiro-container">
+    <img class="papiro" src="../../../assets/papiro.png" alt="Papiro">
+    <div class="container" *ngIf="pais$ | async as pais">
+      <h2>{{ pais.nombre }}</h2>
+      <p>Nombre oficial: {{ pais.nombreOficial }}</p>
+      <p>Capital: {{ pais.capital }}</p>
+      <p>Código: {{ pais.codigo }}</p>
+      <img [src]="pais.bandera" alt="Bandera de {{ pais.nombre }}">
+      <p>Idioma oficial: {{ pais.idiomaOficial }}</p>
+      <p>Moneda: {{ pais.moneda }}</p>
+      <p>Continente: {{ pais.continente }}</p>
+      <div *ngIf="pais.visa">
+        <p>Visa necesaria: {{ pais.visa.necesaria }}</p>
+        <p>Descripción de visa: {{ pais.visa.descripcion }}</p>
+      </div>
+      <p>Clima: {{ pais.clima }}</p>
+      <p>Gastronomía: {{ pais.gastronomia }}</p>
+      <p>Cultura: {{ pais.cultura }}</p>
+      <p>Seguridad: {{ pais.seguridad }}</p>
+      <p>Transporte: {{ pais.transporte }}</p>
+  
+      <app-map [lat]= "pais.latitud ?? 0" [lon]= "pais.longitud ?? 0" [nombre]="pais.nombre" [flagUrl]="pais.bandera!"></app-map>
+  
+      <h3>Ciudades</h3>
+      <ul>
+        <li *ngFor="let ciudad of pais.ciudades">
+          <a (click)="seleccionarCiudad(ciudad)">{{ ciudad.nombre }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
   <button type="button" (click)="volver()">Volver</button>
 </body>
 </html>

@@ -1,14 +1,128 @@
-.container {
-  margin: 100px auto;  
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; 
 }
+
+/* Estilos para el vídeo */
+.background-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* Escala el video para cubrir todo el fondo */
+}
+
 button {
-  display: flex;
-  justify-content: center;
-  width: 10%;
-  padding: 10px 10px;
-  background-color: #4bb6b7;
+  display: block; /* Centra el botón automáticamente */
+  margin: 20px auto; /* Espaciado alrededor del botón y centrado horizontal */
+  padding: 10px 20px; /* Ajusta el tamaño del botón */
+  background-color: #007BFF; /* Azul predeterminado */
   border: none;
   color: white;
-  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+}
+
+button:hover {
+  background-color: #0056b3; /* Azul más oscuro */
+  transform: translateY(-3px); /* Efecto de elevación */
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4); /* Sombra más pronunciada */
+}
+
+button:active {
+  transform: translateY(0); /* Efecto de presionado */
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2); /* Sombra más ligera */
+}
+
+.papiro-container {
+  position: relative; /* Necesario para que los elementos dentro puedan superponerse */
+  width: 100%; /* Ajusta al tamaño de tu diseño */
+  max-width: 1200px; /* Tamaño máximo del contenedor */
+  margin: 100px auto 100px; /* Centra el contenedor */
+}
+
+.papiro {
+  width: 100%; /* Imagen responsiva */
+  height: auto;
+  display: block;
+}
+
+.container {
+  position: absolute; /* Permite posicionar el texto sobre la imagen */
+  top: 7%; /* Centra verticalmente el texto */
+  left: 20%; /* Centra horizontalmente el texto */
+  transform: translate(-30%, -50%); /* Ajusta el centro */
+  width: 60%; /* Controla el ancho del contenedor */
+  padding: 20px;
+  opacity: 0; /* Comienza invisible */
+  z-index: 2; /* Asegura que esté sobre la imagen del papiro */
+}
+
+.papiro {
+  z-index: 1; /* Asegura que la imagen esté detrás del texto */
+}
+
+/* Activamos la visibilidad y desplazamiento al agregar la clase "visible" */
+.container.visible {
+  opacity: 1; /* Se vuelve visible */
+  transform: translateY(0); /* Se desplaza a su posición original */
+}
+
+.container h2 {
+  text-align: center;
+  color: #2f1b07; /* Color oscuro para los títulos */
+  margin-bottom: 10px;
+  font-size: 2em; /* Tamaño mayor para los títulos */
+}
+
+.container p {
+  color: #4b2e12; /* Color oscuro para el texto */
+  margin-bottom: 10px;
+  line-height: 1.6; /* Espaciado entre líneas */
+  font-size: 1.1em; /* Tamaño de texto legible */
+}
+
+.container img {
+  display: block;
+  max-width: 100%; /* Imagen responsiva */
+  margin: 20px auto; /* Centrado y espaciado */
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra en la imagen */
+}
+
+.container ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.container li a {
+  color: #1a6920; /* Color de enlace similar al de la tinta */
+  text-decoration: none; /* Sin subrayado por defecto */
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  padding: 5px 10px; /* Añadimos un padding para darle un espacio alrededor del texto */
+  border-radius: 4px; /* Bordes redondeados */
+  border: 2px solid transparent; /* Borde transparente por defecto */
+}
+
+.container li a:hover {
+  color: #3e2611; /* Cambia a un tono aún más oscuro en hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añadimos sombra para que se vea más elevado */
+  transform: translateY(-2px); /* Elevación sutil al pasar el mouse */
+  border-color: #d5a96d; /* Borde dorado oscuro al hacer hover */
+  background-color: #f4e1c1; /* Fondo más claro al hacer hover */
+}
+
+.container li a:active {
+  transform: translateY(0); /* Efecto de presionado */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más ligera al hacer clic */
+  background-color: #e4c1a6; /* Fondo más oscuro al hacer clic */
 }
