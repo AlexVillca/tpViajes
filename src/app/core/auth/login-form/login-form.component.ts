@@ -59,7 +59,17 @@ export class LoginFormComponent {
     }, 200);  
   }
 
+  // Propiedad para manejar la visibilidad
+  containerVisible = false;
+
+  ngOnInit() {
+    // Activa la clase después de un breve retraso
+    setTimeout(() => {
+      this.containerVisible = true;
+    }, 200); // Retraso en milisegundos
   }
+
+}
 
 
 

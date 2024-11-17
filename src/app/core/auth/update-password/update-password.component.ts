@@ -31,6 +31,7 @@ export class UpdatePasswordComponent implements OnInit {
 
   locationService: any;
 
+  containerVisible = false;
   ngOnInit(): void {
     this.idUsuarioService.id$.subscribe({
       next: (id) => {
@@ -41,6 +42,10 @@ export class UpdatePasswordComponent implements OnInit {
       },
       error: (e) => console.error(e),
     });
+
+    setTimeout(() => {
+      this.containerVisible = true;
+    }, 200); // Retraso en milisegundos
   }
 
   update(): void {
@@ -88,4 +93,6 @@ export class UpdatePasswordComponent implements OnInit {
   volver(): void {
     this.location.back();
   }
+
+  
 }

@@ -18,6 +18,9 @@ export class ListaDeListasComponent implements OnInit{
     router = inject(Router);
 
     listaDeListas:ListaFav[] = [];
+
+    containerVisible = false;
+
     ngOnInit(): void {
       this.ids.id$.subscribe({
         next:(idObtenido) => {
@@ -34,6 +37,10 @@ export class ListaDeListasComponent implements OnInit{
         },
         error:(e) => {console.log(e);}
       });
+
+      setTimeout(() => {
+        this.containerVisible = true;
+      }, 200); // Retraso en milisegundos
     }
     accederLista(lista:any){
         this.router.navigate(['listaCiudades']);
@@ -58,4 +65,6 @@ export class ListaDeListasComponent implements OnInit{
       });
     }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
   }
+
+  
 }
