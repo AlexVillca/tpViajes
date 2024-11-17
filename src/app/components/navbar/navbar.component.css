@@ -166,3 +166,8 @@
     .navbar-menu.active li:nth-child(4) a { transition-delay: 0.4s; }
   }
 
+.user-image{
+    width: 50px;
+    height: auto;
+}
+

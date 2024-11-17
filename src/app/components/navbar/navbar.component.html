@@ -20,6 +20,7 @@
           <li *ngIf="flag !== true" ><a  routerLink ="register">Registro</a></li>
           <li *ngIf="flag === true" ><a routerLink="fichaUser">Panel {{ username }}</a></li>
           <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
+          <li *ngIf="flag === true" > <img src="../../../assets/user.png" alt="user"></li>
       </ul>
    </div>
 </nav>
