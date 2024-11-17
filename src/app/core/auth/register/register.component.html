@@ -13,6 +13,13 @@
   />
 </head>
 <body>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>
+
   <div class="container" id="container">
     <div class="form-container register-container">
      @if(!registroExitoso){
@@ -52,8 +59,7 @@
           </div>
           <span></span>
         </div>
-        <button type="submit">Registrar</button>
-        <button type="button" routerLink = "/login">Volver</button>
+        <button type="submit">Registrame!</button>
      </form>
      }@else{
       <div class="div-content">
