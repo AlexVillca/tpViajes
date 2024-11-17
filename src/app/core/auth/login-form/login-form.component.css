@@ -1,13 +1,18 @@
+.container {
+  margin-top: 120px;
+}
+
 
 .login-container {
-  /* Estilos de registro */
-  background-color: hsl(0, 0%, 100%);
+  background-color: #363b98;
   padding: 50px;
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  margin: 50px auto;
+  border: black 1px solid;
+  margin: 0 auto;
 }
+
 .overlay-right{
 
   padding: 50px;
@@ -19,7 +24,8 @@
 }
 
 .titulaso{
-  color: #4bb6b7;
+  font-family: 'Verdana', sans-serif;
+  color: #ffffff;
 }
 
 
@@ -37,27 +43,27 @@ input {
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4bb6b7;
+  width: auto;
+  padding: 10px 20px;
+  background-color: #545ad8;
   border: none;
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
 }
 
-.lodeabajo{
-  align-content:center;
-  margin: 0 auto;
-  color: #23a8dd;
-  line-height: 40px;
-  text-align: center;
+.minireg{
+  color: white;
+  text-decoration: none;
 }
 
 .error{
   color: red;
-
 }
+
 .video-background {
   position: fixed;
   top: 0;
@@ -65,7 +71,7 @@ button {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1; 
+  z-index: -1;
 }
 
 
