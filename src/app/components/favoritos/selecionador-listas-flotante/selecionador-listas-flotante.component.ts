@@ -1,11 +1,12 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ListaFav } from '../../../models/interface/usuario.interface';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
+import { RegisterComponent } from '../../../core/auth/register/register.component';
 interface ListaCheckbox {
   id:string;
   nombre: string;
@@ -16,39 +17,68 @@ interface ListaCheckbox {
 @Component({
   selector: 'app-selecionador-listas-flotante',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule],
   templateUrl: './selecionador-listas-flotante.component.html',
   styleUrl: './selecionador-listas-flotante.component.css'
 })
 export class SelecionadorListasFlotanteComponent implements OnInit{
 
+  fb = inject(FormBuilder);
+  us = inject(UsuariosService);
+  ids = inject(IdUsuarioService);
+  paisDataService = inject (PaisDataService);
+  ciudadDataService = inject(CiudadDataService);
   visible = false;
-
+  logueado = false;
 
   listaDeListasDB:ListaFav[] = [];
   listasFront:ListaCheckbox[] = [];
 
-  us = inject(UsuariosService);
-  ids = inject(IdUsuarioService);
 
-  paisDataService = inject (PaisDataService);
-  ciudadDataService = inject(CiudadDataService);
+
 
   ciudadSeleccionada:any;
   paisSeleccionado:any;
 
-  vacio:string = "";
 
+
+  formulario:any;
+
+  constructor(){
+
+
+
+  }
+
+  createItemControl(item: any): FormGroup {
+    return this.fb.group({
+      id: [item.id],
+      nombre: [item.nombre],
+      seleccionada: [item.seleccionada]
+    });
+  }
+
+  get itemsArray(): FormArray {
+    return this.formulario.get('items') as FormArray;
+  }
   ngOnInit(): void {
     this.ids.id$.subscribe(
       {
         next: (id) => {
           if(id){
+            this.logueado = true;
             this.us.obtenerListasFav(id).subscribe(
                 {
                   next:(l) => {
                     this.listaDeListasDB = l
-                    this.listasFront = this.listaDeListasDB.map(lista => this.mapDBaFront(lista))
+                    this.listasFront = this.listaDeListasDB.map(lista => this.mapDBaFront(lista));
+                    this.formulario = this.fb.group({
+                      items: this.fb.array(this.listasFront.map(item => this.createItemControl(item)))
+                    });
+
+
+
+
                   },
                   error: (e) => {console.log(e)}
                 }
@@ -58,7 +88,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
         error: (e) => {console.log(e)}
       }
     );
-    //this.us.obtenerListasFav()
+
     this.paisDataService.pais$.subscribe(
       {
         next:(p) => {this.paisSeleccionado = p},
@@ -73,6 +103,9 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     );
   }
 
+
+
+
   agregaNuevaLista(evento:any){
     const nombreLista:string = evento.target.value;
 
@@ -82,7 +115,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
       if (nombreLista.trim()) { // Verifica que no esté vacío
         this.listasFront.push({id:Math.random().toString(36).substring(2, 9),nombre:nombreLista,seleccionada:true});
         console.log(...this.listasFront);
-        this.vacio = "";
+
       }else{
         console.log("esta vacio");
       }
@@ -136,10 +169,13 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     });
 
   }
+ pasarFormaListaFront() {
 
 
-
+    this.listasFront = this.formulario.value.items;
+  }
   saveSelection() {
+    this.pasarFormaListaFront();
     this.pasajeCambiosFrontaDB();
     this.ids.id$.subscribe(
       {
@@ -169,11 +205,12 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
         error:() => {console.log("ERROR:no se pudo obtener el id");}
       }
     );
-    //this.us.actualizarUsuario()
+
     this.closePopup();
   }
 
   closePopup() {
+    console.log("se cierra");
     this.visible = false;
   }
 
