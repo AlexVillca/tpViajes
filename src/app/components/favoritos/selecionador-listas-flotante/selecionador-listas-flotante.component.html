@@ -1,40 +1,46 @@
-@if(visible){
-  <div class="popup-overlay" ></div>
-<div class="popup-content">
+@if(logueado){
+  @if(visible){
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
 
-  <h3>Guardar en colección</h3>
-  <form (ngSubmit)="saveSelection()">
+      <h3>Guardar en colección</h3>
 
-<ol>
-  <div *ngFor="let l of listasFront">
-    <label>
-      <input type="checkbox" [checked]="l.seleccionada" [(ngModel)]="l.seleccionada" name="{{l.nombre}}" />
-      {{ l.nombre }}
-    </label>
+<form [formGroup]="formulario" (ngSubmit)="saveSelection()">
+  <div formArrayName="items">
+    <div *ngFor="let item of itemsArray.controls; let i = index">
+      <div [formGroupName]="i">
+        <label><input type="checkbox" formControlName="seleccionada" />{{ item.value.nombre }}</label>
+
+      </div>
+    </div>
   </div>
-  @if(this.listasFront.length < 9){
+  <div class="container">
+      <button (click)="closePopup()">cancelar</button>
+      <button type="submit">Guardar cambios</button>
+  </div>
+
+</form>
+      <!--
+    <form [formGroup]="formularioListas" (submit)="saveSelection()">
+    <ol>
+    <div *ngFor="let lista of listasFront; let i = index">
+      <label>
+        <input type="checkbox" [value]="lista.seleccionada" />
+        {{ lista.nombre }}
+      </label>
+    </div>
+    </ol>
     <div class="container">
-      <input
-        type="text"
-        placeholder="Nueva lista"
-        [(ngModel)]="vacio"
-        name="inputNombreNuevaLista"
-        (keydown.enter)="agregaNuevaLista($event)"
-      />
+      <button (click)="closePopup()">Cancelar</button>
+      <button type="submit">Guardar</button>
+    </div>
+
+    </form>
+    -->
+
     </div>
   }@else{
-    <small class="error">*Se llego al maximo de listas</small>
+    <button (click)="visible=true">Guardar</button>
   }
-</ol>
 
-  <div class="container">
-    <button  (click)="closePopup()">Cancelar</button>
-    <button type="submit">Guardar</button>
-  </div>
-
-  </form>
-</div>
-
-}@else{
-  <button (click) = "visible=true">Guardar</button>
 }
