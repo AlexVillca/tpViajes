@@ -91,7 +91,7 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   volver(): void {
-    this.location.back();
+    this.router.navigateByUrl('home');
   }
 
   

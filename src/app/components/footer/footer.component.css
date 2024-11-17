@@ -3,8 +3,8 @@
   color: white; /* Color del texto */
   width: 100%; /* Ancho completo */
   padding: 0px 0px; /* Padding reducido */
-  position: fixed; /* Fijo al final de la página */
   bottom: 0;
+  margin-top: 200px;
   left: 0;
   z-index: 1000; /* Asegura visibilidad */
   box-shadow: 0 -2px 5px rgba(144, 140, 140, 0.1); /* Sombra superior */
