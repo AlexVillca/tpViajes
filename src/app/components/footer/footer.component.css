@@ -1,41 +1,57 @@
 .footer {
-    background-color: #4bb6b7; /* Color del fondo del navbar */
-    color: white; /* Color del texto */
-    text-align: center; /* Centrar el texto */
-    width: 100%; /* Ancho completo */
-    padding: 0; /* Sin padding */
-    position: fixed;
-    bottom: 0;
-    left: 0; 
-    z-index: 1000;   
-  }
+  background-color: #363b98; /* Fondo semitransparente */
+  color: white; /* Color del texto */
+  width: 100%; /* Ancho completo */
+  padding: 0px 0px; /* Padding reducido */
+  position: fixed; /* Fijo al final de la página */
+  bottom: 0;
+  left: 0;
+  z-index: 1000; /* Asegura visibilidad */
+  box-shadow: 0 -2px 5px rgba(144, 140, 140, 0.1); /* Sombra superior */
+}
 
-  .footer-content {
-    max-width: 1200px; /* Ancho máximo del contenido */
-    margin: 0 auto; /* Centrar el contenido */
-  }
+.footer-content {
+  max-width: 1200px; /* Ancho máximo del contenido */
+  margin: 0 auto; /* Centrar el contenido */
+  display: flex; /* Usar Flexbox */
+  justify-content: space-between; /* Separar extremos */
+  align-items: center; /* Centrar verticalmente */
+  padding: 0 10px; /* Reducir padding lateral si es necesario */
+}
 
-  .footer nav ul {
-    list-style-type: none; /* Eliminar puntos de lista */
-    padding: 10px; /* Sin padding */
-  }
+.footer nav ul {
+  list-style-type: none; /* Quitar puntos de lista */
+  margin: 0; /* Sin margen */
+  padding: 0; /* Sin padding */
+  display: flex; /* Mostrar enlaces en línea */
+}
 
-  .footer nav ul li {
-    display: inline; /* Mostrar en línea */
-    margin: 0 15px; /* Espacio entre elementos */
-  }
+.footer nav ul li {
+  margin: 0 20px; /* Espaciado entre enlaces */
+}
 
-  .footer a {
-    color: white; /* Color de los enlaces */
-    transition: transform 0.6s ease-in-out, text-decoration 0.3s ease; /* Transición para el efecto */
-  }
+.footer-link {
+  color: white; /* Color de los enlaces */
+  text-decoration: none; /* Sin subrayado */
+  transition: transform 0.3s ease, color 0.3s ease; /* Transición suave */
+}
 
-  /* Efecto de desplazamiento al hacer hover */
-  .footer-link {
-    display: inline-block; /* Permitir transformaciones en línea */
-    position: relative; /* Necesario para el efecto de desplazamiento */
-  }
+.footer-link:hover {
+  transform: translateY(-2px); /* Efecto de elevación */
+  color: #e0f7fa; /* Color más claro al pasar el cursor */
+}
 
-  .footer-link:hover {
-    transform: translateY(-3px); /* Mover hacia la derecha */
-  }
+.footer-copyright {
+  margin: 0; /* Sin margen */
+  font-size: 0.8em; /* Tamaño de fuente ajustado */
+  text-align: left; /* Alinear texto a la izquierda */
+  margin-left: 0; /* Llevar el texto más a la izquierda */
+}
+
+.footer nav {
+  margin-right: 10px; /* Ajustar más hacia la derecha */
+}
+
+p{
+  text-align: right;
+}

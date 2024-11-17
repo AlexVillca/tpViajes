@@ -73,20 +73,6 @@
       "mejorPuntaje": 6,
       "listasFavs": [
         {
-          "idLista": "2px5rdk",
-          "nombreLista": "lagares1",
-          "listaCiudades": [
-            {
-              "codigoPais": "KE",
-              "nombre": "Mombasa"
-            },
-            {
-              "codigoPais": "MA",
-              "nombre": "Fez"
-            }
-          ]
-        },
-        {
           "idLista": "yihypix",
           "nombreLista": "lugares",
           "listaCiudades": [
@@ -107,6 +93,10 @@
             {
               "codigoPais": "TN",
               "nombre": "Túnez"
+            },
+            {
+              "codigoPais": "KE",
+              "nombre": "Mombasa"
             }
           ]
         }

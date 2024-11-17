@@ -5,11 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>
   <h1>Favoritos</h1>
   <div>
-    @for(l of listaDeListas;track $index){
-      <button class="button-seleccion" [routerLink]="['listaCiudadesComp',l.idLista]" >{{l.nombreLista}}</button>
-    }
+    <ul>
+      @for(l of listaDeListas;track $index){
+        <li>
+          <button class="button-seleccion" [routerLink]="['listaCiudadesComp',l.idLista]" >{{l.nombreLista}}</button>
+        </li>
+      }
+    </ul>
   </div>
   <button type="button" class="button-volver" (click)="volver()">Volver</button>
 </body>
