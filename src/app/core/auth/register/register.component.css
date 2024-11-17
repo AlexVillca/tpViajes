@@ -1,3 +1,7 @@
+.container {
+  margin-top: 120px; 
+}
+
 .register-container {
   /* Estilos de registro */
   background-color: hsl(0, 0%, 100%);
@@ -5,6 +9,7 @@
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
+  border: black 1px solid;
   margin: 0 auto;
 }
 

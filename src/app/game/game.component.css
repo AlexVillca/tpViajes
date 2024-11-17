@@ -1,3 +1,21 @@
+/* Contenedor del video de fondo */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; 
+  }
+  
+  /* Estilos para el vídeo */
+  .background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Escala el video para cubrir todo el fondo */
+  }
+
 h1{
     text-align: center;
     font-size: 60px;
@@ -6,19 +24,30 @@ h1{
     display: auto;
     text-align: center;
     margin: 70px;
+    z-index: 1;
 }
 
 .banderas {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    margin: 0 auto;
     opacity: 0;
-    transform: scale(0.9); /* Empieza ligeramente más pequeña */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-  
-  .banderas.visible {
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición suave */
+}
+
+.banderas.visible {
     opacity: 1;
-    transform: scale(1); /* Toma su tamaño original */
-  }
+    transform: translateY(0);
+}
+.banderas img {
+    max-width: 100%; /* La imagen se ajusta dentro del contenedor */
+    max-height: 100%; /* Respeta las proporciones */
+}
 
 /* Transición suave en el contenedor de las opciones */
 .opcionesJuego {
@@ -78,10 +107,11 @@ h1{
 
   /* Botones dentro de la lista */
   .lista-opciones button {
-    background-color: #007BFF; /* Azul predeterminado */
-    color: white;
+    background-color: #333; /* Azul predeterminado */
+    color: #ffcc00;
     border: none;
-    border-radius: 8px;
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 5px;
     padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
@@ -117,14 +147,14 @@ h1{
 /* Opciones de lista con transición suave */
 .lista-opciones li {
     margin: 0 0px; /* Espacio entre cada botón */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 0; /* Comienza invisible */
+    transform: translateY(20px); /* Desplazamiento inicial */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición suave */
 }
 
 .lista-opciones li.visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Se vuelve visible */
+    transform: translateY(0); /* Vuelve a su posición original */
 }
 
 p{
