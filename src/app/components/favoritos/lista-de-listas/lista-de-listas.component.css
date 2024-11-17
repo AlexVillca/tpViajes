@@ -1,16 +1,24 @@
 
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Espacio entre cada elemento de la lista */
+}
 
 div{
 
   height: 500px;
   justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Espacio entre cada elemento de la lista */
 }
 .button-seleccion {
 
   justify-content: center;
   width: 100%;
   padding: 10px 20px;
-  background-color: #4bb6b7;
+  background-color: #363b98;
   border: none;
   color: white;
   border-radius: 5px;
@@ -24,7 +32,7 @@ div{
   justify-content: center;
   width: 10%;
   padding: 10px 10px;
-  background-color: #4bb6b7;
+  background-color: #363b98;
   border: none;
   color: white;
   border-radius: 5px;
@@ -36,4 +44,21 @@ div{
 p{
   text-align: center;
 
+}
+/* Contenedor del video de fondo */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; 
+}
+
+/* Estilos para el vídeo */
+.background-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* Escala el video para cubrir todo el fondo */
 }

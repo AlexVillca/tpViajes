@@ -27,6 +27,7 @@ export class PaisDetailComponent{
   }
 
   volver() {
-    this.router.navigate(['/paises']);
+    this.router.navigate(['paises']); 
+
   }
 }

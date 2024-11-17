@@ -7,6 +7,13 @@
 
 </head>
 <body>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>
+
   <h1>{{lista.nombreLista}}</h1>
   <div class="content">
 
