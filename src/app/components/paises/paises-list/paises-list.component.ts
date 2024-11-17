@@ -60,8 +60,9 @@ export class PaisesListComponent implements OnInit {
 
   seleccionarPais(pais: Pais) {
     this.paisDataService.setPais(pais);
-    this.router.navigate(['/pais']); 
+    this.router.navigate(['/pais']);
   }
+
   videoLoaded = false;
 
   // Esta función se llama cuando el video se carga completamente

@@ -1,19 +1,194 @@
 body {
   margin: 100px auto;
 }
+
 button {
-  display: flex;
-  justify-content: center;
-  width: 10%;
-  padding: 10px 10px;
-  background-color: #4bb6b7;
+  width: auto;
+  padding: 10px 20px;
+  background-color: #545ad8;
   border: none;
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
 }
+
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
+}
+
+.container-2{
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  position: relative; /* Asegura que el contenido no se superponga al video */
+}
+
+img {
+  width: 600px; /* Ancho fijo del recuadro */
+  height: 400px; /* Alto fijo del recuadro */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  border: 1px solid #ddd; /* Borde gris claro */
+  overflow: hidden; /* Oculta partes de la imagen que excedan el recuadro */
+  display: flex; /* Centra la imagen dentro del contenedor */
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0; /* Espaciado superior e inferior */
+}
+
+.city-container {
+  font-family: 'Verdana', sans-serif;
+  width: 90%; /* Asegura que el contenedor no ocupe todo el ancho */
+  max-width: 800px; /* Define un ancho máximo */
+  margin: 20px auto; /* Centra el contenedor horizontalmente y agrega espacio vertical */
+  padding: 20px; /* Espaciado interno */
+  border: 1px solid #ddd; /* Borde gris claro */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: transparent; /* Fondo transparente */
+}
+
+
+/* Contenedor de detalles de la ciudad */
+.city-detail-container {
+  position: relative; /* Necesario para que el video se coloque detrás del contenido */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden; /* Asegura que el video no sobresalga */
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.6); /* Fondo semitransparente para legibilidad */
+}
+
+/* Contenedor del video dentro de city-detail-container */
+.city-detail-container .video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca el video detrás del contenido */
+}
+
+.city-detail-container .background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Escala el video para cubrir todo el contenedor */
+}
+
+/* Contenido dentro del city-detail-container */
+.city-detail-container .container {
+  position: relative;
+  z-index: 1; /* Asegura que el contenido esté encima del video */
+}
+
+.city-detail-container p {
+  margin-bottom: 10px;
+  color: #333; /* Texto oscuro para contraste */
+}
+
+/* Botón dentro del city-detail-container */
+.city-detail-container button {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.city-detail-container button:hover {
+  background-color: #d0d0d0;
+}
+
+
+/* Contenedor principal de atracciones */
+.atracciones-detail-container {
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Lista con video de fondo */
+.video-background-ul {
+  position: relative;
+  padding: 20px;
+  margin: 0;
+  list-style: none;
+  border-radius: 10px;
+  overflow: hidden; /* Asegura que el video no sobresalga */
+  z-index: 0; /* Contenido principal */
+}
+
+/* Video dentro del ul */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca el video detrás del contenido */
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Escala el video para cubrir todo el ul */
+}
+
+/* Elementos de la lista */
+.video-background-ul li {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  position: relative; /* Asegura que el contenido no se superponga al video */
+}
+
+/* Texto dentro de li */
+.video-background-ul li h4 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.video-background-ul li p {
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Imágenes dentro de li */
+.video-background-ul li img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Estilos para el vídeo */
+.background-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* Escala el video para cubrir todo el fondo */
 }
