@@ -90,18 +90,25 @@ listar(){
     }
     this.opciones = this.opciones.sort(() => Math.random() - 0.5);
 
+    this.banderaVisible = false;  // Asegúrate de resetear la bandera visible antes de la transición
     // Añadir la clase "visible" con un retraso para activar la animación
+    setTimeout(() => {
+      this.banderaVisible = true;
+  }, 200); // Esto aplica la visibilidad después de un pequeño retraso para la animación
+
+  // Añadir la clase "visible" después de un pequeño retraso para que la animación funcione en las opciones
   setTimeout(() => {
-    this.banderaVisible = true;
-  }, 100);
-     // Añadir la clase "visible" después de un pequeño retraso para que la animación funcione
-  setTimeout(() => {
-    const listaOpciones = document.querySelectorAll('.lista-opciones li');
-    listaOpciones.forEach((li, index) => {
-      li.classList.add('visible');
-    });
+      const listaOpciones = document.querySelectorAll('.lista-opciones li');
+      listaOpciones.forEach((li, index) => {
+          li.classList.add('visible');
+      });
   }, 100); // Esto aplica la clase después de un pequeño retraso
-  }
+
+  // Marcar las opciones como visibles (para aplicar la transición)
+  setTimeout(() => {
+      this.opciones.forEach(opcion => opcion['visible'] = true);
+  }, 100); // Esto aplica la visibilidad después de un pequeño retraso
+}
 
   
 
@@ -140,6 +147,18 @@ listar(){
     this.mensaje = '';       // Borra el mensaje de feedback
     this.generarPregunta();  // Genera una nueva pregunta
   }
+  videoLoaded = false;
 
+  // Esta función se llama cuando el video se carga completamente
+  onVideoLoaded() {
+    this.videoLoaded = true;
+    setTimeout(() => {
+      const buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+      });
+    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+  }
 
 }

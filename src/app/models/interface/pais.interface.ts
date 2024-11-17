@@ -22,6 +22,7 @@ export interface Pais {
   transporte?: string;
   ciudades?: Ciudad[];
   id: string;
+  visible: boolean;
 }
 
 export interface Ciudad {
