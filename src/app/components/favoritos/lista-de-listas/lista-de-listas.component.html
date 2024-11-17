@@ -16,7 +16,7 @@
     <ul>
       @for(l of listaDeListas;track $index){
         <li>
-          <button class="button-seleccion" [routerLink]="['listaCiudadesComp',l.idLista]" >{{l.nombreLista}}</button>
+          <button class="button-seleccion" [routerLink]="['/listaCiudadesComp',l.idLista]" >{{l.nombreLista}}</button>
         </li>
       }
     </ul>

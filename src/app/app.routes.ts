@@ -26,7 +26,7 @@ export const routes: Routes = [
   { path: 'Juego', component: GameComponent},
   { path: 'pais', component: PaisDetailComponent },
   { path: 'favoritos', component: ListaDeListasComponent},
-  { path: 'favoritos/listaCiudadesComp/:idLista', component:ListaComponent},
+  { path: 'listaCiudadesComp/:idLista', component:ListaComponent},
   { path: 'contact', component:ContactUsComponent},
   { path: 'about', component:AboutUsComponent},
   { path:'updateP', component:UpdatePasswordComponent},
