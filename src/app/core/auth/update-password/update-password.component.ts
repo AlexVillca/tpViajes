@@ -15,6 +15,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./update-password.component.css']
 })
 export class UpdatePasswordComponent implements OnInit {
+
   id: string | null = null;
 
   fb = inject(FormBuilder);
@@ -27,6 +28,7 @@ export class UpdatePasswordComponent implements OnInit {
     password: ['', [Validators.required]],
     confirmPassword: ['', [Validators.required]]
   });
+
   locationService: any;
 
   ngOnInit(): void {
@@ -69,6 +71,18 @@ export class UpdatePasswordComponent implements OnInit {
         alert('Ocurrió un error al actualizar la contraseña');
       },
     });
+  }
+
+  videoLoaded = false;
+  onVideoLoaded() {
+    this.videoLoaded = true;
+    setTimeout(() => {
+      const buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+      });
+    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
   }
 
   volver(): void {
