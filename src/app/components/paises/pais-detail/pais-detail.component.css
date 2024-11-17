@@ -15,36 +15,11 @@
   object-fit: cover; /* Escala el video para cubrir todo el fondo */
 }
 
-button {
-  display: block; /* Centra el botón automáticamente */
-  margin: 20px auto; /* Espaciado alrededor del botón y centrado horizontal */
-  padding: 10px 20px; /* Ajusta el tamaño del botón */
-  background-color: #007BFF; /* Azul predeterminado */
-  border: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
-}
-
-button:hover {
-  background-color: #0056b3; /* Azul más oscuro */
-  transform: translateY(-3px); /* Efecto de elevación */
-  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4); /* Sombra más pronunciada */
-}
-
-button:active {
-  transform: translateY(0); /* Efecto de presionado */
-  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2); /* Sombra más ligera */
-}
 
 .papiro-container {
   position: relative; /* Necesario para que los elementos dentro puedan superponerse */
   width: 100%; /* Ajusta al tamaño de tu diseño */
-  max-width: 1200px; /* Tamaño máximo del contenedor */
+  max-width: 1300px; /* Tamaño máximo del contenedor */
   margin: 100px auto 100px; /* Centra el contenedor */
 }
 
@@ -58,8 +33,9 @@ button:active {
   position: absolute; /* Permite posicionar el texto sobre la imagen */
   top: 7%; /* Centra verticalmente el texto */
   left: 20%; /* Centra horizontalmente el texto */
+  bottom: 90%;
   transform: translate(-30%, -50%); /* Ajusta el centro */
-  width: 60%; /* Controla el ancho del contenedor */
+  width: 55%; /* Controla el ancho del contenedor */
   padding: 20px;
   opacity: 0; /* Comienza invisible */
   z-index: 2; /* Asegura que esté sobre la imagen del papiro */
@@ -94,7 +70,7 @@ button:active {
   max-width: 100%; /* Imagen responsiva */
   margin: 20px auto; /* Centrado y espaciado */
   border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra en la imagen */
+  box-shadow:black 0px 0px 20px; /* Sombra en la imagen */
 }
 
 .container ul {
@@ -125,4 +101,50 @@ button:active {
   transform: translateY(0); /* Efecto de presionado */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más ligera al hacer clic */
   background-color: #e4c1a6; /* Fondo más oscuro al hacer clic */
+}
+
+.div-botones {
+  position: fixed; /* El botón permanece visible aunque se haga scroll */
+  width: 100%;
+  left: 50%; /* Centra horizontalmente */
+  transform: translateX(-50%); /* Ajusta el botón para que quede realmente centrado */
+  z-index: 3; /* Asegura que esté por encima de otros elementos */
+}
+
+button {
+  position: relative;
+  background-color: #007BFF;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 20px; /* Tamaño del botón */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  margin: 20px auto 140px;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px); /* Animación al pasar el cursor */
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(20px); /* Posición inicial para animación */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Suavidad de la transición */
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0); /* Posición final */
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
