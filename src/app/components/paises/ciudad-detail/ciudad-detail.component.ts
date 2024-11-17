@@ -15,7 +15,9 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
 @Component({
   selector: 'app-ciudad-detail',
   standalone: true,
-  imports: [ComentariosListComponent,CommonModule,SelecionadorListasFlotanteComponent],
+  imports: [ComentariosListComponent
+    ,CommonModule
+    ,SelecionadorListasFlotanteComponent],
   templateUrl: './ciudad-detail.component.html',
   styleUrls: ['./ciudad-detail.component.css']
 })
@@ -23,7 +25,7 @@ export class CiudadDetailComponent implements OnInit{
   ciudad$ = this.ciudadDataService.ciudad$;
   idus = inject(IdUsuarioService);
   usuarioLogueado = false;
-  showPopup = false;
+
 
   ngOnInit(){
     this.idus.id$.subscribe({
