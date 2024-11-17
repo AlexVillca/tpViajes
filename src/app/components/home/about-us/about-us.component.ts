@@ -9,4 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AboutUsComponent {
 
+  videoLoaded = false;
+
+  // Esta función se llama cuando el video se carga completamente
+  onVideoLoaded() {
+    this.videoLoaded = true;
+    setTimeout(() => {
+      const buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+      });
+    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+  }
+
 }
