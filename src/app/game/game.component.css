@@ -75,11 +75,27 @@ h1{
     font-family: 'Press Start 2P', cursive; /* Fuente estilo Mario Bros */
     font-size:x-small;
 }
+
+.pais-correcto{
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+  color: #ffcc00;
+  text-shadow: 2px 2px #000;
+}
+
+h1{
+  font-size: 50px;
+  font-family: 'Press Start 2P', cursive;
+  color: #ffcc00;
+  text-shadow: 2px 2px #000;
+}
+
+
 .lista-puntaje {
     display: flex; /* Usa flexbox para organizar los elementos */
     justify-content: space-between; /* Coloca los elementos en extremos opuestos */
     align-items: center; /* Alinea verticalmente los elementos */
-    font-family: 'Press Start 2P', cursive; /* Fuente estilo Mario Bros */
+    font-family: 'Press Start 2P', cursive !important; /* Fuente estilo Mario Bros */
     font-size: 14px; /* Tamaño de fuente */
     color: #ffcc00; /* Color amarillo estilo retro */
     text-shadow: 2px 2px #000; /* Sombra negra para efecto retro */

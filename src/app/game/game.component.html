@@ -17,7 +17,7 @@
         <img [src]="paisAleatorio.bandera" alt="Bandera">
     </div>
         <div *ngIf="opciones" class="opcionesJuego" [ngClass]="{'visible': opciones.length > 0}">
-            <p>Selecciona el país correcto:</p>
+            <p class="pais-correcto">Selecciona el país correcto:</p>
             <ul class="lista-opciones">
                 <li *ngFor="let opcion of opciones; let i = index" [ngClass]="{'visible': opcion.visible}">
                     <button     
