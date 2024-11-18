@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 import { catchError, concatMap, map, Observable, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+import { IdUsuarioService } from './id-usuario.service';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { environment } from '../../../environments/environment.development';
 export class UsuariosService {
 
   constructor(private http: HttpClient) { }
-
+  idUs = inject(IdUsuarioService);
   private apiUrl = environment.urlBaseUsuarios;
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
@@ -27,13 +28,19 @@ export class UsuariosService {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
 
-  login(email:string,password:string):Observable<boolean|null>{
-    return this.http.get<Usuario[]>(`${this.apiUrl}?email=${email}`).pipe(map(
+  login(username:string,password:string):Observable<boolean|null>{
+    return this.http.get<Usuario[]>(`${this.apiUrl}?email=${username}`).pipe(map(
         response => {
           if(response.length === 0){
             return null;
           }else{
             if(response[0].password === password){
+              if(response[0].id !== undefined){
+                this.idUs.setId(response[0].id);
+              }
+
+
+
               return true;
             }else{
               return false;

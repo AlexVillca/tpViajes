@@ -41,6 +41,7 @@ export class LoginFormComponent {
           }else{
             if(value){
               this.location.back();
+
             }else{
               this.passwordIncorrecto = true;
 
