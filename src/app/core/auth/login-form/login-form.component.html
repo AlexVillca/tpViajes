@@ -16,7 +16,7 @@
 
   <div class="container" id="container" [class.visible]="containerVisible">
     <div class="login-container" >
-      <form [formGroup]="formulario" (ngSubmit)="(loguearse())" class="form-lg">
+      <form [formGroup]="formulario" (ngSubmit)="loguearse()" class="form-lg">
         <h1 class="titulaso">Inicia sesión aquí</h1>
         <div class="form-control2">
           <input type="email" class="email-2" formControlName="email" placeholder="Correo electrónico" />
