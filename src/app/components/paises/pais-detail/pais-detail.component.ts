@@ -22,6 +22,7 @@ export class PaisDetailComponent implements OnInit{
 
   isVisible = false; // Control de visibilidad inicial
   ngOnInit(): void {
+
     // Añadir la clase 'visible' después de que el componente esté completamente cargado
     setTimeout(() => {
       const container = document.querySelector('.container');
@@ -33,6 +34,7 @@ export class PaisDetailComponent implements OnInit{
     setTimeout(() => {
       this.isVisible = true;
     }, 100); // Ajusta el tiempo según lo necesario
+
   }
 
 
@@ -42,7 +44,7 @@ export class PaisDetailComponent implements OnInit{
   }
 
   volver() {
-    this.router.navigate(['paises']); 
+    this.router.navigate(['/paises']);
 
   }
 

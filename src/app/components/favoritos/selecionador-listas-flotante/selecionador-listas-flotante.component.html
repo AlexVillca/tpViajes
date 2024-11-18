@@ -19,9 +19,10 @@
     </div>
     <div class="agregar">
       <input type="text"class="" formControlName="nuevoItem" placeholder="Nueva lista"  maxlength="20"/>
-      <button type="button"  class="button-agregar" (click)="agregarNuevaLista()">Agregar</button>
-      <small *ngIf="alertaMax"    class="error">Se ha llegado al maximo de listas</small>
+      <button  type="button"  class="button-agregar" (click)="agregarNuevaLista()">Agregar</button>
+
     </div>
+    <small *ngIf="alertaMax"    class="error">Se ha llegado al maximo de listas</small>
     <div class="container">
       <button (click)="closePopup()">Cancelar</button>
       <button type="submit">Guardar cambios</button>
