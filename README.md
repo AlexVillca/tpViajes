@@ -1,27 +1,49 @@
-# TpFinal
+# tpViajes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+Proyecto desarrollado en Angular que ayudará al usuario a recopilar información importante acerca de destinos turisticos, utilizando servicios como la API de OpenStreetMaps para mostrar información geográfica, además de usar una base de datos propia.
 
-## Development server
+## Características
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Búsqueda de países y ciudades:** Información detallada sobre lugares turísticos.
+- **Integración de mapas:** Uso de OpenStreetMap para visualizar ubicaciones.
+- **Sistema de comentarios:** Los usuarios pueden agregar y leer comentarios sobre ciudades.
+- **Favoritos:** Gestión de listas de ciudades favoritas.
+- **Interfaz amigable:** Diseño enfocado en la usabilidad y simplicidad.
 
-## Code scaffolding
+## Instalación
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clona el repositorio:
+  
+git clone https://github.com/AlexVillca/tpViajes.git
 
-## Build
+2. Posicionarse en el directorio del proyecto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+cd tpViajes
 
-## Running unit tests
+3. Instalación de dependencia
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+npm install (nodemodules)
+npm install leaflet (integracion OpenStreetMaps)
 
-## Running end-to-end tests
+4. Iniciar json-server local
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+json-server --watch db/db.json
 
-## Further help
+5. Iniciar 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ng serve -o
+
+## Uso
+
+Ver lista de paises, filtrar por letra y entrar a ficha del país.
+Ver información de un pais, conocer detalles del mismo, acceder a distintas ciudades.
+Ver información de una ciudad, conocer detalles del mismo, dejar un comentario.
+Dejar un comentario, los usuarios registrados tienen la opción de agregar un comentario a la ficha de una ciudad.
+Guardar en listas personalizadas, los usuarios registrados tienen la opción de agregar una ciudad a una lista de 'Favoritos'.
+Minijuego, los usuarios registrados o no pueden acceder a un minijuego de banderas.
+
+## Tecnologías
+
+Frontend: Angular
+Mapas: OpenStreetMap 
+Backend: JSON Server para persistencia de datos
