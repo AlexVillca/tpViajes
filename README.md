@@ -50,5 +50,7 @@ Minijuego, los usuarios registrados o no pueden acceder a un minijuego de bander
 ## Tecnologías
 
 Frontend: Angular
+
 Mapas: OpenStreetMap 
+
 Backend: JSON Server para persistencia de datos
