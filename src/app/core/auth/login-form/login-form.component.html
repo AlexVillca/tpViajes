@@ -21,16 +21,16 @@
         <div class="form-control2">
           <input type="email" class="email-2" formControlName="email" placeholder="Correo electrónico" />
           <div>
-            @if(formulario.controls['email'].getError('required')&& formulario.controls['email'].touched){
+            @if(formulario.controls['email'].getError('required') && formulario.controls['email'].touched){
               <div class="error">
                 Campo requerido
               </div>
             }
           </div>
-          <div *ngIf="emailIncorrecto">
-            <small class="error" >*Email incorrecto</small>
+          <div *ngIf="emailIncorrecto" class="error">
+            Email incorrecto
           </div>
-          <span></span>
+
         </div>
 
 
@@ -44,10 +44,10 @@
                   </div>
                 }
               </div>
-              <div *ngIf="passwordIncorrecto">
-                <small class="error" >*Password incorrecto</small>
+              <div *ngIf="passwordIncorrecto" class="error">
+                Password incorrecto
               </div>
-              <span></span>
+
             </div>
 
             <button type="submit"  >Iniciar sesión</button>
