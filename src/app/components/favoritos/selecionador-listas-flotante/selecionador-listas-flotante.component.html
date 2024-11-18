@@ -1,46 +1,38 @@
 @if(logueado){
-  @if(visible){
-    <div class="popup-overlay"></div>
-    <div class="popup-content">
+@if(visible){
+<div class="popup-overlay"></div>
+<div class="popup-content">
 
-      <h3>Guardar en colección</h3>
+  <h3>Guardar en colección</h3>
 
-<form [formGroup]="formulario" (ngSubmit)="saveSelection()">
-  <div formArrayName="items">
-    <div *ngFor="let item of itemsArray.controls; let i = index">
-      <div [formGroupName]="i">
-        <label><input type="checkbox" formControlName="seleccionada" />{{ item.value.nombre }}</label>
+  <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
+    <div formArrayName="items">
+      <div *ngFor="let item of itemsArray.controls; let i = index">
+        <div [formGroupName]="i">
+          <label><input type="checkbox" formControlName="seleccionada"  />{{ item.value.nombre }}</label>
+
+        </div>
 
       </div>
-    </div>
-  </div>
-  <div class="container">
-      <button (click)="closePopup()">cancelar</button>
-      <button type="submit">Guardar cambios</button>
-  </div>
 
-</form>
-      <!--
-    <form [formGroup]="formularioListas" (submit)="saveSelection()">
-    <ol>
-    <div *ngFor="let lista of listasFront; let i = index">
-      <label>
-        <input type="checkbox" [value]="lista.seleccionada" />
-        {{ lista.nombre }}
-      </label>
+
     </div>
-    </ol>
+    <div class="agregar">
+      <input type="text"class="" formControlName="nuevoItem" placeholder="Nueva lista"  maxlength="20"/>
+      <button type="button"  class="button-agregar" (click)="agregarNuevaLista()">Agregar</button>
+      <small *ngIf="alertaMax"    class="error">Se ha llegado al maximo de listas</small>
+    </div>
     <div class="container">
-      <button (click)="closePopup()">Cancelar</button>
-      <button type="submit">Guardar</button>
+      <button (click)="closePopup()">Cancelars</button>
+      <button type="submit">Guardar cambios</button>
     </div>
 
-    </form>
-    -->
+  </form>
 
-    </div>
-  }@else{
-    <button (click)="visible=true">Guardar</button>
-  }
+
+</div>
+}@else{
+<button (click)="visible=true">Guardar</button>
+}
 
 }

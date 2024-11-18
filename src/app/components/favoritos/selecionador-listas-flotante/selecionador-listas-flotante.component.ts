@@ -40,7 +40,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   ciudadSeleccionada:any;
   paisSeleccionado:any;
 
-
+  alertaMax = false;
 
   formulario:any;
 
@@ -73,10 +73,10 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
                     this.listaDeListasDB = l
                     this.listasFront = this.listaDeListasDB.map(lista => this.mapDBaFront(lista));
                     this.formulario = this.fb.group({
+                      nuevoItem: ['', Validators.required],
                       items: this.fb.array(this.listasFront.map(item => this.createItemControl(item)))
+                      //
                     });
-
-
 
 
                   },
@@ -103,28 +103,36 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     );
   }
 
+ // Agrega un nuevo item al FormArray
+ agregarNuevaLista() {
 
+  if(this.itemsArray.length < 6){
+    console.log("entro cant listas");
+    console.log(this.formulario.value);
 
-
-  agregaNuevaLista(evento:any){
-    const nombreLista:string = evento.target.value;
-
-    evento.preventDefault(); // Evita el envío del formulario
-
-    if(this.listasFront.length < 9){
-      if (nombreLista.trim()) { // Verifica que no esté vacío
-        this.listasFront.push({id:Math.random().toString(36).substring(2, 9),nombre:nombreLista,seleccionada:true});
-        console.log(...this.listasFront);
-
-      }else{
-        console.log("esta vacio");
-      }
+    if (this.formulario.get('nuevoItem')?.valid) {
+      console.log("entro form valido");
+    const nuevoItem = {
+      id: Math.random().toString(36).substring(2, 9),
+      nombre: this.formulario.get('nuevoItem')?.value,
+      seleccionada: true
+    };
+    this.itemsArray.push(this.createItemControl(nuevoItem));
+    this.formulario.get('nuevoItem')?.reset();
     }else{
-      //agregar small
-      console.log("se llego al maximo de espacios");
-    }
 
+    }
+  }else{
+    this.alertaMax = true;
+
+    setTimeout(() => {
+      this.alertaMax = false;
+    }, 4000);
   }
+}
+
+
+
 
   private mapDBaFront(lista: ListaFav):ListaCheckbox{
     let selec;
@@ -173,6 +181,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
 
     this.listasFront = this.formulario.value.items;
+    console.log(this.listasFront);
   }
   saveSelection() {
     this.pasarFormaListaFront();
@@ -206,10 +215,15 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
       }
     );
 
-    this.closePopup();
+    this.visible = false;
   }
 
   closePopup() {
+    this.formulario = this.fb.group({
+      nuevoItem: ['', Validators.required],
+      items: this.fb.array(this.listasFront.map(item => this.createItemControl(item)))
+
+    });
     console.log("se cierra");
     this.visible = false;
   }
