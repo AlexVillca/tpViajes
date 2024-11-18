@@ -219,7 +219,7 @@ export class ListaComponent implements OnInit,OnDestroy{
     this.locationService.back();
   }
 
-
+  containerVisible = false;
   videoLoaded = false;
 
   // Esta función se llama cuando el video se carga completamente
@@ -232,5 +232,11 @@ export class ListaComponent implements OnInit,OnDestroy{
         button.classList.add('visible');  // Añadir la clase 'visible' a los botones
       });
     }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+    setTimeout(() => {
+      this.containerVisible = true;
+    }, 200); // Retraso en milisegundos
   }
+
+  
+  
 }
