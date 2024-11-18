@@ -160,11 +160,69 @@
             {
               "codigoPais": "TN",
               "nombre": "Hammamet"
+            },
+            {
+              "codigoPais": "TZ",
+              "nombre": "Zanzíbar"
+            },
+            {
+              "codigoPais": "ZA",
+              "nombre": "Johannesburgo"
+            }
+          ]
+        },
+        {
+          "idLista": "5p0h301",
+          "nombreLista": "asqwe",
+          "listaCiudades": [
+            {
+              "codigoPais": "SN",
+              "nombre": "Saint-Louis"
+            }
+          ]
+        },
+        {
+          "idLista": "neaaaxm",
+          "nombreLista": "qweqwe",
+          "listaCiudades": [
+            {
+              "codigoPais": "SN",
+              "nombre": "Saint-Louis"
+            }
+          ]
+        },
+        {
+          "idLista": "zmb52tf",
+          "nombreLista": "sdawqe",
+          "listaCiudades": [
+            {
+              "codigoPais": "SN",
+              "nombre": "Saint-Louis"
+            }
+          ]
+        },
+        {
+          "idLista": "u43sdld",
+          "nombreLista": "sqweqwe",
+          "listaCiudades": [
+            {
+              "codigoPais": "SN",
+              "nombre": "Saint-Louis"
+            }
+          ]
+        },
+        {
+          "idLista": "tfbj184",
+          "nombreLista": "dqweqwe",
+          "listaCiudades": [
+            {
+              "codigoPais": "SN",
+              "nombre": "Saint-Louis"
             }
           ]
         }
       ],
-      "mejorPuntaje": 11
+      "mejorPuntaje": 14
     }
   ],
   "paises": [

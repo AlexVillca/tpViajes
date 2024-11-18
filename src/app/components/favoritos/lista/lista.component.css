@@ -1,30 +1,51 @@
 
-li {
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 50px auto;
+  width: 80%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px; /* Espacio entre cada elemento de la lista */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-.content{
-  width: 100%;       /* O un ancho específico como '300px' */
-  min-height: 400px;
+li {
+  width: calc(33.33% - 20px);
 
-  justify-content: center;
+}
+
+.content {
+  margin: 120px auto;
+  width: 100%;
+  height: 300px;
+  max-width: 900px;
+  max-height: 700px;
+  opacity: 0; /* Inicialmente invisible */
+  background-color: #fc943d;
+  border: #c06820 1px solid;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.621);
+  
+  transform: translateY(-20px); /* Posición inicial desplazada */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Duración y tipo de transición */
+  z-index: 1;
+}
+
+.content.visible {
+  opacity: 1; /* Visible */
+  transform: translateY(0); /* Posición final */
 }
 .acces-button {
-
-  justify-content: center;
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #363b98;
-  border: none;
+  padding: 20px 20px;
+  background-color: #fc943d;
+  border: 1px solid #c06820;
   color: white;
   border-radius: 5px;
   cursor: pointer;
 }
 .acces-button:hover {
-  background-color: #0056b3;
+  background-color: #c06820;
   transform: translateY(-3px);
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
@@ -35,15 +56,15 @@ p{
 
 
 .delete-button {
-  display: flex;
   align-items: center;
   padding: 8px 12px;
-  background-color: #f34040;
+  background-color: #e86c4f;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  margin: 10px 10px;
   transition: background-color 0.3s;
 }
 
@@ -61,21 +82,32 @@ p{
   gap: 10px; /* Espacio entre los botones */
 }
 
-.button-volver{
-  display: flex;
-  justify-content: center;
-  width: 10%;
-  padding: 10px 10px;
-  background-color: #363b98;
+
+.button-volver {
+  position: relative;
+  background-color: #fc943d;
   border: none;
   color: white;
-  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
+  padding: 10px 20px; /* Tamaño del botón */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  margin: 20px 20px 140px;
 }
+
 .button-volver:hover {
-  background-color: #0056b3;
-  transform: translateY(-3px);
+  background-color: #fc943d;
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px); /* Animación al pasar el cursor */
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+.button-volver:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
 
