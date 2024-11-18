@@ -99,6 +99,16 @@
               "nombre": "Mombasa"
             }
           ]
+        },
+        {
+          "idLista": "c045lwd",
+          "nombreLista": "otra mas ",
+          "listaCiudades": [
+            {
+              "codigoPais": "TZ",
+              "nombre": "Arusha"
+            }
+          ]
         }
       ]
     },
@@ -148,8 +158,8 @@
           "nombreLista": "asd",
           "listaCiudades": [
             {
-              "codigoPais": "BW",
-              "nombre": "Maun"
+              "codigoPais": "TN",
+              "nombre": "Hammamet"
             }
           ]
         }

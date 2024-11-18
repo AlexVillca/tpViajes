@@ -1,16 +1,17 @@
-<div *ngIf="flag === true">
-<app-comentarios (emitirComentario)="agregarComentarioDb($event) "> </app-comentarios>
-</div>
-<section>
+<div class="container">
   <h1>Lista de comentarios</h1>
-    <ul>
-      <div *ngFor="let comentarioActual of listaComentarios; let i = index">
-        <div *ngIf="comentarioActual.ciudad === getCiudadActual()">
-          <fieldset>
-            {{ comentarioActual.usuario }}:  {{ comentarioActual.mensaje }} 
-         </fieldset>
+  <ul>
+    <div *ngFor="let comentarioActual of listaComentarios; let i = index">
+      <div *ngIf="comentarioActual.ciudad === getCiudadActual()">
+        <div class="comentario-container">
+          <strong>{{ comentarioActual.usuario }}: </strong>  {{ comentarioActual.mensaje }}
+        </div>
       </div>
     </div>
-    </ul>
-  </section>
-  
+  </ul>
+</div>
+
+
+<div class="app-comentarios-container"  *ngIf="flag === true">
+<app-comentarios (emitirComentario)="agregarComentarioDb($event) "> </app-comentarios>
+</div>
