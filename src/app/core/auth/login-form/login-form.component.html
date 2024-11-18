@@ -16,7 +16,7 @@
 
   <div class="container" id="container" [class.visible]="containerVisible">
     <div class="login-container" >
-      <form [formGroup]="formulario" (ngSubmit)="(funRespuesta())" class="form-lg">
+      <form [formGroup]="formulario" (ngSubmit)="(loguearse())" class="form-lg">
         <h1 class="titulaso">Inicia sesión aquí</h1>
         <div class="form-control2">
           <input type="email" class="email-2" formControlName="email" placeholder="Correo electrónico" />
@@ -26,6 +26,9 @@
                 Campo requerido
               </div>
             }
+          </div>
+          <div *ngIf="emailIncorrecto">
+            <small class="error" >*Email incorrecto</small>
           </div>
           <span></span>
         </div>
@@ -41,10 +44,13 @@
                   </div>
                 }
               </div>
+              <div *ngIf="passwordIncorrecto">
+                <small class="error" >*Password incorrecto</small>
+              </div>
               <span></span>
             </div>
 
-            <button type="submit" value="submit" (click)="funRespuesta()">Iniciar sesión</button>
+            <button type="submit"  >Iniciar sesión</button>
             <small class="minireg">No tienes cuenta? <a class="minireg" routerLink="/register"><strong>Registrate aqui</strong></a></small>
           </form>
         </div>

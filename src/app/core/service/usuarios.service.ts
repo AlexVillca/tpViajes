@@ -27,24 +27,20 @@ export class UsuariosService {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
 
-  logUsuario(emailIngresado: string, contraseñaIngresada: string): Observable<string|null> {
-    const params = new HttpParams()
-      .set('email', emailIngresado)
-      .set('password', contraseñaIngresada);
-    return this.http.get<Usuario[]>(this.apiUrl, { params }).pipe(
-      map(usuario => {
-        if (usuario) {
-          if(usuario[0].password === contraseñaIngresada){
-            return String(usuario[0].id);
-          }else{
+  login(email:string,password:string):Observable<boolean|null>{
+    return this.http.get<Usuario[]>(`${this.apiUrl}?email=${email}`).pipe(map(
+        response => {
+          if(response.length === 0){
             return null;
+          }else{
+            if(response[0].password === password){
+              return true;
+            }else{
+              return false;
+            }
           }
-        } else {
-          console.log("contraseña incorrecta");
-          return null;
         }
-      })
-    );
+    ))
   }
 
 comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
