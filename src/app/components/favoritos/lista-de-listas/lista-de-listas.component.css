@@ -1,11 +1,24 @@
 
+h1 {
+  font-size: 50px;
+  color: white;
+  text-shadow: 2px 2px #000;
+  margin: 10px 30px;
+}
 .container {
   display:fixed;
   margin: 120px auto;
-  width: 60%;
-  align-content: center;
+  width: 100%;
+  height: 300px;
+  max-width: 600px;
+  max-height: 700px;
+  align-content: column;
   opacity: 0; /* Inicialmente invisible */
   background-color: #fc943d;
+  border: #c06820 1px solid;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.621);
+  
   transform: translateY(-20px); /* Posición inicial desplazada */
   transition: opacity 0.6s ease, transform 0.6s ease; /* Duración y tipo de transición */
   z-index: 1;
@@ -20,14 +33,13 @@ li {
   display: flex;
   align-items: center;
   width: 90%;
-  margin: 0px auto;
+
 }
 
 
 .button-seleccion {
 
   justify-content: center;
-  width: 100%;
   padding: 10px 20px;
   background-color: #fc943d;
   border: 1px solid #c06820;
@@ -41,21 +53,32 @@ li {
   transform: translateY(-3px);
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
-.button-volver{
-  display: flex;
-  justify-content: center;
-  width: 10%;
-  padding: 10px 10px;
-  background-color: #363b98;
+.button-volver {
+  position: flex;
+  margin: 50px 30px 30px 30px;
+  background-color: #fc943d;
   border: none;
   color: white;
-  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
+  padding: 10px 20px; /* Tamaño del botón */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  
 }
+
 .button-volver:hover {
-  background-color: #0056b3;
-  transform: translateY(-3px);
+  background-color: #fc943d;
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px); /* Animación al pasar el cursor */
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+.button-volver:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 p{
   text-align: center;
