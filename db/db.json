@@ -48,6 +48,13 @@
       "ciudad": "Johannesburgo",
       "usuarioId": "47fe",
       "usuario": "probando"
+    },
+    {
+      "id": "1afb",
+      "mensaje": "hola",
+      "ciudad": "La Paz",
+      "usuarioId": "8021",
+      "usuario": "facuramallo"
     }
   ],
   "usuarios": [
@@ -165,6 +172,73 @@
         }
       ],
       "mejorPuntaje": 11
+    },
+    {
+      "id": "8021",
+      "username": "facuramallo",
+      "email": "facu@rama.com",
+      "password": "facu3605",
+      "listasFavs": [
+        {
+          "idLista": "zjw0ng6",
+          "nombreLista": "nuevalista",
+          "listaCiudades": [
+            {
+              "codigoPais": "BO",
+              "nombre": "La Paz"
+            },
+            {
+              "codigoPais": "KE",
+              "nombre": "Mombasa"
+            }
+          ]
+        },
+        {
+          "idLista": "6n034dd",
+          "nombreLista": "otramas",
+          "listaCiudades": [
+            {
+              "codigoPais": "TN",
+              "nombre": "Hammamet"
+            }
+          ]
+        },
+        {
+          "idLista": "0w87mi1",
+          "nombreLista": "otra",
+          "listaCiudades": [
+            {
+              "codigoPais": "ZA",
+              "nombre": "Johannesburgo"
+            }
+          ]
+        },
+        {
+          "idLista": "i8ppvbh",
+          "nombreLista": "asdasd",
+          "listaCiudades": []
+        },
+        {
+          "idLista": "lt8vftv",
+          "nombreLista": "asdasd",
+          "listaCiudades": [
+            {
+              "codigoPais": "ZA",
+              "nombre": "Ciudad del Cabo"
+            }
+          ]
+        },
+        {
+          "idLista": "pmxo7rt",
+          "nombreLista": "asdasd",
+          "listaCiudades": [
+            {
+              "codigoPais": "ZA",
+              "nombre": "Ciudad del Cabo"
+            }
+          ]
+        }
+      ]
     }
   ],
   "paises": [

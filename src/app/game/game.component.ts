@@ -18,7 +18,7 @@ import { UsuariosService } from '../core/service/usuarios.service';
 })
 export class GameComponent {
   paisesService = inject(PaisesService);
- 
+
   arregloPaises: Pais[] = [];
   paisAleatorio: Pais | null = null;
   opciones: Pais[] = [];
@@ -71,7 +71,7 @@ listar(){
     error: (e : Error) => {
       console.log(e.message);
     }
-    }); 
+    });
    }
 
   generarPregunta() {
@@ -110,12 +110,12 @@ listar(){
   }, 100); // Esto aplica la visibilidad después de un pequeño retraso
 }
 
-  
 
-  verificarRespuesta(pais: Pais) {
-    if (pais === this.paisAleatorio) {
-      this.mensaje = '¡Correcto!';
-      this.puntaje++; //Aumenta el puntaje
+
+verificarRespuesta(pais: Pais) {
+  if (pais === this.paisAleatorio) {
+    this.mensaje = '¡Correcto!';
+    this.puntaje++; //Aumenta el puntaje
       this.opcionesDesHabilitadas = true;
       setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos
     } else {
@@ -123,19 +123,19 @@ listar(){
       if(this.intentos>=2){
         this.mensaje = 'Intentos agotados. Reiniciando...';
         // Si el puntaje actual supera el mejor puntaje, actualiza el mejor puntaje
-      if (this.puntaje > this.mejorPuntaje) {
-        this.mejorPuntaje = this.puntaje;
-        if (this.flag) {
-          this.servicioUsuario.actualizarPuntajeMaximo(this.id!, this.mejorPuntaje).subscribe({
-            next: () => console.log('Puntaje actualizado correctamente'),
-            error: (e) => console.error('Error al actualizar el puntaje:', e)
-          });
-        }
+        if (this.puntaje > this.mejorPuntaje) {
+          this.mejorPuntaje = this.puntaje;
+          if (this.flag) {
+            this.servicioUsuario.actualizarPuntajeMaximo(this.id!, this.mejorPuntaje).subscribe({
+              next: () => console.log('Puntaje actualizado correctamente'),
+              error: (e) => console.error('Error al actualizar el puntaje:', e)
+            });
+          }
       }
-        this.puntaje = 0; // Reinicia el puntaje actual si pierde
-        this.opcionesDesHabilitadas = true;
-        setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos 
-      }else{
+      this.puntaje = 0; // Reinicia el puntaje actual si pierde
+      this.opcionesDesHabilitadas = true;
+      setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos
+    }else{
         this.mensaje = 'Incorrecto, intenta de nuevo.';
 
       }
