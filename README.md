@@ -36,10 +36,15 @@ ng serve -o
 ## Uso
 
 Ver lista de paises, filtrar por letra y entrar a ficha del país.
+
 Ver información de un pais, conocer detalles del mismo, acceder a distintas ciudades.
+
 Ver información de una ciudad, conocer detalles del mismo, dejar un comentario.
+
 Dejar un comentario, los usuarios registrados tienen la opción de agregar un comentario a la ficha de una ciudad.
+
 Guardar en listas personalizadas, los usuarios registrados tienen la opción de agregar una ciudad a una lista de 'Favoritos'.
+
 Minijuego, los usuarios registrados o no pueden acceder a un minijuego de banderas.
 
 ## Tecnologías
