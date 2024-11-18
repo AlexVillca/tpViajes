@@ -4,7 +4,6 @@ body {
 
 button {
   width: auto;
-  padding: 10px 20px;
   background-color: #fc943d;
   border: none;
   color: white;
@@ -13,10 +12,10 @@ button {
   cursor: pointer;
   display: block;
   text-align: center;
-  padding: 10px 20px; /* Tamaño del botón */
+  padding: 20px 40px; /* Tamaño del botón */
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
-  margin: 20px auto 140px;
+  margin: 20px auto 20px;
 }
 
 button:hover {
@@ -76,7 +75,7 @@ img {
 .city-detail-container {
   position: relative; /* Necesario para que el video se coloque detrás del contenido */
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 10px;
   overflow: hidden; /* Asegura que el video no sobresalga */
   z-index: 1;
@@ -108,19 +107,6 @@ img {
 .city-detail-container p {
   margin-bottom: 10px;
   color: #333; /* Texto oscuro para contraste */
-}
-
-/* Botón dentro del city-detail-container */
-.city-detail-container button {
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.city-detail-container button:hover {
-  background-color: #d0d0d0;
 }
 
 
