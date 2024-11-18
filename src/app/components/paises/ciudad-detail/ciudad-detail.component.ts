@@ -28,6 +28,7 @@ export class CiudadDetailComponent implements OnInit{
 
 
   ngOnInit(){
+    window.scrollTo(0, 0);
     this.idus.id$.subscribe({
       next:(id) => {
         if(id){

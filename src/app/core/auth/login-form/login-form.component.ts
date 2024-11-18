@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { UsuariosService } from '../../service/usuarios.service';
 import { IdUsuarioService } from '../../service/id-usuario.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login-form',
@@ -19,31 +20,37 @@ export class LoginFormComponent {
   idUsuario = inject(IdUsuarioService);
   routerService = inject(Router);
   fb = inject(FormBuilder);
-
+  location = inject(Location)
   formulario = this.fb.nonNullable.group({
     email: ['',[Validators.required]],
     password: ['',[Validators.required]]
   })
 
+  emailIncorrecto = false;
+  passwordIncorrecto = false;
+  loguearse(){
+    this.emailIncorrecto = false;
+    this.passwordIncorrecto =false;
+    if(this.formulario.invalid){return}
+    this.usuarioService.login(this.formulario.get("email")?.value ?? "", this.formulario.get("password")?.value ?? "").subscribe(
+      {
+        next:(value)=>{
+          if(value === null){
+            this.emailIncorrecto = true;
 
-  funRespuesta() {
+          }else{
+            if(value){
+              this.location.back();
+            }else{
+              this.passwordIncorrecto = true;
 
-    const correoInput = this.formulario.get('email')!.value;
-    const contrInput = this.formulario.get('password')!.value;
 
-    this.usuarioService.logUsuario(correoInput, contrInput).subscribe({
-      next: (id) => {
-        if (id) {
-          this.idUsuario.setId(id);
-          this.routerService.navigate(['home']);
-        } else {
-          console.log("usuario no registrado funResp");
-        }
-      },
-      error: (error) => {
-        console.error('Error al loguear:', error);
+            }
+          }
+        },
+        error:(e)=>{console.log(e.message())}
       }
-    });
+  )
   }
 
   videoLoaded = false;
@@ -56,7 +63,7 @@ export class LoginFormComponent {
       buttons.forEach((button) => {
         button.classList.add('visible');
       });
-    }, 200);  
+    }, 200);
   }
 
   // Propiedad para manejar la visibilidad
