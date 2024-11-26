@@ -30,7 +30,7 @@ export class PaisesListComponent implements OnInit {
   paisDataService = inject(PaisDataService);
   router =  inject(Router);
 
-  letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  letras = 'ABCDEFGHIJKLMNOPQRSTUVZ'.split('');
   letraSeleccionada = 'todos';
   paisesFiltrados: Pais[] = [];
 

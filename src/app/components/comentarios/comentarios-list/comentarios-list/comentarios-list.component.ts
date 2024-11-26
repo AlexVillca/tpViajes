@@ -64,4 +64,8 @@ export class ComentariosListComponent implements OnInit {
   getCiudadActual() : string{
     return this.ciudadActual;
   }
+  getComentariosDeCiudadActual(): Comentario[] {
+    return this.listaComentarios.filter(comentario => comentario.ciudad === this.getCiudadActual());
+  }
+  
 }

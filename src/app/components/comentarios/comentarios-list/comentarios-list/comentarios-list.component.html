@@ -6,25 +6,38 @@
   <title>comentarios</title>
 </head>
 <body>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comentarios</title>
+  </head>
+  <body>
+    
+    <div class="app-comentarios-container" *ngIf="flag === true">
+      <app-comentarios (emitirComentario)="agregarComentarioDb($event)"></app-comentarios>
+    </div>
   
-  <div class="app-comentarios-container"  *ngIf="flag === true">
-  <app-comentarios (emitirComentario)="agregarComentarioDb($event) "> </app-comentarios>
-  </div>
-
     <div class="container">
       <h1>Lista de comentarios</h1>
-      <ul>
-        <div *ngFor="let comentarioActual of listaComentarios; let i = index">
-          <div *ngIf="comentarioActual.ciudad === getCiudadActual()">
-            <div class="comentario-container">
-              <strong>{{ comentarioActual.usuario }}: </strong>  {{ comentarioActual.mensaje }}
-            </div>
+      
+      <div *ngIf="getComentariosDeCiudadActual().length === 0">
+        <p>Aún no hay comentarios</p>
+      </div>
+      
+      <ul *ngIf="getComentariosDeCiudadActual().length > 0">
+        <li *ngFor="let comentarioActual of getComentariosDeCiudadActual(); let i = index">
+          <div class="comentario-container">
+            <strong>{{ comentarioActual.usuario }}: </strong> {{ comentarioActual.mensaje }}
           </div>
-        </div>
+        </li>
       </ul>
     </div>
-
-
+  
+  </body>
+  </html>
+  
 
 </body>
 </html>
