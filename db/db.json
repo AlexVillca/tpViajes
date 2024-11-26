@@ -70,7 +70,18 @@
       "username": "arjona",
       "email": "acorde@gmail.com",
       "password": "541sdgdgsdg",
-      "listasFavs": []
+      "listasFavs": [
+        {
+          "idLista": "mjujael",
+          "nombreLista": "Mi coleccion",
+          "listaCiudades": [
+            {
+              "codigoPais": "TZ",
+              "nombre": "Zanzíbar"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "47fe",
