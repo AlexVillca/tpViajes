@@ -23,6 +23,7 @@ cd tpViajes
 3. Instalación de dependencia
 
 npm install (nodemodules)
+
 npm install leaflet (integracion OpenStreetMaps)
 
 4. Iniciar json-server local
