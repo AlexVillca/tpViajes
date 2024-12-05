@@ -12,8 +12,8 @@ h1 {
   max-width: 700px;
   max-height: 700px;
   opacity: 0; /* Inicialmente invisible */
-  background-color: #fc943d;
-  border: #c06820 1px solid;
+  background-color: #1E85BB;
+  border: #14C0C0 1px solid;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.621);
   
@@ -45,21 +45,21 @@ li {
 
 .button-seleccion {
   padding: 10px 20px;
-  background-color: #fc943d;
-  border: 1px solid #c06820;
+  background-color: #1E85BB;
+  border: 1px solid #14C0C0;
   color: white;
   border-radius: 5px;
   cursor: pointer;
 }
 .button-seleccion:hover {
-  background-color: #c06820;
+  background-color: #2AA4DA;
   transform: translateY(-3px);
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
 .button-volver {
   position: flex;
   margin: 50px 30px;;
-  background-color: #fc943d;
+  background-color: #1E85BB;
   border: none;
   color: white;
   font-size: 16px;
@@ -73,7 +73,7 @@ li {
 }
 
 .button-volver:hover {
-  background-color: #fc943d;
+  background-color: #2AA4DA;
   color: rgba(0, 0, 0, 0.605);
   transform: translateY(-3px); /* Animación al pasar el cursor */
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);

@@ -1,6 +1,6 @@
   /* Navbar general */
   .navbar {
-    background-color: #fc943d;
+    background-color: #1E85BB;
     padding: 3px 0;
     width: 100%;
     height: 60px;
@@ -62,7 +62,7 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
   .navbar-menu-usuario li a:hover {
-    background-color: #c06820;
+    background-color: #2AA4DA;
     color: rgba(0, 0, 0, 0.605);
     transform: translateY(-3px); /* Animación al pasar el cursor */
     box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
@@ -102,7 +102,7 @@
   }
 
   .navbar-menu li a:hover {
-    background-color: #c06820;
+    background-color: #2AA4DA;
     color: rgba(0, 0, 0, 0.605);
     transform: translateY(-3px); /* Animación al pasar el cursor */
     box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
@@ -130,7 +130,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #fc943d;
+      background-color: #2AA4DA;
       padding-top: 60px; /* Para que el menú no se superponga con el botón */
       transform: translateY(-100%);
       opacity: 0;
@@ -183,7 +183,7 @@
 /* Efecto hover */
 .user-image:hover {
   transform: scale(1.2); /* Hace que la imagen se agrande */
-  background-color: #c06820;
+  background-color: #2AA4DA;
   z-index: 2;
 }
 
@@ -192,9 +192,9 @@
   visibility: hidden; /* Inicia oculta */
   position: absolute;
   list-style: none;
-  top: 42px; /* Se coloca debajo del navbar */
+  top: 44px; /* Se coloca debajo del navbar */
   right: -5px; /* Se alinea a la derecha */
-  background-color: #fc943d;
+  background-color: #1E85BB;
   padding: 10px;
   border-radius: 5px;
   width: 200px;
@@ -225,7 +225,7 @@
 }
 
 .user-dropdown li a:hover {
-  background-color: #c06820;
+  background-color: #2AA4DA;
   color: rgba(0, 0, 0, 0.605);
   transform: translateY(-3px); /* Animación al pasar el cursor */
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
