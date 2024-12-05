@@ -308,6 +308,19 @@
           ]
         }
       ]
+    },
+    {
+      "id": "2012",
+      "username": "guss",
+      "email": "asd@gmail.com",
+      "password": "asdf1234",
+      "listasFavs": [
+        {
+          "idLista": "8fg5c8q",
+          "nombreLista": "Guardadas",
+          "listaCiudades": []
+        }
+      ]
     }
   ],
   "paises": [

@@ -54,7 +54,7 @@ h3{
   margin-right: 8px; /* Espacio entre el botón y el input */
   width: auto;
   padding: 10px 20px;
-  background-color: #fc943d;
+  background-color: #1E85BB;
   border: none;
   color: white;
   border-radius: 25px;
@@ -82,7 +82,7 @@ h3{
 button {
   width: auto;
   padding: 10px 20px;
-  background-color: #fc943d;
+  background-color: #1E85BB;
   border: none;
   color: white;
   border-radius: 25px;
@@ -97,7 +97,7 @@ button {
 }
 
 button:hover {
-  background-color: #c06820;
+  background-color: #2AA4DA;
   color: rgba(0, 0, 0, 0.605);
   transform: translateY(-3px); /* Animación al pasar el cursor */
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
