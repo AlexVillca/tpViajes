@@ -6,8 +6,8 @@
   <h3>Guardar en colección</h3>
 
   <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
-    <div formArrayName="items">
-      <div *ngFor="let item of itemsArray.controls; let i = index">
+    <div formArrayName="checkboxesListasFavoritos">
+      <div *ngFor="let item of arrayCheckbox.controls; let i = index">
         <div [formGroupName]="i">
           <label><input type="checkbox" formControlName="seleccionada"  />{{ item.value.nombre }}</label>
 
@@ -18,7 +18,7 @@
 
     </div>
     <div class="agregar">
-      <input type="text"class="" formControlName="nuevoItem" placeholder="Nueva lista"  maxlength="20"/>
+      <input type="text"class="" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista"  maxlength="20"/>
       <button  type="button"  class="button-agregar" (click)="agregarNuevaLista()">Agregar</button>
 
     </div>
