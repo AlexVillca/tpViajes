@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../service/usuarios.service';
 import { Router } from '@angular/router';
 import { IdUsuarioService } from '../../service/id-usuario.service';
@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-update-password',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,FormsModule],
   templateUrl: './update-password.component.html',
   styleUrls: ['./update-password.component.css']
 })
@@ -24,14 +24,25 @@ export class UpdatePasswordComponent implements OnInit {
   idUsuarioService = inject(IdUsuarioService);
   location = inject(Location);
 
-  formularioUpdate = this.fb.nonNullable.group({
-    password: ['', [Validators.required]],
+  formularioUpdate:FormGroup = this.fb.nonNullable.group({
+    password: ['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
     confirmPassword: ['', [Validators.required]]
   });
 
   locationService: any;
-
   containerVisible = false;
+  checkPasswordMatch():void{
+    const { password, confirmPassword } = this.formularioUpdate.getRawValue();
+    if (password !== confirmPassword) {
+      this.passwordNotMatch = true;
+    }else{
+      this.passwordNotMatch = false;
+    }
+  }
+
+  passwordNotMatch: boolean = false;
+
+
   ngOnInit(): void {
     this.idUsuarioService.id$.subscribe({
       next: (id) => {
@@ -49,23 +60,12 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   update(): void {
-    if (this.formularioUpdate.invalid) {
-      alert('Por favor, completa todos los campos');
-      return;
-    }
 
+    this.checkPasswordMatch();
+    if(this.passwordNotMatch){return;}
+    if (!this.id) {return;}
+    if (this.formularioUpdate.invalid) {return;}
     const { password, confirmPassword } = this.formularioUpdate.getRawValue();
-
-    if (password !== confirmPassword) {
-      alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
-      return;
-    }
-
-    if (!this.id) {
-      console.error('No se recibió el ID del usuario logueado');
-      return;
-    }
-
     this.usuariosService.cambiarContrasena(this.id, password).subscribe({
       next: () => {
         alert('La contraseña ha sido actualizada con éxito');
@@ -77,6 +77,11 @@ export class UpdatePasswordComponent implements OnInit {
       },
     });
   }
+
+
+
+
+
 
   videoLoaded = false;
   onVideoLoaded() {
@@ -94,5 +99,5 @@ export class UpdatePasswordComponent implements OnInit {
     this.router.navigateByUrl('home');
   }
 
-  
+
 }
