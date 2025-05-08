@@ -26,6 +26,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   fb = inject(FormBuilder);
   us = inject(UsuariosService);
   ids = inject(IdUsuarioService);
+
   paisDataService = inject (PaisDataService);
   ciudadDataService = inject(CiudadDataService);
 
@@ -49,7 +50,9 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   get groupCheckbox(): FormGroup {
     return this.formulario.get('checkboxesListasFavoritos') as FormGroup;
   }
-
+  get idsGroupCheckbox(){
+    return Object.keys( this.groupCheckbox.value || {});
+  }
   //y con el input para una nueva lista
   get nuevaListaInput():FormControl {
     return this.formulario.get('nuevocheckboxListaFavorito') as FormControl;
@@ -137,14 +140,8 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     const groupAux = this.fb.group({});
     this.mapNombresListas.clear();
     this.listasFavoritosDB.forEach(lista => {
-      let selec;
-      if(lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado?.codigo && c.nombre === this.ciudadSeleccionada?.nombre)){
-        selec = true;
-      }else{
-        selec = false;
-      }
+      let selec = lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado?.codigo && c.nombre === this.ciudadSeleccionada?.nombre);
       this.mapNombresListas.set(lista.idLista,lista.nombreLista);
-      console.log(lista.nombreLista + " " + lista.idLista + " tiene esta ciudad en su lista? " + selec);
       groupAux.addControl(lista.idLista,new FormControl(selec));
     });
     console.log(Object.entries(groupAux.controls));
@@ -162,7 +159,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
       if(listaOriginal === undefined){ // si es una lista nueva
         listaOriginal = { //la agrega
           idLista:id,
-          nombreLista:this.mapNombresListas.get(id) || "problema",
+          nombreLista:this.mapNombresListas.get(id) || "error",
           listaCiudades:[]
         }
         this.listasFavoritosDB.push(listaOriginal);
@@ -171,16 +168,10 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
       //la ciudad esta en la lista original y en la front o si no esta en la original y no esta en la front
       if(listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && seleccionado ||
         !listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && !seleccionado){
-          ///la lista se mantiene sin cambios
-          console.log("la lista se mantiene");
       }else if(seleccionado){
-        //se agrega la ciudad
-        console.log("agrega");
-          listaOriginal.listaCiudades.push({codigoPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
+        listaOriginal.listaCiudades.push({codigoPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
       }else{
-        //se quita la ciudad
-          console.log("saca");
-          listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.codigoPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
+        listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.codigoPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
       }
 
     });
