@@ -28,10 +28,12 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   ids = inject(IdUsuarioService);
   paisDataService = inject (PaisDataService);
   ciudadDataService = inject(CiudadDataService);
+
   visible = false;
   logueado = false;
 
   listasFavoritosDB:ListaFav[] = [];
+  mapNombresListas = new Map<string,string>();
 
   ciudadSeleccionada:any;
   paisSeleccionado:any;
@@ -40,26 +42,20 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
   formulario:FormGroup = this.fb.group({
     nuevocheckboxListaFavorito: ['', Validators.required],
-    checkboxesListasFavoritos: this.fb.array([])
+    checkboxesListasFavoritos: this.fb.group({})
   });
 
-  crearCheckboxForm(item: any): FormGroup {
-    return this.fb.group({
-      id: [item.id],
-      nombre: [item.nombre],
-      seleccionada: [item.seleccionada]
-    });
-  }
-
   //con esto trabajo directamente en los checkbox
-  get arrayCheckbox(): FormArray {
-    return this.formulario.get('checkboxesListasFavoritos') as FormArray;
+  get groupCheckbox(): FormGroup {
+    return this.formulario.get('checkboxesListasFavoritos') as FormGroup;
   }
 
   //y con el input para una nueva lista
   get nuevaListaInput():FormControl {
     return this.formulario.get('nuevocheckboxListaFavorito') as FormControl;
   }
+
+
 
   ngOnInit(): void {
     this.ids.id$.subscribe(
@@ -69,27 +65,37 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
             this.logueado = true;
             this.paisDataService.pais$.subscribe(
               {
-                next:(p) => {this.paisSeleccionado = p},
+                next:(p) => {
+                  this.paisSeleccionado = p
+                  this.ciudadDataService.ciudad$.subscribe(
+                    {
+                      next:(c) => {
+                        this.ciudadSeleccionada = c
+                        this.us.obtenerListasFav(id).subscribe(
+                          {
+                            next:(l) => {
+                              //obtengo las listas
+                              this.listasFavoritosDB = l;
+                              //cargo las checkbox
+                              this.pasajeDBaFormulario();
+                              console.log(Object.entries(this.groupCheckbox.controls));
+                            },
+                            error: (e) => {console.log(e)}
+                          }
+                      )
+
+
+                      },
+                      error:(error) => {console.log(error)}
+                    }
+                  );
+
+                },
                 error:(error) => {console.log(error)}
               }
             );
-            this.ciudadDataService.ciudad$.subscribe(
-              {
-                next:(c) => {this.ciudadSeleccionada = c},
-                error:(error) => {console.log(error)}
-              }
-            );
-            this.us.obtenerListasFav(id).subscribe(
-                {
-                  next:(l) => {
-                    //obtengo las listas
-                    this.listasFavoritosDB = l;
-                    //cargo las checkbox
-                    this.pasajeDBaFormulario();
-                  },
-                  error: (e) => {console.log(e)}
-                }
-            )
+
+
 
           }
         },
@@ -103,24 +109,20 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     let idGenerado:string;
     do{
       idGenerado = Math.random().toString(36).substring(2, 9);
-    }while(this.arrayCheckbox.value.some( (l:ListaCheckbox)=> l.id === idGenerado));
+    }while(Object.keys(this.groupCheckbox.controls).some( (l:string)=> l === idGenerado));
     return idGenerado;
   }
 
  // Agrega un nuevo item al FormArray
  agregarNuevaLista() {
 
-  if(this.arrayCheckbox.length < 6){
+  if(Object.keys(this.groupCheckbox.controls).length < 6){
     console.log("entro cant listas");
     if (this.nuevaListaInput.valid) {
       console.log("entro form valido");
-
-      const nuevoItem = {
-        id:this.nuevoIdLista() ,
-        nombre: this.nuevaListaInput.value,
-        seleccionada: true
-      };
-      this.arrayCheckbox.push(this.crearCheckboxForm(nuevoItem));
+      let nuevoId = this.nuevoIdLista();
+      this.mapNombresListas.set(nuevoId,this.nuevaListaInput.value);
+      this.groupCheckbox.addControl(nuevoId,new FormControl(true));
       this.nuevaListaInput.reset();
     }
   }else{
@@ -132,55 +134,56 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   }
  }
   private pasajeDBaFormulario(){
-    this.formulario.setControl('checkboxesListasFavoritos',this.fb.array(
-      this.listasFavoritosDB.map(lista => {
-        let selec;
-        if(lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado?.codigo && c.nombre === this.ciudadSeleccionada?.nombre)){
-          selec = true;
-        }else{
-          selec = false;
-        }
-        return this.fb.group({
-          id: [lista.idLista],
-          nombre: [lista.nombreLista],
-          seleccionada: [selec]
-        });
-      })
-    ));
-  }
-  private pasajeFormularioaDB(){
-    console.log("lista  db antes de pasarle el form")
-    console.log(this.listasFavoritosDB);
-    this.arrayCheckbox.value.forEach(
-      (l:ListaCheckbox) => {
-        let listaOriginal = this.listasFavoritosDB.find(ldb => ldb.idLista === l.id);
-        if(listaOriginal === undefined){ // si es una lista nueva
-          listaOriginal = { //la agrega
-            idLista:l.id,
-            nombreLista:l.nombre,
-            listaCiudades:[]
-          }
-          this.listasFavoritosDB.push(listaOriginal);
-        }
-        //veo si
-        //la ciudad esta en la lista original y en la front o si no esta en la original y no esta en la front
-        if(listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && l.seleccionada ||
-          !listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && !l.seleccionada){
-            ///la lista se mantiene sin cambios
-            console.log("la lista se mantiene");
-        }else if(l.seleccionada){
-          //se agrega la ciudad
-          console.log("agrega");
-            listaOriginal.listaCiudades.push({codigoPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
-        }else{
-          //se quita la ciudad
-            console.log("saca");
-            listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.codigoPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
-
-        }
+    const groupAux = this.fb.group({});
+    this.mapNombresListas.clear();
+    this.listasFavoritosDB.forEach(lista => {
+      let selec;
+      if(lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado?.codigo && c.nombre === this.ciudadSeleccionada?.nombre)){
+        selec = true;
+      }else{
+        selec = false;
+      }
+      this.mapNombresListas.set(lista.idLista,lista.nombreLista);
+      console.log(lista.nombreLista + " " + lista.idLista + " tiene esta ciudad en su lista? " + selec);
+      groupAux.addControl(lista.idLista,new FormControl(selec));
     });
-      console.log("lista  db despues de pasarle el form")
-      console.log(this.listasFavoritosDB);
+    console.log(Object.entries(groupAux.controls));
+    this.formulario.setControl('checkboxesListasFavoritos',groupAux);
+  }
+
+
+
+  private pasajeFormularioaDB(){
+
+    Object.entries(this.groupCheckbox.controls).forEach(([id, control]) => {
+      const seleccionado = control.value;
+      let listaOriginal = this.listasFavoritosDB.find(ldb => ldb.idLista === id);
+
+      if(listaOriginal === undefined){ // si es una lista nueva
+        listaOriginal = { //la agrega
+          idLista:id,
+          nombreLista:this.mapNombresListas.get(id) || "problema",
+          listaCiudades:[]
+        }
+        this.listasFavoritosDB.push(listaOriginal);
+      }
+      //veo si
+      //la ciudad esta en la lista original y en la front o si no esta en la original y no esta en la front
+      if(listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && seleccionado ||
+        !listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && !seleccionado){
+          ///la lista se mantiene sin cambios
+          console.log("la lista se mantiene");
+      }else if(seleccionado){
+        //se agrega la ciudad
+        console.log("agrega");
+          listaOriginal.listaCiudades.push({codigoPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
+      }else{
+        //se quita la ciudad
+          console.log("saca");
+          listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.codigoPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
+      }
+
+    });
   }
 
   saveSelection() {
