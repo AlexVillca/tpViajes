@@ -1,39 +1,36 @@
 @if(logueado){
-@if(visible){
-<div class="popup-overlay"></div>
-<div class="popup-content">
+  @if(visible){
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
 
-  <h3>Guardar en colección</h3>
+      <h3>Guardar en colección</h3>
 
-  <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
-    <div formArrayName="checkboxesListasFavoritos">
-      <div *ngFor="let item of arrayCheckbox.controls; let i = index">
-        <div [formGroupName]="i">
-          <label><input type="checkbox" formControlName="seleccionada"  />{{ item.value.nombre }}</label>
+      <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
 
+        <div [formGroup]="groupCheckbox">
+          <div *ngFor="let lista of listasFavoritosDB">
+            <label>
+              <input type="checkbox" [formControlName]="lista.idLista" />
+              {{ mapNombresListas.get(lista.idLista) }}
+            </label>
+          </div>
         </div>
 
-      </div>
+        <div class="agregar">
+          <input type="text" class="" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista" maxlength="20" />
+          <button type="button" class="button-agregar" (click)="agregarNuevaLista()">Agregar</button>
+        </div>
+        <small *ngIf="alertaMax" class="error">Se ha llegado al máximo de listas</small>
+        <div class="container">
+          <button type="button" (click)="cancelar()">Cancelar</button>
+          <button type="submit">Guardar cambios</button>
+        </div>
+      </form>
 
 
     </div>
-    <div class="agregar">
-      <input type="text"class="" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista"  maxlength="20"/>
-      <button  type="button"  class="button-agregar" (click)="agregarNuevaLista()">Agregar</button>
-
-    </div>
-    <small *ngIf="alertaMax"    class="error">Se ha llegado al maximo de listas</small>
-    <div class="container">
-      <button (click)="cancelar()">Cancelar</button>
-      <button type="submit">Guardar cambios</button>
-    </div>
-
-  </form>
-
-
-</div>
-}@else{
-<button (click)="visible=true">Guardar</button>
-}
+  }@else{
+  <button (click)="visible=true">Guardar</button>
+  }
 
 }
