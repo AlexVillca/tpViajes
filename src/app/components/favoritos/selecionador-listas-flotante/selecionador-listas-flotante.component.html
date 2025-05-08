@@ -8,10 +8,10 @@
       <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
 
         <div [formGroup]="groupCheckbox">
-          <div *ngFor="let lista of listasFavoritosDB">
+          <div *ngFor="let idLista of idsGroupCheckbox">
             <label>
-              <input type="checkbox" [formControlName]="lista.idLista" />
-              {{ mapNombresListas.get(lista.idLista) }}
+              <input type="checkbox" [formControlName]="idLista" />
+              {{ mapNombresListas.get(idLista) }}
             </label>
           </div>
         </div>
