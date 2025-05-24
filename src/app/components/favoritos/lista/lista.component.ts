@@ -32,22 +32,26 @@ export class ListaComponent implements OnInit,OnDestroy{
     nombreLista:"",
     listaCiudades: []
   }; //listaFav
+
+  private idLista:string = "";
+  private idUsuario = "";
   nombre:string ="";
 
   ngOnInit(): void {
     this.ars.paramMap.subscribe(
       {
         next:(param)=>{
-          let idListaRecibido = param.get('idLista');
+          this.idLista = param.get('idLista') ?? "";
           this.ids.id$.subscribe(
             {
-              next:(idUsuario)=>{
-                if(idUsuario){
-                  this.us.obtenerListasFav(idUsuario).subscribe(
+              next:(idUsuarioLogueado)=>{
+                if(idUsuarioLogueado){
+                  this.idUsuario = idUsuarioLogueado;
+                  this.us.obtenerListasFav(idUsuarioLogueado).subscribe(
                     {
                       next:(listas)=>{
 
-                          this.lista = listas.find(l => l.idLista === idListaRecibido) ??
+                          this.lista = listas.find(l => l.idLista === this.idLista) ??
                           {
                             idLista: "",
                             nombreLista: "",
@@ -102,6 +106,29 @@ export class ListaComponent implements OnInit,OnDestroy{
     console.log("termina la funcion");
 
   }
+
+  ngOnDestroy(): void {
+    this.guardarCambios();
+  }
+  guardarCambios(){
+     this.us.obtenerListasFav(this.idUsuario).subscribe(
+      {
+        next:(listas)=>{
+          for(let i = 0;i<listas.length;i++){
+            if(listas[i].idLista === this.idLista){
+               listas[i].listaCiudades = this.lista.listaCiudades;
+            }
+          }
+          this.us.actualizarListasFavoritos(this.idUsuario,listas).subscribe({
+            next:(resp)=>{console.log(resp);},
+            error:(error)=>{ console.log(error)}
+          });
+        },
+        error:(error)=>{ console.log(error) }
+      }
+    )
+  }
+
   eliminarDeLaLista(ciudad:CiudadEnLista){
 
     let index = this.lista.listaCiudades.indexOf(ciudad);
@@ -111,108 +138,26 @@ export class ListaComponent implements OnInit,OnDestroy{
       console.log("error, no hay un elemento que cumpla el requisito");
     }
   }
-  ngOnDestroy(): void {
-    this.guardarCambios();
-  }
-  guardarCambios(){
-    this.ids.id$.subscribe(
-      {
-        next:(id) => {
-          if(id){
-            this.us.getUsuarioById(id).subscribe(
-              {
-                next:(u) => {
-                  if(u){
-                    const pos = u.listasFavs.findIndex(l => l.idLista === this.lista.idLista);
-                    u.listasFavs[pos] = this.lista;
-                    u.listasFavs[pos].nombreLista = this.nombre;
-                    this.us.actualizarUsuario(u).subscribe(
-                      {
-                        next:() => {console.log("lista favs actualizada")},
-                        error:(e) => {console.log(e)}
-                      }
-                    );
-                  }
-
-                },
-                error:() => {console.log("ERROR:no se encontro al usuario")}
-              }
-            );
-          }
-
-
-        },
-        error:() => {console.log("ERROR:no se pudo obtener el id");}
-      }
-    );
-  }
   eliminarLista(){
-    this.ars.paramMap.subscribe(
+    this.us.obtenerListasFav(this.idUsuario).subscribe(
       {
-        next:(param)=>{
-          let idListaRecibido = param.get('idLista');
-          this.ids.id$.subscribe(
-            {
-              next:(idUsuario)=>{
-                if(idUsuario){
-                  this.us.obtenerListasFav(idUsuario).subscribe(
-                    {
-                      next:(listas)=>{
-
-                        for(let i = 0;i<listas.length;i++){
-                          if(listas[i].idLista === idListaRecibido){
-                            listas.splice(i,1);
-                          }
-                        }
-
-
-                        this.ids.id$.subscribe(
-                          {
-                            next:(id) => {
-                              if(id){
-                                this.us.getUsuarioById(id).subscribe(
-                                  {
-                                    next:(u) => {
-                                      if(u){
-                                        u.listasFavs = listas;
-
-                                        this.us.actualizarUsuario(u).subscribe(
-                                          {
-                                            next:() => {this.router.navigate(['/favoritos']);},
-                                            error:(e) => {console.log(e)}
-                                          }
-                                        );
-                                      }
-
-                                    },
-                                    error:() => {console.log("ERROR:no se encontro al usuario")}
-                                  }
-                                );
-                              }
-
-
-                            },
-                            error:() => {console.log("ERROR:no se pudo obtener el id");}
-                          }
-                        );
-
-
-
-                      },
-                      error:(error)=>{console.log(error)}
-                    }
-                  )
-                }
-              },
-              error:(e)=>{console.log(e)}
+        next:(listas)=>{
+          for(let i = 0;i<listas.length;i++){
+            if(listas[i].idLista === this.idLista){
+               listas.splice(i,1);
             }
-          );
+          }
+          this.us.actualizarListasFavoritos(this.idUsuario,listas).subscribe({
+            next:(resp)=>{
+              console.log(resp);
+              this.locationService.back();
+            },
+            error:(error)=>{ console.log(error)}
+          });
         },
-        error:(e) =>{console.log(e)}
+        error:(error)=>{ console.log(error) }
       }
-    );
-
-
+    )
   }
 
   volver() {
@@ -237,6 +182,6 @@ export class ListaComponent implements OnInit,OnDestroy{
     }, 200); // Retraso en milisegundos
   }
 
-  
-  
+
+
 }

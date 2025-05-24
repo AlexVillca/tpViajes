@@ -182,30 +182,17 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     this.ids.id$.subscribe(
       {
         next:(id) => {
-          if(id){
-            this.us.getUsuarioById(id).subscribe(
-              {
-                next:(u) => {
-                  if(u){
-
-                    console.log(this.listasFavoritosDB);
-                    u.listasFavs = this.listasFavoritosDB;
-
-                    this.us.actualizarUsuario(u).subscribe(
-                      {
-                        next:() => {console.log("lista favs actualizada")
-                          console.log(this.listasFavoritosDB);
-                          this.nuevaListaInput.reset();
-                          this.visible = false;
-                        },
-                        error:(e) => {console.log(e)}
-                      }
-                    );
-                  }
-                },
-                error:() => {console.log("ERROR:no se encontro al usuario")}
-              }
-            );
+         if(id){
+          this.us.actualizarListasFavoritos(id,this.listasFavoritosDB).subscribe(
+            {
+              next:() => {
+                console.log("lista favs actualizada")
+                console.log(this.listasFavoritosDB);
+                this.nuevaListaInput.reset();
+                this.visible = false;
+              },
+              error:() => {console.log("No se pudo actualizar usuario");}
+            });
           }
         },
         error:() => {console.log("ERROR:no se pudo obtener el id");}
