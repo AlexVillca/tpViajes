@@ -50,70 +50,61 @@ export class UsuariosService {
     ))
   }
 
-comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
-  return this.http.get<Usuario[]|undefined>(this.apiUrl).pipe(
-    map(usuarios => {
-      if(usuarios){
-        if (usuarios?.find(u => u.email === emailIngresado) !== undefined) {
+  comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
+    return this.http.get<Usuario[]|undefined>(this.apiUrl).pipe(
+      map(usuarios => {
+        if(usuarios){
+          if (usuarios?.find(u => u.email === emailIngresado) !== undefined) {
+            return false;
+          } else {
+            return true;
+          }
+        }else{
           return false;
-        } else {
-          return true;
         }
-      }else{
-        return false;
-      }
-    })
-  );
-}
-comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
+      })
+    );
+  }
+  comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
 
-  return this.http.get<Usuario[]>(this.apiUrl).pipe(
-    map(usuarios => {
-      if(usuarios){
-        if (usuarios?.find(u => u.username === usernameIngresado) !== undefined) {
+    return this.http.get<Usuario[]>(this.apiUrl).pipe(
+      map(usuarios => {
+        if(usuarios){
+          if (usuarios?.find(u => u.username === usernameIngresado) !== undefined) {
+            return false;
+          } else {
+            return true;
+          }
+        }else{
           return false;
-        } else {
-          return true;
         }
-      }else{
-        return false;
-      }
-    })
-  );
-}
-obtenerListasFav(id:string):Observable<ListaFav[]>{
-  return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
-    map(usuario => usuario.listasFavs),
+      })
+    );
+  }
+  obtenerListasFav(id:string):Observable<ListaFav[]>{
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
+      map(usuario => usuario.listasFavs),
 
-  );
-}
+    );
+  }
 
-putUsuario(usuario: Usuario, id: string): Observable<Usuario>{
-  return this.http.put<Usuario>(`${this.apiUrl}/${id}`, usuario)
-}
-
-
-
-
-actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
-
-  const url = `${this.apiUrl}/${aActualizar.id}`;
-
-  return this.http.put<Usuario>(url, aActualizar);
+  actualizarListasFavoritos(id:string, listasActualizadas:ListaFav[]):Observable<Partial<Usuario>> {
+      const url = `${this.apiUrl}/${id}`;
+      const body: Partial<Usuario> = { listasFavs: listasActualizadas };
+      return this.http.patch<Partial<Usuario>>(url, body);
 
   }
 
-
   cambiarContrasena(id: string, nuevaContrasena: string): Observable<Partial<Usuario>> {
-    const url = `${this.apiUrl}/${id}`;
-    const body: Partial<Usuario> = { password: nuevaContrasena };
-    return this.http.patch<Partial<Usuario>>(url, body);
+      const url = `${this.apiUrl}/${id}`;
+      const body: Partial<Usuario> = { password: nuevaContrasena };
+      return this.http.patch<Partial<Usuario>>(url, body);
   }
 
   actualizarPuntajeMaximo(id: String, puntajeNuevo: number):Observable<Partial<Usuario>>{
-    const url = `${this.apiUrl}/${id}`;
-    const body: Partial<Usuario> = { mejorPuntaje: puntajeNuevo };
-    return this.http.patch<Partial<Usuario>>(url, body);
+      const url = `${this.apiUrl}/${id}`;
+      const body: Partial<Usuario> = { mejorPuntaje: puntajeNuevo };
+      return this.http.patch<Partial<Usuario>>(url, body);
   }
 
 
