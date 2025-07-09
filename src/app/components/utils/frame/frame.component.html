@@ -1,0 +1,9 @@
+<div
+  class="frame" id="div del frame"
+  [class.activo]="girando"
+  (mouseenter)="iniciarCarrusel()"
+  (mouseleave)="detenerCarrusel()"
+>
+  <img [src]="imagenActual" [alt]="titulo" />
+  <div class="nombre">{{titulo}}</div>
+</div>
