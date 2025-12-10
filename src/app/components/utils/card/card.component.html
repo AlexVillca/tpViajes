@@ -1,0 +1,11 @@
+<div
+  class="card-exterior"
+  [class.activo]="girando"
+  (mouseenter)="iniciarCarrusel()"
+  (mouseleave)="detenerCarrusel()"
+>
+  <div class="card-div-imagen"><img [src]="imagenActual" [alt]="titulo" /></div>
+  <div class="card-div-nombre">{{titulo}}</div>
+
+</div>
+<img>
