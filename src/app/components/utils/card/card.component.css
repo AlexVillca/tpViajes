@@ -1,0 +1,40 @@
+.card-exterior {
+
+  max-width: 300px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.card-exterior.activo {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-exterior:hover{
+  background-color: #2AA4DA;
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+
+}
+
+.card-div-imagen{
+  width: 300px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.card-div-nombre {
+  width: 300px;
+  height: 50px;
+  background-color: #1E85BB;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
