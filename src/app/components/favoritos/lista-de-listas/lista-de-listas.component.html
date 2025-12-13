@@ -5,23 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-      <source src="assets/background-video.mp4" type="video/mp4" />
-      Tu navegador no soporta reproducción de vídeos.
-    </video>
+    <div class="video-background">
+  <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+    <source src="assets/background-video.mp4" type="video/mp4" />
+    Tu navegador no soporta reproducción de vídeos.
+  </video>
   </div>
-  
-  <div class="container" [class.visible]="containerVisible">
-    <h1>Favoritos</h1>
-    <ul>
-      @for(l of listaDeListas;track $index){
-        <li>
-          <button class="button-seleccion" [routerLink]="['/listaCiudadesComp',l.idLista]" >{{l.nombreLista}}</button>
-        </li>
+  <div class="div-central" [class.visible]="containerVisible" >
+      @for(l of listas;track $index){
+        <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre" [idLista]="l.id"
+        (click) = "accederLista(l.id)"></app-card>
       }
-    </ul>
+
   </div>
+
   <button type="button" class="button-volver" (click)="volver()">Volver</button>
+
 </body>
 </html>
