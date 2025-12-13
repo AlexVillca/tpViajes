@@ -18,6 +18,7 @@ export class CardComponent {
   girando = false;
 
   ngOnInit(): void {
+    if(this.arregloImagenes.length == 0){this.imagenActual = "assets/img/imagenvacio.png"}
     this.imagenActual = this.arregloImagenes[0];
   }
 
@@ -30,7 +31,7 @@ export class CardComponent {
     this.intervalo = setInterval(() => {
       this.index = (this.index + 1) % this.arregloImagenes.length;
       this.imagenActual = this.arregloImagenes[this.index];
-    }, 2000);
+    }, 1400);
   }
 
   detenerCarrusel() {
@@ -39,4 +40,9 @@ export class CardComponent {
     this.imagenActual = this.arregloImagenes[0];
     this.girando = false;
   }
+
+
+
+
+
 }
