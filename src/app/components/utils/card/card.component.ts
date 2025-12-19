@@ -42,7 +42,10 @@ export class CardComponent {
   }
 
 
-
+  setImagenError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    img.src = 'assets/imagennodisponible.png';
+  }
 
 
 }
