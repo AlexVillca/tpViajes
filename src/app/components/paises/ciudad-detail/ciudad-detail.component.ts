@@ -46,6 +46,10 @@ export class CiudadDetailComponent implements OnInit{
   volver() {
     this.location.back();
   }
+  setImagenError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    img.src = 'assets/imagennodisponible.png';
+  }
 
   videoLoaded = false;
 
