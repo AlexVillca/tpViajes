@@ -11,9 +11,10 @@
     Tu navegador no soporta reproducción de vídeos.
   </video>
   </div>
+
   <div class="div-central" [class.visible]="containerVisible" >
       @for(l of listas;track $index){
-        <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre" [idLista]="l.id"
+        <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre"
         (click) = "accederLista(l.id)"></app-card>
       }
 
