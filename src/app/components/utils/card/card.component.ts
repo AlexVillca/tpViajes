@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -10,7 +11,8 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() titulo:string = "";
   @Input() arregloImagenes:string[] = [];
-  @Input() idLista:string = ""
+
+
 
   imagenActual: string = '';
   private index = 0;
