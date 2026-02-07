@@ -1,9 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
-import { catchError, concatMap, map, Observable, of, throwError } from 'rxjs';
+import { catchError, concatMap, map, Observable, of, switchMap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { IdUsuarioService } from './id-usuario.service';
+import { Pais } from '../../models/interface/pais.interface';
+import { ImagenesLista } from '../../models/interface/imagenesLista.interface';
+import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 
 
 @Injectable({
@@ -83,8 +85,13 @@ export class UsuariosService {
   }
   obtenerListasFav(id:string):Observable<ListaFav[]>{
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
-      map(usuario => usuario.listasFavs),
+      map(usuario => usuario.listasFavs)
 
+    );
+  }
+   obtenerListaFav(idUsuario:string,idListaBuscada:string):Observable<ListaFav | undefined>{
+    return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
+      map(usuario => usuario.listasFavs.find(l => l.idLista === idListaBuscada))
     );
   }
 
@@ -94,6 +101,8 @@ export class UsuariosService {
       return this.http.patch<Partial<Usuario>>(url, body);
 
   }
+
+
 
   cambiarContrasena(id: string, nuevaContrasena: string): Observable<Partial<Usuario>> {
       const url = `${this.apiUrl}/${id}`;
@@ -105,6 +114,43 @@ export class UsuariosService {
       const url = `${this.apiUrl}/${id}`;
       const body: Partial<Usuario> = { mejorPuntaje: puntajeNuevo };
       return this.http.patch<Partial<Usuario>>(url, body);
+  }
+
+
+
+
+  actualizarListaFavoritos(idUsuario: string, listaActualizada: ListaFav): Observable<Partial<Usuario>> {
+    const url = `${this.apiUrl}/${idUsuario}`;
+    return this.http.get<Usuario>(url).pipe(
+      map(usuario => {
+
+          const listasActualizadas = usuario.listasFavs.map(listaActual =>
+            listaActual.idLista === listaActualizada.idLista ? listaActualizada : listaActual
+          );
+
+          return { listasFavs: listasActualizadas } as Partial<Usuario>;
+        }
+      ),
+      switchMap(body => this.http.patch<Partial<Usuario>>(url, body))
+    );
+  }
+
+  eliminarListaFavoritos(idListaEliminar:string,idUsuario:string):Observable<Partial<Usuario>>{
+    const url = `${this.apiUrl}/${idUsuario}`;
+    return this.http.get<Usuario>(url).pipe(
+      map(usuario => {
+          const listasActualizadas = usuario.listasFavs.filter(l => l.idLista !== idListaEliminar);
+          return { listasFavs: listasActualizadas } as Partial<Usuario>;
+        }
+      ),
+      switchMap(body => this.http.patch<Partial<Usuario>>(url, body))
+    );
+  }
+
+  comprobarNombreExistenteDeLista(idUsuario:string,nombreComprobar:string):Observable<boolean>{
+     return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
+      map(usuario => usuario.listasFavs.some(l => l.nombreLista === nombreComprobar) ?? false)
+    );
   }
 
 
