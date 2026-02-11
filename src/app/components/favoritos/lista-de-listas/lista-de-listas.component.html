@@ -12,15 +12,14 @@
   </video>
   </div>
 
-  <div class="div-central" [class.visible]="containerVisible" >
-      @for(l of listas;track $index){
-        <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre"
-        (click) = "accederLista(l.id)"></app-card>
-      }
+  <div class="div-central"  [class.visible]="containerVisible">
+    <div class="div-cards" >
+        @for(l of listas;track $index){
+          <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre" (click) = "accederLista(l.id)"></app-card>
+        }
+    </div>
 
+    <button type="button" class="button-volver" (click)="volver()">Volver</button>
   </div>
-
-  <button type="button" class="button-volver" (click)="volver()">Volver</button>
-
 </body>
 </html>
