@@ -1,0 +1,89 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+  align-items: flex-start;
+  padding-top: 20vh;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 20px;
+
+  width: 300px;
+  z-index: 100;
+}
+
+
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+p{
+  color: #333;
+  font-weight: bold;
+}
+/*
+button{
+  background-color: #1E85BB;
+  border: none;
+  color: white;
+  height: 35px;
+  width: 100px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: #2AA4DA;
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
+}
+*/
+button {
+  width: auto;
+
+  background-color: #1E85BB;
+  border: #14C0C0 1px solid;
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  padding: 10px 20px; /* Tamaño del botón */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  margin: 10px auto 15px;
+
+}
+
+button:hover {
+  background-color: #2AA4DA;
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px); /* Animación al pasar el cursor */
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
+}
