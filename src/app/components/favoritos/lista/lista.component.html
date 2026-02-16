@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+<div class="div-layout">
 
-</head>
-<body>
   <div class="video-background">
     <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
       <source src="assets/background-video.mp4" type="video/mp4" />
@@ -14,30 +7,32 @@
     </video>
   </div>
 
-  <h1>{{lista.nombreLista}}</h1>
-  <div class="content" [class.visible]="containerVisible">
 
+ <app-titulo-lista
+    (eliminarLista)="eliminarLista()"
+    (nuevoTitulo)="guardarNuevoTitulo($event)"
+    [nombreOriginal]="this.lista!.nombreLista"
+    [idUser]="this.idUsuario">
+  </app-titulo-lista>
 
-    <div class="buttons-list">
+  <div class="div-central" [class.visible]="containerVisible">
 
-      <button class="delete-button">
-        <i class="material-icons" (click)="eliminarLista()">delete</i>
-      </button>
+    <div class="div-ciudades"  >
+
+      @for(l of listaImagenes;track  l.ciudad.codigoPais + l.ciudad.nombre){
+        <app-card-eliminar
+          [arregloImagenes]="l.imagenes"
+          [titulo]="l.ciudad.nombre"
+          (click) ="accederCiudad(l.ciudad)"
+          (borrar)="eliminarDeLaLista(l.ciudad)"
+        ></app-card-eliminar>
+      }
 
     </div>
-    <ul>
-      @for (c of lista.listaCiudades; track $index) {
-          <li>
-            <button class="acces-button" (click) = "accederCiudad(c)">
-              {{c.nombre}}
-            </button>
-            <button class="delete-button" (click)="eliminarDeLaLista(c)">
-              <i class="material-icons">delete</i>
-            </button>
-          </li>
-        }
-    </ul>
+
+    <button type="button" class="button-volver"(click)="volver()">Volver</button>
+
   </div>
-  <button type="button" class="button-volver"(click)="volver()">Volver</button>
-</body>
-</html>
+</div>
+
+
