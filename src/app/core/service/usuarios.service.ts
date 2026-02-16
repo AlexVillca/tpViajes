@@ -1,10 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, concatMap, map, Observable, of, switchMap, throwError } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { IdUsuarioService } from './id-usuario.service';
-import { Pais } from '../../models/interface/pais.interface';
-import { ImagenesLista } from '../../models/interface/imagenesLista.interface';
+
 import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 
 
@@ -38,6 +37,7 @@ export class UsuariosService {
           }else{
             if(response[0].password === password){
               if(response[0].id !== undefined){
+                localStorage.setItem("userId",response[0].id);
                 this.idUs.setId(response[0].id);
               }
 
@@ -95,10 +95,13 @@ export class UsuariosService {
     );
   }
 
-  actualizarListasFavoritos(id:string, listasActualizadas:ListaFav[]):Observable<Partial<Usuario>> {
+  actualizarListasFavoritos(id:string, listasActualizadas:ListaFav[]):Observable<ListaFav[]> {
       const url = `${this.apiUrl}/${id}`;
       const body: Partial<Usuario> = { listasFavs: listasActualizadas };
-      return this.http.patch<Partial<Usuario>>(url, body);
+
+      return this.http.patch<Usuario>(url, body).pipe(
+        map(usuario => usuario.listasFavs)
+      );
 
   }
 
