@@ -1,0 +1,97 @@
+.div-titulo{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 40px 20px; /* fila principal + fila del small */
+  height: 60px;
+  align-items: center;
+}
+
+.titulo {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+
+  height:40px;
+  color: rgba(0, 0, 0, 0.605);
+}
+
+.input-titulo {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+   height:40px;
+  /*padding: 10px 14px;*/          /* tamaño del input */
+  font-size: 1.1rem;          /* letras más grandes */
+  font-weight: 500;
+
+  color: #1E85BB;              /* color del texto */
+  background-color: #fff;
+
+  border: 2px solid #1E85BB;   /* borde del color principal */
+  border-radius: 8px;         /* bordes redondeados */
+
+  outline: none;
+}
+
+.input-titulo.error{
+  color:red;
+  border: 2px solid red;
+}
+
+small {
+  grid-column: 2;
+  grid-row: 2;
+
+  justify-self:start;
+  /*align-self: end;*/
+  font-size: 1rem;
+  margin-top:10px;
+  margin-left:5px;
+  height: 20px;
+  color: red;
+  visibility: hidden;
+}
+
+small.visible {
+  visibility: visible;
+}
+
+.div-botones {
+  grid-column: 3;
+  justify-self:left;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding-left: 10px;
+}
+
+button{
+  background-color: #1E85BB;
+  border: none;
+  color: white;
+  height: 35px;
+  width: 35px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+button:hover {
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
+}
+
+.boton-renombrar-confirmar:hover {
+  background-color: #2AA4DA;
+}
+.boton-borrar-cancelar:hover {
+  background-color: red;
+}
+
+
+
