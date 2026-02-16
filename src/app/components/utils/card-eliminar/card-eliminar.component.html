@@ -1,0 +1,29 @@
+<div
+  class="card-exterior"
+  [class.activo]="girando"
+  (mouseenter)="iniciarCarrusel()"
+  (mouseleave)="detenerCarrusel()"
+>
+  <div class="card-div-imagen">
+
+
+    <img
+      class="img-fondo"
+      [src]="imagenActual"
+      (error)="setImagenError($event)"
+    />
+
+    <img
+      class="img-main"
+      [src]="imagenActual"
+      [alt]="titulo"
+      (error)="setImagenError($event)"
+    />
+
+  </div>
+
+  <div class="card-div-nombre">
+
+    <span class="titulo">{{titulo}}</span>       <button (click)="borrarCiudad($event)" class="boton-borrar-ciudad"><i class="material-icons">delete</i></button>
+  </div>
+</div>
