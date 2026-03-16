@@ -1,0 +1,51 @@
+@if(logueado){
+  <button (click)="abrePopUp()">Guardar</button>
+  @if(visible){
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+
+      <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
+
+        <h4>Guardar en favoritos</h4>
+
+        <div class="div-listas" [formGroup]="groupCheckbox" ()>
+          @for(idLista of idsGroupCheckbox;track $index){
+            <label>
+              <input type="checkbox" [formControlName]="idLista" />{{mapNombresListas.get(idLista) }}
+            </label>
+          }
+        </div>
+
+        <div>
+          <div class="div-agregar">
+            <input type="text" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista" maxlength="20" />
+            <button type="button" (click)="agregarNuevaLista()">Agregar</button>
+          </div>
+
+          <div class="div-error">
+            @if(formulario.controls['nuevocheckboxListaFavorito'].errors?.['maxItemsAlcanzado'] && formulario.controls['nuevocheckboxListaFavorito'].touched){
+              <small class="error">Se ha llegado al máximo de listas</small>
+            }@else{
+              @if(formulario.controls['nuevocheckboxListaFavorito'].errors?.['valorExistente']  && formulario.controls['nuevocheckboxListaFavorito'].touched){
+                <small class="error">Ya existe una lista con ese nombre</small>
+              }
+            }
+          </div>
+        </div>
+
+
+
+
+        <div class="div-acciones">
+          <button type="button" (click)="cancelar()">Cancelar</button>
+          <button type="submit">Guardar</button>
+        </div>
+
+
+      </form>
+    </div>
+  }
+
+
+
+}

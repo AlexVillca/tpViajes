@@ -1,27 +1,25 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ListaFav } from '../../../models/interface/usuario.interface';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
+import { valorExistenteMap } from '../../../validators/valorExistenteMap.validator';
+import { maxItemsValidator } from '../../../validators/maxItems.validator';
 
-interface ListaCheckbox {
-  id:string;
-  nombre: string;
-  seleccionada:boolean;
-}
+
 
 
 @Component({
-  selector: 'app-selecionador-listas-flotante',
+  selector: 'app-pop-up-guardar-favoritos',
   standalone: true,
   imports: [CommonModule,FormsModule,ReactiveFormsModule],
-  templateUrl: './selecionador-listas-flotante.component.html',
-  styleUrl: './selecionador-listas-flotante.component.css'
+  templateUrl: './pop-up-guardar-favoritos.component.html',
+  styleUrl: './pop-up-guardar-favoritos.component.css'
 })
-export class SelecionadorListasFlotanteComponent implements OnInit{
+export class PopUpGuardarFavoritosComponent implements OnInit{
 
   fb = inject(FormBuilder);
   us = inject(UsuariosService);
@@ -39,21 +37,22 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   ciudadSeleccionada:any;
   paisSeleccionado:any;
 
-  alertaMax = false;
+  alertaMaxListas = false;
+  alertaNombreRepetido = false;
 
   formulario:FormGroup = this.fb.group({
-    nuevocheckboxListaFavorito: ['', Validators.required],
+    nuevocheckboxListaFavorito: ['', [Validators.required,valorExistenteMap(this.mapNombresListas),maxItemsValidator(this.mapNombresListas,6)]],
     checkboxesListasFavoritos: this.fb.group({})
   });
 
-  //con esto trabajo directamente en los checkbox
+
   get groupCheckbox(): FormGroup {
     return this.formulario.get('checkboxesListasFavoritos') as FormGroup;
   }
   get idsGroupCheckbox(){
     return Object.keys( this.groupCheckbox.value || {});
   }
-  //y con el input para una nueva lista
+
   get nuevaListaInput():FormControl {
     return this.formulario.get('nuevocheckboxListaFavorito') as FormControl;
   }
@@ -61,6 +60,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
 
 
   ngOnInit(): void {
+
     this.ids.id$.subscribe(
       {
         next: (id) => {
@@ -81,12 +81,11 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
                               this.listasFavoritosDB = l;
                               //cargo las checkbox
                               this.pasajeDBaFormulario();
-                              console.log(Object.entries(this.groupCheckbox.controls));
+
                             },
                             error: (e) => {console.log(e)}
                           }
                       )
-
 
                       },
                       error:(error) => {console.log(error)}
@@ -97,8 +96,6 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
                 error:(error) => {console.log(error)}
               }
             );
-
-
 
           }
         },
@@ -117,25 +114,18 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   }
 
  // Agrega un nuevo item al FormArray
- agregarNuevaLista() {
-
-  if(Object.keys(this.groupCheckbox.controls).length < 6){
-    console.log("entro cant listas");
-    if (this.nuevaListaInput.valid) {
-      console.log("entro form valido");
-      let nuevoId = this.nuevoIdLista();
-      this.mapNombresListas.set(nuevoId,this.nuevaListaInput.value);
-      this.groupCheckbox.addControl(nuevoId,new FormControl(true));
-      this.nuevaListaInput.reset();
-    }
-  }else{
-    this.alertaMax = true;
-
-    setTimeout(() => {
-      this.alertaMax = false;
-    }, 4000);
+ agregarNuevaLista(){
+  if(!this.nuevaListaInput.valid){
+    return;
   }
+  let nuevoId = this.nuevoIdLista();
+  this.mapNombresListas.set(nuevoId,this.nuevaListaInput.value);
+  this.groupCheckbox.addControl(nuevoId,new FormControl(true));
+  this.nuevaListaInput.reset();
  }
+
+
+
   private pasajeDBaFormulario(){
     const groupAux = this.fb.group({});
     this.mapNombresListas.clear();
@@ -144,7 +134,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
       this.mapNombresListas.set(lista.idLista,lista.nombreLista);
       groupAux.addControl(lista.idLista,new FormControl(selec));
     });
-    console.log(Object.entries(groupAux.controls));
+
     this.formulario.setControl('checkboxesListasFavoritos',groupAux);
   }
 
@@ -153,27 +143,38 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
   private pasajeFormularioaDB(){
 
     Object.entries(this.groupCheckbox.controls).forEach(([id, control]) => {
-      const seleccionado = control.value;
+
+      const ciudadSeleccionadaFormulario = control.value;
+
       let listaOriginal = this.listasFavoritosDB.find(ldb => ldb.idLista === id);
 
-      if(listaOriginal === undefined){ // si es una lista nueva
-        listaOriginal = { //la agrega
+      if(listaOriginal === undefined){
+        listaOriginal = {
           idLista:id,
           nombreLista:this.mapNombresListas.get(id) || "error",
           listaCiudades:[]
         }
         this.listasFavoritosDB.push(listaOriginal);
       }
-      //veo si
-      //la ciudad esta en la lista original y en la front o si no esta en la original y no esta en la front
-      if(listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && seleccionado ||
-        !listaOriginal.listaCiudades.some(cl => cl.codigoPais === this.paisSeleccionado.codigo && cl.nombre === this.ciudadSeleccionada.nombre) && !seleccionado){
-      }else if(seleccionado){
-        listaOriginal.listaCiudades.push({codigoPais:this.paisSeleccionado.codigo,nombre:this.ciudadSeleccionada.nombre});
-      }else{
-        listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(elementoFav => !(elementoFav.codigoPais === this.paisSeleccionado.codigo && elementoFav.nombre === this.ciudadSeleccionada.nombre));
+
+      const ciudadExisteEnLista = listaOriginal.listaCiudades.some(c =>
+        c.codigoPais === this.paisSeleccionado.codigo &&
+        c.nombre === this.ciudadSeleccionada.nombre
+      );
+
+      if(ciudadSeleccionadaFormulario && !ciudadExisteEnLista){
+        listaOriginal.listaCiudades.push({
+          codigoPais: this.paisSeleccionado.codigo,
+          nombre: this.ciudadSeleccionada.nombre
+        });
       }
 
+      if(!ciudadSeleccionadaFormulario && ciudadExisteEnLista){
+        listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(c =>
+          !(c.codigoPais === this.paisSeleccionado.codigo &&
+            c.nombre === this.ciudadSeleccionada.nombre)
+        );
+      }
     });
   }
 
@@ -186,10 +187,7 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
           this.us.actualizarListasFavoritos(id,this.listasFavoritosDB).subscribe(
             {
               next:() => {
-                console.log("lista favs actualizada")
-                console.log(this.listasFavoritosDB);
-                this.nuevaListaInput.reset();
-                this.visible = false;
+                this.cierraPopUp();
               },
               error:() => {console.log("No se pudo actualizar usuario");}
             });
@@ -200,12 +198,19 @@ export class SelecionadorListasFlotanteComponent implements OnInit{
     );
 
   }
-
-  cancelar() {
+  cierraPopUp(){
+    document.body.style.overflow = "auto";
     this.nuevaListaInput.reset();
-    this.pasajeDBaFormulario();
-    console.log("se cancela");
     this.visible = false;
+  }
+  abrePopUp(){
+    document.body.style.overflow = "hidden";
+    this.visible=true;
+  }
+  cancelar() {
+    this.cierraPopUp();
+    this.pasajeDBaFormulario();
+
   }
 
 
