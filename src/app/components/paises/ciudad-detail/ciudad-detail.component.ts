@@ -4,10 +4,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
 import { Location } from '@angular/common';
-import { SelecionadorListasFlotanteComponent } from '../../favoritos/selecionador-listas-flotante/selecionador-listas-flotante.component';
+
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.component';
 import { PaisDataService } from '../../../core/service/pais-data.service';
+import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-favoritos/pop-up-guardar-favoritos.component';
 
 
 
@@ -17,7 +18,7 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
   standalone: true,
   imports: [ComentariosListComponent
     ,CommonModule
-    ,SelecionadorListasFlotanteComponent],
+    ,PopUpGuardarFavoritosComponent],
   templateUrl: './ciudad-detail.component.html',
   styleUrls: ['./ciudad-detail.component.css']
 })

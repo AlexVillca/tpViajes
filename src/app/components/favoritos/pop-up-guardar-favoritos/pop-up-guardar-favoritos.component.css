@@ -1,16 +1,3 @@
-.popup-content label,
-.popup-content input[type="text"] {
-  display: block;
-  width: 100%;
-  padding: 8px 12px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  box-sizing: border-box;
-}
-
-
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -19,7 +6,6 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-
 }
 
 .popup-content {
@@ -32,51 +18,75 @@
   padding: 20px;
   border-radius: 8px;
   z-index: 1001;
-  width: 600px;
-  height: 450px;
-  max-width: 90%;
+
+
+}
+
+form{
   display: flex;
   flex-direction: column;
+  gap: 16px;
+
+  width: 450px;
 }
-h3{
+
+h4{
   color: #333;
+   margin: 4px 0;
+}
+
+.div-listas{
+  height: 268px;
+  width: 100%;
+}
+
+.div-listas label {
+  font-size: 15px; /* agrandar texto */
+  display: flex;
+  align-items: center; /* centra verticalmente */
+  max-width: 600px;
+  padding: 6px 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+.div-listas label input[type="checkbox"]{
+ width: 18px;
+ height: 18px;
+ margin-right: 10px;
+}
+
+.div-agregar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.div-agregar input[type="text"] {
+  flex: 1;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+}
+
+.div-error{
+  height: 15px;
 }
 
 .error{
   color:red;
 }
-.agregar {
-  display: flex;
-  align-items: center;
-}
 
-.button-agregar {
-  margin-right: 8px; /* Espacio entre el botón y el input */
-  width: auto;
-  padding: 10px 20px;
-  background-color: #1E85BB;
-  border: none;
-  color: white;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
-  margin: 0; /* Elimina márgenes innecesarios */
-}
-
-.input-agregar {
-  flex: 1; /* Hace que el input ocupe el espacio disponible */
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.container {
+.div-acciones {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
 }
 
 button {
@@ -93,7 +103,6 @@ button {
   padding: 10px 20px; /* Tamaño del botón */
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
-  margin: 20px auto 140px;
 }
 
 button:hover {
@@ -107,3 +116,4 @@ button:active {
   transform: translateY(0);
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
+
