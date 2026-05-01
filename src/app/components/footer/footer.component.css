@@ -6,22 +6,21 @@ html, body {
   flex-direction: column;
 }
 .main-content {
-  flex: 1; 
+  flex: 1;
 }
 
 .footer {
-  background-color: #1E85BB; 
+  background-color: #1E85BB;
   color: white;
-  padding: 0px 0px; 
+  padding: 0px 0px;
   margin-top: 200px;
   left: 0;
-  z-index: 1000; 
-  box-shadow: 0 -2px 5px rgba(144, 140, 140, 0.1); 
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(144, 140, 140, 0.1);
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
-
 }
 
 .footer-content {
@@ -68,4 +67,12 @@ html, body {
 
 p{
   text-align: right;
+  /*margin-left: 5px;*/
+}
+
+@media (max-width: 655px) {
+
+    footer{
+      font-size: 0.79em;
+    }
 }
