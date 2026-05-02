@@ -1,26 +1,24 @@
 .div-central{
-  margin-top: 60px;
-  padding-top: 15px;
-  margin-bottom: 10px;
-
+  padding: 60px 0 40px 0;
+  min-height: calc(100vh - 110px); /* navbar + footer */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   opacity: 0;
   transform: translateY(-20px); /* Posición inicial desplazada */
   transition: opacity 0.6s ease, transform 0.6s ease; /* Duración y tipo de transición */
   z-index: 1;
-  box-sizing: border-box;
 }
 
 .div-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: start;
-  gap: 15px;
-  width: 100%;
-  max-width: 930px;
-  min-height: 415px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  margin-bottom: 15px;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas fijas */
+  gap: 25px;
+  align-content: start;
+  justify-content: center;
+  flex:1;
+  max-width: 70vw;
+
 }
 
 .div-central.visible {
@@ -28,8 +26,18 @@
   transform: translateY(0); /* Posición final */
 }
 
+h1{
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.605);
+  text-align:center;
+}
+
+.div-button{
+  align-self: flex-start;
+}
+
 .button-volver {
-  position: flex;
+  align-self: flex-start;
   background-color: #1E85BB;
   border: none;
   color: white;
@@ -40,7 +48,7 @@
   padding: 10px 20px;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2);
-  margin-left: 40px;
+  margin: 10px 0 20px 40px;
 }
 
 .button-volver:hover {
@@ -55,21 +63,34 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 920px) {
   .div-cards {
     grid-template-columns: repeat(2, 1fr);
   }
-  .div-central{
-    margin-bottom: 65px;
+
+  .button-volver{
+    margin: 20px 0 20px 40px;
   }
+
 }
 
-@media (max-width: 650px) {
+@media (max-width: 528px) {
+  .div-central{
+    padding-bottom: 55px;
+  }
+
   .div-cards {
     grid-template-columns: 1fr;
   }
 
 }
+
+@media (max-width:380px){
+  .button-volver{
+    margin-bottom: 20px;
+  }
+}
+
 
 /* Contenedor del video de fondo */
 .video-background {
@@ -88,4 +109,3 @@
   height: 100vh;
   object-fit: cover; /* Escala el video para cubrir todo el fondo */
 }
-

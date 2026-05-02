@@ -1,7 +1,6 @@
 .card-exterior {
-  max-width: 300px;
-  height: 200px;
-  margin: 0 auto;
+  width: 100%;
+  aspect-ratio: 3 / 2;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -26,14 +25,12 @@
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
 
-
 .card-div-imagen {
   position: relative;
-  width: 300px;
-  height: 150px;
+  width: 100%;
+  height: 75%;
   overflow: hidden;
 }
-
 
 .img-fondo {
   position: absolute;
@@ -46,7 +43,6 @@
   z-index: 1;
 }
 
-
 .img-main {
   position: relative;
   z-index: 2;
@@ -56,11 +52,16 @@
 }
 
 .card-div-nombre {
-  width: 300px;
-  height: 50px;
+  width: 100%;
+  height: 25%;
+
+  display: flex;
+  align-items: center;     /* vertical */
+  justify-content: center; /* horizontal */
+
   background-color: #1E85BB;
   color: white;
-  text-align: center;
-  line-height: 50px;
+  font-size: 1.1rem;
   font-weight: bold;
 }
+

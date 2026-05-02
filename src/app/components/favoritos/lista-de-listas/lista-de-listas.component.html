@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div class="video-background">
+<div class="video-background">
   <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
     <source src="assets/background-video.mp4" type="video/mp4" />
     Tu navegador no soporta reproducción de vídeos.
   </video>
-  </div>
+</div>
 
-  <div class="div-central"  [class.visible]="containerVisible">
-    <div class="div-cards" >
-        @for(l of listas;track $index){
-          <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre" (click) = "accederLista(l.id)"></app-card>
-        }
-    </div>
-
-    <button type="button" class="button-volver" (click)="volver()">Volver</button>
+<div class="div-central" [class.visible]="containerVisible">
+  <h1>Favoritos</h1>
+  <div class="div-cards">
+    @for(l of listas;track $index){
+    <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre" (click)="accederLista(l.id)"></app-card>
+    }
   </div>
-</body>
-</html>
+  <!--
+  <div class="div-button">
+
+  </div>
+-->
+      <button type="button" class="button-volver" (click)="volver()">Volver</button>
+</div>
