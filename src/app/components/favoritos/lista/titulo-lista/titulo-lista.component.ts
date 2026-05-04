@@ -32,6 +32,7 @@ export class TituloListaComponent{
   cancelarNuevoTitulo():void{
     this.tituloInput = this.nombreOriginal;
     this.cambiarEditarTitulo();
+    this.mensajeNombreRepetido = false;
   }
 
   mostrarPopUp:boolean = false;
@@ -72,7 +73,7 @@ export class TituloListaComponent{
 
     this.errorTimeout = setTimeout(() => {
       this.mensajeNombreRepetido = false;
-    }, 3000);
+    }, 4000);
   }
 
   onTituloChange() {

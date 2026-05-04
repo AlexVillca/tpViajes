@@ -1,7 +1,6 @@
 .card-exterior {
-  width: 300px;
-  height: 200px;
-  margin: 0 auto;
+  width: 100%;
+  aspect-ratio: 3 / 2;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -41,8 +40,8 @@
 
 .card-div-imagen {
   position: relative;
-  width: 300px;
-  height: 150px;
+  width: 100%;
+  height: 75%;
   overflow: hidden;
 }
 
@@ -76,11 +75,13 @@
 
 .card-div-nombre {
   display: flex;
-  justify-content: space-between;
-   align-items: center;
 
-  width: 300px;
-  height: 50px;
+  justify-content: space-between; /* horizontal */
+  align-items: center; /* vertical */
+
+  width: 100%;
+  height: 25%;
+
   padding: 0 10px;
   box-sizing: border-box;
 
@@ -94,8 +95,8 @@
 
 
 
-.boton-borrar-ciudad{
 
+.boton-borrar-ciudad{
   background-color: #1E85BB;
   border: none;
   color: white;
@@ -104,6 +105,7 @@
   font-weight: bold;
   border-radius: 8px;
 }
+
 
 .boton-borrar-ciudad:hover {
   background-color: #da2a2a ;
@@ -114,7 +116,5 @@
   transform: translateY(0);
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
-
-
 
 

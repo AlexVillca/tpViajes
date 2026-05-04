@@ -1,11 +1,11 @@
- <div class="div-titulo">
+ <div class="div-central">
 
-      @if(!this.editarTitulo){
-        <h1 class="titulo" >{{nombreOriginal}}</h1>
-      }@else {
-        <input  class="input-titulo" maxlength="20" [class.error]="mensajeNombreRepetido" (ngModelChange)="onTituloChange()" type=text  [(ngModel)]="tituloInput" >
-        <small  [class.visible]="mensajeNombreRepetido" >Nombre de lista existente</small>
-      }
+        @if(!this.editarTitulo){
+          <h1 class="titulo" >{{nombreOriginal}}</h1>
+        }@else {
+          <input  class="input-titulo" maxlength="20" [class.error]="mensajeNombreRepetido" (ngModelChange)="onTituloChange()" type=text  [(ngModel)]="tituloInput" >
+          <small class="nombre-repetido-small" [class.visible]="mensajeNombreRepetido" ><i class="material-icons">info</i>Nombre de lista existente</small>
+        }
 
       <div class="div-botones">
         @if (!this.editarTitulo) {
