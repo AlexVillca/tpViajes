@@ -16,12 +16,13 @@ import { FormsModule } from '@angular/forms';
 
 
 import { TituloListaComponent } from './titulo-lista/titulo-lista.component';
+import { PopUpConfirmarComponent } from '../../utils/pop-up-confirmar/pop-up-confirmar.component';
 
 
 @Component({
   selector: 'app-lista',
   standalone: true,
-  imports: [CommonModule,CardEliminarComponent, FormsModule,TituloListaComponent],
+  imports: [CommonModule,CardEliminarComponent, FormsModule,TituloListaComponent,PopUpConfirmarComponent],
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css'
 })
@@ -138,19 +139,13 @@ export class ListaComponent implements OnInit,OnDestroy{
           const paisRequerido = p.find(pais => pais.codigo === ciudadSelec.codigoPais);
 
           if(paisRequerido !== undefined){
-
             if(paisRequerido.ciudades !== undefined){
               ciudadCargar = paisRequerido.ciudades.find(c => c.nombre === ciudadSelec.nombre);
               if(ciudadCargar){
                 this.paisDataService.setPais(paisRequerido);
                 this.ciudadDataService.setCiudad(ciudadCargar);
                 this.router.navigate(['/ciudad']);
-
-              }else{
-                console.log("No se pudo encontrar la ciudad");
               }
-            }else{
-              console.log("El pais no posee ciudades");
             }
           }
 
@@ -174,7 +169,7 @@ export class ListaComponent implements OnInit,OnDestroy{
      this.usuariosService.obtenerListasFav(this.idUsuario).subscribe(
       {
         next:(listas)=>{
-          console.log(listas);
+
           for(let i = 0;i<listas.length;i++){
             if(listas[i].idLista === this.idLista){
 
@@ -216,16 +211,26 @@ export class ListaComponent implements OnInit,OnDestroy{
 
   }
 
+  mostrarPopUp:boolean = false;
+
+  textoPopUp():string{
+    return "Desea eliminar la lista " + this.lista?.nombreLista + "?";
+  }
+
+
+  popupEliminarLista(){
+    this.mostrarPopUp = true;
+  }
 
   eliminarLista(){
-    console.log("se eliminara");
+
     if(this.lista == undefined) return;
-    console.log("se eliminara");
+
     this.usuariosService.eliminarListaFavoritos(this.lista!.idLista,this.idUsuario).subscribe(
     {
       next:(response)=>{
         this.locationService.back();
-        console.log("se elimino");
+
       },
       error:(error)=>{ console.log(error)}
     });

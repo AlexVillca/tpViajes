@@ -1,14 +1,12 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
-import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-confirmar.component';
 import { UsuariosService } from '../../../../core/service/usuarios.service';
 
 
 @Component({
   selector: 'app-titulo-lista',
   standalone: true,
-  imports: [FormsModule, NgIf,PopUpConfirmarComponent],
+  imports: [FormsModule],
   templateUrl: './titulo-lista.component.html',
   styleUrl: './titulo-lista.component.css'
 })
@@ -33,12 +31,6 @@ export class TituloListaComponent{
     this.tituloInput = this.nombreOriginal;
     this.cambiarEditarTitulo();
     this.mensajeNombreRepetido = false;
-  }
-
-  mostrarPopUp:boolean = false;
-
-  textoPopUp():string{
-    return "Desea eliminar la lista " + this.nombreOriginal + "?";
   }
 
   guardarNuevoTitulo():void{
