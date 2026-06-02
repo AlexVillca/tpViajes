@@ -1,21 +1,23 @@
 .container {
   margin: 0 auto;
-  max-width: 600px ;
+  max-width: 600px;
+  width: 90%;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.621);
-  background-color: transparent;
   background-color: rgba(255, 255, 255, 0.6);
   min-height: 90px;
   border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
 input {
-  margin-left: 8%;
-  margin-top: 2%;
-  width: 80%;
-  padding: 10px 10px;
-  margin-top: 5px;
+  display: block;
+  width: 84%;
+  margin: 5px auto 0;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 button {
@@ -29,8 +31,17 @@ button {
   cursor: pointer;
   display: block;
   text-align: center;
-  padding: 10px 20px; /* Tamaño del botón */
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2);
   margin: 20px auto 30px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+
+  input {
+    width: 90%;
+  }
 }

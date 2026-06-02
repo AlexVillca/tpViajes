@@ -18,33 +18,36 @@
   padding: 20px;
   border-radius: 8px;
   z-index: 1001;
-
-
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-
-  width: 450px;
-}
-
-h4{
-  color: #333;
-   margin: 4px 0;
-}
-
-.div-listas{
-  height: 268px;
   width: 100%;
 }
 
+h4 {
+  color: #333;
+  margin: 4px 0;
+}
+
+.div-listas {
+  max-height: 268px;
+  width: 100%;
+  overflow-y: auto;
+}
+
 .div-listas label {
-  font-size: 15px; /* agrandar texto */
+  font-size: 15px;
   display: flex;
-  align-items: center; /* centra verticalmente */
-  max-width: 600px;
+  align-items: center;
+  max-width: 100%;
   padding: 6px 8px;
   background-color: #f0f0f0;
   border: 1px solid #ddd;
@@ -52,41 +55,43 @@ h4{
   margin-bottom: 8px;
   box-sizing: border-box;
 }
-.div-listas label input[type="checkbox"]{
- width: 18px;
- height: 18px;
- margin-right: 10px;
+
+.div-listas label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .div-agregar {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .div-agregar input[type="text"] {
   flex: 1;
+  min-width: 120px;
   padding: 8px 12px;
   background-color: #f0f0f0;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-sizing: border-box;
-
 }
 
-.div-error{
+.div-error {
   height: 15px;
 }
 
-.error{
-  color:red;
+.error {
+  color: red;
 }
 
 .div-acciones {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-
 }
 
 button {
@@ -100,15 +105,14 @@ button {
   cursor: pointer;
   display: block;
   text-align: center;
-  padding: 10px 20px; /* Tamaño del botón */
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2);
 }
 
 button:hover {
   background-color: #2AA4DA;
   color: rgba(0, 0, 0, 0.605);
-  transform: translateY(-3px); /* Animación al pasar el cursor */
+  transform: translateY(-3px);
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
 
@@ -117,3 +121,18 @@ button:active {
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
+@media (max-width: 480px) {
+  .popup-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .div-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .div-acciones button {
+    width: 100%;
+  }
+}

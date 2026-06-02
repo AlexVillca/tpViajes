@@ -1,34 +1,38 @@
+.div-layout {
+  margin-top: 60px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
 
-.div-central{
-  padding: 70px 0 30px 0;
-  gap: 20px 0;
-  min-height: calc(100vh - 110px); /* navbar + footer */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0;
-  transform: translateY(-20px); /* Posición inicial desplazada */
-  transition: opacity 0.6s ease, transform 0.6s ease; /* Duración y tipo de transición */
+.div-central {
+  opacity: 1;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
   z-index: 1;
+  box-sizing: border-box;
+}
+
+.div-central.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .div-ciudades {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 columnas fijas */
-  gap: 20px;
-  align-content: start;
-  justify-content: center;
-  flex:1;
-  max-width: 75vw;
-}
-
-.div-central.visible {
-  opacity: 1; /* Visible */
-  transform: translateY(0); /* Posición final */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 15px;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 400px;
+  align-items: start;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 .button-volver {
-  align-self: flex-start;
   background-color: #1E85BB;
   border: none;
   color: white;
@@ -40,6 +44,7 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2);
   margin-left: 40px;
+  margin-bottom: 64px;
 }
 
 .button-volver:hover {
@@ -54,43 +59,34 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
-
-@media (max-width: 1270px) {
-  .div-ciudades {
-    grid-template-columns: repeat(3, 1fr);
+@media (min-height: 610px) {
+  .button-volver {
+    margin-bottom: 65px;
   }
-
-  .button-volver{
-    margin-bottom:  30px;
-  }
-
 }
 
-
-@media (max-width: 970px) {
+@media (max-width: 1050px) {
   .div-ciudades {
     grid-template-columns: repeat(2, 1fr);
   }
 
-
-
+  .button-volver {
+    margin-bottom: 65px;
+  }
 }
 
-@media (max-width: 690px) {
-  .div-central{
-    padding-bottom: 55px;
-  }
-
+@media (max-width: 650px) {
   .div-ciudades {
     grid-template-columns: 1fr;
-    width: 60%;
-    min-width: 286px;
+    max-width: 340px;
   }
 
+  .button-volver {
+    margin-bottom: 80px;
+    margin-left: 20px;
+  }
 }
 
-
-/* Contenedor del video de fondo */
 .video-background {
   position: fixed;
   top: 0;
@@ -101,9 +97,8 @@
   z-index: -1;
 }
 
-/* Estilos para el vídeo */
 .background-video {
   width: 100vw;
   height: 100vh;
-  object-fit: cover; /* Escala el video para cubrir todo el fondo */
+  object-fit: cover;
 }

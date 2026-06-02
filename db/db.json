@@ -321,6 +321,19 @@
           "listaCiudades": []
         }
       ]
+    },
+    {
+      "username": "aaaaa",
+      "email": "gus@g",
+      "password": "12345678",
+      "listasFavs": [
+        {
+          "idLista": "8wtjkrk",
+          "nombreLista": "Guardadas",
+          "listaCiudades": []
+        }
+      ],
+      "id": "pAYOl4OTwRI"
     }
   ],
   "paises": [
@@ -11457,5 +11470,6 @@
       ],
       "id": "465f"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

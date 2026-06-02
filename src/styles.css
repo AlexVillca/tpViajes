@@ -2,13 +2,13 @@
 @import "leaflet/dist/leaflet.css";
 
 body {
-    font-family: 'Roboto', sans-serif; /* Cambia "Roboto" por la fuente elegida */
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  
-  /* Aplica la fuente a todos los elementos si es necesario */
+
   * {
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
   }

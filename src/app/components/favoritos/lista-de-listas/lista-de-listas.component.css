@@ -1,43 +1,34 @@
-.div-central{
-  padding: 60px 0 40px 0;
-  min-height: calc(100vh - 110px); /* navbar + footer */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.div-central {
+  margin-top: 60px;
+  padding-top: 15px;
+  margin-bottom: 10px;
   opacity: 0;
-  transform: translateY(-20px); /* Posición inicial desplazada */
-  transition: opacity 0.6s ease, transform 0.6s ease; /* Duración y tipo de transición */
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 .div-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas fijas */
-  gap: 25px;
-  align-content: start;
-  justify-content: center;
-  flex:1;
-  max-width: 70vw;
-
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 15px;
+  width: 100%;
+  max-width: 930px;
+  min-height: 415px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 0 15px;
 }
 
 .div-central.visible {
-  opacity: 1; /* Visible */
-  transform: translateY(0); /* Posición final */
-}
-
-h1{
-  font-size: 2rem;
-  color: rgba(0, 0, 0, 0.605);
-  text-align:center;
-}
-
-.div-button{
-  align-self: flex-start;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .button-volver {
-  align-self: flex-start;
   background-color: #1E85BB;
   border: none;
   color: white;
@@ -48,7 +39,7 @@ h1{
   padding: 10px 20px;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2);
-  margin: 10px 0 20px 40px;
+  margin-left: 40px;
 }
 
 .button-volver:hover {
@@ -63,36 +54,28 @@ h1{
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1050px) {
   .div-cards {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .button-volver{
-    margin: 20px 0 20px 40px;
+  .div-central {
+    margin-bottom: 65px;
   }
-
 }
 
-@media (max-width: 528px) {
-  .div-central{
-    padding-bottom: 55px;
-  }
-
+@media (max-width: 650px) {
   .div-cards {
     grid-template-columns: 1fr;
+    max-width: 340px;
   }
 
-}
-
-@media (max-width:380px){
-  .button-volver{
-    margin-bottom: 20px;
+  .button-volver {
+    margin-left: 20px;
+    margin-bottom: 80px;
   }
 }
 
-
-/* Contenedor del video de fondo */
 .video-background {
   position: fixed;
   top: 0;
@@ -103,9 +86,8 @@ h1{
   z-index: -1;
 }
 
-/* Estilos para el vídeo */
 .background-video {
   width: 100vw;
   height: 100vh;
-  object-fit: cover; /* Escala el video para cubrir todo el fondo */
+  object-fit: cover;
 }

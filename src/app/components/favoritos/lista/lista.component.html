@@ -1,27 +1,21 @@
+<div class="div-layout">
 
-<app-pop-up-confirmar *ngIf="mostrarPopUp"
-  [texto]="textoPopUp()"
-  (confirmar)="this.eliminarLista()"
-  (cancelar)="mostrarPopUp = false"
-  >
-</app-pop-up-confirmar>
-
-<div class="video-background">
-  <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-    <source src="assets/background-video.mp4" type="video/mp4" />
-    Tu navegador no soporta reproducción de vídeos.
-  </video>
-</div>
+  <div class="video-background">
+    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+      <source src="assets/background-video.mp4" type="video/mp4" />
+      Tu navegador no soporta reproducción de vídeos.
+    </video>
+  </div>
 
 
+ <app-titulo-lista
+    (eliminarLista)="eliminarLista()"
+    (nuevoTitulo)="guardarNuevoTitulo($event)"
+    [nombreOriginal]="this.lista!.nombreLista"
+    [idUser]="this.idUsuario">
+  </app-titulo-lista>
 
-<div class="div-central" [class.visible]="containerVisible">
-  <app-titulo-lista
-      (eliminarLista)="popupEliminarLista()"
-      (nuevoTitulo)="guardarNuevoTitulo($event)"
-      [nombreOriginal]="this.lista!.nombreLista"
-      [idUser]="this.idUsuario">
-    </app-titulo-lista>
+  <div class="div-central" [class.visible]="containerVisible">
 
     <div class="div-ciudades"  >
 
@@ -39,7 +33,6 @@
     <button type="button" class="button-volver"(click)="volver()">Volver</button>
 
   </div>
-
-
+</div>
 
 
