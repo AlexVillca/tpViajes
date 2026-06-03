@@ -18,6 +18,7 @@ import { UsuariosService } from '../core/service/usuarios.service';
 })
 export class GameComponent {
   paisesService = inject(PaisesService);
+  topUsuarios: any[] = []; // los 3 mejores usuarios
 
   arregloPaises: Pais[] = [];
   paisAleatorio: Pais | null = null;
@@ -40,6 +41,7 @@ export class GameComponent {
 
   ngOnInit(): void{
     this.listar()
+    this.cargarTop3();
     this.idUsuarioService.id$.subscribe((id) => {
       if (id !== null) {
         this.flag = true;
@@ -58,8 +60,24 @@ export class GameComponent {
         this.mejorPuntaje = 0; // Resetea el nombre si no hay usuario logueado
       }
     });
-  }
 
+        this.cargarTop3();
+
+  }
+cargarTop3() {
+    // Ajusta el nombre del método si tu servicio usa otro (p.ej. getAll, listarUsuarios, etc.)
+    this.servicioUsuario.getUsuarios().subscribe({
+      next: (usuarios: any[]) => {
+        this.topUsuarios = usuarios
+          .sort((a, b) => (b.mejorPuntaje || 0) - (a.mejorPuntaje || 0))
+          .slice(0, 3);
+      },
+      error: (e) => {
+        console.error('Error al obtener usuarios para ranking:', e);
+        this.topUsuarios = [];
+      }
+    });
+  }
 listar(){
   this.paisesService.getPaises().subscribe({
     next: (paises: Pais[])=>{
@@ -127,7 +145,8 @@ verificarRespuesta(pais: Pais) {
           this.mejorPuntaje = this.puntaje;
           if (this.flag) {
             this.servicioUsuario.actualizarPuntajeMaximo(this.id!, this.mejorPuntaje).subscribe({
-              next: () => console.log('Puntaje actualizado correctamente'),
+              next: () => {console.log('Puntaje actualizado correctamente'), this.cargarTop3();},
+              
               error: (e) => console.error('Error al actualizar el puntaje:', e)
             });
           }
