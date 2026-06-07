@@ -11,7 +11,15 @@
     <ul class="lista-puntaje" [ngClass]="{'visible': paisAleatorio}">
         <li>Puntaje Actual: {{this.puntaje}}</li>
         <li>Mejor Puntaje: {{this.mejorPuntaje}}</li>
+        
       </ul>
+
+  <ul class="lista-puntaje" [ngClass]="{'visible': paisAleatorio}">
+    <li>Puntaje Histórico:</li>
+    <li *ngFor="let u of topUsuarios; let i = index">
+    {{ i + 1 }}. {{u.username || 'Usuario'}} — {{ u.mejorPuntaje  || 0 }} puntos
+  </li></ul>
+
     <h1>Que pais es?</h1>
     <div *ngIf="paisAleatorio" class="banderas" [ngClass]="{'visible': banderaVisible}">
         <img [src]="paisAleatorio.bandera" alt="Bandera">

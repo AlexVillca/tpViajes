@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit{
     this.idUsuarioService.session$.subscribe((session) => {
       // La navbar depende de una unica fuente de verdad.
       this.flag = !!session;
-      this.username = session?.username ?? null;
+      this.username = session?.username || null;
     });
   }
 

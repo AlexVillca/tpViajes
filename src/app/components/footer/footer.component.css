@@ -5,67 +5,93 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
 .main-content {
-  flex: 1; 
+  flex: 1;
 }
 
 .footer {
-  background-color: #fc943d; 
+  background-color: #1E85BB;
   color: white;
-  padding: 0px 0px; 
+  padding: 0;
   margin-top: 200px;
   left: 0;
-  z-index: 1000; 
-  box-shadow: 0 -2px 5px rgba(144, 140, 140, 0.1); 
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(144, 140, 140, 0.1);
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
-
 }
 
 .footer-content {
-  max-width: 1200px; /* Ancho máximo del contenido */
-  margin: 0 auto; /* Centrar el contenido */
-  display: flex; /* Usar Flexbox */
-  justify-content: space-between; /* Separar extremos */
-  align-items: center; /* Centrar verticalmente */
-  padding: 0 10px; /* Reducir padding lateral si es necesario */
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
 }
 
 .footer nav ul {
-  list-style-type: none; /* Quitar puntos de lista */
-  margin: 0; /* Sin margen */
-  padding: 0; /* Sin padding */
-  display: flex; /* Mostrar enlaces en línea */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .footer nav ul li {
-  margin: 0 20px; /* Espaciado entre enlaces */
+  margin: 0 20px;
 }
 
 .footer-link {
-  color: white; /* Color de los enlaces */
-  text-decoration: none; /* Sin subrayado */
-  transition: transform 0.3s ease, color 0.3s ease; /* Transición suave */
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .footer-link:hover {
-  transform: translateY(-2px); /* Efecto de elevación */
-  color: #e0f7fa; /* Color más claro al pasar el cursor */
+  transform: translateY(-2px);
+  color: #e0f7fa;
 }
 
 .footer-copyright {
-  margin: 0; /* Sin margen */
-  font-size: 0.8em; /* Tamaño de fuente ajustado */
-  text-align: left; /* Alinear texto a la izquierda */
-  margin-left: 0; /* Llevar el texto más a la izquierda */
+  margin: 0;
+  font-size: 0.8em;
+  text-align: left;
+  margin-left: 0;
 }
 
 .footer nav {
-  margin-right: 10px; /* Ajustar más hacia la derecha */
+  margin-right: 10px;
 }
 
-p{
+p {
   text-align: right;
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    padding: 5px 10px;
+    gap: 2px;
+  }
+
+  .footer-content p {
+    text-align: center;
+    font-size: 0.75em;
+    margin: 2px 0;
+  }
+
+  .footer nav ul li {
+    margin: 0 10px;
+  }
+
+  .footer-link {
+    font-size: 0.85em;
+  }
+
+  p {
+    text-align: center;
+  }
 }

@@ -1,0 +1,92 @@
+.div-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 60px;
+  padding: 5px 10px;
+  flex-wrap: wrap;
+}
+
+.titulo {
+  height: 40px;
+  color: rgba(0, 0, 0, 0.605);
+  text-align: center;
+  line-height: 40px;
+}
+
+.input-titulo {
+  height: 40px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1E85BB;
+  background-color: #fff;
+  border: 2px solid #1E85BB;
+  border-radius: 8px;
+  outline: none;
+  max-width: 200px;
+}
+
+.input-titulo.error {
+  color: red;
+  border: 2px solid red;
+}
+
+small {
+  font-size: 0.85rem;
+  color: red;
+  visibility: hidden;
+  width: 100%;
+  text-align: center;
+}
+
+small.visible {
+  visibility: visible;
+}
+
+.div-botones {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+button {
+  background-color: #1E85BB;
+  border: none;
+  color: white;
+  height: 35px;
+  width: 35px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  color: rgba(0, 0, 0, 0.605);
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
+}
+
+.boton-renombrar-confirmar:hover {
+  background-color: #2AA4DA;
+}
+
+.boton-borrar-cancelar:hover {
+  background-color: red;
+}
+
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 1.2em;
+  }
+
+  .input-titulo {
+    max-width: 150px;
+    font-size: 0.9rem;
+  }
+}

@@ -26,7 +26,7 @@
         </div>
         <div class="container">
           <h2>{{ ciudad.nombre }}</h2>
-          <app-selecionador-listas-flotante ></app-selecionador-listas-flotante>
+          <app-pop-up-guardar-favoritos ></app-pop-up-guardar-favoritos>
 
         </div>
         <div class="container-2">
@@ -50,7 +50,7 @@
         <li *ngFor="let atraccion of ciudad.atracciones">
           <h4>{{ atraccion.nombre }}</h4>
           <p>{{ atraccion.descripcion }}</p>
-          <img *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}">
+          <img *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}" (error)="setImagenError($event)">
           <p>Horario: {{ atraccion.horario }}</p>
           <p>Página web: {{ atraccion.paginaWeb }}</p>
           <p *ngIf="atraccion.ubicacion">Ubicación: {{ atraccion.ubicacion.direccion }}</p>

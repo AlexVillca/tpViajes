@@ -1,81 +1,51 @@
-
-h1 {
-  font-size: 50px;
-  color: white;
-  text-shadow: 2px 2px #000;
-  margin: 10px 30px;
-}
-.container {
-  margin: 120px auto;
-  width: 100%;
-  height: 300px;
-  max-width: 700px;
-  max-height: 700px;
-  opacity: 0; /* Inicialmente invisible */
-  background-color: #fc943d;
-  border: #c06820 1px solid;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.621);
-  
-  transform: translateY(-20px); /* Posición inicial desplazada */
-  transition: opacity 0.6s ease, transform 0.6s ease; /* Duración y tipo de transición */
+.div-central {
+  margin-top: 60px;
+  padding-top: 15px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
   z-index: 1;
-}
-
-.container.visible {
-  opacity: 1; /* Visible */
-  transform: translateY(0); /* Posición final */
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 50px auto;
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-li {
-  width: calc(33.33% - 20px);
   box-sizing: border-box;
 }
 
-.button-seleccion {
-  padding: 10px 20px;
-  background-color: #fc943d;
-  border: 1px solid #c06820;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+.div-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 15px;
+  width: 100%;
+  max-width: 930px;
+  min-height: 415px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 0 15px;
 }
-.button-seleccion:hover {
-  background-color: #c06820;
-  transform: translateY(-3px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+
+.div-central.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
+
 .button-volver {
-  position: flex;
-  margin: 50px 30px;;
-  background-color: #fc943d;
+  background-color: #1E85BB;
   border: none;
   color: white;
   font-size: 16px;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  padding: 10px 20px; /* Tamaño del botón */
+  padding: 10px 20px;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2); /* Sombra */
-  
+  box-shadow: 0px 4px 8px rgba(0, 0, 123, 0.2);
+  margin-left: 40px;
 }
 
 .button-volver:hover {
-  background-color: #fc943d;
+  background-color: #2AA4DA;
   color: rgba(0, 0, 0, 0.605);
-  transform: translateY(-3px); /* Animación al pasar el cursor */
+  transform: translateY(-3px);
   box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
 
@@ -84,12 +54,28 @@ li {
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
+@media (max-width: 1050px) {
+  .div-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-p{
-  text-align: center;
-
+  .div-central {
+    margin-bottom: 65px;
+  }
 }
-/* Contenedor del video de fondo */
+
+@media (max-width: 650px) {
+  .div-cards {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+
+  .button-volver {
+    margin-left: 20px;
+    margin-bottom: 80px;
+  }
+}
+
 .video-background {
   position: fixed;
   top: 0;
@@ -100,9 +86,8 @@ p{
   z-index: -1;
 }
 
-/* Estilos para el vídeo */
 .background-video {
   width: 100vw;
   height: 100vh;
-  object-fit: cover; /* Escala el video para cubrir todo el fondo */
+  object-fit: cover;
 }

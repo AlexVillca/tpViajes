@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
-import { map, Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 import { IdUsuarioService } from './id-usuario.service';
-
 
 @Injectable({
   providedIn: 'root'
@@ -19,95 +18,94 @@ export class UsuariosService {
     return this.http.post<Usuario>(this.apiUrl, usuario);
   }
 
-
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.apiUrl);
   }
 
-  getUsuarioById(id:string | null):Observable<Usuario>{
+  getUsuarioById(id: string | null): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
 
-  login(username:string,password:string):Observable<boolean|null>{
-    return this.http.get<Usuario[]>(`${this.apiUrl}?email=${username}`).pipe(map(
-        response => {
-          if(response.length === 0){
-            return null;
-          }else{
-            const user = response[0];
+  login(username: string, password: string): Observable<boolean | null> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}?email=${username}`).pipe(
+      map(response => {
+        if (response.length === 0) {
+          return null;
+        }
 
-            // Mientras sigamos con json-server, la validacion sigue en frontend.
-            if(user.password === password){
-              if(user.id !== undefined){
-                // Guardamos una sesion minima reutilizable por toda la app.
-                this.idUs.setSession({
-                  id: user.id,
-                  username: user.username,
-                  email: user.email
-                });
-              }
-              return true;
-            }else{
-              return false;
-            }
+        const user = response[0];
+
+        // Mientras sigamos con json-server, la validacion sigue del lado del frontend.
+        if (user.password === password) {
+          if (user.id !== undefined) {
+            // Guardamos una sesion minima reutilizable por toda la app.
+            this.idUs.setSession({
+              id: user.id,
+              username: user.username,
+              email: user.email
+            });
           }
-        }
-    ))
-  }
 
-comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
-  return this.http.get<Usuario[]|undefined>(this.apiUrl).pipe(
-    map(usuarios => {
-      if(usuarios){
-        if (usuarios?.find(u => u.email === emailIngresado) !== undefined) {
-          return false;
-        } else {
           return true;
         }
-      }else{
+
         return false;
-      }
-    })
-  );
-}
-comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
-
-  return this.http.get<Usuario[]>(this.apiUrl).pipe(
-    map(usuarios => {
-      if(usuarios){
-        if (usuarios?.find(u => u.username === usernameIngresado) !== undefined) {
-          return false;
-        } else {
-          return true;
-        }
-      }else{
-        return false;
-      }
-    })
-  );
-}
-obtenerListasFav(id:string):Observable<ListaFav[]>{
-  return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
-    map(usuario => usuario.listasFavs),
-
-  );
-}
-
-putUsuario(usuario: Usuario, id: string): Observable<Usuario>{
-  return this.http.put<Usuario>(`${this.apiUrl}/${id}`, usuario)
-}
-
-
-
-
-actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
-
-  const url = `${this.apiUrl}/${aActualizar.id}`;
-
-  return this.http.put<Usuario>(url, aActualizar);
-
+      })
+    );
   }
 
+  comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
+    return this.http.get<Usuario[] | undefined>(this.apiUrl).pipe(
+      map(usuarios => {
+        if (usuarios) {
+          if (usuarios.find(u => u.email === emailIngresado) !== undefined) {
+            return false;
+          }
+
+          return true;
+        }
+
+        return false;
+      })
+    );
+  }
+
+  comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
+    return this.http.get<Usuario[]>(this.apiUrl).pipe(
+      map(usuarios => {
+        if (usuarios) {
+          if (usuarios.find(u => u.username === usernameIngresado) !== undefined) {
+            return false;
+          }
+
+          return true;
+        }
+
+        return false;
+      })
+    );
+  }
+
+  obtenerListasFav(id: string): Observable<ListaFav[]> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
+      map(usuario => usuario.listasFavs)
+    );
+  }
+
+  obtenerListaFav(idUsuario: string, idListaBuscada: string): Observable<ListaFav | undefined> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
+      map(usuario => usuario.listasFavs.find(l => l.idLista === idListaBuscada))
+    );
+  }
+
+  actualizarListasFavoritos(id: string, listasActualizadas: ListaFav[]): Observable<ListaFav[]> {
+    const url = `${this.apiUrl}/${id}`;
+    const body: Partial<Usuario> = { listasFavs: listasActualizadas };
+
+    return this.http.patch<Usuario>(url, body).pipe(
+      map(usuario => usuario.listasFavs)
+    );
+  }
 
   cambiarContrasena(id: string, nuevaContrasena: string): Observable<Partial<Usuario>> {
     const url = `${this.apiUrl}/${id}`;
@@ -115,14 +113,40 @@ actualizarUsuario(aActualizar:Usuario):Observable<Usuario>{
     return this.http.patch<Partial<Usuario>>(url, body);
   }
 
-  actualizarPuntajeMaximo(id: String, puntajeNuevo: number):Observable<Partial<Usuario>>{
+  actualizarPuntajeMaximo(id: String, puntajeNuevo: number): Observable<Partial<Usuario>> {
     const url = `${this.apiUrl}/${id}`;
     const body: Partial<Usuario> = { mejorPuntaje: puntajeNuevo };
     return this.http.patch<Partial<Usuario>>(url, body);
   }
 
+  actualizarListaFavoritos(idUsuario: string, listaActualizada: ListaFav): Observable<Partial<Usuario>> {
+    const url = `${this.apiUrl}/${idUsuario}`;
+    return this.http.get<Usuario>(url).pipe(
+      map(usuario => {
+        const listasActualizadas = usuario.listasFavs.map(listaActual =>
+          listaActual.idLista === listaActualizada.idLista ? listaActualizada : listaActual
+        );
 
+        return { listasFavs: listasActualizadas } as Partial<Usuario>;
+      }),
+      switchMap(body => this.http.patch<Partial<Usuario>>(url, body))
+    );
+  }
+
+  eliminarListaFavoritos(idListaEliminar: string, idUsuario: string): Observable<Partial<Usuario>> {
+    const url = `${this.apiUrl}/${idUsuario}`;
+    return this.http.get<Usuario>(url).pipe(
+      map(usuario => {
+        const listasActualizadas = usuario.listasFavs.filter(l => l.idLista !== idListaEliminar);
+        return { listasFavs: listasActualizadas } as Partial<Usuario>;
+      }),
+      switchMap(body => this.http.patch<Partial<Usuario>>(url, body))
+    );
+  }
+
+  comprobarNombreExistenteDeLista(idUsuario: string, nombreComprobar: string): Observable<boolean> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
+      map(usuario => usuario.listasFavs.some(l => l.nombreLista === nombreComprobar) ?? false)
+    );
+  }
 }
-
-
-
