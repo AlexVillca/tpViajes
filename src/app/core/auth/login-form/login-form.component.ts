@@ -1,12 +1,10 @@
 
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UsuariosService } from '../../service/usuarios.service';
-import { IdUsuarioService } from '../../service/id-usuario.service';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login-form',
@@ -17,10 +15,9 @@ import { Location } from '@angular/common';
 })
 export class LoginFormComponent {
   usuarioService = inject(UsuariosService);
-  idUsuario = inject(IdUsuarioService);
   routerService = inject(Router);
+  route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
-  location = inject(Location)
   formulario = this.fb.nonNullable.group({
     email: ['',[Validators.required]],
     password: ['',[Validators.required]]
@@ -40,7 +37,9 @@ export class LoginFormComponent {
 
           }else{
             if(value){
-              this.location.back();
+              // Si el usuario venia de una ruta protegida, vuelve ahi.
+              const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+              this.routerService.navigateByUrl(returnUrl || '/home');
 
             }else{
               this.passwordIncorrecto = true;
@@ -49,7 +48,7 @@ export class LoginFormComponent {
             }
           }
         },
-        error:(e)=>{console.log(e.message())}
+        error:(e)=>{console.log(e.message)}
       }
   )
   }

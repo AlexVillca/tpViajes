@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
-import { catchError, concatMap, map, Observable, of, throwError } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { IdUsuarioService } from './id-usuario.service';
 
@@ -34,13 +34,18 @@ export class UsuariosService {
           if(response.length === 0){
             return null;
           }else{
-            if(response[0].password === password){
-              if(response[0].id !== undefined){
-                this.idUs.setId(response[0].id);
+            const user = response[0];
+
+            // Mientras sigamos con json-server, la validacion sigue en frontend.
+            if(user.password === password){
+              if(user.id !== undefined){
+                // Guardamos una sesion minima reutilizable por toda la app.
+                this.idUs.setSession({
+                  id: user.id,
+                  username: user.username,
+                  email: user.email
+                });
               }
-
-
-
               return true;
             }else{
               return false;

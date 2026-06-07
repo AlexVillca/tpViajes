@@ -63,7 +63,19 @@
       "username": "pepe3",
       "email": "peper@gmail.com",
       "password": "987654321",
-      "listasFavs": []
+      "listasFavs": [
+        {
+          "idLista": "x3lsqo4",
+          "nombreLista": "mis favoritos",
+          "listaCiudades": [
+            {
+              "codigoPais": "EG",
+              "nombre": "Hurghada"
+            }
+          ]
+        }
+      ],
+      "mejorPuntaje": 14
     },
     {
       "id": "3419",
@@ -88,7 +100,7 @@
       "username": "probando",
       "email": "p",
       "password": "p",
-      "mejorPuntaje": 6,
+      "mejorPuntaje": 12,
       "listasFavs": [
         {
           "idLista": "yihypix",

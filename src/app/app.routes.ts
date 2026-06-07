@@ -13,6 +13,7 @@ import { ContactUsComponent } from './components/home/contact-us/contact-us.comp
 import { AboutUsComponent } from './components/home/about-us/about-us.component';
 import { UpdatePasswordComponent } from './core/auth/update-password/update-password.component';
 import { FichaUserComponent } from './core/auth/ficha-user/ficha-user.component';
+import { authGuard } from './core/auth/auth.guard';
 
 
 export const routes: Routes = [
@@ -25,12 +26,13 @@ export const routes: Routes = [
   { path: 'ciudad', component: CiudadDetailComponent },
   { path: 'Juego', component: GameComponent},
   { path: 'pais', component: PaisDetailComponent },
-  { path: 'favoritos', component: ListaDeListasComponent},
-  { path: 'listaCiudadesComp/:idLista', component:ListaComponent},
+  // Rutas privadas: requieren sesion activa en frontend.
+  { path: 'favoritos', component: ListaDeListasComponent, canActivate: [authGuard]},
+  { path: 'listaCiudadesComp/:idLista', component:ListaComponent, canActivate: [authGuard]},
   { path: 'contact', component:ContactUsComponent},
   { path: 'about', component:AboutUsComponent},
-  { path:'updateP', component:UpdatePasswordComponent},
-  { path: 'fichaUser', component:FichaUserComponent},
+  { path:'updateP', component:UpdatePasswordComponent, canActivate: [authGuard]},
+  { path: 'fichaUser', component:FichaUserComponent, canActivate: [authGuard]},
   { path:'**',redirectTo: ''}
 
 ];

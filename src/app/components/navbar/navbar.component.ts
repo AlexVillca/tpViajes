@@ -3,9 +3,6 @@ import { Router, RouterModule } from '@angular/router';
 
 import { IdUsuarioService } from '../../core/service/id-usuario.service';
 import { CommonModule } from '@angular/common';
-import { UsuariosService } from '../../core/service/usuarios.service';
-
-
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +14,6 @@ import { UsuariosService } from '../../core/service/usuarios.service';
 export class NavbarComponent implements OnInit{
 
   idUsuarioService = inject(IdUsuarioService);
-  usuariosService = inject(UsuariosService);
   routerService = inject(Router);
   flag:boolean = false;
   username: string | null = null;
@@ -25,23 +21,10 @@ export class NavbarComponent implements OnInit{
   dropdownOpen: boolean = false; // Estado de la solapa del usuario
 
   ngOnInit() {
-    this.idUsuarioService.id$.subscribe((id) => {
-      if (id !== null) {
-        this.flag = true;
-
-        this.usuariosService.getUsuarioById(id).subscribe({
-          next: (usuario) => {
-            this.username = usuario.username;
-          },
-          error: (e) => {
-            console.error('Error al obtener el usuario:', e);
-            this.username = null; // Resetea el nombre si hay un error
-          },
-        });
-      } else {
-        this.flag = false;
-        this.username = null; // Resetea el nombre si no hay usuario logueado
-      }
+    this.idUsuarioService.session$.subscribe((session) => {
+      // La navbar depende de una unica fuente de verdad.
+      this.flag = !!session;
+      this.username = session?.username ?? null;
     });
   }
 
@@ -54,6 +37,7 @@ export class NavbarComponent implements OnInit{
   }
 
   logOut(){
+    // Logout real del estado local.
     this.idUsuarioService.clearUserId();
     this.routerService.navigate(['home']);
   }
