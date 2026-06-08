@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, switchMap } from 'rxjs';
+import { catchError, map, Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 import { IdUsuarioService } from './id-usuario.service';
+import { buildHttpError } from '../utils/http-error.util';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,21 @@ export class UsuariosService {
   private apiUrl = `${environment.apiBaseUrl}/usuarios`;
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.apiUrl, usuario);
+    return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
+      catchError(error => buildHttpError(error, 'No se pudo registrar el usuario.'))
+    );
   }
 
   getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl);
+    return this.http.get<Usuario[]>(this.apiUrl).pipe(
+      catchError(error => buildHttpError(error, 'No se pudieron cargar los usuarios.'))
+    );
   }
 
   getUsuarioById(id: string | null): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
+      catchError(error => buildHttpError(error, 'No se pudo obtener el usuario.'))
+    );
   }
 
   login(username: string, password: string): Observable<boolean | null> {
@@ -51,7 +58,8 @@ export class UsuariosService {
         }
 
         return false;
-      })
+      }),
+      catchError(error => buildHttpError(error, 'No se pudo iniciar sesión.'))
     );
   }
 
@@ -67,7 +75,8 @@ export class UsuariosService {
         }
 
         return false;
-      })
+      }),
+      catchError(error => buildHttpError(error, 'No se pudo validar el email ingresado.'))
     );
   }
 
@@ -83,13 +92,15 @@ export class UsuariosService {
         }
 
         return false;
-      })
+      }),
+      catchError(error => buildHttpError(error, 'No se pudo validar el nombre de usuario ingresado.'))
     );
   }
 
   obtenerListasFav(id: string): Observable<ListaFav[]> {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
-      map(usuario => usuario.listasFavs)
+      map(usuario => usuario.listasFavs),
+      catchError(error => buildHttpError(error, 'No se pudieron cargar las listas de favoritos.'))
     );
   }
 
@@ -104,14 +115,17 @@ export class UsuariosService {
     const body: Partial<Usuario> = { listasFavs: listasActualizadas };
 
     return this.http.patch<Usuario>(url, body).pipe(
-      map(usuario => usuario.listasFavs)
+      map(usuario => usuario.listasFavs),
+      catchError(error => buildHttpError(error, 'No se pudieron guardar los favoritos.'))
     );
   }
 
   cambiarContrasena(id: string, nuevaContrasena: string): Observable<Partial<Usuario>> {
     const url = `${this.apiUrl}/${id}`;
     const body: Partial<Usuario> = { password: nuevaContrasena };
-    return this.http.patch<Partial<Usuario>>(url, body);
+    return this.http.patch<Partial<Usuario>>(url, body).pipe(
+      catchError(error => buildHttpError(error, 'No se pudo actualizar la contraseña.'))
+    );
   }
 
   actualizarPuntajeMaximo(id: String, puntajeNuevo: number): Observable<Partial<Usuario>> {

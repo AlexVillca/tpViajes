@@ -25,9 +25,11 @@ export class LoginFormComponent {
 
   emailIncorrecto = false;
   passwordIncorrecto = false;
+  serverError = '';
   loguearse(){
     this.emailIncorrecto = false;
     this.passwordIncorrecto =false;
+    this.serverError = '';
     if(this.formulario.invalid){return}
     this.usuarioService.login(this.formulario.get("email")?.value ?? "", this.formulario.get("password")?.value ?? "").subscribe(
       {
@@ -48,7 +50,10 @@ export class LoginFormComponent {
             }
           }
         },
-        error:(e)=>{console.log(e.message)}
+        error:(e)=>{
+          // Mostramos el error en la vista para no dejarlo solo en consola.
+          this.serverError = e.message;
+        }
       }
   )
   }

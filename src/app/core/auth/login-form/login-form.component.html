@@ -10,16 +10,16 @@
   <div class="video-background">
     <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
       <source src="assets/background-video.mp4" type="video/mp4" />
-      Tu navegador no soporta reproducción de vídeos.
+      Tu navegador no soporta reproduccion de videos.
     </video>
   </div>
 
   <div class="container" id="container" [class.visible]="containerVisible">
-    <div class="login-container" >
+    <div class="login-container">
       <form [formGroup]="formulario" (ngSubmit)="loguearse()" class="form-lg">
-        <h1 class="titulaso">Inicia sesión aquí</h1>
+        <h1 class="titulaso">Inicia sesion aqui</h1>
         <div class="form-control2">
-          <input type="email" class="email-2" formControlName="email" placeholder="Correo electrónico" />
+          <input type="email" class="email-2" formControlName="email" placeholder="Correo electronico" />
           <div>
             @if(formulario.controls['email'].getError('required') && formulario.controls['email'].touched){
               <div class="error">
@@ -30,32 +30,31 @@
           <div *ngIf="emailIncorrecto" class="error">
             Email incorrecto
           </div>
-
         </div>
-
 
         <div class="form-control">
-          <input type="password" formControlName="password" placeholder="Contraseña" />
+          <input type="password" formControlName="password" placeholder="Contrasena" />
           <small class="error"></small>
-              <div>
-                @if(formulario.controls['password'].getError('required')&& formulario.controls['password'].touched){
-                  <div class="error">
-                    Campo requerido
-                  </div>
-                }
+          <div>
+            @if(formulario.controls['password'].getError('required')&& formulario.controls['password'].touched){
+              <div class="error">
+                Campo requerido
               </div>
-              <div *ngIf="passwordIncorrecto" class="error">
-                Password incorrecto
-              </div>
-
-            </div>
-
-            <button type="submit"  >Iniciar sesión</button>
-            <small class="minireg">No tienes cuenta? <a class="minireg" routerLink="/register"><strong>Registrate aqui</strong></a></small>
-          </form>
+            }
+          </div>
+          <div *ngIf="passwordIncorrecto" class="error">
+            Password incorrecto
+          </div>
         </div>
-      </div>
 
-      </body>
+        <div *ngIf="serverError" class="error">
+          {{ serverError }}
+        </div>
 
-      </html>
+        <button type="submit">Iniciar sesion</button>
+        <small class="minireg">No tienes cuenta? <a class="minireg" routerLink="/register"><strong>Registrate aqui</strong></a></small>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

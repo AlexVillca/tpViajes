@@ -39,6 +39,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
 
   alertaMaxListas = false;
   alertaNombreRepetido = false;
+  serverError = '';
 
   formulario:FormGroup = this.fb.group({
     nuevocheckboxListaFavorito: ['', [Validators.required,valorExistenteMap(this.mapNombresListas),maxItemsValidator(this.mapNombresListas,6)]],
@@ -179,6 +180,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   }
 
   saveSelection() {
+    this.serverError = '';
     this.pasajeFormularioaDB();
     this.ids.id$.subscribe(
       {
@@ -189,11 +191,15 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
               next:() => {
                 this.cierraPopUp();
               },
-              error:() => {console.log("No se pudo actualizar usuario");}
+              error:(error) => {
+                this.serverError = error.message;
+              }
             });
           }
         },
-        error:() => {console.log("ERROR:no se pudo obtener el id");}
+        error:() => {
+          this.serverError = 'No se pudo obtener el usuario actual.';
+        }
       }
     );
 
@@ -201,6 +207,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   cierraPopUp(){
     document.body.style.overflow = "auto";
     this.nuevaListaInput.reset();
+    this.serverError = '';
     this.visible = false;
   }
   abrePopUp(){

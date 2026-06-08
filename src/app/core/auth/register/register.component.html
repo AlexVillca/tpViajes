@@ -59,6 +59,9 @@
           </div>
           <span></span>
         </div>
+        <div *ngIf="serverError" class="error">
+          {{ serverError }}
+        </div>
         <button type="submit">Registrame!</button>
         <small class="minireg">Ya tienes cuenta? <a class="minireg" routerLink="/login"><strong>Inicia sesion aqui</strong></a></small>
 

@@ -9,6 +9,10 @@
         Debe tener 3 letras o mas
       </div>
 
+      <div class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
       <button>Agregar</button>
 
   </form>

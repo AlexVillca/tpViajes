@@ -39,6 +39,7 @@ export class RegisterComponent {
 
   emailInvalid:Boolean = false;
   userNameInvalid:Boolean = false;
+  serverError = '';
 
 
 
@@ -47,6 +48,7 @@ export class RegisterComponent {
   onSubmit() {
     this.emailInvalid = false;
     this.userNameInvalid = false;
+    this.serverError = '';
     if (this.formulario.invalid) {return}
     this.user.username = this.formulario.get('username')?.value || "";
     this.user.email = this.formulario.get('email')?.value || "";
@@ -75,7 +77,9 @@ export class RegisterComponent {
                         this.routerService.navigate(['login']);
                       }, 4000);
                      },
-                    error: (error) => { console.error('Error al crear usuario:', error); }
+                    error: (error) => {
+                      this.serverError = error.message;
+                    }
                     }
                   );
 
@@ -85,7 +89,7 @@ export class RegisterComponent {
                 }
               },
             error: (error) => {
-              console.error('Error al comprobar el username:', error);
+              this.serverError = error.message;
             }
             }
           );
@@ -95,7 +99,9 @@ export class RegisterComponent {
 
         }
       },
-      error: (error) => { console.error('Error al comprobar el email:', error); }
+      error: (error) => {
+        this.serverError = error.message;
+      }
       }
     );
   }
