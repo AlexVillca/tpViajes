@@ -55,6 +55,13 @@
       "ciudad": "La Paz",
       "usuarioId": "8021",
       "usuario": "facuramallo"
+    },
+    {
+      "id": "639d",
+      "mensaje": "anda todo bien",
+      "ciudad": "Mombasa",
+      "usuarioId": "47fe",
+      "usuario": "probando"
     }
   ],
   "usuarios": [
@@ -100,7 +107,7 @@
       "username": "probando",
       "email": "p",
       "password": "p",
-      "mejorPuntaje": 12,
+      "mejorPuntaje": 23,
       "listasFavs": [
         {
           "idLista": "yihypix",

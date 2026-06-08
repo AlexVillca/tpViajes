@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, switchMap } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 import { IdUsuarioService } from './id-usuario.service';
 
@@ -12,7 +12,8 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
   idUs = inject(IdUsuarioService);
-  private apiUrl = environment.urlBaseUsuarios;
+  // La URL se arma desde una sola base comun a toda la app.
+  private apiUrl = `${environment.apiBaseUrl}/usuarios`;
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario);

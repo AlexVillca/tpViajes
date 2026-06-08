@@ -42,6 +42,7 @@ testem.log
 /output/playwright/
 /tmp_backend.log
 /tmp_frontend.log
+/SEGUIMIENTO_LOCAL.md
 
 # System files
 .DS_Store
