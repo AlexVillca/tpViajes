@@ -1,0 +1,47 @@
+<div class="info-pais">
+  <h3>🌍 Datos verificados <small>(REST Countries)</small></h3>
+
+  <p class="info-estado" *ngIf="cargando">Cargando datos del país…</p>
+  <p class="info-error" *ngIf="error && !cargando">{{ error }}</p>
+
+  <div class="info-grid" *ngIf="info && !cargando && !error">
+    <div class="info-item">
+      <span class="etiqueta">Capital</span>
+      <span class="valor">{{ info.capital }}</span>
+    </div>
+    <div class="info-item">
+      <span class="etiqueta">Población</span>
+      <span class="valor">{{ info.poblacion | number }}</span>
+    </div>
+    <div class="info-item">
+      <span class="etiqueta">Región</span>
+      <span class="valor">{{ info.region }} <span *ngIf="info.subregion !== '—'">· {{ info.subregion }}</span></span>
+    </div>
+    <div class="info-item">
+      <span class="etiqueta">Superficie</span>
+      <span class="valor">{{ info.area | number }} km²</span>
+    </div>
+    <div class="info-item">
+      <span class="etiqueta">Idiomas</span>
+      <span class="valor">{{ info.idiomas.length ? info.idiomas.join(', ') : '—' }}</span>
+    </div>
+    <div class="info-item">
+      <span class="etiqueta">Monedas</span>
+      <span class="valor">{{ info.monedas.length ? info.monedas.join(', ') : '—' }}</span>
+    </div>
+    <div class="info-item">
+      <span class="etiqueta">Zona horaria</span>
+      <span class="valor">{{ info.zonasHorarias.length ? info.zonasHorarias.join(', ') : '—' }}</span>
+    </div>
+    <div class="info-item ancho-completo" *ngIf="info.limitrofes.length">
+      <span class="etiqueta">Países limítrofes</span>
+      <span class="chips">
+        <span class="chip" *ngFor="let pais of info.limitrofes">{{ pais }}</span>
+      </span>
+    </div>
+
+    <div class="info-bandera" *ngIf="info.banderaUrl">
+      <img [src]="info.banderaUrl" [alt]="info.banderaAlt || 'Bandera'">
+    </div>
+  </div>
+</div>

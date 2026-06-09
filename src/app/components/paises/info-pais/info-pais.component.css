@@ -1,0 +1,91 @@
+.info-pais {
+  margin-top: 16px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-pais h3 {
+  margin: 0 0 12px;
+  color: #2f1b07;
+  font-size: 1.15rem;
+}
+
+.info-pais h3 small {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #888;
+}
+
+.info-estado {
+  margin: 0;
+  font-style: italic;
+  color: #777;
+}
+
+.info-error {
+  margin: 0;
+  color: #b00020;
+  font-size: 0.9rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-item.ancho-completo {
+  grid-column: 1 / -1;
+}
+
+.etiqueta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #888;
+}
+
+.valor {
+  color: #333;
+  font-size: 1rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.chip {
+  background-color: #f4e1c1;
+  color: #3e2611;
+  border: 1px solid #d5a96d;
+  border-radius: 14px;
+  padding: 3px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.info-bandera {
+  grid-column: 1 / -1;
+}
+
+.info-bandera img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}

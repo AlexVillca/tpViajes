@@ -1,0 +1,55 @@
+<div class="conversor">
+  <h4>💱 Conversor de moneda</h4>
+
+  <!-- Caso: no se pudo identificar la moneda del pais -->
+  <p class="conversor-aviso" *ngIf="!monedaDestino">
+    No hay una moneda convertible disponible para este país.
+  </p>
+
+  <ng-container *ngIf="monedaDestino">
+    <div class="conversor-form">
+      <div class="campo">
+        <label for="monto">Monto</label>
+        <input
+          id="monto"
+          type="number"
+          min="0"
+          [(ngModel)]="monto"
+          placeholder="0" />
+      </div>
+
+      <div class="campo">
+        <label for="base">Moneda de origen</label>
+        <select
+          id="base"
+          [(ngModel)]="baseSeleccionada"
+          (ngModelChange)="cargarTasas()">
+          <option *ngFor="let m of monedasBase" [value]="m">{{ m }}</option>
+        </select>
+      </div>
+
+      <div class="campo-igual">=</div>
+
+      <div class="campo destino">
+        <label>En {{ monedaDestino }}</label>
+        <span class="resultado" *ngIf="!cargando && !error && resultado !== null">
+          {{ resultado | number: '1.2-2' }} {{ monedaDestino }}
+        </span>
+        <span class="resultado pendiente" *ngIf="cargando">Calculando…</span>
+        <span class="resultado pendiente"
+              *ngIf="!cargando && !error && resultado === null">
+          No cotiza esta moneda
+        </span>
+      </div>
+    </div>
+
+    <p class="conversor-error" *ngIf="error">{{ error }}</p>
+
+    <p class="conversor-detalle"
+       *ngIf="!cargando && !error && tasa !== null">
+      1 {{ baseSeleccionada }} = {{ tasa | number: '1.2-4' }} {{ monedaDestino }}
+      <br />
+      <small>Actualizado: {{ ultimaActualizacion }}</small>
+    </p>
+  </ng-container>
+</div>

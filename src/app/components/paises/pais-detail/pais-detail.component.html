@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,46 +7,62 @@
 </head>
 <body>
   <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+    <video autoplay loop muted playsinline class="background-video">
       <source src="assets/background-video.mp4" type="video/mp4" />
       Tu navegador no soporta reproducción de vídeos.
     </video>
   </div>
 
-  <div class="papiro-container" [ngClass]="{ 'hidden': !isVisible, 'visible': isVisible }">
-    <img class="papiro" src="../../../assets/papiro.png" alt="Papiro">
-    <div class="container" *ngIf="pais$ | async as pais" >
-      <h2>{{ pais.nombre }}</h2>
-      <p>Nombre oficial: {{ pais.nombreOficial }}</p>
-      <p>Capital: {{ pais.capital }}</p>
-      <p>Código: {{ pais.codigo }}</p>
-      <img [src]="pais.bandera" alt="Bandera de {{ pais.nombre }}">
-      <p>Idioma oficial: {{ pais.idiomaOficial }}</p>
-      <p>Moneda: {{ pais.moneda }}</p>
-      <p>Continente: {{ pais.continente }}</p>
-      <div *ngIf="pais.visa">
-        <p>Visa necesaria: {{ pais.visa.necesaria }}</p>
-        <p>Descripción de visa: {{ pais.visa.descripcion }}</p>
+  <div class="pais-container" *ngIf="pais$ | async as pais">
+
+    <div class="pais-detail-container">
+      <div class="video-container">
+        <video autoplay loop muted playsinline class="background-video">
+          <source src="assets/background-video.mp4" type="video/mp4" />
+        </video>
       </div>
-      <p>Clima: {{ pais.clima }}</p>
-      <p>Gastronomía: {{ pais.gastronomia }}</p>
-      <p>Cultura: {{ pais.cultura }}</p>
-      <p>Seguridad: {{ pais.seguridad }}</p>
-      <p>Transporte: {{ pais.transporte }}</p>
-      
-      <app-map [lat]= "pais.latitud ?? 0" [lon]= "pais.longitud ?? 0" [nombre]="pais.nombre" [flagUrl]="pais.bandera!"></app-map>
-  
+
+      <div class="header">
+        <h2>{{ pais.nombre }}</h2>
+        <img *ngIf="pais.bandera" class="bandera" [src]="pais.bandera"
+             alt="Bandera de {{ pais.nombre }}" (error)="setImagenError($event)">
+      </div>
+
+      <div class="info-panel">
+        <p><strong>Nombre oficial:</strong> {{ pais.nombreOficial }}</p>
+        <p><strong>Código:</strong> {{ pais.codigo }}</p>
+
+        <app-conversor-moneda [monedaPais]="pais.moneda"></app-conversor-moneda>
+
+        <ng-container *ngIf="pais.visa">
+          <p><strong>Visa necesaria:</strong> {{ pais.visa.necesaria ? 'Sí' : 'No' }}</p>
+          <p><strong>Descripción de visa:</strong> {{ pais.visa.descripcion }}</p>
+        </ng-container>
+        <p><strong>Clima:</strong> {{ pais.clima }}</p>
+        <p><strong>Gastronomía:</strong> {{ pais.gastronomia }}</p>
+        <p><strong>Cultura:</strong> {{ pais.cultura }}</p>
+        <p><strong>Seguridad:</strong> {{ pais.seguridad }}</p>
+        <p><strong>Transporte:</strong> {{ pais.transporte }}</p>
+      </div>
+
+      <app-info-pais [codigo]="pais.codigo"></app-info-pais>
+
+      <div class="mapa-panel">
+        <app-map [lat]="pais.latitud ?? 0" [lon]="pais.longitud ?? 0"
+                 [nombre]="pais.nombre" [flagUrl]="pais.bandera!"></app-map>
+      </div>
+    </div>
+
+    <div class="ciudades-detail-container">
       <h3>Ciudades</h3>
-      <ul>
+      <ul class="ciudades-list">
         <li *ngFor="let ciudad of pais.ciudades">
           <a (click)="seleccionarCiudad(ciudad)">{{ ciudad.nombre }}</a>
         </li>
       </ul>
     </div>
-    <div class="div-botones">
-      <button type="button" (click)="volver()">Volver</button>
-    </div>
+
+    <button type="button" (click)="volver()">Volver</button>
   </div>
-  
-  </body>
+</body>
 </html>
