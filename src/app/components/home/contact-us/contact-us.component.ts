@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FeedbackService } from '../../../core/service/feedback.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -9,29 +10,29 @@ import { Component } from '@angular/core';
 })
 export class ContactUsComponent {
   email: string = "drarroundtheworld@gmail.com"
+  feedback = inject(FeedbackService);
 
   videoLoaded = false;
 
-  // Esta función se llama cuando el video se carga completamente
+  // Esta funcion se llama cuando el video se carga completamente.
   onVideoLoaded() {
     this.videoLoaded = true;
     setTimeout(() => {
 
-    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+    }, 200);
   }
 
   containerVisible = false;
 
   ngOnInit() {
-    // Activa la clase después de un breve retraso
     setTimeout(() => {
       this.containerVisible = true;
-    }, 200); // Retraso en milisegundos
+    }, 200);
   }
 
   onSubmit(event: Event) {
-    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
+    event.preventDefault();
     console.log("Formulario enviado (simulado)");
-    alert("¡Gracias por tu mensaje! Pronto nos pondremos en contacto contigo.");
+    this.feedback.success('Gracias por tu mensaje. Pronto nos pondremos en contacto contigo.');
   }
 }

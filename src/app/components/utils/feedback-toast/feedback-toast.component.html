@@ -1,0 +1,18 @@
+<div class="toast-host" *ngIf="feedback.message$ | async as message">
+  <div
+    class="toast"
+    [ngClass]="message.type"
+    role="status"
+    [attr.aria-live]="message.type === 'error' ? 'assertive' : 'polite'"
+  >
+    <span class="toast-text">{{ message.text }}</span>
+    <button
+      type="button"
+      class="toast-close"
+      (click)="feedback.clear()"
+      aria-label="Cerrar mensaje"
+    >
+      ×
+    </button>
+  </div>
+</div>

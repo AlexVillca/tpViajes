@@ -8,6 +8,7 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
 import { valorExistenteMap } from '../../../validators/valorExistenteMap.validator';
 import { maxItemsValidator } from '../../../validators/maxItems.validator';
+import { FeedbackService } from '../../../core/service/feedback.service';
 
 
 
@@ -39,7 +40,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
 
   alertaMaxListas = false;
   alertaNombreRepetido = false;
-  serverError = '';
+  feedback = inject(FeedbackService);
 
   formulario:FormGroup = this.fb.group({
     nuevocheckboxListaFavorito: ['', [Validators.required,valorExistenteMap(this.mapNombresListas),maxItemsValidator(this.mapNombresListas,6)]],
@@ -180,7 +181,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   }
 
   saveSelection() {
-    this.serverError = '';
     this.pasajeFormularioaDB();
     this.ids.id$.subscribe(
       {
@@ -190,15 +190,16 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
             {
               next:() => {
                 this.cierraPopUp();
+                this.feedback.success('Lista guardada.');
               },
               error:(error) => {
-                this.serverError = error.message;
+                this.feedback.error(error.message);
               }
             });
           }
         },
         error:() => {
-          this.serverError = 'No se pudo obtener el usuario actual.';
+          this.feedback.error('No se pudo obtener el usuario actual.');
         }
       }
     );
@@ -207,7 +208,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   cierraPopUp(){
     document.body.style.overflow = "auto";
     this.nuevaListaInput.reset();
-    this.serverError = '';
     this.visible = false;
   }
   abrePopUp(){

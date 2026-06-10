@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { RouterOutlet } from '@angular/router';
+import { FeedbackToastComponent } from './components/utils/feedback-toast/feedback-toast.component';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { RouterOutlet } from '@angular/router';
   imports: [
     RouterOutlet,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    FeedbackToastComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

@@ -10,6 +10,7 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { concatMap, Observable } from 'rxjs';
+import { FeedbackService } from '../../../core/service/feedback.service';
 
 @Component({
   selector: 'app-comentarios',
@@ -37,6 +38,7 @@ export class ComentariosComponent {
   nombreCiudad = '';
   idPais = '';
   errorMessage = '';
+  feedback = inject(FeedbackService);
 
   // Esto es asincronico y se actualiza el valor de idPais cuando pais$ emite un nuevo valor.
   ngOnInit() {
@@ -73,7 +75,7 @@ export class ComentariosComponent {
     });
 
     if (!this.idPais || !this.nombreCiudad) {
-      this.errorMessage = 'No se pudo obtener el pais o la ciudad.';
+      this.feedback.error('No se pudo obtener el pais o la ciudad.');
       return;
     }
 
@@ -90,9 +92,10 @@ export class ComentariosComponent {
           this.emitirComentario.emit(comentario);
           this.formulario.reset();
           this.errorMessage = '';
+          this.feedback.success('Comentario publicado.');
         },
         error: (error) => {
-          this.errorMessage = error.message;
+          this.feedback.error(error.message);
         }
       });
     });
