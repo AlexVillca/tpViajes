@@ -37,6 +37,8 @@ export class ListaComponent implements OnInit,OnDestroy{
 
   lista:ListaFav | undefined;
   listaImagenes:ImagenesCiudad[] = [];
+  cargando = false;
+  errorCarga = '';
 
   private idLista:string = "";
   idUsuario:string = "";
@@ -60,6 +62,9 @@ export class ListaComponent implements OnInit,OnDestroy{
 
 
   ngOnInit(): void {
+    this.cargando = true;
+    this.errorCarga = '';
+
     this.activatedRoute.paramMap.subscribe(
       {
         next:(param)=>{
@@ -80,23 +85,42 @@ export class ListaComponent implements OnInit,OnDestroy{
                             {
                               next:(listaPaises)=>{
                                 this.obtenerImagenesCiudades(listaObtenida,listaPaises);
+                                this.cargando = false;
                               },
-                              error:(e)=>{console.log(e)}
+                              error:(e)=>{
+                                this.errorCarga = e?.message ?? 'No se pudieron cargar las ciudades.';
+                                this.cargando = false;
+                              }
 
                             }
                           )
+                        } else {
+                          this.errorCarga = 'No se pudo obtener la lista.';
+                          this.cargando = false;
                         }
                       },
-                      error:(error)=>{console.log(error)}
+                      error:(error)=>{
+                        this.errorCarga = error?.message ?? 'No se pudo obtener la lista.';
+                        this.cargando = false;
+                      }
                     }
                   )
+                } else {
+                  this.errorCarga = 'No se pudo obtener el usuario actual.';
+                  this.cargando = false;
                 }
               },
-              error:(e)=>{console.log(e)}
+              error:(e)=>{
+                this.errorCarga = e?.message ?? 'No se pudo obtener el usuario actual.';
+                this.cargando = false;
+              }
             }
           );
         },
-        error:(e) =>{console.log(e)}
+        error:(e) =>{
+          this.errorCarga = e?.message ?? 'No se pudo abrir la lista.';
+          this.cargando = false;
+        }
       }
     );
   }

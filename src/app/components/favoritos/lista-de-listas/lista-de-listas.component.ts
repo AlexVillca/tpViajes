@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { ListaFav } from '../../../models/interface/usuario.interface';
@@ -12,7 +13,7 @@ import { CardComponent } from "../../utils/card/card.component";
 @Component({
   selector: 'app-lista-de-listas',
   standalone: true,
-  imports: [RouterModule, /*RouterLink,*/ CardComponent],
+  imports: [CommonModule, RouterModule, CardComponent],
   templateUrl: './lista-de-listas.component.html',
   styleUrl: './lista-de-listas.component.css'
 })
@@ -24,9 +25,14 @@ export class ListaDeListasComponent implements OnInit {
   locationService = inject(Location);
 
   listas: ImagenesLista[] = [];
+  cargando = false;
+  errorCarga = '';
 
 
   ngOnInit(): void {
+    this.cargando = true;
+    this.errorCarga = '';
+
     this.ids.id$.subscribe(
       {
         next: (idObtenido) => {
@@ -37,18 +43,29 @@ export class ListaDeListasComponent implements OnInit {
                   this.paisesService.getPaises().subscribe({
                     next: (paises) => {
                       this.obtenerImagenesListas(lista, paises);
+                      this.cargando = false;
                     },
-                    error: (e) => { console.log(e) }
+                    error: (e) => {
+                      this.errorCarga = e?.message ?? 'No se pudieron cargar los paises.';
+                      this.cargando = false;
+                    }
                   });
                 },
-                error: (e) => { console.log(e) }
+                error: (e) => {
+                  this.errorCarga = e?.message ?? 'No se pudieron cargar las listas.';
+                  this.cargando = false;
+                }
               }
             );
           } else {
-            console.log("error: no se ah encontrado el id");
+            this.errorCarga = 'No se pudo obtener el usuario actual.';
+            this.cargando = false;
           }
         },
-        error: (e) => { console.log(e); }
+        error: (e) => {
+          this.errorCarga = e?.message ?? 'No se pudo obtener el usuario actual.';
+          this.cargando = false;
+        }
       });
   }
 

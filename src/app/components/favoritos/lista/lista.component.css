@@ -59,6 +59,24 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 123, 0.2);
 }
 
+.estado,
+.estado-vacio,
+.error {
+  text-align: center;
+  margin: 20px auto;
+  font-weight: 600;
+  max-width: 640px;
+}
+
+.estado,
+.estado-vacio {
+  color: white;
+}
+
+.error {
+  color: #ffb4b4;
+}
+
 @media (min-height: 610px) {
   .button-volver {
     margin-bottom: 65px;

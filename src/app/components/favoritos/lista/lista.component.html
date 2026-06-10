@@ -7,17 +7,24 @@
     </video>
   </div>
 
-
  <app-titulo-lista
+    *ngIf="lista"
     (eliminarLista)="eliminarLista()"
     (nuevoTitulo)="guardarNuevoTitulo($event)"
-    [nombreOriginal]="this.lista!.nombreLista"
+    [nombreOriginal]="lista.nombreLista"
     [idUser]="this.idUsuario">
   </app-titulo-lista>
 
   <div class="div-central" [class.visible]="containerVisible">
+    <p class="estado" *ngIf="cargando">Cargando ciudades guardadas...</p>
 
-    <div class="div-ciudades"  >
+    <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
+
+    <p class="estado-vacio" *ngIf="!cargando && !errorCarga && listaImagenes.length === 0">
+      Esta lista aun no tiene ciudades guardadas.
+    </p>
+
+    <div class="div-ciudades" *ngIf="!cargando && !errorCarga && listaImagenes.length > 0">
 
       @for(l of listaImagenes;track  l.ciudad.codigoPais + l.ciudad.nombre){
         <app-card-eliminar

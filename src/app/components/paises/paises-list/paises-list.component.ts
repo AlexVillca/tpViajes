@@ -14,17 +14,8 @@ import { PaisesService } from '../../../core/service/paises.service';
   styleUrls: ['./paises-list.component.css']
 })
 export class PaisesListComponent implements OnInit {
-
-  ngOnInit(): void {
-    this.paisesService.getPaises().subscribe({
-      next: (paises: Pais[]) => {
-        this.paises = paises;
-        this.paisesFiltrados = this.paises;
-      }
-    });
-  }
-
   paises: Pais[] = [];
+  paisesFiltrados: Pais[] = [];
 
   paisesService = inject(PaisesService);
   paisDataService = inject(PaisDataService);
@@ -32,10 +23,30 @@ export class PaisesListComponent implements OnInit {
 
   letras = 'ABCDEFGHIJKLMNOPQRSTUVZ'.split('');
   letraSeleccionada = 'todos';
-  paisesFiltrados: Pais[] = [];
 
-  seleccionarLetra(letra: string) {
-    this.letraSeleccionada = letra;
+  // Estados nuevos para distinguir carga, error y vacio.
+  cargando = false;
+  errorCarga = '';
+
+  ngOnInit(): void {
+    this.cargarPaises();
+  }
+
+  cargarPaises(): void {
+    this.cargando = true;
+    this.errorCarga = '';
+
+    this.paisesService.getPaises().subscribe({
+      next: (paises: Pais[]) => {
+        this.paises = paises;
+        this.filtrarPaises(this.letraSeleccionada);
+        this.cargando = false;
+      },
+      error: (error) => {
+        this.errorCarga = error?.message ?? 'No se pudieron cargar los paises.';
+        this.cargando = false;
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -49,6 +60,8 @@ export class PaisesListComponent implements OnInit {
   }
 
   filtrarPaises(letra: string) {
+    this.letraSeleccionada = letra;
+
     if (!letra || letra === 'todos') {
       this.paisesFiltrados = this.paises;
     } else {
@@ -56,6 +69,14 @@ export class PaisesListComponent implements OnInit {
         pais.nombre.toLowerCase().startsWith(letra.toLowerCase())
       );
     }
+  }
+
+  get mensajeVacio(): string {
+    if (this.letraSeleccionada === 'todos') {
+      return 'No hay paises para mostrar.';
+    }
+
+    return `No se encontraron paises con la letra ${this.letraSeleccionada.toUpperCase()}.`;
   }
 
   seleccionarPais(pais: Pais) {

@@ -106,6 +106,23 @@ a:hover {
   color: white;
 }
 
+.estado,
+.estado-vacio,
+.error {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.estado,
+.estado-vacio {
+  color: white;
+}
+
+.error {
+  color: #ffb4b4;
+}
+
 @media (max-width: 768px) {
   li {
     width: calc(50% - 20px);

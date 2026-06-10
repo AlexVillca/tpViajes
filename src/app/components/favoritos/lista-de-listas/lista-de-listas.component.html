@@ -13,7 +13,15 @@
   </div>
 
   <div class="div-central"  [class.visible]="containerVisible">
-    <div class="div-cards" >
+    <p class="estado" *ngIf="cargando">Cargando tus listas...</p>
+
+    <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
+
+    <p class="estado-vacio" *ngIf="!cargando && !errorCarga && listas.length === 0">
+      Aun no tenes listas guardadas.
+    </p>
+
+    <div class="div-cards" *ngIf="!cargando && !errorCarga && listas.length > 0">
         @for(l of listas;track $index){
           <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre" (click) = "accederLista(l.id)"></app-card>
         }

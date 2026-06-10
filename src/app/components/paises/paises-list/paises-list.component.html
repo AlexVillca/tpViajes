@@ -20,12 +20,19 @@
       <a *ngFor="let letra of letras" (click)="filtrarPaises(letra)">{{ letra }}</a>
     </div>
 
-    <ul>
+    <p class="estado" *ngIf="cargando">Cargando paises...</p>
+
+    <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
+
+    <p class="estado-vacio" *ngIf="!cargando && !errorCarga && paisesFiltrados.length === 0">
+      {{ mensajeVacio }}
+    </p>
+
+    <ul *ngIf="!cargando && !errorCarga && paisesFiltrados.length > 0">
       <li *ngFor="let pais of paisesFiltrados">
         <a (click)="seleccionarPais(pais)">{{ pais.nombre }}  </a>
       </li>
     </ul>
-
 
   </div>
 
