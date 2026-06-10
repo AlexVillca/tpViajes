@@ -20,6 +20,45 @@
   margin-top: 50px;
 }
 
+.acciones-comentario {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.acciones-comentario button {
+  background-color: #1E85BB;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.acciones-comentario button:hover {
+  background-color: #2AA4DA;
+}
+
+.edicion-comentario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.input-edicion {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #b7c5d1;
+  border-radius: 6px;
+}
+
+.error {
+  color: #b42318;
+  font-size: 13px;
+}
+
 @media (max-width: 480px) {
   .container {
     padding: 20px 15px;

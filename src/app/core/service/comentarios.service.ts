@@ -27,4 +27,17 @@ export class ComentariosService {
       catchError(error => buildHttpError(error, 'No se pudo publicar el comentario.'))
     );
   }
+
+  updateComentario(id: string, comentario: Partial<Comentario>): Observable<Comentario> {
+    // PATCH alcanza porque solo vamos a editar parte del comentario.
+    return this.http.patch<Comentario>(`${this.apiUrl}/${id}`, comentario).pipe(
+      catchError(error => buildHttpError(error, 'No se pudo editar el comentario.'))
+    );
+  }
+
+  deleteComentario(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      catchError(error => buildHttpError(error, 'No se pudo eliminar el comentario.'))
+    );
+  }
 }

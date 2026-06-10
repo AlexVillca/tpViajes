@@ -1,43 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>comentarios</title>
-</head>
-<body>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>comentarios</title>
-  </head>
-  <body>
-    
-    <div class="app-comentarios-container" *ngIf="flag === true">
-      <app-comentarios (emitirComentario)="agregarComentarioDb($event)"></app-comentarios>
-    </div>
-  
-    <div class="container">
-      <h1>Lista de comentarios</h1>
-      
-      <div *ngIf="getComentariosDeCiudadActual().length === 0">
-        <p>Aún no hay comentarios</p>
-      </div>
-      
-      <ul *ngIf="getComentariosDeCiudadActual().length > 0">
-        <li *ngFor="let comentarioActual of getComentariosDeCiudadActual(); let i = index">
-          <div class="comentario-container">
-            <strong>{{ comentarioActual.usuario }}: </strong> {{ comentarioActual.mensaje }}
-          </div>
-        </li>
-      </ul>
-    </div>
-  
-  </body>
-  </html>
-  
+<div class="app-comentarios-container" *ngIf="flag">
+  <app-comentarios (emitirComentario)="agregarComentarioDb($event)"></app-comentarios>
+</div>
 
-</body>
-</html>
+<div class="container">
+  <h1>Lista de comentarios</h1>
+
+  <p *ngIf="cargando">Cargando comentarios...</p>
+  <p class="error" *ngIf="errorCarga">{{ errorCarga }}</p>
+
+  <div *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length === 0">
+    <p>Aun no hay comentarios</p>
+  </div>
+
+  <ul *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length > 0">
+    <li *ngFor="let comentarioActual of getComentariosDeCiudadActual()">
+      <div class="comentario-container">
+        <strong>{{ comentarioActual.usuario }}:</strong>
+
+        <ng-container *ngIf="comentarioEnEdicionId !== comentarioActual.id; else edicionTpl">
+          {{ comentarioActual.mensaje }}
+        </ng-container>
+
+        <ng-template #edicionTpl>
+          <div class="edicion-comentario">
+            <input
+              type="text"
+              [(ngModel)]="mensajeEditado"
+              maxlength="200"
+              class="input-edicion"
+            />
+            <small class="error" *ngIf="errorEdicion">{{ errorEdicion }}</small>
+          </div>
+        </ng-template>
+
+        <div class="acciones-comentario" *ngIf="esComentarioPropio(comentarioActual)">
+          <button
+            type="button"
+            *ngIf="comentarioEnEdicionId !== comentarioActual.id"
+            (click)="iniciarEdicion(comentarioActual)"
+          >
+            Editar
+          </button>
+
+          <button
+            type="button"
+            *ngIf="comentarioEnEdicionId === comentarioActual.id"
+            (click)="guardarEdicion(comentarioActual)"
+          >
+            Guardar
+          </button>
+
+          <button
+            type="button"
+            *ngIf="comentarioEnEdicionId === comentarioActual.id"
+            (click)="cancelarEdicion()"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="button"
+            *ngIf="comentarioEnEdicionId !== comentarioActual.id"
+            (click)="pedirEliminar(comentarioActual)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<app-pop-up-confirmar
+  *ngIf="comentarioAEliminar"
+  [texto]="'¿Eliminar este comentario?'"
+  (confirmar)="confirmarEliminar()"
+  (cancelar)="cancelarEliminar()"
+></app-pop-up-confirmar>
