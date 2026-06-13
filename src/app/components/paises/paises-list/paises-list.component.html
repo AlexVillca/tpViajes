@@ -20,7 +20,10 @@
       <a *ngFor="let letra of letras" (click)="filtrarPaises(letra)">{{ letra }}</a>
     </div>
 
-    <p class="estado" *ngIf="cargando">Cargando paises...</p>
+    <div class="estado-carga" *ngIf="cargando">
+      <div class="spinner"></div>
+      <p class="estado">Cargando paises...</p>
+    </div>
 
     <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
 

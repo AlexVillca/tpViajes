@@ -5,12 +5,16 @@
 <div class="container">
   <h1>Lista de comentarios</h1>
 
-  <p *ngIf="cargando">Cargando comentarios...</p>
-  <p class="error" *ngIf="errorCarga">{{ errorCarga }}</p>
-
-  <div *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length === 0">
-    <p>Aun no hay comentarios</p>
+  <div class="estado-carga" *ngIf="cargando">
+    <div class="spinner"></div>
+    <p class="estado">Cargando comentarios...</p>
   </div>
+
+  <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
+
+  <p class="estado-vacio" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length === 0">
+    Aun no hay comentarios
+  </p>
 
   <ul *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length > 0">
     <li *ngFor="let comentarioActual of getComentariosDeCiudadActual()">

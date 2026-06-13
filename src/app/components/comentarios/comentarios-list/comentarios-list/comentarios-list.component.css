@@ -54,9 +54,48 @@
   border-radius: 6px;
 }
 
+.estado-carga {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 24px auto;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid rgba(30, 133, 187, 0.18);
+  border-top-color: #14C0C0;
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+.estado,
+.estado-vacio,
+.error {
+  text-align: center;
+  margin: 0 auto;
+  font-weight: 600;
+}
+
+.estado,
+.estado-vacio {
+  color: #114560;
+}
+
 .error {
   color: #b42318;
   font-size: 13px;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 480px) {

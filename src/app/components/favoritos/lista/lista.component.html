@@ -16,7 +16,10 @@
   </app-titulo-lista>
 
   <div class="div-central" [class.visible]="containerVisible">
-    <p class="estado" *ngIf="cargando">Cargando ciudades guardadas...</p>
+    <div class="estado-carga" *ngIf="cargando">
+      <div class="spinner"></div>
+      <p class="estado">Cargando ciudades guardadas...</p>
+    </div>
 
     <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
 

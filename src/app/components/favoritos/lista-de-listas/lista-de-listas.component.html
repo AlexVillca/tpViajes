@@ -13,7 +13,10 @@
   </div>
 
   <div class="div-central"  [class.visible]="containerVisible">
-    <p class="estado" *ngIf="cargando">Cargando tus listas...</p>
+    <div class="estado-carga" *ngIf="cargando">
+      <div class="spinner"></div>
+      <p class="estado">Cargando tus listas...</p>
+    </div>
 
     <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
 
