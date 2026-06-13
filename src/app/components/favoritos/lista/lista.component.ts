@@ -13,6 +13,7 @@ import { ImagenesCiudad } from '../../../models/interface/imagenesLista.interfac
 
 import { CardEliminarComponent } from '../../utils/card-eliminar/card-eliminar.component';
 import { FormsModule } from '@angular/forms';
+import { FeedbackService } from '../../../core/service/feedback.service';
 
 
 import { TituloListaComponent } from './titulo-lista/titulo-lista.component';
@@ -34,11 +35,16 @@ export class ListaComponent implements OnInit,OnDestroy{
   router = inject(Router);
   paisesService = inject(PaisesService);
   locationService = inject(Location);
+  feedback = inject(FeedbackService);
 
   lista:ListaFav | undefined;
   listaImagenes:ImagenesCiudad[] = [];
   cargando = false;
   errorCarga = '';
+  // Solo persistimos al salir cuando hubo cambios locales reales en la lista.
+  private cambiosPendientes = false;
+  // Si la lista se elimina, evitamos que ngOnDestroy intente guardarla otra vez.
+  private listaEliminada = false;
 
   private idLista:string = "";
   idUsuario:string = "";
@@ -48,12 +54,21 @@ export class ListaComponent implements OnInit,OnDestroy{
 
   guardarNuevoTitulo(titulo:string):void{
     if(this.lista == null) return;
+    const tituloAnterior = this.lista.nombreLista;
     this.lista.nombreLista = titulo;
 
     this.usuariosService.actualizarListaFavoritos(this.idUsuario,this.lista).subscribe(
       {
-        next:(response)=>{console.log(response)},
-        error:(error)=>{console.log(error)}
+        next:()=>{
+          this.feedback.success('Nombre de lista actualizado.');
+        },
+        error:(error)=>{
+          // Si el PATCH falla, devolvemos el titulo anterior para no dejar la UI inconsistente.
+          if (this.lista) {
+            this.lista.nombreLista = tituloAnterior;
+          }
+          this.feedback.error(error.message);
+        }
       }
     )
 
@@ -153,41 +168,42 @@ export class ListaComponent implements OnInit,OnDestroy{
   }
 
   accederCiudad(ciudadSelec:CiudadEnLista){
-
-    var ciudadCargar = null;
-
     this.paisesService.getPaises().subscribe(
       {
         next:(p)=>{
           const paisRequerido = p.find(pais => pais.codigo === ciudadSelec.codigoPais);
 
-          if(paisRequerido !== undefined){
+          if(paisRequerido === undefined){
+            this.feedback.error('No se pudo encontrar el país seleccionado.');
+            return;
+          }
 
-            if(paisRequerido.ciudades !== undefined){
-              ciudadCargar = paisRequerido.ciudades.find(c => c.nombre === ciudadSelec.nombre);
-              if(ciudadCargar){
-                this.paisDataService.setPais(paisRequerido);
-                this.ciudadDataService.setCiudad(ciudadCargar);
-                this.router.navigate(['/ciudad']);
+          if(paisRequerido.ciudades === undefined){
+            this.feedback.error('El país seleccionado no tiene ciudades disponibles.');
+            return;
+          }
 
-              }else{
-                console.log("No se pudo encontrar la ciudad");
-              }
-            }else{
-              console.log("El pais no posee ciudades");
-            }
+          const ciudadCargar = paisRequerido.ciudades.find(c => c.nombre === ciudadSelec.nombre);
+          if(ciudadCargar){
+            this.paisDataService.setPais(paisRequerido);
+            this.ciudadDataService.setCiudad(ciudadCargar);
+            this.router.navigate(['/ciudad']);
+          }else{
+            this.feedback.error('No se pudo encontrar la ciudad seleccionada.');
           }
 
         },
-        error:(e)=>{console.log(e)}
+        error:(e)=>{
+          this.feedback.error(e.message);
+        }
       }
     )
-    console.log("Termina la funcion");
-
   }
 
   ngOnDestroy(): void {
-    this.guardarCambios();
+    if (!this.listaEliminada && this.cambiosPendientes) {
+      this.guardarCambios();
+    }
   }
 
 
@@ -198,7 +214,6 @@ export class ListaComponent implements OnInit,OnDestroy{
      this.usuariosService.obtenerListasFav(this.idUsuario).subscribe(
       {
         next:(listas)=>{
-          console.log(listas);
           for(let i = 0;i<listas.length;i++){
             if(listas[i].idLista === this.idLista){
 
@@ -209,11 +224,17 @@ export class ListaComponent implements OnInit,OnDestroy{
 
           }
           this.usuariosService.actualizarListasFavoritos(this.idUsuario,listas).subscribe({
-            next:(resp)=>{console.log(resp);},
-            error:(error)=>{ console.log(error)}
+            next:()=>{
+              this.cambiosPendientes = false;
+            },
+            error:(error)=>{
+              this.feedback.error(error.message);
+            }
           });
         },
-        error:(error)=>{ console.log(error) }
+        error:(error)=>{
+          this.feedback.error(error.message);
+        }
       }
     )
   }
@@ -231,9 +252,10 @@ export class ListaComponent implements OnInit,OnDestroy{
       this.lista.listaCiudades = this.lista.listaCiudades.filter(c => !(c.codigoPais == ciudadEliminar.codigoPais && c.nombre == ciudadEliminar.nombre));
 
       this.listaImagenes = this.listaImagenes.filter(c => !(c.ciudad.codigoPais == ciudadEliminar.codigoPais && c.ciudad.nombre == ciudadEliminar.nombre));
+      this.cambiosPendientes = true;
 
     }else{
-      console.log("error, no hay un elemento que cumpla el requisito");
+      this.feedback.error('No se pudo quitar la ciudad de la lista.');
     }
 
 
@@ -242,16 +264,18 @@ export class ListaComponent implements OnInit,OnDestroy{
 
 
   eliminarLista(){
-    console.log("se eliminara");
     if(this.lista == undefined) return;
-    console.log("se eliminara");
     this.usuariosService.eliminarListaFavoritos(this.lista!.idLista,this.idUsuario).subscribe(
     {
-      next:(response)=>{
+      next:()=>{
+        this.listaEliminada = true;
+        this.cambiosPendientes = false;
+        this.feedback.success('Lista eliminada.');
         this.locationService.back();
-        console.log("se elimino");
       },
-      error:(error)=>{ console.log(error)}
+      error:(error)=>{
+        this.feedback.error(error.message);
+      }
     });
   }
 

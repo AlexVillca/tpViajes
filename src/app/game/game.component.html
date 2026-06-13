@@ -5,37 +5,45 @@
     <div class="video-background">
         <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
           <source src="assets/background-video.mp4" type="video/mp4" />
-          Tu navegador no soporta reproducción de vídeos.
+          Tu navegador no soporta reproduccion de videos.
         </video>
       </div>
+
     <ul class="lista-puntaje" [ngClass]="{'visible': paisAleatorio}">
-        <li>Puntaje Actual: {{this.puntaje}}</li>
-        <li>Mejor Puntaje: {{this.mejorPuntaje}}</li>
-        
+        <li>Puntaje Actual: {{ puntaje }}</li>
+        <li>Mejor Puntaje: {{ mejorPuntaje }}</li>
       </ul>
 
   <ul class="lista-puntaje" [ngClass]="{'visible': paisAleatorio}">
-    <li>Puntaje Histórico:</li>
+    <li>Puntaje Historico:</li>
     <li *ngFor="let u of topUsuarios; let i = index">
-    {{ i + 1 }}. {{u.username || 'Usuario'}} — {{ u.mejorPuntaje  || 0 }} puntos
-  </li></ul>
+      {{ i + 1 }}. {{ u.username || 'Usuario' }} - {{ u.mejorPuntaje || 0 }} puntos
+    </li>
+  </ul>
+
+    <p class="estado-error" *ngIf="errorRanking">{{ errorRanking }}</p>
 
     <h1>Que pais es?</h1>
-    <div *ngIf="paisAleatorio" class="banderas" [ngClass]="{'visible': banderaVisible}">
+
+    <p class="estado-error" *ngIf="errorJuego">{{ errorJuego }}</p>
+
+    <div *ngIf="!errorJuego && paisAleatorio" class="banderas" [ngClass]="{'visible': banderaVisible}">
         <img [src]="paisAleatorio.bandera" alt="Bandera">
     </div>
-        <div *ngIf="opciones" class="opcionesJuego" [ngClass]="{'visible': opciones.length > 0}">
-            <p class="pais-correcto">Selecciona el país correcto:</p>
-            <ul class="lista-opciones">
-                <li *ngFor="let opcion of opciones; let i = index" [ngClass]="{'visible': opcion.visible}">
-                    <button     
-                        [ngClass]="{'correcto': opcion === paisAleatorio && opcionesDesHabilitadas, 'incorrecto': opcion !== paisAleatorio && opcionesDesHabilitadas}" 
-                        (click)="verificarRespuesta(opcion)" 
-                        [disabled]="opcionesDesHabilitadas">
-                        {{ opcion.nombre }}
-                    </button>
-                </li>
-            </ul>
-        </div>
-        <p>{{ mensaje }}</p>
+
+    <div *ngIf="!errorJuego && opciones.length > 0" class="opcionesJuego" [ngClass]="{'visible': opciones.length > 0}">
+        <p class="pais-correcto">Selecciona el pais correcto:</p>
+        <ul class="lista-opciones">
+            <li *ngFor="let opcion of opciones; let i = index" [ngClass]="{'visible': opcion.visible}">
+                <button
+                    [ngClass]="{'correcto': opcion === paisAleatorio && opcionesDesHabilitadas, 'incorrecto': opcion !== paisAleatorio && opcionesDesHabilitadas}"
+                    (click)="verificarRespuesta(opcion)"
+                    [disabled]="opcionesDesHabilitadas">
+                    {{ opcion.nombre }}
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <p *ngIf="!errorJuego">{{ mensaje }}</p>
 </section>

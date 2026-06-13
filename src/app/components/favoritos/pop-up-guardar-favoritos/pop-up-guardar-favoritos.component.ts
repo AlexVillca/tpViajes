@@ -41,6 +41,9 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   alertaMaxListas = false;
   alertaNombreRepetido = false;
   feedback = inject(FeedbackService);
+  // Evita abrir o guardar mientras falta el contexto minimo de usuario/pais/ciudad/listas.
+  contextoListo = false;
+  errorCargaContexto = '';
 
   formulario:FormGroup = this.fb.group({
     nuevocheckboxListaFavorito: ['', [Validators.required,valorExistenteMap(this.mapNombresListas),maxItemsValidator(this.mapNombresListas,6)]],
@@ -59,6 +62,11 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     return this.formulario.get('nuevocheckboxListaFavorito') as FormControl;
   }
 
+  private marcarContextoNoDisponible(mensaje = 'No se pudieron cargar tus listas de favoritos.'): void {
+    this.contextoListo = false;
+    this.errorCargaContexto = mensaje;
+  }
+
 
 
   ngOnInit(): void {
@@ -66,42 +74,64 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     this.ids.id$.subscribe(
       {
         next: (id) => {
-          if(id){
-            this.logueado = true;
-            this.paisDataService.pais$.subscribe(
-              {
-                next:(p) => {
-                  this.paisSeleccionado = p
-                  this.ciudadDataService.ciudad$.subscribe(
-                    {
-                      next:(c) => {
-                        this.ciudadSeleccionada = c
-                        this.us.obtenerListasFav(id).subscribe(
-                          {
-                            next:(l) => {
-                              //obtengo las listas
-                              this.listasFavoritosDB = l;
-                              //cargo las checkbox
-                              this.pasajeDBaFormulario();
-
-                            },
-                            error: (e) => {console.log(e)}
-                          }
-                      )
-
-                      },
-                      error:(error) => {console.log(error)}
-                    }
-                  );
-
-                },
-                error:(error) => {console.log(error)}
-              }
-            );
-
+          if(!id){
+            this.logueado = false;
+            this.marcarContextoNoDisponible('Debes iniciar sesión para guardar favoritos.');
+            return;
           }
+
+          this.logueado = true;
+          this.paisDataService.pais$.subscribe(
+            {
+              next:(p) => {
+                if (!p) {
+                  this.marcarContextoNoDisponible('No se pudo obtener el país seleccionado.');
+                  return;
+                }
+
+                this.paisSeleccionado = p
+                this.ciudadDataService.ciudad$.subscribe(
+                  {
+                    next:(c) => {
+                      if (!c) {
+                        this.marcarContextoNoDisponible('No se pudo obtener la ciudad seleccionada.');
+                        return;
+                      }
+
+                      this.ciudadSeleccionada = c
+                      this.us.obtenerListasFav(id).subscribe(
+                        {
+                          next:(l) => {
+                            // Actualizamos el formulario solo cuando ya existe el contexto completo.
+                            this.listasFavoritosDB = l;
+                            this.pasajeDBaFormulario();
+                            this.contextoListo = true;
+                            this.errorCargaContexto = '';
+
+                          },
+                          error: (e) => {
+                            this.marcarContextoNoDisponible(e.message);
+                          }
+                        }
+                    )
+
+                    },
+                    error:(error) => {
+                      this.marcarContextoNoDisponible(error.message);
+                    }
+                  }
+                );
+
+              },
+              error:(error) => {
+                this.marcarContextoNoDisponible(error.message);
+              }
+            }
+          );
         },
-        error: (e) => {console.log(e)}
+        error: (e) => {
+          this.marcarContextoNoDisponible(e.message);
+        }
       }
     );
   }
@@ -181,6 +211,12 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   }
 
   saveSelection() {
+    // Sin pais o ciudad seleccionada, pasajeFormularioaDB puede romper por acceso a propiedades null.
+    if (!this.contextoListo || !this.paisSeleccionado || !this.ciudadSeleccionada) {
+      this.feedback.error(this.errorCargaContexto || 'No se pudieron guardar los favoritos.');
+      return;
+    }
+
     this.pasajeFormularioaDB();
     this.ids.id$.subscribe(
       {
@@ -196,6 +232,8 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
                 this.feedback.error(error.message);
               }
             });
+          } else {
+            this.feedback.error('No se pudo obtener el usuario actual.');
           }
         },
         error:() => {
@@ -211,6 +249,11 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     this.visible = false;
   }
   abrePopUp(){
+    if (!this.contextoListo) {
+      this.feedback.error(this.errorCargaContexto || 'No se pudieron cargar tus listas de favoritos.');
+      return;
+    }
+
     document.body.style.overflow = "hidden";
     this.visible=true;
   }

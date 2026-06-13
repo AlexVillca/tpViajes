@@ -168,6 +168,16 @@ p {
   text-align: center;
 }
 
+.estado-error {
+  margin: 16px auto;
+  max-width: 640px;
+  color: #ffd1d1;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  text-shadow: 2px 2px #000;
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 28px;

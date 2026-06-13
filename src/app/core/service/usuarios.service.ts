@@ -106,7 +106,8 @@ export class UsuariosService {
 
   obtenerListaFav(idUsuario: string, idListaBuscada: string): Observable<ListaFav | undefined> {
     return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
-      map(usuario => usuario.listasFavs.find(l => l.idLista === idListaBuscada))
+      map(usuario => usuario.listasFavs.find(l => l.idLista === idListaBuscada)),
+      catchError(error => buildHttpError(error, 'No se pudo cargar la lista seleccionada.'))
     );
   }
 
@@ -131,7 +132,9 @@ export class UsuariosService {
   actualizarPuntajeMaximo(id: String, puntajeNuevo: number): Observable<Partial<Usuario>> {
     const url = `${this.apiUrl}/${id}`;
     const body: Partial<Usuario> = { mejorPuntaje: puntajeNuevo };
-    return this.http.patch<Partial<Usuario>>(url, body);
+    return this.http.patch<Partial<Usuario>>(url, body).pipe(
+      catchError(error => buildHttpError(error, 'No se pudo actualizar el mejor puntaje.'))
+    );
   }
 
   actualizarListaFavoritos(idUsuario: string, listaActualizada: ListaFav): Observable<Partial<Usuario>> {
@@ -144,7 +147,8 @@ export class UsuariosService {
 
         return { listasFavs: listasActualizadas } as Partial<Usuario>;
       }),
-      switchMap(body => this.http.patch<Partial<Usuario>>(url, body))
+      switchMap(body => this.http.patch<Partial<Usuario>>(url, body)),
+      catchError(error => buildHttpError(error, 'No se pudo actualizar la lista de favoritos.'))
     );
   }
 
@@ -155,13 +159,15 @@ export class UsuariosService {
         const listasActualizadas = usuario.listasFavs.filter(l => l.idLista !== idListaEliminar);
         return { listasFavs: listasActualizadas } as Partial<Usuario>;
       }),
-      switchMap(body => this.http.patch<Partial<Usuario>>(url, body))
+      switchMap(body => this.http.patch<Partial<Usuario>>(url, body)),
+      catchError(error => buildHttpError(error, 'No se pudo eliminar la lista de favoritos.'))
     );
   }
 
   comprobarNombreExistenteDeLista(idUsuario: string, nombreComprobar: string): Observable<boolean> {
     return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
-      map(usuario => usuario.listasFavs.some(l => l.nombreLista === nombreComprobar) ?? false)
+      map(usuario => usuario.listasFavs.some(l => l.nombreLista === nombreComprobar) ?? false),
+      catchError(error => buildHttpError(error, 'No se pudo validar el nombre de la lista.'))
     );
   }
 }

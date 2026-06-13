@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-confirmar.component';
 import { UsuariosService } from '../../../../core/service/usuarios.service';
+import { FeedbackService } from '../../../../core/service/feedback.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class TituloListaComponent{
   @Input() nombreOriginal = "";
   @Input() idUser = "";
   usuarioService = inject(UsuariosService);
+  feedback = inject(FeedbackService);
 
   tituloInput = "";
 
@@ -58,7 +60,9 @@ export class TituloListaComponent{
               this.nuevoTitulo.emit(this.tituloInput);
             }
         },
-        error:(error) => {console.log(error)}
+        error:(error) => {
+          this.feedback.error(error.message);
+        }
       });
 
   }

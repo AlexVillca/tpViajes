@@ -1,183 +1,196 @@
 import { Component, inject } from '@angular/core';
-import { Pais } from '../models/interface/pais.interface';
 import { CommonModule } from '@angular/common';
-import { PaisesService } from '../core/service/paises.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { IdUsuarioService } from '../core/service/id-usuario.service';
 import { Router } from '@angular/router';
+import { PaisesService } from '../core/service/paises.service';
+import { FeedbackService } from '../core/service/feedback.service';
+import { IdUsuarioService } from '../core/service/id-usuario.service';
 import { UsuariosService } from '../core/service/usuarios.service';
-
+import { Pais } from '../models/interface/pais.interface';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [FormsModule,CommonModule,HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
 export class GameComponent {
   paisesService = inject(PaisesService);
-  topUsuarios: any[] = []; // los 3 mejores usuarios
-
-  arregloPaises: Pais[] = [];
-  paisAleatorio: Pais | null = null;
-  opciones: Pais[] = [];
-  mensaje: string = '';
-  intentos: number = 0;
-  opcionesDesHabilitadas: boolean = false;
-  puntaje: number = 0;
-  mejorPuntaje: number = 0;
-
-  banderaVisible: boolean = false;
-
   idUsuarioService = inject(IdUsuarioService);
   servicioUsuario = inject(UsuariosService);
   routerService = inject(Router);
-  flag:boolean = false;
+  feedback = inject(FeedbackService);
 
+  topUsuarios: any[] = [];
+  arregloPaises: Pais[] = [];
+  paisAleatorio: Pais | null = null;
+  opciones: Pais[] = [];
+  mensaje = '';
+  intentos = 0;
+  opcionesDesHabilitadas = false;
+  puntaje = 0;
+  mejorPuntaje = 0;
+  banderaVisible = false;
+  flag = false;
   id: string | null = null;
+  errorJuego = '';
+  errorRanking = '';
+  videoLoaded = false;
 
-
-  ngOnInit(): void{
-    this.listar()
+  ngOnInit(): void {
+    this.listar();
     this.cargarTop3();
+
     this.idUsuarioService.id$.subscribe((id) => {
       if (id !== null) {
         this.flag = true;
         this.id = id;
+
         this.servicioUsuario.getUsuarioById(id).subscribe({
           next: (usuario) => {
             this.mejorPuntaje = usuario.mejorPuntaje || 0;
           },
-          error: (e) => {
-            console.error('Error al obtener el usuario:', e);
-            this.mejorPuntaje = 0; // Resetea el nombre si hay un error
+          error: () => {
+            // Si esta lectura falla, el juego igual puede continuar con el mejor puntaje en cero.
+            this.mejorPuntaje = 0;
           },
         });
       } else {
         this.flag = false;
-        this.mejorPuntaje = 0; // Resetea el nombre si no hay usuario logueado
+        this.id = null;
+        this.mejorPuntaje = 0;
       }
     });
-
-        this.cargarTop3();
-
   }
-cargarTop3() {
-    // Ajusta el nombre del método si tu servicio usa otro (p.ej. getAll, listarUsuarios, etc.)
+
+  cargarTop3() {
     this.servicioUsuario.getUsuarios().subscribe({
       next: (usuarios: any[]) => {
+        this.errorRanking = '';
         this.topUsuarios = usuarios
           .sort((a, b) => (b.mejorPuntaje || 0) - (a.mejorPuntaje || 0))
           .slice(0, 3);
       },
       error: (e) => {
-        console.error('Error al obtener usuarios para ranking:', e);
+        // Este estado conviene verlo en pantalla para que el ranking vacio no parezca normal.
+        this.errorRanking = e.message;
         this.topUsuarios = [];
       }
     });
   }
-listar(){
-  this.paisesService.getPaises().subscribe({
-    next: (paises: Pais[])=>{
+
+  listar() {
+    this.paisesService.getPaises().subscribe({
+      next: (paises: Pais[]) => {
         this.arregloPaises = paises;
-        console.log(paises);
-        /* this.seleccionarBanderaAleatoria(); */
         this.generarPregunta();
-    },
-    error: (e : Error) => {
-      console.log(e.message);
-    }
+      },
+      error: (e: Error) => {
+        this.errorJuego = e.message;
+        this.paisAleatorio = null;
+        this.opciones = [];
+        this.mensaje = '';
+      }
     });
-   }
+  }
 
   generarPregunta() {
+    // Con menos de 4 paises el while de opciones no puede completarse.
+    if (this.arregloPaises.length < 4) {
+      this.errorJuego = 'No hay suficientes paises para iniciar el minijuego.';
+      this.paisAleatorio = null;
+      this.opciones = [];
+      this.mensaje = '';
+      return;
+    }
+
+    this.errorJuego = '';
     this.opcionesDesHabilitadas = false;
-    // Selecciona el país correcto al azar
+
     const indiceCorrecto = Math.floor(Math.random() * this.arregloPaises.length);
     this.paisAleatorio = this.arregloPaises[indiceCorrecto];
 
-    // Genera opciones aleatorias incluyendo el país correcto
     this.opciones = [this.paisAleatorio];
-    while (this.opciones.length < 4) { // Queremos un total de 4 opciones
+    while (this.opciones.length < 4) {
       const opcionAleatoria = this.arregloPaises[Math.floor(Math.random() * this.arregloPaises.length)];
       if (!this.opciones.includes(opcionAleatoria)) {
         this.opciones.push(opcionAleatoria);
       }
     }
+
     this.opciones = this.opciones.sort(() => Math.random() - 0.5);
 
-    this.banderaVisible = false;  // Asegúrate de resetear la bandera visible antes de la transición
-    // Añadir la clase "visible" con un retraso para activar la animación
+    this.banderaVisible = false;
     setTimeout(() => {
       this.banderaVisible = true;
-  }, 200); // Esto aplica la visibilidad después de un pequeño retraso para la animación
+    }, 200);
 
-  // Añadir la clase "visible" después de un pequeño retraso para que la animación funcione en las opciones
-  setTimeout(() => {
+    setTimeout(() => {
       const listaOpciones = document.querySelectorAll('.lista-opciones li');
-      listaOpciones.forEach((li, index) => {
-          li.classList.add('visible');
+      listaOpciones.forEach((li) => {
+        li.classList.add('visible');
       });
-  }, 100); // Esto aplica la clase después de un pequeño retraso
+    }, 100);
 
-  // Marcar las opciones como visibles (para aplicar la transición)
-  setTimeout(() => {
+    setTimeout(() => {
       this.opciones.forEach(opcion => opcion['visible'] = true);
-  }, 100); // Esto aplica la visibilidad después de un pequeño retraso
-}
+    }, 100);
+  }
 
-
-
-verificarRespuesta(pais: Pais) {
-  if (pais === this.paisAleatorio) {
-    this.mensaje = '¡Correcto!';
-    this.puntaje++; //Aumenta el puntaje
+  verificarRespuesta(pais: Pais) {
+    if (pais === this.paisAleatorio) {
+      this.mensaje = 'Correcto!';
+      this.puntaje++;
       this.opcionesDesHabilitadas = true;
-      setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos
-    } else {
-      this.intentos++;
-      if(this.intentos>=2){
-        this.mensaje = 'Intentos agotados. Reiniciando...';
-        // Si el puntaje actual supera el mejor puntaje, actualiza el mejor puntaje
-        if (this.puntaje > this.mejorPuntaje) {
-          this.mejorPuntaje = this.puntaje;
-          if (this.flag) {
-            this.servicioUsuario.actualizarPuntajeMaximo(this.id!, this.mejorPuntaje).subscribe({
-              next: () => {console.log('Puntaje actualizado correctamente'), this.cargarTop3();},
-              
-              error: (e) => console.error('Error al actualizar el puntaje:', e)
-            });
-          }
-      }
-      this.puntaje = 0; // Reinicia el puntaje actual si pierde
-      this.opcionesDesHabilitadas = true;
-      setTimeout(() => this.reiniciarJuego(), 2000); // Reinicia el juego después de 2 segundos
-    }else{
-        this.mensaje = 'Incorrecto, intenta de nuevo.';
-
-      }
+      setTimeout(() => this.reiniciarJuego(), 2000);
+      return;
     }
+
+    this.intentos++;
+    if (this.intentos >= 2) {
+      this.mensaje = 'Intentos agotados. Reiniciando...';
+
+      if (this.puntaje > this.mejorPuntaje) {
+        this.mejorPuntaje = this.puntaje;
+
+        if (this.flag && this.id) {
+          this.servicioUsuario.actualizarPuntajeMaximo(this.id, this.mejorPuntaje).subscribe({
+            next: () => {
+              this.cargarTop3();
+            },
+            error: (e) => this.feedback.error(e.message)
+          });
+        }
+      }
+
+      this.puntaje = 0;
+      this.opcionesDesHabilitadas = true;
+      setTimeout(() => this.reiniciarJuego(), 2000);
+      return;
+    }
+
+    this.mensaje = 'Incorrecto, intenta de nuevo.';
   }
 
   reiniciarJuego() {
-    this.intentos = 0;       // Reinicia el contador de intentos
-    this.mensaje = '';       // Borra el mensaje de feedback
-    this.generarPregunta();  // Genera una nueva pregunta
-  }
-  videoLoaded = false;
+    this.intentos = 0;
+    this.mensaje = '';
 
-  // Esta función se llama cuando el video se carga completamente
+    if (!this.errorJuego && this.arregloPaises.length >= 4) {
+      this.generarPregunta();
+    }
+  }
+
   onVideoLoaded() {
     this.videoLoaded = true;
     setTimeout(() => {
       const buttons = document.querySelectorAll('button');
 
       buttons.forEach((button) => {
-        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+        button.classList.add('visible');
       });
-    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+    }, 200);
   }
-
 }
