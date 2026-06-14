@@ -4,6 +4,7 @@ export const environment = {
   apiBaseUrl: 'http://localhost:3000',
   // API publica de cotizaciones (gratuita y sin API key).
   currencyApiUrl: 'https://open.er-api.com/v6/latest',
-  // API publica de datos de paises (gratuita y sin API key).
-  restCountriesApiUrl: 'https://restcountries.com/v3.1'
+  // API de REST Countries v5.
+  restCountriesApiUrl: 'https://api.restcountries.com/countries/v5',
+  restCountriesApiKey: 'rc_live_c318abbc9f23440ab1e2cf3bb4617ed6'
 };
