@@ -62,11 +62,17 @@ export class ComentariosComponent {
     this.errorMessage = '';
 
     if (this.formulario.invalid) {
-      this.errorMessage = 'El comentario debe tener al menos 3 caracteres.';
+      this.formulario.markAllAsTouched();
       return;
     }
 
-    const comentarioString = this.formulario.getRawValue().comentario;
+    const comentarioString = this.formulario.getRawValue().comentario.trim();
+
+    // Evita comentarios compuestos solo por espacios.
+    if (comentarioString.length < 3) {
+      this.errorMessage = 'El comentario debe tener al menos 3 caracteres.';
+      return;
+    }
 
     this.cds.ciudad$.subscribe(ciudad => {
       if (ciudad) {
@@ -90,7 +96,7 @@ export class ComentariosComponent {
       this.cs.postComentario(nuevoComentario).subscribe({
         next: (comentario) => {
           this.emitirComentario.emit(comentario);
-          this.formulario.reset();
+          this.formulario.reset({ comentario: '' });
           this.errorMessage = '';
           this.feedback.success('Comentario publicado.');
         },

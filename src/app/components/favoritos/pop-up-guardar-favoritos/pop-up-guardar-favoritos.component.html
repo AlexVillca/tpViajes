@@ -23,11 +23,15 @@
           </div>
 
           <div class="div-error">
-            @if(formulario.controls['nuevocheckboxListaFavorito'].errors?.['maxItemsAlcanzado'] && formulario.controls['nuevocheckboxListaFavorito'].touched){
-              <small class="error">Se ha llegado al máximo de listas</small>
+            @if(nuevaListaInput.errors?.['required'] && nuevaListaInput.touched){
+              <small class="error">Ingresa un nombre para la lista</small>
             }@else{
-              @if(formulario.controls['nuevocheckboxListaFavorito'].errors?.['valorExistente']  && formulario.controls['nuevocheckboxListaFavorito'].touched){
-                <small class="error">Ya existe una lista con ese nombre</small>
+              @if(nuevaListaInput.errors?.['maxItemsAlcanzado'] && nuevaListaInput.touched){
+                <small class="error">Se ha llegado al maximo de listas</small>
+              }@else{
+                @if(nuevaListaInput.errors?.['valorExistente']  && nuevaListaInput.touched){
+                  <small class="error">Ya existe una lista con ese nombre</small>
+                }
               }
             }
           </div>
@@ -41,7 +45,4 @@
       </form>
     </div>
   }
-
-
-
 }

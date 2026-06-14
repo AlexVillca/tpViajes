@@ -45,3 +45,10 @@ button {
     width: 90%;
   }
 }
+
+.error {
+  color: #d62828;
+  font-size: 14px;
+  width: 84%;
+  margin: 6px auto 0;
+}

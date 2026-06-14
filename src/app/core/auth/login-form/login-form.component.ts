@@ -19,7 +19,9 @@ export class LoginFormComponent {
   route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   formulario = this.fb.nonNullable.group({
-    email: ['',[Validators.required]],
+    // Sumamos validacion de formato para mostrar el error debajo del campo
+    // antes de enviar el formulario.
+    email: ['',[Validators.required, Validators.email]],
     password: ['',[Validators.required]]
   })
 
@@ -30,7 +32,10 @@ export class LoginFormComponent {
     this.emailIncorrecto = false;
     this.passwordIncorrecto =false;
     this.serverError = '';
-    if(this.formulario.invalid){return}
+    if(this.formulario.invalid){
+      this.formulario.markAllAsTouched();
+      return;
+    }
     this.usuarioService.login(this.formulario.get("email")?.value ?? "", this.formulario.get("password")?.value ?? "").subscribe(
       {
         next:(value)=>{

@@ -20,10 +20,15 @@
         <h1 class="titulaso">Inicia sesion aqui</h1>
         <div class="form-control2">
           <input type="email" class="email-2" formControlName="email" placeholder="Correo electronico" />
-          <div>
-            @if(formulario.controls['email'].getError('required') && formulario.controls['email'].touched){
+          <div *ngIf="formulario.controls['email'].touched || formulario.controls['email'].dirty">
+            @if(formulario.controls['email'].getError('required')){
               <div class="error">
                 Campo requerido
+              </div>
+            }
+            @if(formulario.controls['email'].getError('email')){
+              <div class="error">
+                Correo electronico no valido
               </div>
             }
           </div>
@@ -35,8 +40,8 @@
         <div class="form-control">
           <input type="password" formControlName="password" placeholder="Contrasena" />
           <small class="error"></small>
-          <div>
-            @if(formulario.controls['password'].getError('required')&& formulario.controls['password'].touched){
+          <div *ngIf="formulario.controls['password'].touched || formulario.controls['password'].dirty">
+            @if(formulario.controls['password'].getError('required')){
               <div class="error">
                 Campo requerido
               </div>

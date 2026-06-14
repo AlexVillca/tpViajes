@@ -148,6 +148,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
  // Agrega un nuevo item al FormArray
  agregarNuevaLista(){
   if(!this.nuevaListaInput.valid){
+    this.nuevaListaInput.markAsTouched();
     return;
   }
   let nuevoId = this.nuevoIdLista();

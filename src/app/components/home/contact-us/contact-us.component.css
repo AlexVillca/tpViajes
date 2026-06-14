@@ -77,6 +77,17 @@ input, textarea {
   box-sizing: border-box;
 }
 
+.error {
+  color: #d62828;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #d62828;
+}
+
 button {
   position: relative;
   background-color: #1E85BB;
