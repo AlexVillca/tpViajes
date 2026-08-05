@@ -1,0 +1,16 @@
+<div class="clima">
+  <p class="clima-estado" *ngIf="cargando">Cargando clima actual…</p>
+  <p class="clima-error" *ngIf="error && !cargando">🌡️ {{ error }}</p>
+
+  <div class="clima-card" *ngIf="clima && !cargando && !error">
+    <div class="clima-emoji">{{ clima.emoji }}</div>
+    <div class="clima-datos">
+      <span class="clima-temp">{{ clima.temperatura | number: '1.0-0' }}°C</span>
+      <span class="clima-desc">{{ clima.descripcion }}</span>
+      <span class="clima-extra">
+        💧 {{ clima.humedad | number: '1.0-0' }}%  ·  💨 {{ clima.viento | number: '1.0-0' }} km/h
+      </span>
+      <span class="clima-fuente">Clima actual en {{ clima.ciudad }} · Open-Meteo</span>
+    </div>
+  </div>
+</div>

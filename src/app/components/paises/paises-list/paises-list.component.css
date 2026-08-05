@@ -198,3 +198,39 @@ a:hover {
     font-size: 14px;
   }
 }
+
+/* Paginacion */
+.paginacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px 0 10px;
+  flex-wrap: wrap;
+}
+
+.paginacion button {
+  background-color: #1E85BB;
+  border: 1px solid #14C0C0;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.paginacion button:hover:not(:disabled) {
+  background-color: #2AA4DA;
+  transform: translateY(-2px);
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagina-indicador {
+  font-weight: 600;
+  color: #2f1b07;
+}

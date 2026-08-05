@@ -3,17 +3,17 @@
       @if(!this.editarTitulo){
         <h1 class="titulo" >{{nombreOriginal}}</h1>
       }@else {
-        <input  class="input-titulo" maxlength="20" [class.error]="mensajeNombreRepetido" (ngModelChange)="onTituloChange()" type=text  [(ngModel)]="tituloInput" >
+        <input  class="input-titulo" maxlength="20" [class.error]="mensajeNombreRepetido" (ngModelChange)="onTituloChange()" type="text" aria-label="Nombre de la lista" [(ngModel)]="tituloInput" >
         <small  [class.visible]="mensajeNombreRepetido" >Nombre de lista existente</small>
       }
 
       <div class="div-botones">
         @if (!this.editarTitulo) {
-          <button class="boton-renombrar-confirmar" (click)="cambiarEditarTitulo()"><i class="material-icons">edit</i></button>
-          <button class="boton-borrar-cancelar" (click)="mostrarPopUp=true"><i class="material-icons">delete</i></button>
+          <button class="boton-renombrar-confirmar" (click)="cambiarEditarTitulo()" aria-label="Renombrar lista"><i class="material-icons" aria-hidden="true">edit</i></button>
+          <button class="boton-borrar-cancelar" (click)="mostrarPopUp=true" aria-label="Eliminar lista"><i class="material-icons" aria-hidden="true">delete</i></button>
         }@else {
-          <button class="boton-renombrar-confirmar" (click)="guardarNuevoTitulo()"><i class="material-icons">check</i></button>
-          <button class="boton-borrar-cancelar" (click)="cancelarNuevoTitulo()"><i class="material-icons">close</i></button>
+          <button class="boton-renombrar-confirmar" (click)="guardarNuevoTitulo()" aria-label="Guardar nombre"><i class="material-icons" aria-hidden="true">check</i></button>
+          <button class="boton-borrar-cancelar" (click)="cancelarNuevoTitulo()" aria-label="Cancelar edición"><i class="material-icons" aria-hidden="true">close</i></button>
         }
       </div>
   </div>

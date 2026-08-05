@@ -1,52 +1,132 @@
 # tpViajes
 
-Proyecto desarrollado en Angular que ayudará al usuario a recopilar información importante acerca de destinos turisticos, utilizando servicios como la API de OpenStreetMaps para mostrar información geográfica, además de usar una base de datos propia.
+Aplicación web de turismo desarrollada en **Angular 17** que permite explorar países y ciudades, guardar destinos favoritos, comentar, jugar un minijuego de banderas y consultar datos en vivo (clima, cotizaciones y datos de país) a través de APIs externas.
 
-## Características
+Proyecto realizado como **Trabajo Final Integrador (TFI)** de la Tecnicatura Universitaria en Programación.
 
-- **Búsqueda de países y ciudades:** Información detallada sobre lugares turísticos.
-- **Integración de mapas:** Uso de OpenStreetMap para visualizar ubicaciones.
-- **Sistema de comentarios:** Los usuarios pueden agregar y leer comentarios sobre ciudades.
-- **Favoritos:** Gestión de listas de ciudades favoritas.
-- **Interfaz amigable:** Diseño enfocado en la usabilidad y simplicidad.
+---
 
-## Instalación
+## ✨ Características
 
-1. Clona el repositorio:
-  
+**Núcleo**
+- Listado de países con filtro alfabético y búsqueda.
+- Ficha de país y de ciudad con información detallada.
+- Mapa interactivo (Leaflet / OpenStreetMap).
+- Sistema de **comentarios** por ciudad (crear, editar y eliminar los propios).
+- **Favoritos**: listas personalizadas de ciudades (crear, renombrar, eliminar).
+- **Minijuego** de banderas con ranking histórico de puntajes.
+
+**Seguridad**
+- Autenticación con **validación de contraseña en el backend** (bcrypt).
+- Contraseñas **hasheadas** (nunca en texto plano ni expuestas en las respuestas).
+- Sesión con **JWT** + **HTTP Interceptor** (inyecta el token y maneja 401/403).
+- **Guards** de ruta para las secciones privadas.
+
+**Integraciones con APIs externas**
+- 💱 **Conversor de moneda** en vivo — [open.er-api.com](https://www.exchangerate-api.com/) (sin API key).
+- 🌍 **Datos verificados del país** (población, idiomas, limítrofes, etc.) — [REST Countries](https://restcountries.com/).
+- 🌤️ **Clima actual de la ciudad** — [Open-Meteo](https://open-meteo.com/) (sin API key).
+
+**Calidad**
+- Manejo de errores HTTP unificado y estados de carga / vacío.
+- Feedback al usuario (toasts) y validaciones visibles en formularios.
+- Tipado fuerte (sin `any`).
+- Tests unitarios (Jasmine/Karma) e integración continua (GitHub Actions).
+
+---
+
+## 🏗️ Arquitectura
+
+- **Frontend:** Angular 17 (componentes *standalone*), RxJS, Leaflet.
+- **Backend propio:** Node.js + Express usando `json-server` como capa de datos, con lógica propia de autenticación (bcrypt + JWT). Código en [`db/server.js`](db/server.js).
+- **Base de datos:** archivo JSON ([`db/db.json`](db/db.json)) con las colecciones `paises`, `usuarios` y `comentarios`.
+
+> Actualmente todo corre en **local**. El despliegue a un servidor (VPS/Railway) y la externalización de secretos quedan como último paso previo a la entrega.
+
+---
+
+## 🚀 Puesta en marcha
+
+**Requisitos:** Node.js 18+ y npm.
+
+```bash
+# 1. Clonar
 git clone https://github.com/AlexVillca/tpViajes.git
-
-2. Posicionarse en el directorio del proyecto
-
 cd tpViajes
 
-3. Instalación de dependencia
+# 2. Instalar dependencias
+npm install
+```
 
-npm install (nodemodules)
+**Primera vez (o al agregar usuarios nuevos con contraseña en texto plano):** hashear las contraseñas del `db.json`.
 
-npm install leaflet (integracion OpenStreetMaps)
+```bash
+npm run hash-passwords
+```
 
-4. Iniciar json-server local
+**Levantar el backend** (servidor propio con JWT/bcrypt, en `http://localhost:3000`):
 
-json-server --watch db/db.json
+```bash
+npm run backend
+```
 
-5. Iniciar 
+**Levantar el frontend** (en `http://localhost:4200`), en otra terminal:
 
-ng serve -o
+```bash
+npm start
+```
 
-## Uso
+---
 
-- **Ver lista de paises:** filtrar por letra y entrar a ficha del país.
-- **Ver información de un pais:** conocer detalles del mismo, acceder a distintas ciudades.
-- **Ver información de una ciudad:** conocer detalles del mismo, dejar un comentario.
-- **Dejar un comentario:** los usuarios registrados tienen la opción de agregar un comentario a la ficha de una ciudad.
-- **Guardar en listas personalizadas:** los usuarios registrados tienen la opción de agregar una ciudad a una lista de 'Favoritos'.
-- **Minijuego:** los usuarios registrados o no pueden acceder a un minijuego de banderas.
+## 🧪 Testing
 
-## Tecnologías
+```bash
+# Interactivo (abre Chrome)
+npm test
 
-Frontend: Angular
+# Headless, una sola corrida (el que usa la CI)
+npm run test:ci
+```
 
-Mapas: OpenStreetMap 
+La **integración continua** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) corre build + tests en cada push y pull request a `main`.
 
-Backend: JSON Server para persistencia de datos
+---
+
+## 📦 Build de producción
+
+```bash
+npm run build
+```
+
+Genera la aplicación optimizada en `dist/`.
+
+---
+
+## 📂 Estructura relevante
+
+```
+src/app/
+  components/      # UI (paises, favoritos, comentarios, home, utils, ...)
+  core/
+    auth/          # login, registro, guard
+    interceptors/  # auth.interceptor (JWT)
+    service/       # servicios de datos y de APIs externas
+  game/            # minijuego de banderas
+  models/          # interfaces (Pais, Ciudad, Usuario, ...)
+db/
+  server.js        # backend propio (Express + json-server + bcrypt + JWT)
+  db.json          # base de datos
+  hash-passwords.js# migración de contraseñas a hash
+```
+
+---
+
+## 🛠️ Tecnologías
+
+Angular 17 · TypeScript · RxJS · Leaflet / OpenStreetMap · Node.js · Express · json-server · bcryptjs · JSON Web Tokens · Jasmine / Karma · GitHub Actions
+
+---
+
+## 👥 Equipo
+
+> Completar con los integrantes del grupo.

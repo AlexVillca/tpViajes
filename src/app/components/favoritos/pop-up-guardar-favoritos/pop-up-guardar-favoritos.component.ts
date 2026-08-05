@@ -1,5 +1,6 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ListaFav } from '../../../models/interface/usuario.interface';
+import { Ciudad, Pais } from '../../../models/interface/pais.interface';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../../core/service/usuarios.service';
@@ -35,8 +36,8 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   listasFavoritosDB:ListaFav[] = [];
   mapNombresListas = new Map<string,string>();
 
-  ciudadSeleccionada:any;
-  paisSeleccionado:any;
+  ciudadSeleccionada: Ciudad | null = null;
+  paisSeleccionado: Pais | null = null;
 
   alertaMaxListas = false;
   alertaNombreRepetido = false;
@@ -174,6 +175,11 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
 
 
   private pasajeFormularioaDB(){
+    // Narrowing: si falta pais o ciudad no hay nada que sincronizar.
+    const pais = this.paisSeleccionado;
+    const ciudad = this.ciudadSeleccionada;
+    if (!pais || !ciudad) { return; }
+    const codigoPais = pais.codigo ?? '';
 
     Object.entries(this.groupCheckbox.controls).forEach(([id, control]) => {
 
@@ -191,21 +197,21 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
       }
 
       const ciudadExisteEnLista = listaOriginal.listaCiudades.some(c =>
-        c.codigoPais === this.paisSeleccionado.codigo &&
-        c.nombre === this.ciudadSeleccionada.nombre
+        c.codigoPais === codigoPais &&
+        c.nombre === ciudad.nombre
       );
 
       if(ciudadSeleccionadaFormulario && !ciudadExisteEnLista){
         listaOriginal.listaCiudades.push({
-          codigoPais: this.paisSeleccionado.codigo,
-          nombre: this.ciudadSeleccionada.nombre
+          codigoPais: codigoPais,
+          nombre: ciudad.nombre
         });
       }
 
       if(!ciudadSeleccionadaFormulario && ciudadExisteEnLista){
         listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(c =>
-          !(c.codigoPais === this.paisSeleccionado.codigo &&
-            c.nombre === this.ciudadSeleccionada.nombre)
+          !(c.codigoPais === pais.codigo &&
+            c.nombre === ciudad.nombre)
         );
       }
     });

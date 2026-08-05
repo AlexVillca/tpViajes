@@ -19,7 +19,7 @@
       <form [formGroup]="formulario" (ngSubmit)="loguearse()" class="form-lg">
         <h1 class="titulaso">Inicia sesion aqui</h1>
         <div class="form-control2">
-          <input type="email" class="email-2" formControlName="email" placeholder="Correo electronico" />
+          <input type="email" class="email-2" formControlName="email" placeholder="Correo electronico" aria-label="Correo electrónico" />
           <div *ngIf="formulario.controls['email'].touched || formulario.controls['email'].dirty">
             @if(formulario.controls['email'].getError('required')){
               <div class="error">
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-control">
-          <input type="password" formControlName="password" placeholder="Contrasena" />
+          <input type="password" formControlName="password" placeholder="Contrasena" aria-label="Contraseña" />
           <small class="error"></small>
           <div *ngIf="formulario.controls['password'].touched || formulario.controls['password'].dirty">
             @if(formulario.controls['password'].getError('required')){

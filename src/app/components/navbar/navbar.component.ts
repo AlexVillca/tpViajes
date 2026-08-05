@@ -1,5 +1,6 @@
 import { Component,HostListener, inject, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter } from 'rxjs';
 
 import { IdUsuarioService } from '../../core/service/id-usuario.service';
 import { CommonModule } from '@angular/common';
@@ -26,6 +27,20 @@ export class NavbarComponent implements OnInit{
       this.flag = !!session;
       this.username = session?.username || null;
     });
+
+    // Al navegar a otra ruta cerramos el menu movil y la solapa de usuario.
+    this.routerService.events
+      .pipe(filter(evento => evento instanceof NavigationEnd))
+      .subscribe(() => {
+        this.menuOpen = false;
+        this.dropdownOpen = false;
+      });
+  }
+
+  // Cierra ambos menus (por ejemplo al elegir una opcion).
+  cerrarMenus() {
+    this.menuOpen = false;
+    this.dropdownOpen = false;
   }
 
   toggleMenu() {
@@ -38,6 +53,7 @@ export class NavbarComponent implements OnInit{
 
   logOut(){
     // Logout real del estado local.
+    this.cerrarMenus();
     this.idUsuarioService.clearUserId();
     this.routerService.navigate(['home']);
   }

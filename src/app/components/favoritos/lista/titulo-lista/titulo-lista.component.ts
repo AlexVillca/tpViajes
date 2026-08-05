@@ -68,7 +68,7 @@ export class TituloListaComponent{
   }
 
 
-  private errorTimeout: any;
+  private errorTimeout?: ReturnType<typeof setTimeout>;
   mensajeNombreRepetido:boolean = false;
 
   mostrarErrorTemporal() {

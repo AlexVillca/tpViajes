@@ -14,6 +14,7 @@ export class IdUsuarioService {
   // Persistimos solo lo minimo necesario para reconstruir la sesion.
   private readonly STORAGE_KEY = 'deruta_session';
   private readonly LEGACY_STORAGE_KEY = 'userId';
+  private readonly TOKEN_KEY = 'deruta_token';
 
   // La app intenta restaurar sesion desde storage al iniciar.
   private readonly sessionSubject = new BehaviorSubject<SessionUser | null>(
@@ -34,11 +35,20 @@ export class IdUsuarioService {
     return this.currentSession !== null;
   }
 
-  // Guarda sesion en memoria y storage.
-  setSession(session: SessionUser): void {
+  // Guarda sesion en memoria y storage. El token es opcional para
+  // mantener compatibilidad con llamadas que solo setean identidad.
+  setSession(session: SessionUser, token?: string): void {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem(this.LEGACY_STORAGE_KEY, session.id);
+    if (token) {
+      localStorage.setItem(this.TOKEN_KEY, token);
+    }
     this.sessionSubject.next(session);
+  }
+
+  // Token JWT emitido por el backend (o null si no hay sesion con token).
+  getToken(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   // Compatibilidad con codigo anterior que solo persistia el id.
@@ -64,6 +74,7 @@ export class IdUsuarioService {
   clearUserId() {
     localStorage.removeItem(this.STORAGE_KEY);
     localStorage.removeItem(this.LEGACY_STORAGE_KEY);
+    localStorage.removeItem(this.TOKEN_KEY);
     this.sessionSubject.next(null);
   }
 

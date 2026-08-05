@@ -83,7 +83,7 @@
       "id": "1fb3",
       "username": "pepe3",
       "email": "peper@gmail.com",
-      "password": "987654321",
+      "password": "$2b$10$BEQjoa/ccP247nccF67qZ.HRC51uasxfKfVeJdy5kUiWxKmlJFImC",
       "listasFavs": [
         {
           "idLista": "x3lsqo4",
@@ -102,7 +102,7 @@
       "id": "3419",
       "username": "arjona",
       "email": "acorde@gmail.com",
-      "password": "541sdgdgsdg",
+      "password": "$2b$10$P/f7f6fTziw6/t5Qu9dMBeVcae5F7EKFxoZjMJZsKXrOvHejQ9Xve",
       "listasFavs": [
         {
           "idLista": "mjujael",
@@ -120,7 +120,7 @@
       "id": "47fe",
       "username": "probando",
       "email": "p",
-      "password": "p",
+      "password": "$2b$10$6UDyk1AkmUoV3dvw.X7mO.NrjuJiLo0ig93MqxVJu0bdpPVGUplu6",
       "mejorPuntaje": 28,
       "listasFavs": [
         {
@@ -167,14 +167,14 @@
       "id": "079f",
       "username": "facu",
       "email": "akdsaksd@gmail.com",
-      "password": "facu1234",
+      "password": "$2b$10$XmYdMqCzsGvCN33zcDHj2.qZMJaD3Og/AMFeU.exwUGOQjN03C7SC",
       "listasFavs": []
     },
     {
       "id": "2b2c",
       "username": "alex",
       "email": "villcaalex@gmail.com",
-      "password": "12345678",
+      "password": "$2b$10$VAWdhbRjirxj68UbcRyvguEfx2kwHl.mhzOxCC5dzIitSy4eRZZy2",
       "listasFavs": [
         {
           "idLista": "n5sweyw",
@@ -202,7 +202,7 @@
       "id": "9398",
       "username": "gustavo",
       "email": "gustavo94fi@gmail.com",
-      "password": "asdf1234",
+      "password": "$2b$10$RfXjwC4XDGQgz4aSM8gewetgNeo.bt0MKIlIDYDeJT0YUIXN417o.",
       "listasFavs": [
         {
           "idLista": "21mdh63",
@@ -279,7 +279,7 @@
       "id": "8021",
       "username": "facuramallo",
       "email": "facu@rama.com",
-      "password": "facu3605",
+      "password": "$2b$10$4Q3pC052jF0/MwP9NuGbI.RCeLE.9zb09LnvDzzZYqmOHaZmOlxt6",
       "listasFavs": [
         {
           "idLista": "zjw0ng6",
@@ -346,7 +346,7 @@
       "id": "2012",
       "username": "guss",
       "email": "asd@gmail.com",
-      "password": "asdf1234",
+      "password": "$2b$10$z4/COzhAJ4b7gA5IBJadkeNFnef7x4hz7/6w1QCPfZPsNZ4U1Vltq",
       "listasFavs": [
         {
           "idLista": "8fg5c8q",
@@ -358,7 +358,7 @@
     {
       "username": "aaaaa",
       "email": "gus@g",
-      "password": "12345678",
+      "password": "$2b$10$Oy/qQDzplkW9B62gTO6tfuUuItYMrbg0kodzBxJiydFIwGw2Xf2e2",
       "listasFavs": [
         {
           "idLista": "8wtjkrk",

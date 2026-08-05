@@ -9,6 +9,7 @@ import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.component';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-favoritos/pop-up-guardar-favoritos.component';
+import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
 
 
 
@@ -18,12 +19,15 @@ import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-f
   standalone: true,
   imports: [ComentariosListComponent
     ,CommonModule
-    ,PopUpGuardarFavoritosComponent],
+    ,PopUpGuardarFavoritosComponent
+    ,ClimaCiudadComponent],
   templateUrl: './ciudad-detail.component.html',
   styleUrls: ['./ciudad-detail.component.css']
 })
 export class CiudadDetailComponent implements OnInit{
+  paisDataService = inject(PaisDataService);
   ciudad$ = this.ciudadDataService.ciudad$;
+  pais$ = this.paisDataService.pais$;
   idus = inject(IdUsuarioService);
   usuarioLogueado = false;
 

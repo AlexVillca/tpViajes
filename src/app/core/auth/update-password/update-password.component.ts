@@ -28,7 +28,6 @@ export class UpdatePasswordComponent implements OnInit {
     confirmPassword: ['', [Validators.required]]
   });
 
-  locationService: any;
   containerVisible = false;
   passwordNotMatch = false;
   serverError = '';

@@ -15,7 +15,7 @@ export class CardEliminarComponent {
 
   imagenActual: string = '';
   private index = 0;
-  private intervalo: any;
+  private intervalo?: ReturnType<typeof setInterval>;
   girando = false;
 
   ngOnInit(): void {

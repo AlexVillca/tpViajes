@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
 import { IdUsuarioService } from './id-usuario.service';
@@ -34,33 +34,31 @@ export class UsuariosService {
     );
   }
 
-  login(username: string, password: string): Observable<boolean | null> {
-    return this.http.get<Usuario[]>(`${this.apiUrl}?email=${username}`).pipe(
-      map(response => {
-        if (response.length === 0) {
-          return null;
-        }
+  login(email: string, password: string): Observable<boolean | null> {
+    // La validacion de la contraseña ocurre en el backend (bcrypt) y este
+    // devuelve un JWT. Contrato: true = ok, false = pass incorrecta, null = email inexistente.
+    const url = `${environment.apiBaseUrl}/login`;
 
-        const user = response[0];
-
-        // Mientras sigamos con json-server, la validacion sigue del lado del frontend.
-        if (user.password === password) {
-          if (user.id !== undefined) {
-            // Guardamos una sesion minima reutilizable por toda la app.
-            this.idUs.setSession({
-              id: user.id,
-              username: user.username,
-              email: user.email
-            });
-          }
-
+    return this.http
+      .post<{ token: string; user: { id: string; username: string; email: string } }>(
+        url,
+        { email, password }
+      )
+      .pipe(
+        map(respuesta => {
+          this.idUs.setSession(respuesta.user, respuesta.token);
           return true;
-        }
-
-        return false;
-      }),
-      catchError(error => buildHttpError(error, 'No se pudo iniciar sesión.'))
-    );
+        }),
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            return of(null); // email no encontrado
+          }
+          if (error.status === 401) {
+            return of(false); // contraseña incorrecta
+          }
+          return buildHttpError(error, 'No se pudo iniciar sesión.');
+        })
+      );
   }
 
   comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {

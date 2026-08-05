@@ -8,6 +8,7 @@ import { FeedbackService } from '../core/service/feedback.service';
 import { IdUsuarioService } from '../core/service/id-usuario.service';
 import { UsuariosService } from '../core/service/usuarios.service';
 import { Pais } from '../models/interface/pais.interface';
+import { Usuario } from '../models/interface/usuario.interface';
 
 @Component({
   selector: 'app-game',
@@ -23,7 +24,7 @@ export class GameComponent {
   routerService = inject(Router);
   feedback = inject(FeedbackService);
 
-  topUsuarios: any[] = [];
+  topUsuarios: Usuario[] = [];
   arregloPaises: Pais[] = [];
   paisAleatorio: Pais | null = null;
   opciones: Pais[] = [];
@@ -67,7 +68,7 @@ export class GameComponent {
 
   cargarTop3() {
     this.servicioUsuario.getUsuarios().subscribe({
-      next: (usuarios: any[]) => {
+      next: (usuarios: Usuario[]) => {
         this.errorRanking = '';
         this.topUsuarios = usuarios
           .sort((a, b) => (b.mejorPuntaje || 0) - (a.mejorPuntaje || 0))

@@ -47,3 +47,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Secrets y variables de entorno locales (nunca commitear claves)
+.env
+.env.*
+!.env.example

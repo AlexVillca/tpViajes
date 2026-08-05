@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
-  <link>  <link
+  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -26,7 +26,7 @@
       <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
         <h1 class="titulaso">Regístrate aquí</h1>
         <div class="form-control">
-          <input type="text" formControlName="username"  placeholder="Nombre" />
+          <input type="text" formControlName="username" placeholder="Nombre" aria-label="Nombre de usuario" />
           <div *ngIf="(formulario.controls['username']?.invalid && (formulario.controls['username']?.dirty) || formulario.controls['username']?.touched)">
             <div class="error" *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</div>
             <div class="error" *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</div>
@@ -39,7 +39,7 @@
           <span></span>
         </div>
         <div class="form-control">
-          <input type="email" formControlName="email"  placeholder="Correo electrónico" />
+          <input type="email" formControlName="email" placeholder="Correo electrónico" aria-label="Correo electrónico" />
           <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.dirty || formulario.controls['email']?.touched) ">
             <div class="error" *ngIf="formulario.controls['email']?.errors?.['required']">Correo electrónico es requerido</div>
             <div class="error" *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</div>
@@ -51,7 +51,7 @@
           <span></span>
         </div>
         <div class="form-control">
-          <input type="password" id="password" name="password" formControlName="password" placeholder="Contraseña" />
+          <input type="password" id="password" name="password" formControlName="password" placeholder="Contraseña" aria-label="Contraseña" />
           <div *ngIf="formulario.controls['password']?.invalid && (formulario.controls['password']?.dirty || formulario.controls['password']?.touched)">
             <div class="error" *ngIf="formulario.controls['password']?.errors?.['required']">Contraseña es requerida</div>
             <div class="error" *ngIf="formulario.controls['password']?.errors?.['minlength']">Contraseña debe tener al menos 8 caracteres</div>

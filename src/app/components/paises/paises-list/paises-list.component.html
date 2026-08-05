@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +16,8 @@
   <div class="contenedor">
 
     <div class="abecedario">
-      <a (click)="filtrarPaises('todos')">Todos</a>
-      <a *ngFor="let letra of letras" (click)="filtrarPaises(letra)">{{ letra }}</a>
+      <a role="button" tabindex="0" (click)="filtrarPaises('todos')" (keyup.enter)="filtrarPaises('todos')">Todos</a>
+      <a *ngFor="let letra of letras" role="button" tabindex="0" (click)="filtrarPaises(letra)" (keyup.enter)="filtrarPaises(letra)">{{ letra }}</a>
     </div>
 
     <div class="estado-carga" *ngIf="cargando">
@@ -32,10 +32,16 @@
     </p>
 
     <ul *ngIf="!cargando && !errorCarga && paisesFiltrados.length > 0">
-      <li *ngFor="let pais of paisesFiltrados">
-        <a (click)="seleccionarPais(pais)">{{ pais.nombre }}  </a>
+      <li *ngFor="let pais of paisesPagina">
+        <a role="button" tabindex="0" (click)="seleccionarPais(pais)" (keyup.enter)="seleccionarPais(pais)">{{ pais.nombre }}  </a>
       </li>
     </ul>
+
+    <div class="paginacion" *ngIf="!cargando && !errorCarga && totalPaginas > 1">
+      <button type="button" (click)="paginaAnterior()" [disabled]="paginaActual === 1" aria-label="Página anterior">‹ Anterior</button>
+      <span class="pagina-indicador">Página {{ paginaActual }} de {{ totalPaginas }}</span>
+      <button type="button" (click)="paginaSiguiente()" [disabled]="paginaActual === totalPaginas" aria-label="Página siguiente">Siguiente ›</button>
+    </div>
 
   </div>
 

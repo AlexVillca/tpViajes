@@ -30,6 +30,7 @@
 
         </div>
         <div class="container-2">
+          <app-clima-ciudad [ciudad]="ciudad.nombre" [codigoPais]="(pais$ | async)?.codigo ?? null"></app-clima-ciudad>
           <p>{{ ciudad.infoWikipedia }}</p>
           <p>Actividades: {{ ciudad.actividades }}</p>
           <p>Consejos: {{ ciudad.consejos }}</p>

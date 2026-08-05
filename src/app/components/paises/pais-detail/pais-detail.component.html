@@ -57,7 +57,7 @@
       <h3>Ciudades</h3>
       <ul class="ciudades-list">
         <li *ngFor="let ciudad of pais.ciudades">
-          <a (click)="seleccionarCiudad(ciudad)">{{ ciudad.nombre }}</a>
+          <a role="button" tabindex="0" (click)="seleccionarCiudad(ciudad)" (keyup.enter)="seleccionarCiudad(ciudad)">{{ ciudad.nombre }}</a>
         </li>
       </ul>
     </div>

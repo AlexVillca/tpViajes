@@ -2,13 +2,13 @@
   <button (click)="abrePopUp()">Guardar</button>
   @if(visible){
     <div class="popup-overlay"></div>
-    <div class="popup-content">
+    <div class="popup-content" role="dialog" aria-modal="true">
 
       <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
 
         <h4>Guardar en favoritos</h4>
 
-        <div class="div-listas" [formGroup]="groupCheckbox" ()>
+        <div class="div-listas" [formGroup]="groupCheckbox">
           @for(idLista of idsGroupCheckbox;track $index){
             <label>
               <input type="checkbox" [formControlName]="idLista" />{{mapNombresListas.get(idLista) }}
@@ -18,7 +18,7 @@
 
         <div>
           <div class="div-agregar">
-            <input type="text" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista" maxlength="20" />
+            <input type="text" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista" maxlength="20" aria-label="Nombre de la nueva lista" />
             <button type="button" (click)="agregarNuevaLista()">Agregar</button>
           </div>
 

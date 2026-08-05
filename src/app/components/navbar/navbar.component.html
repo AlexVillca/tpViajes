@@ -6,27 +6,27 @@
       </a>
 
       <!-- Botón de menú para móviles -->
-      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
 
       <!-- Menú izquierda -->
       <ul class="navbar-menu" [class.active]="menuOpen">
-          <li><a routerLink ="home">Home</a></li>
-          <li><a routerLink="Juego">Minijuego</a></li>
+          <li><a routerLink ="home" (click)="cerrarMenus()">Home</a></li>
+          <li><a routerLink="Juego" (click)="cerrarMenus()">Minijuego</a></li>
       </ul>
       <!-- Menú derecha -->
       <ul class="navbar-menu-usuario">
         <li class="titulo" *ngIf="flag === true">  Bienvenido {{ username }}!</li>
-          <li *ngIf="flag !== true" ><a  routerLink ="login">Inicio Sesion</a></li>
-          <li *ngIf="flag !== true" ><a  routerLink ="register">Registro</a></li>
-          <li *ngIf="flag === true" > <img class="user-image" src="../../../assets/user.png" alt="user"(click)="toggleDropdown()">
+          <li *ngIf="flag !== true" ><a  routerLink ="login" (click)="cerrarMenus()">Inicio Sesion</a></li>
+          <li *ngIf="flag !== true" ><a  routerLink ="register" (click)="cerrarMenus()">Registro</a></li>
+          <li *ngIf="flag === true" > <img class="user-image" src="../../../assets/user.png" alt="Menú de usuario" role="button" tabindex="0" (click)="toggleDropdown()" (keyup.enter)="toggleDropdown()">
         </li>
       </ul>
       <!-- Solapa desplegable -->
         <ul class="user-dropdown" [class.active]="dropdownOpen">
           <a class="titulo">Panel de Usuario</a>
-            <li *ngIf="flag === true" ><a  routerLink ="/favoritos">Favoritos</a></li>
-            <li *ngIf="flag === true" ><a routerLink="/updateP">Cambiar Contraseña</a></li>
-            <li *ngIf="flag === true" ><a (click)="logOut()">Cerrar Sesion</a></li>
+            <li *ngIf="flag === true" ><a  routerLink ="/favoritos" (click)="cerrarMenus()">Favoritos</a></li>
+            <li *ngIf="flag === true" ><a routerLink="/updateP" (click)="cerrarMenus()">Cambiar Contraseña</a></li>
+            <li *ngIf="flag === true" ><a role="button" tabindex="0" (click)="logOut()" (keyup.enter)="logOut()">Cerrar Sesion</a></li>
         </ul>
    </div>
 </nav>

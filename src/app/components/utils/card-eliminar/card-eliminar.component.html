@@ -10,6 +10,7 @@
     <img
       class="img-fondo"
       [src]="imagenActual"
+      alt=""
       (error)="setImagenError($event)"
     />
 
@@ -24,6 +25,6 @@
 
   <div class="card-div-nombre">
 
-    <span class="titulo">{{titulo}}</span>       <button (click)="borrarCiudad($event)" class="boton-borrar-ciudad"><i class="material-icons">delete</i></button>
+    <span class="titulo">{{titulo}}</span>       <button (click)="borrarCiudad($event)" class="boton-borrar-ciudad" aria-label="Eliminar ciudad"><i class="material-icons" aria-hidden="true">delete</i></button>
   </div>
 </div>

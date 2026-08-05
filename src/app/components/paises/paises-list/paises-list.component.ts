@@ -28,6 +28,10 @@ export class PaisesListComponent implements OnInit {
   cargando = false;
   errorCarga = '';
 
+  // Paginacion del listado.
+  paginaActual = 1;
+  itemsPorPagina = 12;
+
   ngOnInit(): void {
     this.cargarPaises();
   }
@@ -68,6 +72,31 @@ export class PaisesListComponent implements OnInit {
       this.paisesFiltrados = this.paises.filter(pais =>
         pais.nombre.toLowerCase().startsWith(letra.toLowerCase())
       );
+    }
+
+    // Al cambiar el filtro, volvemos a la primera pagina.
+    this.paginaActual = 1;
+  }
+
+  // --- Paginacion ---
+  get totalPaginas(): number {
+    return Math.max(1, Math.ceil(this.paisesFiltrados.length / this.itemsPorPagina));
+  }
+
+  get paisesPagina(): Pais[] {
+    const inicio = (this.paginaActual - 1) * this.itemsPorPagina;
+    return this.paisesFiltrados.slice(inicio, inicio + this.itemsPorPagina);
+  }
+
+  paginaAnterior(): void {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+    }
+  }
+
+  paginaSiguiente(): void {
+    if (this.paginaActual < this.totalPaginas) {
+      this.paginaActual++;
     }
   }
 
