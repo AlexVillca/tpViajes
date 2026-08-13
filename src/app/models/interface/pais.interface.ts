@@ -34,8 +34,6 @@ export interface Ciudad {
   atracciones?: Atraccion[];
 }
 export interface Comentario {
-  // json-server ya genera un id al persistir el comentario.
-  // Lo dejamos opcional para no romper el alta actual.
   id?: string;
   mensaje : string,
   ciudad : string,

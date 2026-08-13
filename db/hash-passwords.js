@@ -1,5 +1,3 @@
-// Migracion de un solo uso: hashea con bcrypt las contraseñas en texto plano
-// que existan en db.json. Es idempotente: ignora las que ya estan hasheadas.
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');

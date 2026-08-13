@@ -28,7 +28,6 @@ export class ListaDeListasComponent implements OnInit {
   cargando = false;
   errorCarga = '';
 
-
   ngOnInit(): void {
     this.cargando = true;
     this.errorCarga = '';
@@ -89,7 +88,6 @@ export class ListaDeListasComponent implements OnInit {
         const ciudad = pais.ciudades?.find(c => c.nombre === ciudadEnLista.nombre);
         if (!ciudad) return;
 
-
         const imagenAtr = ciudad.atracciones?.find(a => a.imagen)?.imagen;
         if (imagenAtr) { imagenes.push(imagenAtr); }
       });
@@ -111,7 +109,7 @@ export class ListaDeListasComponent implements OnInit {
 
     setTimeout(() => {
       this.containerVisible = true;
-    }, 200); // Retraso en milisegundos
+    }, 200);
   }
 
 }

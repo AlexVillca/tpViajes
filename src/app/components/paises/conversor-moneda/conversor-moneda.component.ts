@@ -11,12 +11,10 @@ import { CurrencyService } from '../../../core/service/currency.service';
   styleUrls: ['./conversor-moneda.component.css']
 })
 export class ConversorMonedaComponent implements OnInit {
-  // Recibe el texto crudo de la moneda del pais (ej: "Peso argentino (ARS)").
   @Input() monedaPais?: string;
 
   private currencyService = inject(CurrencyService);
 
-  // Monedas de origen que puede elegir el usuario.
   monedasBase = ['ARS', 'USD', 'EUR', 'BRL', 'CLP', 'MXN', 'GBP'];
 
   monedaDestino: string | null = null;
@@ -36,7 +34,6 @@ export class ConversorMonedaComponent implements OnInit {
     }
   }
 
-  // Se llama al iniciar y cada vez que cambia la moneda de origen.
   cargarTasas(): void {
     this.cargando = true;
     this.error = null;
@@ -53,7 +50,6 @@ export class ConversorMonedaComponent implements OnInit {
     });
   }
 
-  // Cotizacion de 1 unidad de la moneda base -> moneda del pais.
   get tasa(): number | null {
     if (!this.monedaDestino) {
       return null;
@@ -61,7 +57,6 @@ export class ConversorMonedaComponent implements OnInit {
     return this.tasas[this.monedaDestino] ?? null;
   }
 
-  // Resultado de convertir el monto ingresado.
   get resultado(): number | null {
     const tasa = this.tasa;
     if (tasa === null || this.monto === null || this.monto === undefined) {

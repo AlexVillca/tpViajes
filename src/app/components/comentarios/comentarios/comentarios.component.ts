@@ -40,7 +40,6 @@ export class ComentariosComponent {
   errorMessage = '';
   feedback = inject(FeedbackService);
 
-  // Esto es asincronico y se actualiza el valor de idPais cuando pais$ emite un nuevo valor.
   ngOnInit() {
     this.pais$.subscribe(pais => {
       if (pais) {
@@ -68,7 +67,6 @@ export class ComentariosComponent {
 
     const comentarioString = this.formulario.getRawValue().comentario.trim();
 
-    // Evita comentarios compuestos solo por espacios.
     if (comentarioString.length < 3) {
       this.errorMessage = 'El comentario debe tener al menos 3 caracteres.';
       return;

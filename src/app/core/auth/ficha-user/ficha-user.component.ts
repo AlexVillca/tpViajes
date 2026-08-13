@@ -23,7 +23,6 @@ export class FichaUserComponent implements OnInit{
       if(valor !== null){
         this.flag = true;
 
-
       }else{
         this.flag = false;
       }

@@ -1,5 +1,3 @@
-// Configuracion de Karma. El launcher ChromeHeadlessCI se usa en integracion
-// continua (GitHub Actions); localmente `ng test` sigue abriendo Chrome normal.
 module.exports = function (config) {
   config.set({
     basePath: '',

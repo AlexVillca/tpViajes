@@ -22,7 +22,6 @@ describe('ClimaService', () => {
 
     service.getClima('Cordoba', 'AR').subscribe(r => (resultado = r));
 
-    // 1) geocoding: devuelve dos Cordoba (ES y AR)
     const geoReq = httpMock.expectOne(r => r.url.startsWith(environment.geocodingApiUrl));
     geoReq.flush({
       results: [
@@ -31,7 +30,6 @@ describe('ClimaService', () => {
       ]
     });
 
-    // 2) forecast: debe usar las coordenadas de la Cordoba argentina
     const fcReq = httpMock.expectOne(r => r.url.startsWith(environment.weatherApiUrl));
     expect(fcReq.request.url).toContain('latitude=-31.4');
     fcReq.flush({

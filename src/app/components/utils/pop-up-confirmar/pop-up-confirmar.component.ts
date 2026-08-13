@@ -12,6 +12,4 @@ export class PopUpConfirmarComponent{
   @Output() confirmar = new EventEmitter<void>();
   @Output() cancelar = new EventEmitter<void>();
 
-
-
 }

@@ -12,7 +12,6 @@ export interface FeedbackMessage {
   providedIn: 'root'
 })
 export class FeedbackService {
-  // Para esta primera version mostramos un unico mensaje global a la vez.
   private readonly messageSubject = new BehaviorSubject<FeedbackMessage | null>(null);
   readonly message$ = this.messageSubject.asObservable();
 

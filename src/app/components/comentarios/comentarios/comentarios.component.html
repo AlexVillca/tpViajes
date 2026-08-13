@@ -2,7 +2,6 @@
 
   <form [formGroup]="formulario" (ngSubmit)="agregarComentarioDb()">
 
-
       <input type="text" formControlName="comentario" placeholder="Ingresa tu comentario aqui" aria-label="Comentario">
 
       <div class="error" *ngIf="formulario.controls['comentario'].getError('required') && formulario.controls['comentario'].touched">

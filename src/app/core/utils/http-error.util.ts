@@ -5,7 +5,6 @@ export function buildHttpError(
   error: HttpErrorResponse,
   fallbackMessage: string
 ) {
-  // status 0 suele indicar que Angular no pudo llegar al json-server.
   if (error.status === 0) {
     return throwError(() => new Error('No se pudo conectar con el servidor.'));
   }

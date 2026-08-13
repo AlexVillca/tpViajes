@@ -41,10 +41,6 @@ export class RegisterComponent {
   userNameInvalid:Boolean = false;
   serverError = '';
 
-
-
-
-
   onSubmit() {
     this.emailInvalid = false;
     this.userNameInvalid = false;
@@ -106,7 +102,6 @@ export class RegisterComponent {
     );
   }
 
-
   videoLoaded = false;
   onVideoLoaded() {
     this.videoLoaded = true;
@@ -114,18 +109,17 @@ export class RegisterComponent {
       const buttons = document.querySelectorAll('button');
 
       buttons.forEach((button) => {
-        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+        button.classList.add('visible');
       });
-    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+    }, 200);
   }
 
   containerVisible = false;
 
   ngOnInit() {
-    // Activa la clase después de un breve retraso
     setTimeout(() => {
       this.containerVisible = true;
-    }, 200); // Retraso en milisegundos
+    }, 200);
   }
 
 }

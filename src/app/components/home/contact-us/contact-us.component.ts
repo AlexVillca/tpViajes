@@ -16,8 +16,6 @@ export class ContactUsComponent {
   fb = inject(FormBuilder);
 
   formulario = this.fb.nonNullable.group({
-    // Son validaciones simples, pero suficientes para que el usuario vea
-    // que corregir debajo de cada campo.
     name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
     message: ['', [Validators.required, Validators.minLength(10)]]
@@ -25,7 +23,6 @@ export class ContactUsComponent {
 
   videoLoaded = false;
 
-  // Esta funcion se llama cuando el video se carga completamente.
   onVideoLoaded() {
     this.videoLoaded = true;
     setTimeout(() => {

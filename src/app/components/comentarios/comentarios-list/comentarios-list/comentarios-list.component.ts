@@ -19,22 +19,17 @@ import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-
 export class ComentariosListComponent implements OnInit {
   listaComentarios: Comentario[] = [];
 
-  // Mantenemos el flag para conservar el comportamiento actual:
-  // solo usuarios logueados ven el formulario para comentar.
   flag = false;
   ciudadActual = '';
   currentUserId = '';
 
-  // Estados del listado para no dejar errores o carga en silencio.
   cargando = false;
   errorCarga = '';
 
-  // Permitimos editar un comentario a la vez.
   comentarioEnEdicionId: string | null = null;
   mensajeEditado = '';
   errorEdicion = '';
 
-  // Reutilizamos el popup existente para confirmar el borrado.
   comentarioAEliminar: Comentario | null = null;
 
   cds = inject(CiudadDataService);
@@ -45,7 +40,6 @@ export class ComentariosListComponent implements OnInit {
   ngOnInit(): void {
     this.cargarComentarios();
 
-    // Separamos las subscriptions para no encadenar una dentro de otra.
     this.idUsuarioService.id$.subscribe((id) => {
       this.currentUserId = id ?? '';
       this.flag = !!id;
@@ -73,7 +67,6 @@ export class ComentariosListComponent implements OnInit {
   }
 
   agregarComentarioDb(comentario: Comentario): void {
-    // El POST devuelve el comentario persistido por json-server, incluido el id.
     this.listaComentarios = [...this.listaComentarios, comentario];
   }
 

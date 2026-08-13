@@ -1,5 +1,4 @@
 import { ComentariosListComponent } from './../../comentarios/comentarios-list/comentarios-list/comentarios-list.component';
-// En ciudad-detail.component.ts
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
@@ -10,9 +9,6 @@ import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-favoritos/pop-up-guardar-favoritos.component';
 import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
-
-
-
 
 @Component({
   selector: 'app-ciudad-detail',
@@ -30,7 +26,6 @@ export class CiudadDetailComponent implements OnInit{
   pais$ = this.paisDataService.pais$;
   idus = inject(IdUsuarioService);
   usuarioLogueado = false;
-
 
   ngOnInit(){
     window.scrollTo(0, 0);
@@ -58,16 +53,15 @@ export class CiudadDetailComponent implements OnInit{
 
   videoLoaded = false;
 
-  // Esta función se llama cuando el video se carga completamente
   onVideoLoaded() {
     this.videoLoaded = true;
     setTimeout(() => {
       const buttons = document.querySelectorAll('button');
 
       buttons.forEach((button) => {
-        button.classList.add('visible');  // Añadir la clase 'visible' a los botones
+        button.classList.add('visible');
       });
-    }, 200);  // Se espera 200ms para asegurarse de que todo se renderice correctamente
+    }, 200);
   }
 
 }

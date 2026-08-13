@@ -13,7 +13,6 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
   idUs = inject(IdUsuarioService);
-  // La URL se arma desde una sola base comun a toda la app.
   private apiUrl = `${environment.apiBaseUrl}/usuarios`;
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
@@ -35,8 +34,6 @@ export class UsuariosService {
   }
 
   login(email: string, password: string): Observable<boolean | null> {
-    // La validacion de la contraseña ocurre en el backend (bcrypt) y este
-    // devuelve un JWT. Contrato: true = ok, false = pass incorrecta, null = email inexistente.
     const url = `${environment.apiBaseUrl}/login`;
 
     return this.http
@@ -51,10 +48,10 @@ export class UsuariosService {
         }),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404) {
-            return of(null); // email no encontrado
+            return of(null);
           }
           if (error.status === 401) {
-            return of(false); // contraseña incorrecta
+            return of(false);
           }
           return buildHttpError(error, 'No se pudo iniciar sesión.');
         })

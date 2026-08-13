@@ -1,4 +1,3 @@
-
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -19,8 +18,6 @@ export class LoginFormComponent {
   route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   formulario = this.fb.nonNullable.group({
-    // Sumamos validacion de formato para mostrar el error debajo del campo
-    // antes de enviar el formulario.
     email: ['',[Validators.required, Validators.email]],
     password: ['',[Validators.required]]
   })
@@ -44,19 +41,16 @@ export class LoginFormComponent {
 
           }else{
             if(value){
-              // Si el usuario venia de una ruta protegida, vuelve ahi.
               const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
               this.routerService.navigateByUrl(returnUrl || '/home');
 
             }else{
               this.passwordIncorrecto = true;
 
-
             }
           }
         },
         error:(e)=>{
-          // Mostramos el error en la vista para no dejarlo solo en consola.
           this.serverError = e.message;
         }
       }
@@ -76,17 +70,13 @@ export class LoginFormComponent {
     }, 200);
   }
 
-  // Propiedad para manejar la visibilidad
   containerVisible = false;
 
   ngOnInit() {
-    // Activa la clase después de un breve retraso
     setTimeout(() => {
       this.containerVisible = true;
-    }, 200); // Retraso en milisegundos
+    }, 200);
   }
 
 }
-
-
 

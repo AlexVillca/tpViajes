@@ -1,4 +1,3 @@
-
 import { LoginFormComponent } from './core/auth/login-form/login-form.component';
 import { RegisterComponent } from './core/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,7 +14,6 @@ import { UpdatePasswordComponent } from './core/auth/update-password/update-pass
 import { FichaUserComponent } from './core/auth/ficha-user/ficha-user.component';
 import { authGuard } from './core/auth/auth.guard';
 
-
 export const routes: Routes = [
 
   { path: '', component: HomeComponent },
@@ -26,7 +24,6 @@ export const routes: Routes = [
   { path: 'ciudad', component: CiudadDetailComponent },
   { path: 'Juego', component: GameComponent},
   { path: 'pais', component: PaisDetailComponent },
-  // Rutas privadas: requieren sesion activa en frontend.
   { path: 'favoritos', component: ListaDeListasComponent, canActivate: [authGuard]},
   { path: 'listaCiudadesComp/:idLista', component:ListaComponent, canActivate: [authGuard]},
   { path: 'contact', component:ContactUsComponent},

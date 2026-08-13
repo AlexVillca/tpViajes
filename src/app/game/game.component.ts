@@ -54,7 +54,6 @@ export class GameComponent {
             this.mejorPuntaje = usuario.mejorPuntaje || 0;
           },
           error: () => {
-            // Si esta lectura falla, el juego igual puede continuar con el mejor puntaje en cero.
             this.mejorPuntaje = 0;
           },
         });
@@ -75,7 +74,6 @@ export class GameComponent {
           .slice(0, 3);
       },
       error: (e) => {
-        // Este estado conviene verlo en pantalla para que el ranking vacio no parezca normal.
         this.errorRanking = e.message;
         this.topUsuarios = [];
       }
@@ -98,7 +96,6 @@ export class GameComponent {
   }
 
   generarPregunta() {
-    // Con menos de 4 paises el while de opciones no puede completarse.
     if (this.arregloPaises.length < 4) {
       this.errorJuego = 'No hay suficientes paises para iniciar el minijuego.';
       this.paisAleatorio = null;

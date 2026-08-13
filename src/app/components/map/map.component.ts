@@ -16,13 +16,10 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   private map!: L.Map;
 
-
-
-
-  private initMap(lat: number, lon: number, nombre: string ,flagUrl: string): void { /// Inic map
+  private initMap(lat: number, lon: number, nombre: string ,flagUrl: string): void {
 
     if(this.map){
-      this.map.remove(); /// Borrar mapa si ya se creo uno
+      this.map.remove();
     }
     this.map = L.map('map', {
       center: [lat, lon],
@@ -49,9 +46,8 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['lat'] || changes['lon']) {
-      this.initMap(this.lat, this.lon, this.nombre,this.flagUrl); /// Redefinir en caso de cambios
+      this.initMap(this.lat, this.lon, this.nombre,this.flagUrl);
     }
   }
 }
-
 

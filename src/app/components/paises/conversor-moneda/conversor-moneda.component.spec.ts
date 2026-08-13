@@ -21,7 +21,7 @@ describe('ConversorMonedaComponent', () => {
 
   it('sin moneda no consulta la API y deja monedaDestino en null', () => {
     component.monedaPais = undefined;
-    fixture.detectChanges(); // dispara ngOnInit
+    fixture.detectChanges();
 
     expect(component.monedaDestino).toBeNull();
   });

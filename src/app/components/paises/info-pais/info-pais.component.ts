@@ -10,7 +10,6 @@ import { RestCountriesService, PaisInfo } from '../../../core/service/rest-count
   styleUrls: ['./info-pais.component.css']
 })
 export class InfoPaisComponent implements OnInit {
-  // Codigo ISO alpha-2 del pais (campo "codigo" de la db, ej: "AR").
   @Input() codigo?: string;
 
   private rest = inject(RestCountriesService);

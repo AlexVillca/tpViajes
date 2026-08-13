@@ -18,17 +18,15 @@ export class NavbarComponent implements OnInit{
   routerService = inject(Router);
   flag:boolean = false;
   username: string | null = null;
-  menuOpen: boolean = false; // Estado del menú
-  dropdownOpen: boolean = false; // Estado de la solapa del usuario
+  menuOpen: boolean = false;
+  dropdownOpen: boolean = false;
 
   ngOnInit() {
     this.idUsuarioService.session$.subscribe((session) => {
-      // La navbar depende de una unica fuente de verdad.
       this.flag = !!session;
       this.username = session?.username || null;
     });
 
-    // Al navegar a otra ruta cerramos el menu movil y la solapa de usuario.
     this.routerService.events
       .pipe(filter(evento => evento instanceof NavigationEnd))
       .subscribe(() => {
@@ -37,22 +35,20 @@ export class NavbarComponent implements OnInit{
       });
   }
 
-  // Cierra ambos menus (por ejemplo al elegir una opcion).
   cerrarMenus() {
     this.menuOpen = false;
     this.dropdownOpen = false;
   }
 
   toggleMenu() {
-    this.menuOpen = !this.menuOpen; // Cambia el estado del menú
+    this.menuOpen = !this.menuOpen;
   }
 
   toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen; // Cambia el estado de la solapa
+    this.dropdownOpen = !this.dropdownOpen;
   }
 
   logOut(){
-    // Logout real del estado local.
     this.cerrarMenus();
     this.idUsuarioService.clearUserId();
     this.routerService.navigate(['home']);
@@ -62,7 +58,6 @@ export class NavbarComponent implements OnInit{
     this.routerService.navigate(['fichaUser']);
   }
 
-  // Detecta clics fuera del menú y lo cierra si está abierto
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {
     const target = event.target as HTMLElement;
@@ -70,11 +65,11 @@ export class NavbarComponent implements OnInit{
     const isInsideDropdown = target.closest('.user-dropdown') || target.closest('.user-image');
 
     if (!isInsideMenu && !isInsideDropdown && this.dropdownOpen) {
-      this.dropdownOpen = false; // Cierra la solapa si el clic está fuera de ella
+      this.dropdownOpen = false;
     }
 
     if (!isInsideMenu && this.menuOpen) {
-      this.menuOpen = false; // Cierra el menú si el clic está fuera de él
+      this.menuOpen = false;
     }
   }
 

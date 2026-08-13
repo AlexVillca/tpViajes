@@ -1,7 +1,3 @@
-// Backend propio: json-server como modulo + Express, con seguridad real.
-// - Login validado en el servidor (bcrypt).
-// - Contraseñas hasheadas al crear/actualizar; nunca se exponen.
-// - Emite JWT en el login y protege las operaciones de escritura.
 const path = require('path');
 const jsonServer = require('json-server');
 const bcrypt = require('bcryptjs');
@@ -11,7 +7,7 @@ const dbPath = path.join(__dirname, 'db.json');
 const server = jsonServer.create();
 const router = jsonServer.router(dbPath);
 const middlewares = jsonServer.defaults();
-const db = router.db; // instancia lowdb para consultas propias
+const db = router.db;
 
 const PORT = process.env.PORT || 3000;
 const SALT_ROUNDS = 10;
@@ -21,7 +17,6 @@ const JWT_EXPIRES_IN = '7d';
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
-// --- Login: la comparacion de la contraseña ocurre en el backend ---
 server.post('/login', (req, res) => {
   const { email, password } = req.body || {};
 
@@ -42,12 +37,9 @@ server.post('/login', (req, res) => {
   const datosSesion = { id: user.id, username: user.username, email: user.email };
   const token = jwt.sign(datosSesion, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
-  // Nunca devolvemos la contraseña (ni hasheada).
   return res.jsonp({ token, user: datosSesion });
 });
 
-// --- Proteccion de escrituras: requieren JWT valido ---
-// Publicas: GET (todo), POST /login, POST /usuarios (registro).
 function requiereAuth(req) {
   const esMutacionUsuario =
     (req.method === 'PATCH' || req.method === 'PUT' || req.method === 'DELETE') &&
@@ -76,7 +68,6 @@ server.use((req, res, next) => {
   }
 });
 
-// --- Hasheo automatico de la contraseña al crear o actualizar usuarios ---
 server.use((req, res, next) => {
   const tienePassword =
     req.body && typeof req.body.password === 'string' && req.body.password.length > 0;
@@ -96,7 +87,6 @@ server.use((req, res, next) => {
   next();
 });
 
-// --- Nunca exponer el campo password en las respuestas de /usuarios ---
 router.render = (req, res) => {
   let data = res.locals.data;
 

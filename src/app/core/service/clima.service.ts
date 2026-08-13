@@ -4,7 +4,6 @@ import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { buildHttpError } from '../utils/http-error.util';
 
-// Respuestas crudas de Open-Meteo.
 interface GeoResult {
   name: string;
   latitude: number;
@@ -23,7 +22,6 @@ interface ForecastResponse {
   };
 }
 
-// Modelo propio, listo para la vista.
 export interface ClimaActual {
   ciudad: string;
   temperatura: number;
@@ -42,7 +40,6 @@ export class ClimaService {
 
   constructor(private http: HttpClient) { }
 
-  // Geocodifica la ciudad (nombre -> lat/lon) y luego consulta el clima actual.
   getClima(ciudad: string, codigoPais?: string | null): Observable<ClimaActual> {
     const url = `${this.geoUrl}?name=${encodeURIComponent(ciudad)}&count=10&language=es&format=json`;
 
@@ -58,7 +55,6 @@ export class ClimaService {
     );
   }
 
-  // Elige el resultado del geocoder: prioriza el que coincide con el pais.
   private elegirUbicacion(resp: GeoResponse, codigoPais?: string | null): GeoResult {
     const resultados = resp.results ?? [];
 
@@ -104,7 +100,6 @@ export class ClimaService {
     );
   }
 
-  // Traduce el codigo WMO a una descripcion en español + emoji.
   private interpretarCodigo(code: number): { descripcion: string; emoji: string } {
     const mapa: Record<number, { descripcion: string; emoji: string }> = {
       0: { descripcion: 'Despejado', emoji: '☀️' },

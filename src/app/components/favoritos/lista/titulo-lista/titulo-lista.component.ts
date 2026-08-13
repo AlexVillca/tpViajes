@@ -5,7 +5,6 @@ import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-
 import { UsuariosService } from '../../../../core/service/usuarios.service';
 import { FeedbackService } from '../../../../core/service/feedback.service';
 
-
 @Component({
   selector: 'app-titulo-lista',
   standalone: true,
@@ -66,7 +65,6 @@ export class TituloListaComponent{
       });
 
   }
-
 
   private errorTimeout?: ReturnType<typeof setTimeout>;
   mensajeNombreRepetido:boolean = false;

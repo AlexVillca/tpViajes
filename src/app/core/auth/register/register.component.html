@@ -32,7 +32,7 @@
             <div class="error" *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</div>
             <div class="error" *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</div>
           </div>
-          <!--backend-->
+
           <div *ngIf="userNameInvalid">
             <small >El nombre ya esta en uso</small>
           </div>
@@ -45,7 +45,7 @@
             <div class="error" *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</div>
           </div>
           <div *ngIf="emailInvalid">
-            <!--backend-->
+
             <small>Correo electrónico en uso, intente con otro</small>
           </div>
           <span></span>

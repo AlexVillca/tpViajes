@@ -66,7 +66,6 @@ export class UpdatePasswordComponent implements OnInit {
     const { password } = this.formularioUpdate.getRawValue();
     this.usuariosService.cambiarContrasena(this.id, password).subscribe({
       next: () => {
-        // Dejamos feedback visible dentro de la pantalla antes de redirigir.
         this.successMessage = 'La contrasena ha sido actualizada con exito.';
         setTimeout(() => {
           this.router.navigateByUrl('home');

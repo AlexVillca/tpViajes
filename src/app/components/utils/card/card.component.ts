@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -11,8 +10,6 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() titulo:string = "";
   @Input() arregloImagenes:string[] = [];
-
-
 
   imagenActual: string = '';
   private index = 0;
@@ -43,11 +40,9 @@ export class CardComponent {
     this.girando = false;
   }
 
-
   setImagenError(event: Event) {
     const img = event.target as HTMLImageElement;
     img.src = 'assets/imagennodisponible.png';
   }
-
 
 }

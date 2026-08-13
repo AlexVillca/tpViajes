@@ -4,7 +4,6 @@ import { catchError, map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { buildHttpError } from '../utils/http-error.util';
 
-// Respuesta cruda de la API open.er-api.com
 interface RespuestaTasas {
   result: string;
   base_code: string;
@@ -12,7 +11,6 @@ interface RespuestaTasas {
   rates: Record<string, number>;
 }
 
-// Modelo propio, desacoplado del formato de la API externa.
 export interface TasasCambio {
   base: string;
   ultimaActualizacion: string;
@@ -27,7 +25,6 @@ export class CurrencyService {
 
   constructor(private http: HttpClient) { }
 
-  // Trae todas las cotizaciones tomando "base" como moneda de referencia.
   getTasas(base: string): Observable<TasasCambio> {
     return this.http.get<RespuestaTasas>(`${this.apiUrl}/${base}`).pipe(
       map(resp => ({
@@ -41,8 +38,6 @@ export class CurrencyService {
     );
   }
 
-  // Extrae el codigo ISO (ej: "Peso argentino (ARS)" -> "ARS").
-  // Si la moneda lista varias, devuelve la primera.
   extraerCodigoIso(moneda?: string): string | null {
     if (!moneda) {
       return null;

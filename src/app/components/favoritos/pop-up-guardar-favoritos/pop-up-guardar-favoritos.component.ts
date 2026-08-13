@@ -11,9 +11,6 @@ import { valorExistenteMap } from '../../../validators/valorExistenteMap.validat
 import { maxItemsValidator } from '../../../validators/maxItems.validator';
 import { FeedbackService } from '../../../core/service/feedback.service';
 
-
-
-
 @Component({
   selector: 'app-pop-up-guardar-favoritos',
   standalone: true,
@@ -42,7 +39,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   alertaMaxListas = false;
   alertaNombreRepetido = false;
   feedback = inject(FeedbackService);
-  // Evita abrir o guardar mientras falta el contexto minimo de usuario/pais/ciudad/listas.
   contextoListo = false;
   errorCargaContexto = '';
 
@@ -50,7 +46,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     nuevocheckboxListaFavorito: ['', [Validators.required,valorExistenteMap(this.mapNombresListas),maxItemsValidator(this.mapNombresListas,6)]],
     checkboxesListasFavoritos: this.fb.group({})
   });
-
 
   get groupCheckbox(): FormGroup {
     return this.formulario.get('checkboxesListasFavoritos') as FormGroup;
@@ -67,8 +62,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     this.contextoListo = false;
     this.errorCargaContexto = mensaje;
   }
-
-
 
   ngOnInit(): void {
 
@@ -103,7 +96,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
                       this.us.obtenerListasFav(id).subscribe(
                         {
                           next:(l) => {
-                            // Actualizamos el formulario solo cuando ya existe el contexto completo.
                             this.listasFavoritosDB = l;
                             this.pasajeDBaFormulario();
                             this.contextoListo = true;
@@ -137,7 +129,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     );
   }
 
-  //generar un id unico
   private nuevoIdLista():string{
     let idGenerado:string;
     do{
@@ -146,7 +137,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     return idGenerado;
   }
 
- // Agrega un nuevo item al FormArray
  agregarNuevaLista(){
   if(!this.nuevaListaInput.valid){
     this.nuevaListaInput.markAsTouched();
@@ -157,8 +147,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   this.groupCheckbox.addControl(nuevoId,new FormControl(true));
   this.nuevaListaInput.reset();
  }
-
-
 
   private pasajeDBaFormulario(){
     const groupAux = this.fb.group({});
@@ -172,10 +160,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     this.formulario.setControl('checkboxesListasFavoritos',groupAux);
   }
 
-
-
   private pasajeFormularioaDB(){
-    // Narrowing: si falta pais o ciudad no hay nada que sincronizar.
     const pais = this.paisSeleccionado;
     const ciudad = this.ciudadSeleccionada;
     if (!pais || !ciudad) { return; }
@@ -218,7 +203,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   }
 
   saveSelection() {
-    // Sin pais o ciudad seleccionada, pasajeFormularioaDB puede romper por acceso a propiedades null.
     if (!this.contextoListo || !this.paisSeleccionado || !this.ciudadSeleccionada) {
       this.feedback.error(this.errorCargaContexto || 'No se pudieron guardar los favoritos.');
       return;
@@ -269,6 +253,5 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     this.pasajeDBaFormulario();
 
   }
-
 
 }

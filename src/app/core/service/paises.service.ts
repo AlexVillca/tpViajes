@@ -9,7 +9,6 @@ import { buildHttpError } from '../utils/http-error.util';
   providedIn: 'root'
 })
 export class PaisesService {
-  // Todos los servicios comparten la misma base y cambian solo el recurso.
   private apiUrl = `${environment.apiBaseUrl}/paises`;
 
   constructor(private http: HttpClient) { }

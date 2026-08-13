@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Ciudad } from '../../models/interface/pais.interface'; // Importar la interfaz Ciudad
+import { Ciudad } from '../../models/interface/pais.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,5 @@ export class CiudadDataService {
   setCiudad(ciudad: Ciudad) {
     this.ciudadSource.next(ciudad);
   }
-  
-  
+
 }

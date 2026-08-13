@@ -15,9 +15,7 @@ import { CardEliminarComponent } from '../../utils/card-eliminar/card-eliminar.c
 import { FormsModule } from '@angular/forms';
 import { FeedbackService } from '../../../core/service/feedback.service';
 
-
 import { TituloListaComponent } from './titulo-lista/titulo-lista.component';
-
 
 @Component({
   selector: 'app-lista',
@@ -41,16 +39,11 @@ export class ListaComponent implements OnInit,OnDestroy{
   listaImagenes:ImagenesCiudad[] = [];
   cargando = false;
   errorCarga = '';
-  // Solo persistimos al salir cuando hubo cambios locales reales en la lista.
   private cambiosPendientes = false;
-  // Si la lista se elimina, evitamos que ngOnDestroy intente guardarla otra vez.
   private listaEliminada = false;
 
   private idLista:string = "";
   idUsuario:string = "";
-
-
-
 
   guardarNuevoTitulo(titulo:string):void{
     if(this.lista == null) return;
@@ -63,7 +56,6 @@ export class ListaComponent implements OnInit,OnDestroy{
           this.feedback.success('Nombre de lista actualizado.');
         },
         error:(error)=>{
-          // Si el PATCH falla, devolvemos el titulo anterior para no dejar la UI inconsistente.
           if (this.lista) {
             this.lista.nombreLista = tituloAnterior;
           }
@@ -73,8 +65,6 @@ export class ListaComponent implements OnInit,OnDestroy{
     )
 
   }
-
-
 
   ngOnInit(): void {
     this.cargando = true;
@@ -94,7 +84,6 @@ export class ListaComponent implements OnInit,OnDestroy{
                       next:(listaObtenida)=>{
                         if(listaObtenida != undefined){
                           this.lista = listaObtenida;
-
 
                           this.paisesService.getPaises().subscribe(
                             {
@@ -139,7 +128,6 @@ export class ListaComponent implements OnInit,OnDestroy{
       }
     );
   }
-
 
   obtenerImagenesCiudades(listaFav: ListaFav, paises: Pais[]): void {
     if(this.lista == null){return;}
@@ -206,7 +194,6 @@ export class ListaComponent implements OnInit,OnDestroy{
     }
   }
 
-
   guardarCambios(){
     if(this.lista === undefined){
       return;
@@ -258,10 +245,7 @@ export class ListaComponent implements OnInit,OnDestroy{
       this.feedback.error('No se pudo quitar la ciudad de la lista.');
     }
 
-
-
   }
-
 
   eliminarLista(){
     if(this.lista == undefined) return;
@@ -279,9 +263,6 @@ export class ListaComponent implements OnInit,OnDestroy{
     });
   }
 
-
-
-
   volver() {
     this.locationService.back();
   }
@@ -289,17 +270,13 @@ export class ListaComponent implements OnInit,OnDestroy{
   containerVisible = false;
   videoLoaded = false;
 
-  // Esta función se llama cuando el video se carga completamente
   onVideoLoaded() {
     this.videoLoaded = true;
     setTimeout(() => {
       this.containerVisible = true;
 
-    }, 200); // Retraso en milisegundos
+    }, 200);
   }
 
-
-
 }
-
 

@@ -10,6 +10,5 @@ import { FeedbackService } from '../../../core/service/feedback.service';
   styleUrl: './feedback-toast.component.css'
 })
 export class FeedbackToastComponent {
-  // El componente solo escucha el estado global y renderiza el mensaje actual.
   feedback = inject(FeedbackService);
 }
