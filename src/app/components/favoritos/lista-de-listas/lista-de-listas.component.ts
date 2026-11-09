@@ -101,15 +101,4 @@ export class ListaDeListasComponent implements OnInit {
 
   }
 
-  containerVisible = false;
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-
-    setTimeout(() => {
-      this.containerVisible = true;
-    }, 200);
-  }
-
 }

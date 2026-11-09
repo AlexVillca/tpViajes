@@ -1,6 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IdUsuarioService } from '../../service/id-usuario.service';
-import { Router, RouterOutlet, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,21 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ficha-user.component.css'
 })
 
-export class FichaUserComponent implements OnInit{
-
+export class FichaUserComponent {
   idUsuarioService = inject(IdUsuarioService);
-  routerService = inject(Router);
-  flag:boolean = false;
-
-  ngOnInit() {
-    this.idUsuarioService.id$.subscribe((valor) => {
-
-      if(valor !== null){
-        this.flag = true;
-
-      }else{
-        this.flag = false;
-      }
-    });
-  }
+  session$ = this.idUsuarioService.session$;
 }

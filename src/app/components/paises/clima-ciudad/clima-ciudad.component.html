@@ -1,16 +1,16 @@
-<div class="clima">
-  <p class="clima-estado" *ngIf="cargando">Cargando clima actual…</p>
-  <p class="clima-error" *ngIf="error && !cargando">🌡️ {{ error }}</p>
+<div class="mb-4">
+  <p class="m-0 rounded-xl border border-solid border-[#cce4ec] bg-[#f0fafb] p-4 text-sm text-[#416277] motion-safe:animate-pulse" *ngIf="cargando" role="status" aria-live="polite">Cargando clima actual…</p>
+  <p class="m-0 rounded-xl border border-solid border-[#f3c7c2] bg-[#fff4f2] p-4 text-sm leading-relaxed text-[#9d291f]" *ngIf="error && !cargando" role="alert">🌡️ {{ error }}</p>
 
-  <div class="clima-card" *ngIf="clima && !cargando && !error">
-    <div class="clima-emoji">{{ clima.emoji }}</div>
-    <div class="clima-datos">
-      <span class="clima-temp">{{ clima.temperatura | number: '1.0-0' }}°C</span>
-      <span class="clima-desc">{{ clima.descripcion }}</span>
-      <span class="clima-extra">
+  <div class="flex flex-col items-start gap-4 rounded-2xl border border-solid border-[#b8e3e6] bg-gradient-to-br from-[#e7f6f8] to-white p-4 shadow-sm sm:flex-row sm:items-center sm:gap-5 sm:p-5" *ngIf="clima && !cargando && !error" role="region" aria-label="Clima actual">
+    <div class="shrink-0 text-5xl leading-none" aria-hidden="true">{{ clima.emoji }}</div>
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-3xl font-bold leading-tight tabular-nums tracking-tight text-[#123a53] sm:text-4xl">{{ clima.temperatura | number: '1.0-0' }}°C</span>
+      <span class="break-words text-base font-semibold text-[#176c8d]">{{ clima.descripcion }}</span>
+      <span class="mt-1 text-sm leading-relaxed text-[#416277]">
         💧 {{ clima.humedad | number: '1.0-0' }}%  ·  💨 {{ clima.viento | number: '1.0-0' }} km/h
       </span>
-      <span class="clima-fuente">Clima actual en {{ clima.ciudad }} · Open-Meteo</span>
+      <span class="mt-2 break-words text-xs leading-relaxed text-[#416277]">Clima actual en {{ clima.ciudad }} · Open-Meteo</span>
     </div>
   </div>
 </div>

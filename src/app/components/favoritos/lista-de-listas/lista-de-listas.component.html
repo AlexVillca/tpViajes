@@ -1,36 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div class="video-background">
-  <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-    <source src="assets/background-video.mp4" type="video/mp4" />
-    Tu navegador no soporta reproducción de vídeos.
-  </video>
-  </div>
-
-  <div class="div-central"  [class.visible]="containerVisible">
-    <div class="estado-carga" *ngIf="cargando">
-      <div class="spinner"></div>
-      <p class="estado">Cargando tus listas...</p>
+  <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] space-y-6 text-[#123a53] sm:mb-12 sm:mt-28" aria-labelledby="favoritos-title">
+    <header class="flex items-center gap-4">
+      <span class="h-10 w-1 shrink-0 rounded-full bg-gradient-to-b from-[#1E85BB] to-[#14b8b3]" aria-hidden="true"></span>
+      <h1 id="favoritos-title" class="m-0 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">Mis listas favoritas</h1>
+    </header>
+    <div class="flex flex-col items-center gap-3 rounded-2xl border border-solid border-white/80 bg-white/90 p-8 shadow-sm" *ngIf="cargando" role="status" aria-live="polite">
+      <div class="h-9 w-9 animate-spin rounded-full border-4 border-solid border-[#d5ebf1] border-t-[#149eae] [animation-duration:800ms] motion-reduce:animate-none" aria-hidden="true"></div>
+      <p class="m-0 text-center text-sm font-semibold text-[#416277]">Cargando tus listas...</p>
     </div>
 
-    <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
+    <p class="m-0 rounded-2xl border border-solid border-[#f3c7c2] bg-[#fff4f2] p-5 text-center text-sm leading-relaxed text-[#9d291f]" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga }}</p>
 
-    <p class="estado-vacio" *ngIf="!cargando && !errorCarga && listas.length === 0">
+    <p class="m-0 rounded-2xl border border-solid border-white/80 bg-white/90 px-5 py-10 text-center text-sm font-medium leading-relaxed text-[#416277]" *ngIf="!cargando && !errorCarga && listas.length === 0" role="status">
       Aun no tenes listas guardadas.
     </p>
 
-    <div class="div-cards" *ngIf="!cargando && !errorCarga && listas.length > 0">
+    <div class="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3" *ngIf="!cargando && !errorCarga && listas.length > 0">
         @for(l of listas;track $index){
-          <app-card [arregloImagenes]="l.imagenes" [titulo]="l.nombre" (click) = "accederLista(l.id)"></app-card>
+          <app-card class="block min-w-0 rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087d9b]" [arregloImagenes]="l.imagenes" [titulo]="l.nombre" (click)="accederLista(l.id)" role="button" tabindex="0" (keyup.enter)="accederLista(l.id)" [attr.aria-label]="'Abrir lista ' + l.nombre"></app-card>
         }
     </div>
 
-    <button type="button" class="button-volver" (click)="volver()">Volver</button>
-  </div>
-</body>
-</html>
+    <div class="flex justify-center">
+      <button type="button" class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-solid border-[#1685a8] bg-[#1685a8] px-6 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:border-[#126b9b] hover:bg-[#126b9b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087d9b] motion-reduce:transition-none" (click)="volver()">Volver</button>
+    </div>
+  </main>

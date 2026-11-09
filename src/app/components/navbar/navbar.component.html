@@ -1,30 +1,32 @@
 <nav class="navbar">
   <div class="navbar-container">
 
-    <a href="#" class="navbar-logo">
+    <a routerLink="/home" class="navbar-logo" (click)="cerrarMenus()" aria-label="Ir a Inicio">
         <img src="../../../assets/logo.png"	 alt="Logo" class="logo-image" />
       </a>
 
-      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
+      <button type="button" class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen" aria-controls="navbar-menu" [attr.aria-label]="menuOpen ? 'Cerrar menú' : 'Abrir menú'">☰</button>
 
-      <ul class="navbar-menu" [class.active]="menuOpen">
-          <li><a routerLink ="home" (click)="cerrarMenus()">Home</a></li>
-          <li><a routerLink="Juego" (click)="cerrarMenus()">Minijuego</a></li>
+      <ul id="navbar-menu" class="navbar-menu" [class.active]="menuOpen">
+          <li><a routerLink="/home" (click)="cerrarMenus()" [class.seccion-activa]="seccionActiva === 'inicio'" [attr.aria-current]="seccionActiva === 'inicio' ? 'page' : null">Inicio</a></li>
+          <li><a routerLink="/paises" (click)="cerrarMenus()" [class.seccion-activa]="seccionActiva === 'paises'" [attr.aria-current]="seccionActiva === 'paises' ? 'location' : null">Países</a></li>
+          <li><a routerLink="/Juego" (click)="cerrarMenus()" [class.seccion-activa]="seccionActiva === 'minijuego'" [attr.aria-current]="seccionActiva === 'minijuego' ? 'page' : null">Minijuego</a></li>
       </ul>
 
       <ul class="navbar-menu-usuario">
-        <li class="titulo" *ngIf="flag === true">  Bienvenido {{ username }}!</li>
+        <li class="titulo navbar-saludo" *ngIf="flag === true" [title]="'Bienvenido ' + username + '!'">  Bienvenido {{ username }}!</li>
           <li *ngIf="flag !== true" ><a  routerLink ="login" (click)="cerrarMenus()">Inicio Sesion</a></li>
           <li *ngIf="flag !== true" ><a  routerLink ="register" (click)="cerrarMenus()">Registro</a></li>
-          <li *ngIf="flag === true" > <img class="user-image" src="../../../assets/user.png" alt="Menú de usuario" role="button" tabindex="0" (click)="toggleDropdown()" (keyup.enter)="toggleDropdown()">
+          <li *ngIf="flag === true" > <img class="user-image" [class.seccion-activa]="seccionActiva === 'favoritos'" src="../../../assets/user.png" alt="Menú de usuario" role="button" tabindex="0" [attr.aria-expanded]="dropdownOpen" aria-controls="navbar-user-menu" [attr.aria-label]="dropdownOpen ? 'Cerrar menú de usuario' : 'Abrir menú de usuario'" (click)="toggleDropdown()" (keyup.enter)="toggleDropdown()" (keydown.space)="$event.preventDefault()" (keyup.space)="toggleDropdown()">
         </li>
       </ul>
 
-        <ul class="user-dropdown" [class.active]="dropdownOpen">
-          <a class="titulo">Panel de Usuario</a>
-            <li *ngIf="flag === true" ><a  routerLink ="/favoritos" (click)="cerrarMenus()">Favoritos</a></li>
+        <ul id="navbar-user-menu" class="user-dropdown" [class.active]="dropdownOpen" [attr.inert]="dropdownOpen ? null : ''">
+          <li class="titulo">Panel de Usuario</li>
+            <li *ngIf="flag === true"><a routerLink="/fichaUser" (click)="cerrarMenus()">Perfil</a></li>
+            <li *ngIf="flag === true" ><a routerLink="/favoritos" (click)="cerrarMenus()" [class.seccion-activa]="seccionActiva === 'favoritos'" [attr.aria-current]="seccionActiva === 'favoritos' ? 'location' : null">Favoritos</a></li>
             <li *ngIf="flag === true" ><a routerLink="/updateP" (click)="cerrarMenus()">Cambiar Contraseña</a></li>
-            <li *ngIf="flag === true" ><a role="button" tabindex="0" (click)="logOut()" (keyup.enter)="logOut()">Cerrar Sesion</a></li>
+            <li *ngIf="flag === true" ><a role="button" tabindex="0" (click)="logOut()" (keyup.enter)="logOut()" (keydown.space)="$event.preventDefault()" (keyup.space)="logOut()">Cerrar Sesion</a></li>
         </ul>
    </div>
 </nav>

@@ -1,49 +1,53 @@
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-<section class="section">
-    <div class="video-background">
-        <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-          <source src="assets/background-video.mp4" type="video/mp4" />
-          Tu navegador no soporta reproduccion de videos.
-        </video>
-      </div>
+<section class="mx-auto mb-8 mt-[88px] w-[calc(100%-2rem)] max-w-[1280px] text-[#123a53] sm:w-[calc(100%-3rem)]" aria-labelledby="juego-title">
 
-    <ul class="lista-puntaje" [ngClass]="{'visible': paisAleatorio}">
-        <li>Puntaje Actual: {{ puntaje }}</li>
-        <li>Mejor Puntaje: {{ mejorPuntaje }}</li>
+
+    <div class="grid min-w-0 grid-cols-1 items-start gap-4 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-5">
+    <aside class="order-2 min-w-0 space-y-4" aria-label="Puntuación y ranking">
+    <ul class="m-0 grid -translate-y-5 list-none grid-cols-2 gap-3 p-0 opacity-0 transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100" [ngClass]="{'visible': paisAleatorio}" aria-label="Puntuación">
+        <li class="min-w-0 rounded-2xl border border-solid border-[#1685a8] bg-[#1685a8] p-4 text-center text-sm font-semibold text-white shadow-sm">Puntaje Actual: <span class="mt-1 block text-3xl font-bold tabular-nums" aria-live="polite">{{ puntaje }}</span></li>
+        <li class="min-w-0 rounded-2xl border border-solid border-[#b8e3e6] bg-[#e7f6f8] p-4 text-center text-sm font-semibold text-[#176c8d] shadow-sm">Mejor Puntaje: <span class="mt-1 block text-3xl font-bold tabular-nums" aria-live="polite">{{ mejorPuntaje }}</span></li>
       </ul>
 
-  <ul class="lista-puntaje" [ngClass]="{'visible': paisAleatorio}">
-    <li>Puntaje Historico:</li>
-    <li *ngFor="let u of topUsuarios; let i = index">
+  <ul class="m-0 grid -translate-y-5 list-none grid-cols-1 gap-3 rounded-3xl border border-solid border-white/80 bg-white/90 p-4 opacity-0 shadow-sm transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100 sm:grid-cols-3 lg:grid-cols-1" [ngClass]="{'visible': paisAleatorio}" aria-label="Ranking histórico">
+    <li class="text-base font-bold text-[#123a53] sm:col-span-3 lg:col-span-1">Puntaje Historico:</li>
+    <li class="min-w-0 break-words rounded-xl border border-solid border-[#d9eaf0] bg-[#f0fafb] p-3 text-sm font-medium leading-relaxed text-[#416277] [overflow-wrap:anywhere]" *ngFor="let u of topUsuarios; let i = index">
       {{ i + 1 }}. {{ u.username || 'Usuario' }} - {{ u.mejorPuntaje || 0 }} puntos
     </li>
   </ul>
 
-    <p class="estado-error" *ngIf="errorRanking">{{ errorRanking }}</p>
+    <p class="m-0 rounded-2xl border border-solid border-[#f3c7c2] bg-[#fff4f2] p-4 text-center text-sm leading-relaxed text-[#9d291f]" *ngIf="errorRanking" role="alert">{{ errorRanking }}</p>
+    </aside>
 
-    <h1>Que pais es?</h1>
+    <div class="order-1 min-w-0 rounded-3xl border border-solid border-white/80 bg-white/90 p-4 shadow-[0_8px_30px_rgba(22,78,110,0.07)] sm:p-6">
+    <h1 id="juego-title" class="m-0 mb-4 text-center font-['Press_Start_2P',cursive] text-xl font-bold leading-snug tracking-tight text-[#126b9b] sm:text-2xl">Que pais es?</h1>
 
-    <p class="estado-error" *ngIf="errorJuego">{{ errorJuego }}</p>
+    <p class="m-0 rounded-2xl border border-solid border-[#f3c7c2] bg-[#fff4f2] p-4 text-center text-sm leading-relaxed text-[#9d291f]" *ngIf="errorJuego" role="alert">{{ errorJuego }}</p>
 
-    <div *ngIf="!errorJuego && paisAleatorio" class="banderas" [ngClass]="{'visible': banderaVisible}">
-        <img [src]="paisAleatorio.bandera" alt="Bandera">
+    <div *ngIf="!errorJuego && paisAleatorio" class="mx-auto flex h-[110px] w-[150px] translate-y-5 items-center justify-center opacity-0 transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100 min-[481px]:h-[150px] min-[481px]:w-[200px]" [ngClass]="{'visible': banderaVisible}">
+        <img class="block max-h-full max-w-full rounded-lg shadow-sm" [src]="paisAleatorio.bandera" alt="Bandera">
     </div>
 
-    <div *ngIf="!errorJuego && opciones.length > 0" class="opcionesJuego" [ngClass]="{'visible': opciones.length > 0}">
-        <p class="pais-correcto">Selecciona el pais correcto:</p>
-        <ul class="lista-opciones">
-            <li *ngFor="let opcion of opciones; let i = index" [ngClass]="{'visible': opcion.visible}">
+    <div *ngIf="!errorJuego && opciones.length > 0" class="mt-4 flex translate-y-5 flex-col items-center justify-center opacity-0 transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100" [ngClass]="{'visible': opciones.length > 0}">
+        <p class="m-0 mb-3 text-center text-base font-semibold leading-relaxed text-[#365c70] sm:text-lg">Selecciona el pais correcto:</p>
+        <ul class="lista-opciones m-0 grid w-full list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
+            <li class="m-0 min-w-0 translate-y-5 opacity-0 transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100" *ngFor="let opcion of opciones; let i = index" [ngClass]="{'visible': opcion.visible}">
                 <button
+                    class="respuesta h-full min-h-14 w-full cursor-pointer break-words rounded-xl border border-solid border-[#cce4ec] bg-[#f0fafb] px-5 py-3 text-base font-semibold leading-snug text-[#176c8d] [overflow-wrap:anywhere] hover:scale-105 hover:bg-[#d5eff2] hover:shadow-[0_8px_10px_rgba(0,0,0,0.726)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087d9b] active:scale-100 active:shadow-none disabled:cursor-not-allowed disabled:opacity-60 [&.correcto]:border-[#28a745] [&.correcto]:!bg-[#28a745] [&.correcto]:text-white [&.incorrecto]:border-[#dc3545] [&.incorrecto]:!bg-[#dc3545] [&.incorrecto]:text-white"
+                    type="button"
                     [ngClass]="{'correcto': opcion === paisAleatorio && opcionesDesHabilitadas, 'incorrecto': opcion !== paisAleatorio && opcionesDesHabilitadas}"
                     (click)="verificarRespuesta(opcion)"
                     [disabled]="opcionesDesHabilitadas">
                     {{ opcion.nombre }}
+                    <span class="mt-1 block text-xs font-medium" *ngIf="opcionesDesHabilitadas">{{ opcion === paisAleatorio ? 'Respuesta correcta' : 'Respuesta incorrecta' }}</span>
                 </button>
             </li>
         </ul>
     </div>
 
-    <p *ngIf="!errorJuego">{{ mensaje }}</p>
+    <p class="mb-0 mt-4 min-h-6 rounded-xl px-4 py-3 text-center text-base font-semibold leading-relaxed text-[#176c8d] [&.acierto]:border [&.acierto]:border-solid [&.acierto]:border-[#b8e3e6] [&.acierto]:bg-[#e7f6f8] [&.fallo]:border [&.fallo]:border-solid [&.fallo]:border-[#f3c7c2] [&.fallo]:bg-[#fff4f2] [&.fallo]:text-[#9d291f]" *ngIf="!errorJuego" [class.acierto]="mensaje && opcionesDesHabilitadas && intentos < 2" [class.fallo]="mensaje && (!opcionesDesHabilitadas || intentos >= 2)" role="status" aria-live="polite" aria-atomic="true">{{ mensaje }}</p>
+    </div>
+    </div>
 </section>

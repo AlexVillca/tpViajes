@@ -1,70 +1,61 @@
+  <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] text-[#123a53] sm:mb-12 sm:mt-28" aria-label="Detalle de ciudad">
+    <nav class="mb-6" aria-label="Migas de pan">
+      <ol class="m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-1 p-0 text-xs leading-relaxed text-[#416277] sm:text-sm">
+        <li><a routerLink="/home" class="rounded font-medium text-[#176c8d] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b]">Inicio</a></li>
+        <li aria-hidden="true">›</li>
+        <li><a routerLink="/paises" class="rounded font-medium text-[#176c8d] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b]">Países</a></li>
+        <ng-container *ngIf="ciudad$ | async as ciudad">
+          <ng-container *ngIf="pais$ | async as pais">
+            <ng-container *ngIf="pais.nombre">
+              <li aria-hidden="true">›</li>
+              <li class="min-w-0 [overflow-wrap:anywhere]"><a routerLink="/pais" class="rounded font-medium text-[#176c8d] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b]">{{ pais.nombre }}</a></li>
+            </ng-container>
+          </ng-container>
+          <li aria-hidden="true">›</li>
+          <li class="min-w-0 break-words font-semibold text-[#123a53] [overflow-wrap:anywhere]" aria-current="page">{{ ciudad.nombre }}</li>
+        </ng-container>
+      </ol>
+    </nav>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ciudad</title>
-</head>
-<body>
-  <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-      <source src="assets/background-video.mp4" type="video/mp4" />
-      Tu navegador no soporta reproducción de vídeos.
-    </video>
-  </div>
-  <div class="city-container">
+    <div class="space-y-6" *ngIf="ciudad$ | async as ciudad">
 
-     <div *ngIf="ciudad$ | async as ciudad">
+      <section class="relative rounded-3xl border border-solid border-white/80 bg-white/90 p-4 shadow-[0_8px_30px_rgba(22,78,110,0.07)] sm:p-8" aria-labelledby="ciudad-title">
 
-      <div class="city-detail-container">
-        <div class="video-container">
-          <video autoplay loop muted playsinline class="background-video">
-            <source src="assets/background-video.mp4" type="video/mp4" />
-            Tu navegador no soporta reproducción de vídeos.
-          </video>
-        </div>
-        <div class="container">
-          <h2>{{ ciudad.nombre }}</h2>
-          <app-pop-up-guardar-favoritos ></app-pop-up-guardar-favoritos>
-
-        </div>
-        <div class="container-2">
+        <header class="relative mb-6 flex flex-col items-start justify-between gap-4 border-0 border-b border-solid border-[#cce4ec] pb-6 sm:flex-row sm:flex-wrap sm:items-center">
+          <h1 id="ciudad-title" class="m-0 min-w-0 break-words text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{{ ciudad.nombre }}</h1>
+          <app-pop-up-guardar-favoritos></app-pop-up-guardar-favoritos>
+        </header>
+        <div class="relative space-y-4 rounded-2xl border border-solid border-[#d9eaf0] bg-white/90 p-4 text-sm leading-relaxed text-[#416277] sm:p-6 sm:text-base">
           <app-clima-ciudad [ciudad]="ciudad.nombre" [codigoPais]="(pais$ | async)?.codigo ?? null"></app-clima-ciudad>
-          <p>{{ ciudad.infoWikipedia }}</p>
-          <p>Actividades: {{ ciudad.actividades }}</p>
-          <p>Consejos: {{ ciudad.consejos }}</p>
-          <p>Comentarios: {{ ciudad.comentarios }}</p>
+          <p class="m-0 break-words">{{ ciudad.infoWikipedia }}</p>
+          <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Actividades:</strong> {{ ciudad.actividades }}</p>
+          <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Consejos:</strong> {{ ciudad.consejos }}</p>
+          <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Comentarios:</strong> {{ ciudad.comentarios }}</p>
         </div>
 
+      </section>
+
+      <section class="relative isolate overflow-hidden rounded-3xl border border-solid border-white/80 bg-white/85 p-4 shadow-sm sm:p-6" aria-labelledby="atracciones-title">
+
+        <h2 id="atracciones-title" class="m-0 mb-5 text-xl font-bold tracking-tight sm:text-2xl">Atracciones</h2>
+        <ul class="m-0 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-2">
+          <li class="min-w-0 rounded-2xl border border-solid border-[#d9eaf0] bg-white/95 p-4 shadow-sm transition-[border-color,box-shadow] duration-200 hover:border-[#14b8b3]/50 hover:shadow-md motion-reduce:transition-none sm:p-5" *ngFor="let atraccion of ciudad.atracciones">
+            <h3 class="m-0 mb-3 break-words text-lg font-bold leading-snug text-[#123a53]">{{ atraccion.nombre }}</h3>
+            <p class="m-0 mb-4 break-words text-sm leading-relaxed text-[#416277]">{{ atraccion.descripcion }}</p>
+            <img class="mb-4 block h-auto w-full rounded-xl border border-solid border-[#d9eaf0] shadow-sm" *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}" (error)="setImagenError($event)">
+            <div class="space-y-3 text-sm leading-relaxed text-[#416277]">
+              <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Horario:</strong> {{ atraccion.horario }}</p>
+              <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Página web:</strong> {{ atraccion.paginaWeb }}</p>
+              <p class="m-0 break-words" *ngIf="atraccion.ubicacion"><strong class="font-semibold text-[#123a53]">Ubicación:</strong> {{ atraccion.ubicacion.direccion }}</p>
+              <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Tipo:</strong> {{ atraccion.tipo }}</p>
+              <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Valoración:</strong> <span class="inline-flex rounded-full border border-solid border-[#b8e3e6] bg-[#e7f6f8] px-2.5 py-0.5 font-semibold tabular-nums text-[#176c8d]">{{ atraccion.valoracion }}</span></p>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <div class="flex justify-center">
+        <button class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-solid border-[#1685a8] bg-[#1685a8] px-6 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#126b9b] hover:bg-[#126b9b] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087d9b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" type="button" (click)="volver()">{{ (destinoRegreso$ | async) === '/pais' ? 'Volver al país' : 'Ver todos los países' }}</button>
       </div>
-
-    <div class="atracciones-detail-container">
-      <ul class="video-background-ul">
-        <div class="video-container">
-          <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-            <source src="assets/background-video.mp4" type="video/mp4" />
-            Tu navegador no soporta reproducción de vídeos.
-          </video>
-        </div>
-        <li *ngFor="let atraccion of ciudad.atracciones">
-          <h4>{{ atraccion.nombre }}</h4>
-          <p>{{ atraccion.descripcion }}</p>
-          <img *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}" (error)="setImagenError($event)">
-          <p>Horario: {{ atraccion.horario }}</p>
-          <p>Página web: {{ atraccion.paginaWeb }}</p>
-          <p *ngIf="atraccion.ubicacion">Ubicación: {{ atraccion.ubicacion.direccion }}</p>
-          <p>Tipo: {{ atraccion.tipo }}</p>
-          <p>Valoración: {{ atraccion.valoracion }}</p>
-        </li>
-      </ul>
-      <button type="button" (click)="volver()">Volver</button>
     </div>
-
-  </div>
-
-</div>
-<app-comentarios-list > </app-comentarios-list>
-</body>
-
-</html>
+  </main>
+  <app-comentarios-list></app-comentarios-list>

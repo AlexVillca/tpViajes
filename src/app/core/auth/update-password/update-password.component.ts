@@ -90,6 +90,6 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   volver(): void {
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('/fichaUser');
   }
 }

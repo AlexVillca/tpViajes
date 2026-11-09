@@ -1,0 +1,14 @@
+:host {
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El contenido crece en páginas cortas; en páginas largas el pie sigue el flujo. */
+.app-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}

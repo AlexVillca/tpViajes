@@ -1,29 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio</title>
-</head>
-<body>
+<main class="relative mx-auto flex w-full max-w-[1200px] flex-col items-center px-5 pt-[84px] pb-5 text-[#123a53] sm:px-10 sm:pt-[80px] sm:pb-4">
+  <section class="home-intro flex w-full flex-col items-center text-center" [class.visible]="containerVisible" aria-labelledby="home-title">
+    <div class="inline-flex items-center gap-2 rounded-full border border-solid border-white/80 bg-white/70 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#176a84] shadow-sm backdrop-blur-md sm:text-xs">
+      <span class="h-2 w-2 rounded-full bg-[#14b8b3]" aria-hidden="true"></span>
+      Tu próxima aventura empieza acá
+    </div>
 
-  <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-      <source src="assets/background-video.mp4" type="video/mp4" />
-      Tu navegador no soporta reproducción de vídeos.
-    </video>
-  </div>
-  <img class="logo-image" src="../../../assets/logo_grande.png"	 alt="Logo"/>
+    <img class="my-1 block h-auto w-[230px] max-w-full object-contain sm:my-0 sm:w-[250px]" src="../../../assets/logo_grande.png" alt="deRuta" width="671" height="372" />
 
-  <div class="div-txt" [class.visible]="containerVisible">
-    <p>deRuta es tu guía de viaje personalizada, diseñada para ayudarte a encontrar información útil y valiosa sobre diversos países. Ya sea que estés buscando el destino perfecto para tus vacaciones o simplemente quieras explorar nuevas opciones para futuras aventuras, nuestra plataforma te ofrece detalles clave sobre cada lugar. Además, puedes guardar tus países favoritos en una lista personalizada, facilitando la planificación de tus viajes y permitiéndote consultar esos destinos más adelante. ¡Con deRuta, planificar tu próxima escapada nunca fue tan fácil!</p>
-  </div>
+    <div class="w-full max-w-[760px] rounded-[28px] border border-solid border-white/80 bg-white/75 px-5 py-5 shadow-[0_18px_60px_rgba(22,78,110,0.10)] backdrop-blur-xl sm:px-10 sm:py-4">
+      <p class="m-0 text-[11px] font-bold uppercase tracking-[0.22em] text-[#137e92] sm:text-xs">Más curiosidad. Más destinos.</p>
+      <h1 id="home-title" class="mt-2 mb-3 text-[30px] font-bold leading-[1.12] tracking-[-0.035em] sm:text-[38px]">
+        El mundo te espera.<br />
+        <span class="text-[#1685a8]">Encontrá tu próxima ruta.</span>
+      </h1>
+      <p class="mx-auto mt-0 mb-4 max-w-[660px] text-[15px] font-normal leading-[1.6] text-[#416277] sm:text-[16px]">
+        Descubrí países, conocé sus ciudades y guardá tus destinos favoritos.
+        Toda la inspiración y la información que necesitás para empezar a planear tu próximo viaje.
+      </p>
 
-  <div class="div-botones">
+      <button type="button" routerLink="/paises" class="home-cta group mx-auto inline-flex w-full max-w-[280px] items-center justify-center gap-4 rounded-2xl border border-solid border-[#ffffff]/30 bg-gradient-to-r from-[#1E85BB] to-[#149eae] px-7 py-3 text-[18px] font-bold text-white shadow-[0_8px_22px_rgba(30,133,187,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(30,133,187,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087d9b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none">
+        Empecemos!
+        <svg class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+      <p class="mt-2 mb-0 text-xs leading-relaxed text-[#527183]">Una idea, un destino, un nuevo comienzo.</p>
+    </div>
 
-    <button type="button" routerLink="/paises">Empecemos!</button>
-  </div>
-
-</body>
-</html>
-
+    <ul class="mx-auto mt-3 mb-0 grid w-full max-w-[760px] list-none grid-cols-1 gap-2 p-0 text-left sm:grid-cols-3 sm:gap-3">
+      <li class="flex items-center gap-3 rounded-2xl border border-solid border-white/70 bg-white/60 px-4 py-3 backdrop-blur-md">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#d9f2f5] text-[#137d98]" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9" /><path d="m16 8-2 6-6 2 2-6 6-2Z" stroke-linejoin="round" /></svg></span>
+        <div><p class="m-0 text-sm font-bold">Explorá países</p><p class="mt-1 mb-0 text-xs leading-relaxed text-[#527183]">Abrí el mapa a nuevas ideas.</p></div>
+      </li>
+      <li class="flex items-center gap-3 rounded-2xl border border-solid border-white/70 bg-white/60 px-4 py-3 backdrop-blur-md">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#d9f2f5] text-[#137d98]" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" /><circle cx="12" cy="10" r="2.5" /></svg></span>
+        <div><p class="m-0 text-sm font-bold">Descubrí ciudades</p><p class="mt-1 mb-0 text-xs leading-relaxed text-[#527183]">Conocé lo que las hace únicas.</p></div>
+      </li>
+      <li class="flex items-center gap-3 rounded-2xl border border-solid border-white/70 bg-white/60 px-4 py-3 backdrop-blur-md">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#d9f2f5] text-[#137d98]" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h12v17l-6-4-6 4V4Z" stroke-linejoin="round" /></svg></span>
+        <div><p class="m-0 text-sm font-bold">Guardá favoritos</p><p class="mt-1 mb-0 text-xs leading-relaxed text-[#527183]">Tu próxima escapada, a mano.</p></div>
+      </li>
+    </ul>
+  </section>
+</main>

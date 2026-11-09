@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { RouterOutlet } from '@angular/router';
@@ -9,6 +10,7 @@ import { FeedbackToastComponent } from './components/utils/feedback-toast/feedba
   standalone: true,
   imports: [
     RouterOutlet,
+    NgIf,
     NavbarComponent,
     FooterComponent,
     FeedbackToastComponent
@@ -17,6 +19,20 @@ import { FeedbackToastComponent } from './components/utils/feedback-toast/feedba
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
+  reproducirFondo = false;
+  private preferenciaMovimiento?: MediaQueryList;
+  private readonly actualizarMovimiento = (evento: MediaQueryListEvent): void => {
+    this.reproducirFondo = !evento.matches;
+  };
 
+  ngOnInit(): void {
+    this.preferenciaMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)');
+    this.reproducirFondo = !this.preferenciaMovimiento.matches;
+    this.preferenciaMovimiento.addEventListener('change', this.actualizarMovimiento);
+  }
+
+  ngOnDestroy(): void {
+    this.preferenciaMovimiento?.removeEventListener('change', this.actualizarMovimiento);
+  }
 }

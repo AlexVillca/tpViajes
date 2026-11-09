@@ -1,8 +1,6 @@
 .navbar {
-  background-color: #1E85BB;
-  padding: 3px 0;
+  @apply h-[72px] border-0 border-b border-solid border-white/20 bg-[#126b9b]/95 py-0 shadow-[0_4px_24px_rgba(15,70,100,0.12)] backdrop-blur-xl;
   width: 100%;
-  height: 60px;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,11 +9,41 @@
 }
 
 .navbar-container {
+  @apply relative mx-auto h-full max-w-[1200px] gap-5 px-5 sm:px-10;
   display: flex;
   align-items: center;
   font-family: 'Verdana', sans-serif;
   width: 100%;
-  gap: 30px;
+}
+
+.navbar-container,
+.navbar-menu-usuario {
+  min-width: 0;
+}
+
+.navbar-menu-usuario > li:not(.navbar-saludo) {
+  flex-shrink: 0;
+}
+
+.navbar-menu-usuario li a,
+.navbar-menu li a {
+  white-space: nowrap;
+}
+
+.navbar-saludo {
+  min-width: 0;
+  max-width: min(30vw, 240px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar-logo:focus-visible,
+.menu-toggle:focus-visible,
+.user-image:focus-visible,
+.user-dropdown li a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 
 .navbar-title {
@@ -25,44 +53,58 @@
 }
 
 .navbar-logo {
+  @apply shrink-0 p-0;
   display: flex;
   align-items: center;
-  padding: 0 20px;
 }
 
 .logo-image {
-  width: 50px;
+  @apply block w-[44px];
   height: auto;
 }
 
 .navbar-menu-usuario {
+  @apply gap-2 p-0;
   list-style: none;
   display: flex;
-  padding-right: 20px;
-  gap: 20px;
   align-items: center;
   margin: 0;
   margin-left: auto;
   transition: transform 0.3s ease;
 }
 
-.navbar-menu-usuario li a {
+.navbar-menu-usuario li a,
+.navbar-menu li a {
+  @apply inline-flex rounded-xl px-4 py-2.5 text-[14px] font-medium transition-all duration-200;
   color: white;
   text-decoration: none;
-  font-size: 16px;
-  padding: 8px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.navbar-menu-usuario li a:hover {
-  background-color: #2AA4DA;
-  color: rgba(0, 0, 0, 0.605);
-  transform: translateY(-3px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
+.navbar-menu-usuario li a:hover,
+.navbar-menu li a:hover,
+.navbar-menu-usuario li a:focus-visible,
+.navbar-menu li a:focus-visible {
+  @apply translate-y-0 bg-white/15 text-white shadow-none;
+}
+
+.navbar-menu-usuario li:last-child a {
+  @apply border border-solid border-white/40 bg-white/10;
+}
+
+.navbar-menu li a.seccion-activa,
+.user-dropdown li a.seccion-activa {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  box-shadow: inset 0 -2px 0 #5eead4;
+}
+
+.user-image.seccion-activa {
+  outline: 2px solid #5eead4;
+  outline-offset: 3px;
 }
 
 .menu-toggle {
+  flex-shrink: 0;
   display: none;
   background: none;
   border: none;
@@ -74,28 +116,13 @@
 }
 
 .navbar-menu {
+  flex-shrink: 0;
+  @apply gap-2 p-0;
   list-style: none;
   display: flex;
-  gap: 20px;
   align-items: center;
   margin: 0;
   transition: transform 0.3s ease;
-}
-
-.navbar-menu li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 8px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.navbar-menu li a:hover {
-  background-color: #2AA4DA;
-  color: rgba(0, 0, 0, 0.605);
-  transform: translateY(-3px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 123, 0.4);
 }
 
 .user-image {
@@ -116,16 +143,16 @@
 }
 
 .user-dropdown {
+  @apply top-[72px] right-5 rounded-2xl border border-solid border-white/25 bg-[#126b9b] p-3 shadow-xl;
+  margin: 0;
+  max-width: calc(100vw - 40px);
+  max-height: max(0px, calc(100vh - 80px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
   visibility: hidden;
   position: absolute;
   list-style: none;
-  top: 44px;
-  right: 5px;
-  background-color: #1E85BB;
-  padding: 10px;
-  border-radius: 5px;
   width: 200px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.608);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0s 0.6s;
   opacity: 0;
   transform: translateY(-20px);
@@ -137,6 +164,12 @@
   opacity: 1 !important;
   transform: translateY(0px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0s;
+}
+
+@supports (height: 100dvh) {
+  .user-dropdown {
+    max-height: max(0px, calc(100dvh - 80px));
+  }
 }
 
 .user-dropdown li a {
@@ -163,12 +196,8 @@
 
 @media (max-width: 768px) {
   .menu-toggle {
+    @apply m-0 rounded-lg px-2 py-1;
     display: block;
-    margin-left: 10px;
-  }
-
-  .navbar-logo {
-    padding: 0 10px;
   }
 
   .navbar-title {
@@ -176,18 +205,24 @@
   }
 
   .navbar-menu {
+    @apply top-[72px] gap-1 rounded-b-2xl bg-[#126b9b] px-4 pt-2 pb-4 shadow-lg;
+    max-height: max(0px, calc(100vh - 80px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    align-items: stretch;
     flex-direction: column;
-    gap: 10px;
     position: absolute;
-    top: 0;
     left: 0;
     width: 100%;
-    background-color: #2AA4DA;
-    padding-top: 60px;
     transform: translateY(-100%);
     opacity: 0;
     transition: transform 0.4s ease, opacity 0.4s ease;
     z-index: 1001;
+  }
+
+  .navbar-menu:not(.active) {
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .navbar-menu.active {
@@ -196,14 +231,14 @@
   }
 
   .navbar-menu li {
+    @apply p-0;
+    flex-shrink: 0;
     text-align: left;
     width: 100%;
-    padding-left: 20px;
   }
 
   .navbar-menu li a {
-    display: block;
-    padding: 8px 15px;
+    @apply flex;
     opacity: 0;
     transform: translateX(-20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -219,14 +254,8 @@
   .navbar-menu.active li:nth-child(3) a { transition-delay: 0.3s; }
   .navbar-menu.active li:nth-child(4) a { transition-delay: 0.4s; }
 
-  .navbar-menu-usuario {
-    gap: 10px;
-    padding-right: 10px;
-  }
-
   .navbar-menu-usuario li a {
-    font-size: 14px;
-    padding: 6px 10px;
+    @apply px-2.5 py-2 text-xs;
   }
 
   .titulo {
@@ -234,22 +263,23 @@
   }
 
   .navbar-container {
-    gap: 10px;
+    @apply gap-3;
+  }
+
+  @supports (height: 100dvh) {
+    .navbar-menu {
+      max-height: max(0px, calc(100dvh - 80px));
+    }
   }
 }
 
 @media (max-width: 480px) {
-  .navbar-menu-usuario li a {
-    font-size: 12px;
-    padding: 5px 8px;
-  }
-
   .titulo {
     font-size: 11px;
+  }
+
+  .navbar-saludo {
     max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .user-image {
@@ -257,8 +287,4 @@
     height: 32px;
   }
 
-  .navbar-menu-usuario {
-    gap: 5px;
-    padding-right: 5px;
-  }
 }

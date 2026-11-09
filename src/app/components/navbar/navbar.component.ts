@@ -21,6 +21,27 @@ export class NavbarComponent implements OnInit{
   menuOpen: boolean = false;
   dropdownOpen: boolean = false;
 
+  get seccionActiva(): string {
+    const segmentos = this.routerService.parseUrl(this.routerService.url)
+      .root.children['primary']?.segments.map(segmento => segmento.path) ?? [];
+
+    if (segmentos.length === 0 || (segmentos.length === 1 && segmentos[0] === 'home')) {
+      return 'inicio';
+    }
+
+    if (segmentos.length === 1) {
+      if (['paises', 'pais', 'ciudad'].includes(segmentos[0])) return 'paises';
+      if (segmentos[0] === 'favoritos') return 'favoritos';
+      if (segmentos[0] === 'Juego') return 'minijuego';
+    }
+
+    if (segmentos.length === 2 && segmentos[0] === 'listaCiudadesComp') {
+      return 'favoritos';
+    }
+
+    return '';
+  }
+
   ngOnInit() {
     this.idUsuarioService.session$.subscribe((session) => {
       this.flag = !!session;

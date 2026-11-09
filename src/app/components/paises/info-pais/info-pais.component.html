@@ -1,47 +1,47 @@
-<div class="info-pais">
-  <h3>🌍 Datos verificados <small>(REST Countries)</small></h3>
+<section class="mt-6 rounded-2xl border border-solid border-[#d9eaf0] bg-white/90 p-4 shadow-sm sm:p-6" aria-labelledby="datos-pais-title">
+  <h2 id="datos-pais-title" class="m-0 mb-5 flex flex-wrap items-center gap-2 text-lg font-bold text-[#123a53] sm:text-xl">🌍 Datos verificados <small class="text-xs font-normal text-[#416277]">(REST Countries)</small></h2>
 
-  <p class="info-estado" *ngIf="cargando">Cargando datos del país…</p>
-  <p class="info-error" *ngIf="error && !cargando">{{ error }}</p>
+  <p class="m-0 text-sm text-[#416277] motion-safe:animate-pulse" *ngIf="cargando" role="status" aria-live="polite">Cargando datos del país…</p>
+  <p class="m-0 rounded-xl border border-solid border-[#f3c7c2] bg-[#fff4f2] p-4 text-sm leading-relaxed text-[#9d291f]" *ngIf="error && !cargando" role="alert">{{ error }}</p>
 
-  <div class="info-grid" *ngIf="info && !cargando && !error">
-    <div class="info-item">
-      <span class="etiqueta">Capital</span>
-      <span class="valor">{{ info.capital }}</span>
+  <div class="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3" *ngIf="info && !cargando && !error">
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Capital</span>
+      <span class="break-words text-base font-medium text-[#123a53]">{{ info.capital }}</span>
     </div>
-    <div class="info-item">
-      <span class="etiqueta">Población</span>
-      <span class="valor">{{ info.poblacion | number }}</span>
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Población</span>
+      <span class="break-words text-base font-medium tabular-nums text-[#123a53]">{{ info.poblacion | number }}</span>
     </div>
-    <div class="info-item">
-      <span class="etiqueta">Región</span>
-      <span class="valor">{{ info.region }} <span *ngIf="info.subregion !== '—'">· {{ info.subregion }}</span></span>
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Región</span>
+      <span class="break-words text-base font-medium text-[#123a53]">{{ info.region }} <span *ngIf="info.subregion !== '—'">· {{ info.subregion }}</span></span>
     </div>
-    <div class="info-item">
-      <span class="etiqueta">Superficie</span>
-      <span class="valor">{{ info.area | number }} km²</span>
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Superficie</span>
+      <span class="break-words text-base font-medium tabular-nums text-[#123a53]">{{ info.area | number }} km²</span>
     </div>
-    <div class="info-item">
-      <span class="etiqueta">Idiomas</span>
-      <span class="valor">{{ info.idiomas.length ? info.idiomas.join(', ') : '—' }}</span>
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Idiomas</span>
+      <span class="break-words text-base font-medium text-[#123a53]">{{ info.idiomas.length ? info.idiomas.join(', ') : '—' }}</span>
     </div>
-    <div class="info-item">
-      <span class="etiqueta">Monedas</span>
-      <span class="valor">{{ info.monedas.length ? info.monedas.join(', ') : '—' }}</span>
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Monedas</span>
+      <span class="break-words text-base font-medium text-[#123a53]">{{ info.monedas.length ? info.monedas.join(', ') : '—' }}</span>
     </div>
-    <div class="info-item">
-      <span class="etiqueta">Zona horaria</span>
-      <span class="valor">{{ info.zonasHorarias.length ? info.zonasHorarias.join(', ') : '—' }}</span>
+    <div class="flex min-w-0 flex-col gap-1">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Zona horaria</span>
+      <span class="break-words text-base font-medium text-[#123a53]">{{ info.zonasHorarias.length ? info.zonasHorarias.join(', ') : '—' }}</span>
     </div>
-    <div class="info-item ancho-completo" *ngIf="info.limitrofes.length">
-      <span class="etiqueta">Países limítrofes</span>
-      <span class="chips">
-        <span class="chip" *ngFor="let pais of info.limitrofes">{{ pais }}</span>
+    <div class="col-span-full flex min-w-0 flex-col gap-2" *ngIf="info.limitrofes.length">
+      <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">Países limítrofes</span>
+      <span class="flex flex-wrap gap-2">
+        <span class="rounded-full border border-solid border-[#b8e3e6] bg-[#e7f6f8] px-3 py-1 text-sm font-semibold text-[#176c8d]" *ngFor="let pais of info.limitrofes">{{ pais }}</span>
       </span>
     </div>
 
-    <div class="info-bandera" *ngIf="info.banderaUrl">
-      <img [src]="info.banderaUrl" [alt]="info.banderaAlt || 'Bandera'">
+    <div class="col-span-full border-0 border-t border-solid border-[#d9eaf0] pt-4" *ngIf="info.banderaUrl">
+      <img class="block h-auto w-full max-w-[220px] rounded-xl border border-solid border-[#d9eaf0] shadow-sm" [src]="info.banderaUrl" [alt]="info.banderaAlt || 'Bandera'">
     </div>
   </div>
-</div>
+</section>

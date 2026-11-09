@@ -2,7 +2,8 @@ import { ComentariosListComponent } from './../../comentarios/comentarios-list/c
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
-import { Location } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { combineLatest, map, take } from 'rxjs';
 
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.component';
@@ -16,7 +17,7 @@ import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
   imports: [ComentariosListComponent
     ,CommonModule
     ,PopUpGuardarFavoritosComponent
-    ,ClimaCiudadComponent],
+    ,ClimaCiudadComponent, RouterLink],
   templateUrl: './ciudad-detail.component.html',
   styleUrls: ['./ciudad-detail.component.css']
 })
@@ -24,6 +25,10 @@ export class CiudadDetailComponent implements OnInit{
   paisDataService = inject(PaisDataService);
   ciudad$ = this.ciudadDataService.ciudad$;
   pais$ = this.paisDataService.pais$;
+  destinoRegreso$ = combineLatest([this.pais$, this.ciudad$]).pipe(
+    map(([pais, ciudad]) => pais && ciudad && pais.ciudades?.some(item => item.nombre === ciudad.nombre)
+      ? '/pais' : '/paises')
+  );
   idus = inject(IdUsuarioService);
   usuarioLogueado = false;
 
@@ -41,10 +46,12 @@ export class CiudadDetailComponent implements OnInit{
       error:() => {console.log("error al comprobar log")}
     });
   }
-  constructor(private ciudadDataService: CiudadDataService,  private location: Location) { }
+  constructor(private ciudadDataService: CiudadDataService, private router: Router) { }
 
   volver() {
-    this.location.back();
+    this.destinoRegreso$.pipe(take(1)).subscribe(destino => {
+      this.router.navigate([destino]);
+    });
   }
   setImagenError(event: Event) {
     const img = event.target as HTMLImageElement;
