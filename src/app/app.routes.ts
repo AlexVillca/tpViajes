@@ -1,37 +1,26 @@
-import { LoginFormComponent } from './core/auth/login-form/login-form.component';
-import { RegisterComponent } from './core/auth/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { PaisesListComponent } from './components/paises/paises-list/paises-list.component';
-import { PaisDetailComponent } from './components/paises/pais-detail/pais-detail.component';
-import { CiudadDetailComponent } from './components/paises/ciudad-detail/ciudad-detail.component';
-import { GameComponent } from './game/game.component';
 import { Routes } from '@angular/router';
-import { ListaDeListasComponent } from './components/favoritos/lista-de-listas/lista-de-listas.component';
-import { ListaComponent } from './components/favoritos/lista/lista.component';
-import { ContactUsComponent } from './components/home/contact-us/contact-us.component';
-import { AboutUsComponent } from './components/home/about-us/about-us.component';
-import { UpdatePasswordComponent } from './core/auth/update-password/update-password.component';
-import { FichaUserComponent } from './core/auth/ficha-user/ficha-user.component';
+import { HomeComponent } from './components/home/home.component';
 import { authGuard } from './core/auth/auth.guard';
-import { EditarPerfilComponent } from './core/auth/editar-perfil/editar-perfil.component';
 
+// El inicio se carga con la app; el resto de las páginas se descarga recién cuando se visita
+// (carga diferida), así el paquete inicial es más liviano. Leaflet, por ejemplo, solo llega con /pais.
 export const routes: Routes = [
 
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginFormComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'paises', component: PaisesListComponent },
-  { path: 'ciudad', component: CiudadDetailComponent },
-  { path: 'Juego', component: GameComponent},
-  { path: 'pais', component: PaisDetailComponent },
-  { path: 'favoritos', component: ListaDeListasComponent, canActivate: [authGuard]},
-  { path: 'listaCiudadesComp/:idLista', component:ListaComponent, canActivate: [authGuard]},
-  { path: 'contact', component:ContactUsComponent},
-  { path: 'about', component:AboutUsComponent},
-  { path:'updateP', component:UpdatePasswordComponent, canActivate: [authGuard]},
-  { path: 'fichaUser', component:FichaUserComponent, canActivate: [authGuard]},
-  { path: 'editarPerfil', component: EditarPerfilComponent, canActivate: [authGuard]},
-  { path:'**',redirectTo: ''}
+  { path: 'login', loadComponent: () => import('./core/auth/login-form/login-form.component').then(m => m.LoginFormComponent) },
+  { path: 'register', loadComponent: () => import('./core/auth/register/register.component').then(m => m.RegisterComponent) },
+  { path: 'paises', loadComponent: () => import('./components/paises/paises-list/paises-list.component').then(m => m.PaisesListComponent) },
+  { path: 'ciudad', loadComponent: () => import('./components/paises/ciudad-detail/ciudad-detail.component').then(m => m.CiudadDetailComponent) },
+  { path: 'Juego', loadComponent: () => import('./game/game.component').then(m => m.GameComponent) },
+  { path: 'pais', loadComponent: () => import('./components/paises/pais-detail/pais-detail.component').then(m => m.PaisDetailComponent) },
+  { path: 'favoritos', canActivate: [authGuard], loadComponent: () => import('./components/favoritos/lista-de-listas/lista-de-listas.component').then(m => m.ListaDeListasComponent) },
+  { path: 'listaCiudadesComp/:idLista', canActivate: [authGuard], loadComponent: () => import('./components/favoritos/lista/lista.component').then(m => m.ListaComponent) },
+  { path: 'contact', loadComponent: () => import('./components/home/contact-us/contact-us.component').then(m => m.ContactUsComponent) },
+  { path: 'about', loadComponent: () => import('./components/home/about-us/about-us.component').then(m => m.AboutUsComponent) },
+  { path: 'updateP', canActivate: [authGuard], loadComponent: () => import('./core/auth/update-password/update-password.component').then(m => m.UpdatePasswordComponent) },
+  { path: 'fichaUser', canActivate: [authGuard], loadComponent: () => import('./core/auth/ficha-user/ficha-user.component').then(m => m.FichaUserComponent) },
+  { path: 'editarPerfil', canActivate: [authGuard], loadComponent: () => import('./core/auth/editar-perfil/editar-perfil.component').then(m => m.EditarPerfilComponent) },
+  { path: '**', redirectTo: '' }
 
 ];
