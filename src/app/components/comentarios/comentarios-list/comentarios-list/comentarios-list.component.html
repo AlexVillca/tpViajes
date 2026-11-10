@@ -1,4 +1,4 @@
-<section class="mx-auto mb-10 w-[92%] max-w-[1000px] text-tinta sm:mb-12" aria-labelledby="comentarios-title">
+<section class="text-tinta" aria-labelledby="comentarios-title">
   <div class="panel space-y-5">
     <h2 id="comentarios-title" class="m-0 text-xl font-bold tracking-tight sm:text-2xl">Lista de comentarios</h2>
 
@@ -12,7 +12,7 @@
     <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga }}</p>
 
     <p class="m-0 rounded-2xl border border-dashed border-superficie-borde px-5 py-8 text-center text-sm font-medium text-tinta-suave" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length === 0" role="status">
-      Aun no hay comentarios
+      Aún no hay comentarios
     </p>
 
     <ul class="m-0 list-none space-y-3 p-0" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length > 0">

@@ -57,5 +57,5 @@
         <button class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-solid border-marca bg-marca px-6 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-marca-oscuro hover:bg-marca-oscuro hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" type="button" (click)="volver()">{{ (destinoRegreso$ | async) === '/pais' ? 'Volver al país' : 'Ver todos los países' }}</button>
       </div>
     </div>
+    <app-comentarios-list class="mt-6 block"></app-comentarios-list>
   </main>
-  <app-comentarios-list></app-comentarios-list>

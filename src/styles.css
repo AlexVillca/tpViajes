@@ -85,12 +85,8 @@
     @apply fixed left-1/2 top-1/2 z-[1101] max-h-[90vh] w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-solid border-white/80 bg-white p-6 text-tinta shadow-[0_18px_60px_rgba(18,58,83,0.25)];
   }
 
-  /* Fondo de video propio de algunas páginas. */
-  .video-fondo {
-    @apply fixed inset-0 -z-[1] overflow-hidden;
-  }
-
-  .video-fondo video {
-    @apply h-screen w-screen object-cover;
+  /* Ancho común de las páginas anchas: coincide con el contenido del navbar y del footer. */
+  .contenedor-pagina {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-10;
   }
 }

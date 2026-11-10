@@ -79,7 +79,7 @@ export class RegisterComponent {
                   );
 
                 }else{
-                  console.error('El username esta en uso');
+                  console.error('El username está en uso');
                   this.userNameInvalid = true;
                 }
               },

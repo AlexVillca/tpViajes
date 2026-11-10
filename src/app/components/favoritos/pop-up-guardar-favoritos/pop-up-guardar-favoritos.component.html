@@ -2,11 +2,11 @@
   <button type="button" class="btn btn-primario" (click)="abrePopUp()">Guardar</button>
   @if(visible){
     <div class="modal-fondo"></div>
-    <div class="modal max-w-[500px]" role="dialog" aria-modal="true">
+    <div class="modal max-w-[500px]" role="dialog" aria-modal="true" aria-labelledby="guardar-favoritos-titulo" appDialogo (cerrar)="cancelar()">
 
       <form class="flex w-full flex-col gap-4" [formGroup]="formulario" (ngSubmit)="saveSelection()">
 
-        <h4 class="m-0 text-lg font-bold text-tinta">Guardar en favoritos</h4>
+        <h2 id="guardar-favoritos-titulo" class="m-0 text-lg font-bold text-tinta">Guardar en favoritos</h2>
 
         <div class="max-h-[268px] w-full space-y-2 overflow-y-auto" [formGroup]="groupCheckbox">
           @for(idLista of idsGroupCheckbox;track $index){
@@ -27,7 +27,7 @@
               <small class="mensaje-error block">Ingresa un nombre para la lista</small>
             }@else{
               @if(nuevaListaInput.errors?.['maxItemsAlcanzado'] && nuevaListaInput.touched){
-                <small class="mensaje-error block">Se ha llegado al maximo de listas</small>
+                <small class="mensaje-error block">Se ha llegado al máximo de listas</small>
               }@else{
                 @if(nuevaListaInput.errors?.['valorExistente']  && nuevaListaInput.touched){
                   <small class="mensaje-error block">Ya existe una lista con ese nombre</small>

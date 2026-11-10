@@ -78,7 +78,7 @@ export class ComentariosComponent {
     });
 
     if (!this.idPais || !this.nombreCiudad) {
-      this.feedback.error('No se pudo obtener el pais o la ciudad.');
+      this.feedback.error('No se pudo obtener el país o la ciudad.');
       return;
     }
 

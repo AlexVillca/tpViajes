@@ -9,5 +9,5 @@ import { RouterModule } from '@angular/router';
   host: { class: 'block shrink-0' }
 })
 export class FooterComponent {
-
+  readonly anio = new Date().getFullYear();
 }

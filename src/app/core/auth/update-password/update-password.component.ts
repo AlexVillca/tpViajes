@@ -60,7 +60,7 @@ export class UpdatePasswordComponent implements OnInit {
     const { password } = this.formularioUpdate.getRawValue();
     this.usuariosService.cambiarContrasena(this.id, password).subscribe({
       next: () => {
-        this.successMessage = 'La contrasena ha sido actualizada con exito.';
+        this.successMessage = 'La contraseña ha sido actualizada con éxito.';
         setTimeout(() => {
           this.router.navigateByUrl('home');
         }, 1500);

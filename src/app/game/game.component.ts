@@ -95,7 +95,7 @@ export class GameComponent {
 
   generarPregunta() {
     if (this.arregloPaises.length < 4) {
-      this.errorJuego = 'No hay suficientes paises para iniciar el minijuego.';
+      this.errorJuego = 'No hay suficientes países para iniciar el minijuego.';
       this.paisAleatorio = null;
       this.opciones = [];
       this.mensaje = '';

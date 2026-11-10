@@ -44,7 +44,7 @@ export class ListaDeListasComponent implements OnInit {
                       this.cargando = false;
                     },
                     error: (e) => {
-                      this.errorCarga = e?.message ?? 'No se pudieron cargar los paises.';
+                      this.errorCarga = e?.message ?? 'No se pudieron cargar los países.';
                       this.cargando = false;
                     }
                   });

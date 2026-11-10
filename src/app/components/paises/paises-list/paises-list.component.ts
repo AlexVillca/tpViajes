@@ -44,7 +44,7 @@ export class PaisesListComponent implements OnInit {
         this.cargando = false;
       },
       error: (error) => {
-        this.errorCarga = error?.message ?? 'No se pudieron cargar los paises.';
+        this.errorCarga = error?.message ?? 'No se pudieron cargar los países.';
         this.cargando = false;
       }
     });
@@ -88,7 +88,7 @@ export class PaisesListComponent implements OnInit {
 
   get mensajeVacio(): string {
     if (this.letraSeleccionada === 'todos') {
-      return 'No hay paises para mostrar.';
+      return 'No hay países para mostrar.';
     }
 
     return `No se encontraron paises con la letra ${this.letraSeleccionada.toUpperCase()}.`;

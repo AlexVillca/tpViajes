@@ -1,11 +1,4 @@
-<div class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] space-y-6 text-tinta sm:mb-12 sm:mt-28">
-
-  <div class="video-fondo">
-    <video autoplay loop muted playsinline>
-      <source src="assets/background-video.mp4" type="video/mp4" />
-      Tu navegador no soporta reproducción de vídeos.
-    </video>
-  </div>
+<main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] space-y-6 text-tinta sm:mb-12 sm:mt-28">
 
   <app-titulo-lista
     class="block"
@@ -25,7 +18,7 @@
     <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga }}</p>
 
     <p class="estado font-medium" *ngIf="!cargando && !errorCarga && listaImagenes.length === 0" role="status">
-      Esta lista aun no tiene ciudades guardadas.
+      Esta lista aún no tiene ciudades guardadas.
     </p>
 
     <div class="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3" *ngIf="!cargando && !errorCarga && listaImagenes.length > 0">
@@ -48,4 +41,4 @@
     </div>
 
   </div>
-</div>
+</main>

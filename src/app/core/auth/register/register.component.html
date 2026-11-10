@@ -1,28 +1,23 @@
-<div class="video-fondo">
-  <video autoplay loop muted playsinline>
-    <source src="assets/background-video.mp4" type="video/mp4" />
-    Tu navegador no soporta reproducción de vídeos.
-  </video>
-</div>
-
-<div class="mx-auto mb-10 mt-24 w-[92%] max-w-[420px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28" id="container">
+<main class="mx-auto mb-10 mt-24 w-[92%] max-w-[420px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28" id="container" aria-labelledby="registro-titulo">
   <div class="panel">
     @if(!registroExitoso){
       <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="space-y-5">
-        <h1 class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Regístrate aquí</h1>
+        <h1 id="registro-titulo" class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Regístrate aquí</h1>
 
-        <div>
-          <input type="text" class="campo" formControlName="username" placeholder="Nombre" aria-label="Nombre de usuario" autocomplete="username" />
+        <div class="space-y-2">
+          <label class="etiqueta" for="registro-usuario">Nombre de usuario</label>
+          <input id="registro-usuario" type="text" class="campo" formControlName="username" autocomplete="username" />
           <div *ngIf="(formulario.controls['username']?.invalid && (formulario.controls['username']?.dirty) || formulario.controls['username']?.touched)">
             <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</div>
             <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</div>
             <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</div>
           </div>
-          <div *ngIf="userNameInvalid" class="mensaje-error">El nombre ya esta en uso</div>
+          <div *ngIf="userNameInvalid" class="mensaje-error">El nombre ya está en uso</div>
         </div>
 
-        <div>
-          <input type="email" class="campo" formControlName="email" placeholder="Correo electrónico" aria-label="Correo electrónico" autocomplete="email" />
+        <div class="space-y-2">
+          <label class="etiqueta" for="registro-email">Correo electrónico</label>
+          <input id="registro-email" type="email" class="campo" formControlName="email" placeholder="nombre@correo.com" autocomplete="email" />
           <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.dirty || formulario.controls['email']?.touched)">
             <div class="mensaje-error" *ngIf="formulario.controls['email']?.errors?.['required']">Correo electrónico es requerido</div>
             <div class="mensaje-error" *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</div>
@@ -30,8 +25,9 @@
           <div *ngIf="emailInvalid" class="mensaje-error">Correo electrónico en uso, intente con otro</div>
         </div>
 
-        <div>
-          <input type="password" class="campo" id="password" name="password" formControlName="password" placeholder="Contraseña" aria-label="Contraseña" autocomplete="new-password" />
+        <div class="space-y-2">
+          <label class="etiqueta" for="password">Contraseña</label>
+          <input type="password" class="campo" id="password" name="password" formControlName="password" placeholder="Entre 8 y 20 caracteres" autocomplete="new-password" />
           <div *ngIf="formulario.controls['password']?.invalid && (formulario.controls['password']?.dirty || formulario.controls['password']?.touched)">
             <div class="mensaje-error" *ngIf="formulario.controls['password']?.errors?.['required']">Contraseña es requerida</div>
             <div class="mensaje-error" *ngIf="formulario.controls['password']?.errors?.['minlength']">Contraseña debe tener al menos 8 caracteres</div>
@@ -39,15 +35,15 @@
           </div>
         </div>
 
-        <div *ngIf="serverError" class="mensaje-error">{{ serverError }}</div>
+        <div *ngIf="serverError" class="mensaje-error" role="alert">{{ serverError }}</div>
 
-        <button type="submit" class="btn btn-primario w-full">Registrame!</button>
-        <p class="m-0 text-center text-sm text-tinta-suave">Ya tienes cuenta? <a class="enlace" routerLink="/login">Inicia sesion aqui</a></p>
+        <button type="submit" class="btn btn-primario w-full">¡Registrame!</button>
+        <p class="m-0 text-center text-sm text-tinta-suave">¿Ya tienes cuenta? <a class="enlace" routerLink="/login">Inicia sesión aquí</a></p>
       </form>
     }@else{
       <div class="flex min-h-[200px] items-center justify-center rounded-2xl border border-solid border-superficie-resalte bg-superficie-clara" role="status" aria-live="polite">
-        <h1 class="m-0 text-2xl font-bold text-marca-texto sm:text-3xl">Registrado!</h1>
+        <h1 class="m-0 text-2xl font-bold text-marca-texto sm:text-3xl">¡Registrado!</h1>
       </div>
     }
   </div>
-</div>
+</main>

@@ -19,6 +19,10 @@ import { ClimaService } from './core/service/clima.service';
 import { CurrencyService } from './core/service/currency.service';
 import { RestCountriesService } from './core/service/rest-countries.service';
 import { MapComponent } from './components/map/map.component';
+import { LoginFormComponent } from './core/auth/login-form/login-form.component';
+import { RegisterComponent } from './core/auth/register/register.component';
+import { ContactUsComponent } from './components/home/contact-us/contact-us.component';
+import { AboutUsComponent } from './components/home/about-us/about-us.component';
 
 describe('AppComponent - fondo compartido', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -44,7 +48,11 @@ describe('AppComponent - fondo compartido', () => {
         { path: 'paises', component: PaisesListComponent },
         { path: 'pais', component: PaisDetailComponent },
         { path: 'ciudad', component: CiudadDetailComponent },
-        { path: 'favoritos', component: ListaDeListasComponent }
+        { path: 'favoritos', component: ListaDeListasComponent },
+        { path: 'login', component: LoginFormComponent },
+        { path: 'register', component: RegisterComponent },
+        { path: 'contact', component: ContactUsComponent },
+        { path: 'about', component: AboutUsComponent }
       ]),
       { provide: IdUsuarioService, useValue: { session$: session, id$: of('usuario') } },
       { provide: UsuariosService, useValue: { obtenerListasFav: () => of([]), comprobarNombreExistenteDeLista: () => of(false) } },
@@ -70,7 +78,7 @@ describe('AppComponent - fondo compartido', () => {
     const video: HTMLVideoElement = fixture.nativeElement.querySelector('video');
     expect(video.muted && video.autoplay && video.loop && video.playsInline).toBeTrue();
     expect(video.querySelector('source')?.getAttribute('src')).toBe('assets/background-video.mp4');
-    for (const url of ['/', '/fichaUser', '/paises', '/pais', '/ciudad', '/favoritos']) {
+    for (const url of ['/', '/fichaUser', '/paises', '/pais', '/ciudad', '/login', '/register', '/contact', '/about', '/favoritos']) {
       await TestBed.inject(NgZone).run(() => router.navigateByUrl(url));
       fixture.detectChanges();
       await fixture.whenStable();

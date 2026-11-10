@@ -10,11 +10,12 @@ import { CiudadDataService } from '../../../core/service/ciudad-data.service';
 import { valorExistenteMap } from '../../../validators/valorExistenteMap.validator';
 import { maxItemsValidator } from '../../../validators/maxItems.validator';
 import { FeedbackService } from '../../../core/service/feedback.service';
+import { DialogoDirective } from '../../utils/dialogo/dialogo.directive';
 
 @Component({
   selector: 'app-pop-up-guardar-favoritos',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,DialogoDirective],
   templateUrl: './pop-up-guardar-favoritos.component.html'
 })
 export class PopUpGuardarFavoritosComponent implements OnInit{

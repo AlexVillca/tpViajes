@@ -1,7 +1,4 @@
-<head>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-</head>
-<section class="mx-auto mb-8 mt-[88px] w-[calc(100%-2rem)] max-w-[1280px] text-tinta sm:w-[calc(100%-3rem)]" aria-labelledby="juego-title">
+<main class="contenedor-pagina mb-8 mt-[88px] text-tinta" aria-labelledby="juego-title">
 
 
     <div class="grid min-w-0 grid-cols-1 items-start gap-4 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-5">
@@ -12,7 +9,7 @@
       </ul>
 
   <ul class="m-0 grid -translate-y-5 list-none grid-cols-1 gap-3 rounded-3xl border border-solid border-white/80 bg-white/90 p-4 opacity-0 shadow-sm transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100 sm:grid-cols-3 lg:grid-cols-1" [ngClass]="{'visible': paisAleatorio}" aria-label="Ranking histórico">
-    <li class="text-base font-bold text-tinta sm:col-span-3 lg:col-span-1">Puntaje Historico:</li>
+    <li class="text-base font-bold text-tinta sm:col-span-3 lg:col-span-1">Puntaje Histórico:</li>
     <li class="min-w-0 break-words rounded-xl border border-solid border-superficie-linea bg-superficie p-3 text-sm font-medium leading-relaxed text-tinta-suave [overflow-wrap:anywhere]" *ngFor="let u of topUsuarios; let i = index">
       {{ i + 1 }}. {{ u.username || 'Usuario' }} - {{ u.mejorPuntaje || 0 }} puntos
     </li>
@@ -22,7 +19,7 @@
     </aside>
 
     <div class="order-1 min-w-0 rounded-3xl border border-solid border-white/80 bg-white/90 p-4 shadow-[0_8px_30px_rgba(22,78,110,0.07)] sm:p-6">
-    <h1 id="juego-title" class="m-0 mb-4 text-center font-['Press_Start_2P',cursive] text-xl font-bold leading-snug tracking-tight text-marca-oscuro sm:text-2xl">Que pais es?</h1>
+    <h1 id="juego-title" class="m-0 mb-4 text-center font-['Press_Start_2P',cursive] text-xl font-bold leading-snug tracking-tight text-marca-oscuro sm:text-2xl">¿Qué país es?</h1>
 
     <p class="m-0 rounded-2xl border border-solid border-peligro-borde bg-peligro-fondo p-4 text-center text-sm leading-relaxed text-peligro-oscuro" *ngIf="errorJuego" role="alert">{{ errorJuego }}</p>
 
@@ -31,7 +28,7 @@
     </div>
 
     <div *ngIf="!errorJuego && opciones.length > 0" class="mt-4 flex translate-y-5 flex-col items-center justify-center opacity-0 transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100" [ngClass]="{'visible': opciones.length > 0}">
-        <p class="m-0 mb-3 text-center text-base font-semibold leading-relaxed text-tinta-media sm:text-lg">Selecciona el pais correcto:</p>
+        <p class="m-0 mb-3 text-center text-base font-semibold leading-relaxed text-tinta-media sm:text-lg">Selecciona el país correcto:</p>
         <ul class="lista-opciones m-0 grid w-full list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
             <li class="m-0 min-w-0 translate-y-5 opacity-0 transition-[opacity,transform] duration-[600ms] ease-out [&.visible]:translate-y-0 [&.visible]:opacity-100" *ngFor="let opcion of opciones; let i = index" [ngClass]="{'visible': opcion.visible}">
                 <button
@@ -50,4 +47,4 @@
     <p class="mb-0 mt-4 min-h-6 rounded-xl px-4 py-3 text-center text-base font-semibold leading-relaxed text-marca-texto [&.acierto]:border [&.acierto]:border-solid [&.acierto]:border-superficie-resalte [&.acierto]:bg-superficie-clara [&.fallo]:border [&.fallo]:border-solid [&.fallo]:border-peligro-borde [&.fallo]:bg-peligro-fondo [&.fallo]:text-peligro-oscuro" *ngIf="!errorJuego" [class.acierto]="mensaje && opcionesDesHabilitadas && intentos < 2" [class.fallo]="mensaje && (!opcionesDesHabilitadas || intentos >= 2)" role="status" aria-live="polite" aria-atomic="true">{{ mensaje }}</p>
     </div>
     </div>
-</section>
+</main>
