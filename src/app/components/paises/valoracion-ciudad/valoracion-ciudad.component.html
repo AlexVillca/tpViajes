@@ -1,0 +1,36 @@
+<div class="flex flex-col gap-3 rounded-2xl border border-solid border-superficie-linea bg-white/90 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+  <div class="flex items-center gap-3" aria-live="polite">
+    <span class="flex shrink-0" aria-hidden="true">
+      @for (estrella of estrellas; track estrella) {
+        <svg class="h-5 w-5" [class.text-amber-400]="estrella <= promedio + 0.25" [class.text-superficie-borde]="estrella > promedio + 0.25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 5.7 6.3.9-4.6 4.4 1.1 6.2L12 17.1 6.4 20l1.1-6.2L2.9 9.4l6.3-.9z" /></svg>
+      }
+    </span>
+    @if (cargando) {
+      <p class="m-0 text-sm text-tinta-suave">Cargando valoraciones...</p>
+    } @else if (error) {
+      <p class="m-0 text-sm text-peligro" role="alert">{{ error }}</p>
+    } @else if (cantidad > 0) {
+      <p class="m-0 text-sm text-tinta-suave"><strong class="text-base font-bold text-tinta">{{ promedioTexto }}</strong> de 5 · {{ cantidad }} {{ cantidad === 1 ? 'valoración' : 'valoraciones' }}</p>
+    } @else {
+      <p class="m-0 text-sm text-tinta-suave">Todavía no tiene valoraciones.</p>
+    }
+  </div>
+
+  @if (usuarioId) {
+    <fieldset class="m-0 flex items-center gap-2 border-0 p-0" [attr.aria-busy]="guardando">
+      <legend class="float-left mr-1 p-0 text-sm font-semibold text-tinta-media">{{ miValoracion ? 'Tu valoración:' : 'Valorá esta ciudad:' }}</legend>
+      <span class="flex" (mouseleave)="resaltada = 0">
+        @for (estrella of estrellas; track estrella) {
+          <span class="relative">
+            <input class="peer sr-only" type="radio" [id]="'valoracion-' + estrella" name="valoracion-ciudad" [value]="estrella" [checked]="miValoracion?.puntaje === estrella" (change)="valorar(estrella)" [attr.aria-label]="estrella + (estrella === 1 ? ' estrella' : ' estrellas')" />
+            <label [for]="'valoracion-' + estrella" class="block cursor-pointer rounded p-0.5 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-marca-foco" (mouseenter)="resaltada = estrella">
+              <svg class="h-7 w-7 transition-colors motion-reduce:transition-none" [class.text-amber-400]="estaActiva(estrella)" [class.text-superficie-borde]="!estaActiva(estrella)" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.6 4.4 1.1 6.2L12 17.1 6.4 20l1.1-6.2L2.9 9.4l6.3-.9z" /></svg>
+            </label>
+          </span>
+        }
+      </span>
+    </fieldset>
+  } @else {
+    <p class="m-0 text-sm text-tinta-suave"><a routerLink="/login" class="enlace">Iniciá sesión</a> para valorarla.</p>
+  }
+</div>

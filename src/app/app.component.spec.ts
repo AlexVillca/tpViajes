@@ -18,6 +18,7 @@ import { CiudadDataService } from './core/service/ciudad-data.service';
 import { ClimaService } from './core/service/clima.service';
 import { CurrencyService } from './core/service/currency.service';
 import { RestCountriesService } from './core/service/rest-countries.service';
+import { ValoracionesService } from './core/service/valoraciones.service';
 import { MapComponent } from './components/map/map.component';
 import { LoginFormComponent } from './core/auth/login-form/login-form.component';
 import { RegisterComponent } from './core/auth/register/register.component';
@@ -62,7 +63,8 @@ describe('AppComponent - fondo compartido', () => {
       { provide: CiudadDataService, useValue: { ciudad$: of(ciudad) } },
       { provide: ClimaService, useValue: { getClima: () => of(null) } },
       { provide: CurrencyService, useValue: { extraerCodigoIso: () => null } },
-      { provide: RestCountriesService, useValue: { getInfoPais: () => of(null) } }
+      { provide: RestCountriesService, useValue: { getInfoPais: () => of(null) } },
+      { provide: ValoracionesService, useValue: { getValoraciones: () => of([]) } }
       ]
     }).compileComponents();
     spyOn(MapComponent.prototype, 'ngAfterViewInit');

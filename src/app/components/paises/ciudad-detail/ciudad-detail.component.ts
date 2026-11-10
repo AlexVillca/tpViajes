@@ -10,6 +10,7 @@ import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-favoritos/pop-up-guardar-favoritos.component';
 import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
+import { ValoracionCiudadComponent } from '../valoracion-ciudad/valoracion-ciudad.component';
 
 @Component({
   selector: 'app-ciudad-detail',
@@ -17,7 +18,7 @@ import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
   imports: [ComentariosListComponent
     ,CommonModule
     ,PopUpGuardarFavoritosComponent
-    ,ClimaCiudadComponent, RouterLink],
+    ,ClimaCiudadComponent, ValoracionCiudadComponent, RouterLink],
   templateUrl: './ciudad-detail.component.html'
 })
 export class CiudadDetailComponent implements OnInit{
