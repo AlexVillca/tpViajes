@@ -1,6 +1,6 @@
 <main class="relative mx-auto flex w-full max-w-[1200px] flex-col items-center px-5 pt-[84px] pb-5 text-tinta sm:px-10 sm:pt-[80px] sm:pb-4">
   <section class="flex w-full flex-col items-center text-center motion-safe:animate-aparecer" aria-labelledby="home-title">
-    <div class="inline-flex items-center gap-2 rounded-full border border-solid border-white/80 bg-white/70 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#176a84] shadow-sm backdrop-blur-md sm:text-xs">
+    <div class="inline-flex items-center gap-2 rounded-full border border-solid border-white/80 bg-white/70 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-marca-texto shadow-sm backdrop-blur-md sm:text-xs">
       <span class="h-2 w-2 rounded-full bg-acento" aria-hidden="true"></span>
       {{ 'home.etiqueta' | translate }}
     </div>
@@ -8,7 +8,7 @@
     <img class="my-1 block h-auto w-[230px] max-w-full object-contain sm:my-0 sm:w-[250px]" src="../../../assets/logo_grande.png" alt="deRuta" width="671" height="372" />
 
     <div class="w-full max-w-[760px] rounded-[28px] border border-solid border-white/80 bg-white/75 px-5 py-5 shadow-[0_18px_60px_rgba(22,78,110,0.10)] backdrop-blur-xl sm:px-10 sm:py-4">
-      <p class="m-0 text-[11px] font-bold uppercase tracking-[0.22em] text-[#137e92] sm:text-xs">{{ 'home.lema' | translate }}</p>
+      <p class="m-0 text-[11px] font-bold uppercase tracking-[0.22em] text-marca-foco sm:text-xs">{{ 'home.lema' | translate }}</p>
       <h1 id="home-title" class="mt-2 mb-3 text-[30px] font-bold leading-[1.12] tracking-[-0.035em] sm:text-[38px]">
         {{ 'home.titulo' | translate }}<br />
         <span class="text-marca">{{ 'home.tituloDestacado' | translate }}</span>
@@ -26,15 +26,15 @@
 
     <ul class="mx-auto mt-3 mb-0 grid w-full max-w-[760px] list-none grid-cols-1 gap-2 p-0 text-left sm:grid-cols-3 sm:gap-3">
       <li class="flex items-center gap-3 rounded-2xl border border-solid border-white/70 bg-white/60 px-4 py-3 backdrop-blur-md">
-        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-superficie-turquesa text-[#137d98]" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9" /><path d="m16 8-2 6-6 2 2-6 6-2Z" stroke-linejoin="round" /></svg></span>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-superficie-turquesa text-marca-foco" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9" /><path d="m16 8-2 6-6 2 2-6 6-2Z" stroke-linejoin="round" /></svg></span>
         <div><p class="m-0 text-sm font-bold">{{ 'home.explorarTitulo' | translate }}</p><p class="mt-1 mb-0 text-xs leading-relaxed text-tinta-tenue">{{ 'home.explorarTexto' | translate }}</p></div>
       </li>
       <li class="flex items-center gap-3 rounded-2xl border border-solid border-white/70 bg-white/60 px-4 py-3 backdrop-blur-md">
-        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-superficie-turquesa text-[#137d98]" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" /><circle cx="12" cy="10" r="2.5" /></svg></span>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-superficie-turquesa text-marca-foco" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" /><circle cx="12" cy="10" r="2.5" /></svg></span>
         <div><p class="m-0 text-sm font-bold">{{ 'home.ciudadesTitulo' | translate }}</p><p class="mt-1 mb-0 text-xs leading-relaxed text-tinta-tenue">{{ 'home.ciudadesTexto' | translate }}</p></div>
       </li>
       <li class="flex items-center gap-3 rounded-2xl border border-solid border-white/70 bg-white/60 px-4 py-3 backdrop-blur-md">
-        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-superficie-turquesa text-[#137d98]" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h12v17l-6-4-6 4V4Z" stroke-linejoin="round" /></svg></span>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-superficie-turquesa text-marca-foco" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h12v17l-6-4-6 4V4Z" stroke-linejoin="round" /></svg></span>
         <div><p class="m-0 text-sm font-bold">{{ 'home.favoritosTitulo' | translate }}</p><p class="mt-1 mb-0 text-xs leading-relaxed text-tinta-tenue">{{ 'home.favoritosTexto' | translate }}</p></div>
       </li>
     </ul>
