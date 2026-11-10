@@ -1,0 +1,55 @@
+<div class="relative" (focusout)="cerrar()">
+  <label class="etiqueta mb-2" for="buscador-ciudades">Buscar una ciudad</label>
+  <div class="relative">
+    <svg class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-tinta-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" stroke-linecap="round" /></svg>
+    <input
+      id="buscador-ciudades"
+      class="campo pl-11"
+      type="search"
+      role="combobox"
+      autocomplete="off"
+      spellcheck="false"
+      placeholder="Por ejemplo: Kioto, Cusco, Marrakech"
+      aria-autocomplete="list"
+      aria-controls="buscador-opciones"
+      [attr.aria-expanded]="abierto"
+      [attr.aria-activedescendant]="idActiva"
+      [value]="texto"
+      (input)="alEscribir($any($event.target).value)"
+      (keydown)="alPresionarTecla($event)"
+    />
+  </div>
+
+  <ul
+    id="buscador-opciones"
+    role="listbox"
+    aria-label="Ciudades encontradas"
+    class="absolute left-0 right-0 top-full z-20 m-0 mt-2 max-h-80 list-none overflow-y-auto rounded-2xl border border-solid border-superficie-borde bg-white p-1.5 shadow-[0_18px_40px_rgba(18,58,83,0.18)]"
+    [class.hidden]="!abierto || sugerencias.length === 0"
+  >
+    @for (opcion of sugerencias; track opcion.id; let i = $index) {
+      <li
+        role="option"
+        [id]="'buscador-opcion-' + opcion.id"
+        [attr.aria-selected]="i === activa"
+        class="flex cursor-pointer items-baseline justify-between gap-3 rounded-xl px-3 py-2.5 text-sm text-tinta"
+        [class.bg-superficie-clara]="i === activa"
+        (mousedown)="$event.preventDefault()"
+        (click)="elegir(opcion)"
+        (mouseenter)="activa = i"
+      >
+        <span class="font-semibold">{{ opcion.ciudad.nombre }}</span>
+        <span class="shrink-0 text-xs text-tinta-suave">{{ opcion.pais.nombre }}</span>
+      </li>
+    }
+  </ul>
+
+  <p class="sr-only" role="status" aria-live="polite">
+    @if (abierto) {
+      {{ sugerencias.length === 0 ? 'No se encontraron ciudades' : sugerencias.length + (sugerencias.length === 1 ? ' ciudad encontrada' : ' ciudades encontradas') }}
+    }
+  </p>
+  @if (abierto && sugerencias.length === 0) {
+    <p class="m-0 mt-2 text-sm text-tinta-suave">No encontramos ciudades con ese nombre.</p>
+  }
+</div>

@@ -5,11 +5,12 @@ import { RouterModule } from '@angular/router';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { Router } from '@angular/router';
 import { PaisesService } from '../../../core/service/paises.service';
+import { BuscadorCiudadesComponent } from '../buscador-ciudades/buscador-ciudades.component';
 
 @Component({
   selector: 'app-paises-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, BuscadorCiudadesComponent],
   templateUrl: './paises-list.component.html'
 })
 export class PaisesListComponent implements OnInit {

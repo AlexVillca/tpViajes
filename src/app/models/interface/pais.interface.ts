@@ -23,6 +23,23 @@ export interface Pais {
   ciudades?: Ciudad[];
   id: string;
   visible: boolean;
+  /** Textos en inglés de los campos traducibles (mismos nombres que en español). */
+  en?: TextosPaisEn;
+}
+
+export interface TextosPaisEn {
+  nombre?: string;
+  nombreOficial?: string;
+  capital?: string;
+  idiomaOficial?: string;
+  moneda?: string;
+  continente?: string;
+  visa?: { descripcion?: string };
+  clima?: string;
+  gastronomia?: string;
+  cultura?: string;
+  seguridad?: string;
+  transporte?: string;
 }
 
 export interface Ciudad {
@@ -32,6 +49,14 @@ export interface Ciudad {
   consejos?: string;
   comentarios?: Comentario[];
   atracciones?: Atraccion[];
+  en?: TextosCiudadEn;
+}
+
+export interface TextosCiudadEn {
+  nombre?: string;
+  actividades?: string;
+  consejos?: string;
+  comentarios?: string;
 }
 export interface Comentario {
   id?: string;
@@ -54,4 +79,13 @@ export interface Atraccion {
   };
   tipo?: string;
   valoracion?: number;
+  en?: TextosAtraccionEn;
+}
+
+export interface TextosAtraccionEn {
+  nombre?: string;
+  descripcion?: string;
+  horario?: string;
+  tipo?: string;
+  ubicacion?: { direccion?: string };
 }
