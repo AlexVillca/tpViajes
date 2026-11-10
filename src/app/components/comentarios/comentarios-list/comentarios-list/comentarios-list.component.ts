@@ -31,6 +31,10 @@ export class ComentariosListComponent implements OnInit {
 
   comentarioAEliminar: Comentario | null = null;
 
+  /** Paginación local: se muestran primero los comentarios más nuevos. */
+  readonly comentariosPorPagina = 5;
+  paginaActual = 1;
+
   cds = inject(CiudadDataService);
   cs = inject(ComentariosService);
   idUsuarioService = inject(IdUsuarioService);
@@ -46,6 +50,7 @@ export class ComentariosListComponent implements OnInit {
 
     this.cds.ciudad$.subscribe(ciudad => {
       this.ciudadActual = ciudad?.nombre ?? '';
+      this.paginaActual = 1;
     });
   }
 
@@ -67,6 +72,7 @@ export class ComentariosListComponent implements OnInit {
 
   agregarComentarioDb(comentario: Comentario): void {
     this.listaComentarios = [...this.listaComentarios, comentario];
+    this.paginaActual = 1;
   }
 
   esComentarioPropio(comentario: Comentario): boolean {
@@ -142,12 +148,32 @@ export class ComentariosListComponent implements OnInit {
         );
 
         this.cancelarEliminar();
+        this.paginaActual = Math.min(this.paginaActual, this.totalPaginas);
         this.feedback.success('Comentario eliminado.');
       },
       error: (error) => {
         this.feedback.error(error.message);
       }
     });
+  }
+
+  get totalPaginas(): number {
+    return Math.max(1, Math.ceil(this.getComentariosDeCiudadActual().length / this.comentariosPorPagina));
+  }
+
+  /** Comentarios de la página actual, del más nuevo al más viejo. */
+  get comentariosPagina(): Comentario[] {
+    const pagina = Math.min(this.paginaActual, this.totalPaginas);
+    const inicio = (pagina - 1) * this.comentariosPorPagina;
+    return [...this.getComentariosDeCiudadActual()].reverse().slice(inicio, inicio + this.comentariosPorPagina);
+  }
+
+  paginaAnterior(): void {
+    this.paginaActual = Math.max(1, this.paginaActual - 1);
+  }
+
+  paginaSiguiente(): void {
+    this.paginaActual = Math.min(this.totalPaginas, this.paginaActual + 1);
   }
 
   getComentariosDeCiudadActual(): Comentario[] {
