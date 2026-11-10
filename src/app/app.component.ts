@@ -16,7 +16,8 @@ import { FeedbackToastComponent } from './components/utils/feedback-toast/feedba
     FeedbackToastComponent
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  // El contenido crece en páginas cortas; en páginas largas el pie sigue el flujo.
+  host: { class: 'isolate flex min-h-screen flex-col' }
 })
 
 export class AppComponent implements OnInit, OnDestroy {

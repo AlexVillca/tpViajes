@@ -13,8 +13,7 @@ import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-
   selector: 'app-comentarios-list',
   standalone: true,
   imports: [CommonModule, FormsModule, ComentariosComponent, PopUpConfirmarComponent],
-  templateUrl: './comentarios-list.component.html',
-  styleUrl: './comentarios-list.component.css'
+  templateUrl: './comentarios-list.component.html'
 })
 export class ComentariosListComponent implements OnInit {
   listaComentarios: Comentario[] = [];

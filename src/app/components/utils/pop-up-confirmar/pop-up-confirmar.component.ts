@@ -4,8 +4,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
   selector: 'app-pop-up-confirmar',
   standalone: true,
   imports: [],
-  templateUrl: './pop-up-confirmar.component.html',
-  styleUrl: './pop-up-confirmar.component.css'
+  templateUrl: './pop-up-confirmar.component.html'
 })
 export class PopUpConfirmarComponent{
   @Input() texto = '';

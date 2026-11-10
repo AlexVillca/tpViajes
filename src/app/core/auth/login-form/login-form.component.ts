@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
   selector: 'app-login-form',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule,RouterModule],
-  templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.css'
+  templateUrl: './login-form.component.html'
 })
 export class LoginFormComponent {
   usuarioService = inject(UsuariosService);
@@ -55,27 +54,6 @@ export class LoginFormComponent {
         }
       }
   )
-  }
-
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-      const buttons = document.querySelectorAll('button');
-
-      buttons.forEach((button) => {
-        button.classList.add('visible');
-      });
-    }, 200);
-  }
-
-  containerVisible = false;
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.containerVisible = true;
-    }, 200);
   }
 
 }

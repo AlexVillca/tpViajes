@@ -1,78 +1,53 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-</head>
-<body>
-  <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-      <source src="assets/background-video.mp4" type="video/mp4" />
-      Tu navegador no soporta reproducción de vídeos.
-    </video>
-  </div>
+<div class="video-fondo">
+  <video autoplay loop muted playsinline>
+    <source src="assets/background-video.mp4" type="video/mp4" />
+    Tu navegador no soporta reproducción de vídeos.
+  </video>
+</div>
 
-  <div class="container" id="container" [class.visible]="containerVisible">
-    <div class="form-container register-container">
-     @if(!registroExitoso){
-      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-        <h1 class="titulaso">Regístrate aquí</h1>
-        <div class="form-control">
-          <input type="text" formControlName="username" placeholder="Nombre" aria-label="Nombre de usuario" />
+<div class="mx-auto mb-10 mt-24 w-[92%] max-w-[420px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28" id="container">
+  <div class="panel">
+    @if(!registroExitoso){
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="space-y-5">
+        <h1 class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Regístrate aquí</h1>
+
+        <div>
+          <input type="text" class="campo" formControlName="username" placeholder="Nombre" aria-label="Nombre de usuario" autocomplete="username" />
           <div *ngIf="(formulario.controls['username']?.invalid && (formulario.controls['username']?.dirty) || formulario.controls['username']?.touched)">
-            <div class="error" *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</div>
-            <div class="error" *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</div>
-            <div class="error" *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</div>
           </div>
-
-          <div *ngIf="userNameInvalid">
-            <small >El nombre ya esta en uso</small>
-          </div>
-          <span></span>
+          <div *ngIf="userNameInvalid" class="mensaje-error">El nombre ya esta en uso</div>
         </div>
-        <div class="form-control">
-          <input type="email" formControlName="email" placeholder="Correo electrónico" aria-label="Correo electrónico" />
-          <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.dirty || formulario.controls['email']?.touched) ">
-            <div class="error" *ngIf="formulario.controls['email']?.errors?.['required']">Correo electrónico es requerido</div>
-            <div class="error" *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</div>
-          </div>
-          <div *ngIf="emailInvalid">
 
-            <small>Correo electrónico en uso, intente con otro</small>
+        <div>
+          <input type="email" class="campo" formControlName="email" placeholder="Correo electrónico" aria-label="Correo electrónico" autocomplete="email" />
+          <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.dirty || formulario.controls['email']?.touched)">
+            <div class="mensaje-error" *ngIf="formulario.controls['email']?.errors?.['required']">Correo electrónico es requerido</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['email']?.errors?.['email']">Correo electrónico no válido</div>
           </div>
-          <span></span>
+          <div *ngIf="emailInvalid" class="mensaje-error">Correo electrónico en uso, intente con otro</div>
         </div>
-        <div class="form-control">
-          <input type="password" id="password" name="password" formControlName="password" placeholder="Contraseña" aria-label="Contraseña" />
+
+        <div>
+          <input type="password" class="campo" id="password" name="password" formControlName="password" placeholder="Contraseña" aria-label="Contraseña" autocomplete="new-password" />
           <div *ngIf="formulario.controls['password']?.invalid && (formulario.controls['password']?.dirty || formulario.controls['password']?.touched)">
-            <div class="error" *ngIf="formulario.controls['password']?.errors?.['required']">Contraseña es requerida</div>
-            <div class="error" *ngIf="formulario.controls['password']?.errors?.['minlength']">Contraseña debe tener al menos 8 caracteres</div>
-            <div class="error" *ngIf="formulario.controls['password']?.errors?.['maxlength']">Contraseña debe tener máximo 20 caracteres</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['password']?.errors?.['required']">Contraseña es requerida</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['password']?.errors?.['minlength']">Contraseña debe tener al menos 8 caracteres</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['password']?.errors?.['maxlength']">Contraseña debe tener máximo 20 caracteres</div>
           </div>
-          <span></span>
         </div>
-        <div *ngIf="serverError" class="error">
-          {{ serverError }}
-        </div>
-        <button type="submit">Registrame!</button>
-        <small class="minireg">Ya tienes cuenta? <a class="minireg" routerLink="/login"><strong>Inicia sesion aqui</strong></a></small>
 
-     </form>
-     }@else{
-      <div class="div-content">
-        <h1 class="titulaso">Registrado!</h1>
+        <div *ngIf="serverError" class="mensaje-error">{{ serverError }}</div>
 
+        <button type="submit" class="btn btn-primario w-full">Registrame!</button>
+        <p class="m-0 text-center text-sm text-tinta-suave">Ya tienes cuenta? <a class="enlace" routerLink="/login">Inicia sesion aqui</a></p>
+      </form>
+    }@else{
+      <div class="flex min-h-[200px] items-center justify-center rounded-2xl border border-solid border-superficie-resalte bg-superficie-clara" role="status" aria-live="polite">
+        <h1 class="m-0 text-2xl font-bold text-marca-texto sm:text-3xl">Registrado!</h1>
       </div>
-     }
-    </div>
+    }
   </div>
-</body>
-</html>
+</div>

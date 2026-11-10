@@ -10,8 +10,7 @@ import { Location } from '@angular/common';
   selector: 'app-update-password',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, FormsModule],
-  templateUrl: './update-password.component.html',
-  styleUrls: ['./update-password.component.css']
+  templateUrl: './update-password.component.html'
 })
 export class UpdatePasswordComponent implements OnInit {
 
@@ -28,7 +27,6 @@ export class UpdatePasswordComponent implements OnInit {
     confirmPassword: ['', [Validators.required]]
   });
 
-  containerVisible = false;
   passwordNotMatch = false;
   serverError = '';
   successMessage = '';
@@ -48,10 +46,6 @@ export class UpdatePasswordComponent implements OnInit {
       },
       error: (e) => console.error(e),
     });
-
-    setTimeout(() => {
-      this.containerVisible = true;
-    }, 200);
   }
 
   update(): void {
@@ -75,18 +69,6 @@ export class UpdatePasswordComponent implements OnInit {
         this.serverError = e.message;
       },
     });
-  }
-
-  videoLoaded = false;
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-      const buttons = document.querySelectorAll('button');
-
-      buttons.forEach((button) => {
-        button.classList.add('visible');
-      });
-    }, 200);
   }
 
   volver(): void {

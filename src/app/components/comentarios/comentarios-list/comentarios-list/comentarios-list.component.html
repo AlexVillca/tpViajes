@@ -1,80 +1,84 @@
-<div class="app-comentarios-container" *ngIf="flag">
-  <app-comentarios (emitirComentario)="agregarComentarioDb($event)"></app-comentarios>
-</div>
+<section class="mx-auto mb-10 w-[92%] max-w-[1000px] text-tinta sm:mb-12" aria-labelledby="comentarios-title">
+  <div class="panel space-y-5">
+    <h2 id="comentarios-title" class="m-0 text-xl font-bold tracking-tight sm:text-2xl">Lista de comentarios</h2>
 
-<div class="container">
-  <h1>Lista de comentarios</h1>
+    <app-comentarios class="block" *ngIf="flag" (emitirComentario)="agregarComentarioDb($event)"></app-comentarios>
 
-  <div class="estado-carga" *ngIf="cargando">
-    <div class="spinner"></div>
-    <p class="estado">Cargando comentarios...</p>
-  </div>
+    <div class="flex flex-col items-center gap-3 py-6" *ngIf="cargando" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="m-0 text-center text-sm font-semibold text-tinta-suave">Cargando comentarios...</p>
+    </div>
 
-  <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
+    <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga }}</p>
 
-  <p class="estado-vacio" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length === 0">
-    Aun no hay comentarios
-  </p>
+    <p class="m-0 rounded-2xl border border-dashed border-superficie-borde px-5 py-8 text-center text-sm font-medium text-tinta-suave" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length === 0" role="status">
+      Aun no hay comentarios
+    </p>
 
-  <ul *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length > 0">
-    <li *ngFor="let comentarioActual of getComentariosDeCiudadActual()">
-      <div class="comentario-container">
-        <strong>{{ comentarioActual.usuario }}:</strong>
+    <ul class="m-0 list-none space-y-3 p-0" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length > 0">
+      <li *ngFor="let comentarioActual of getComentariosDeCiudadActual()">
+        <div class="break-words rounded-2xl border border-solid border-superficie-linea bg-white/95 p-4 text-sm leading-relaxed text-tinta-suave shadow-sm [overflow-wrap:anywhere]">
+          <strong class="font-semibold text-tinta">{{ comentarioActual.usuario }}:</strong>
 
-        <ng-container *ngIf="comentarioEnEdicionId !== comentarioActual.id; else edicionTpl">
-          {{ comentarioActual.mensaje }}
-        </ng-container>
+          <ng-container *ngIf="comentarioEnEdicionId !== comentarioActual.id; else edicionTpl">
+            {{ comentarioActual.mensaje }}
+          </ng-container>
 
-        <ng-template #edicionTpl>
-          <div class="edicion-comentario">
-            <input
-              type="text"
-              [(ngModel)]="mensajeEditado"
-              maxlength="200"
-              class="input-edicion"
-              aria-label="Editar comentario"
-            />
-            <small class="error" *ngIf="errorEdicion">{{ errorEdicion }}</small>
+          <ng-template #edicionTpl>
+            <div class="mt-3 flex flex-col gap-2">
+              <input
+                type="text"
+                [(ngModel)]="mensajeEditado"
+                maxlength="200"
+                class="campo min-h-11 py-2 text-sm"
+                aria-label="Editar comentario"
+              />
+              <small class="mensaje-error mt-0" *ngIf="errorEdicion">{{ errorEdicion }}</small>
+            </div>
+          </ng-template>
+
+          <div class="mt-3 flex flex-wrap gap-2" *ngIf="esComentarioPropio(comentarioActual)">
+            <button
+              type="button"
+              class="btn btn-secundario min-h-9 px-3 py-1.5 text-xs"
+              *ngIf="comentarioEnEdicionId !== comentarioActual.id"
+              (click)="iniciarEdicion(comentarioActual)"
+            >
+              Editar
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primario min-h-9 px-3 py-1.5 text-xs"
+              *ngIf="comentarioEnEdicionId === comentarioActual.id"
+              (click)="guardarEdicion(comentarioActual)"
+            >
+              Guardar
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secundario min-h-9 px-3 py-1.5 text-xs"
+              *ngIf="comentarioEnEdicionId === comentarioActual.id"
+              (click)="cancelarEdicion()"
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secundario min-h-9 px-3 py-1.5 text-xs text-peligro hover:border-peligro-borde hover:bg-peligro-fondo"
+              *ngIf="comentarioEnEdicionId !== comentarioActual.id"
+              (click)="pedirEliminar(comentarioActual)"
+            >
+              Eliminar
+            </button>
           </div>
-        </ng-template>
-
-        <div class="acciones-comentario" *ngIf="esComentarioPropio(comentarioActual)">
-          <button
-            type="button"
-            *ngIf="comentarioEnEdicionId !== comentarioActual.id"
-            (click)="iniciarEdicion(comentarioActual)"
-          >
-            Editar
-          </button>
-
-          <button
-            type="button"
-            *ngIf="comentarioEnEdicionId === comentarioActual.id"
-            (click)="guardarEdicion(comentarioActual)"
-          >
-            Guardar
-          </button>
-
-          <button
-            type="button"
-            *ngIf="comentarioEnEdicionId === comentarioActual.id"
-            (click)="cancelarEdicion()"
-          >
-            Cancelar
-          </button>
-
-          <button
-            type="button"
-            *ngIf="comentarioEnEdicionId !== comentarioActual.id"
-            (click)="pedirEliminar(comentarioActual)"
-          >
-            Eliminar
-          </button>
         </div>
-      </div>
-    </li>
-  </ul>
-</div>
+      </li>
+    </ul>
+  </div>
+</section>
 
 <app-pop-up-confirmar
   *ngIf="comentarioAEliminar"

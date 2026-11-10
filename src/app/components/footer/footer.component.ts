@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  host: { class: 'block shrink-0' }
 })
 export class FooterComponent {
 

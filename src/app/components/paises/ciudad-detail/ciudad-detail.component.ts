@@ -18,8 +18,7 @@ import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
     ,CommonModule
     ,PopUpGuardarFavoritosComponent
     ,ClimaCiudadComponent, RouterLink],
-  templateUrl: './ciudad-detail.component.html',
-  styleUrls: ['./ciudad-detail.component.css']
+  templateUrl: './ciudad-detail.component.html'
 })
 export class CiudadDetailComponent implements OnInit{
   paisDataService = inject(PaisDataService);
@@ -56,19 +55,6 @@ export class CiudadDetailComponent implements OnInit{
   setImagenError(event: Event) {
     const img = event.target as HTMLImageElement;
     img.src = 'assets/imagennodisponible.png';
-  }
-
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-      const buttons = document.querySelectorAll('button');
-
-      buttons.forEach((button) => {
-        button.classList.add('visible');
-      });
-    }, 200);
   }
 
 }

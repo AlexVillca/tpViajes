@@ -4,25 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-about-us',
   standalone: true,
   imports: [],
-  templateUrl: './about-us.component.html',
-  styleUrl: './about-us.component.css'
+  templateUrl: './about-us.component.html'
 })
 export class AboutUsComponent {
 
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-
-    }, 200);
-  }
-  containerVisible = false;
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.containerVisible = true;
-    }, 200);
-  }
+  integrantes = ['Facundo Ramallo', 'Manuel Ruggeri', 'Alex Villca', 'Andrés Chávez', 'Gustavo Iñegue'];
 
 }

@@ -1,20 +1,20 @@
 <div
-  class="card-exterior"
+  class="group mx-auto h-[200px] w-full max-w-[300px] cursor-pointer overflow-hidden rounded-2xl border border-solid border-white/80 bg-white/90 shadow-sm transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(22,78,110,0.18)] motion-reduce:transition-none [&.activo]:scale-105 [&.activo]:shadow-[0_8px_20px_rgba(0,0,0,0.25)]"
   [class.activo]="girando"
   (mouseenter)="iniciarCarrusel()"
   (mouseleave)="detenerCarrusel()"
 >
-  <div class="card-div-imagen">
+  <div class="relative h-[150px] w-full overflow-hidden">
 
     <img
-      class="img-fondo"
+      class="absolute inset-0 z-[1] h-full w-full scale-[1.2] object-cover blur-[20px]"
       [src]="imagenActual"
       alt=""
       (error)="setImagenError($event)"
     />
 
     <img
-      class="img-main"
+      class="relative z-[2] h-full w-full object-contain"
       [src]="imagenActual"
       [alt]="titulo"
       (error)="setImagenError($event)"
@@ -22,5 +22,10 @@
 
   </div>
 
-  <div class="card-div-nombre">{{ titulo }}</div>
+  <div class="flex h-[50px] w-full items-center gap-2 bg-marca px-3 text-sm font-bold text-white transition-colors duration-200 group-hover:bg-marca-oscuro motion-reduce:transition-none" [class.justify-between]="eliminable" [class.justify-center]="!eliminable">
+    <span class="min-w-0 overflow-hidden text-ellipsis whitespace-nowrap" [class.flex-1]="eliminable">{{ titulo }}</span>
+    @if (eliminable) {
+      <button type="button" (click)="borrarCiudad($event)" class="btn-icono h-[35px] w-[35px] border-transparent bg-white/15 text-white shadow-none hover:bg-peligro" aria-label="Eliminar ciudad"><i class="material-icons" aria-hidden="true">delete</i></button>
+    }
+  </div>
 </div>

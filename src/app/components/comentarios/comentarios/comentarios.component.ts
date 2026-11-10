@@ -16,8 +16,7 @@ import { FeedbackService } from '../../../core/service/feedback.service';
   selector: 'app-comentarios',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './comentarios.component.html',
-  styleUrl: './comentarios.component.css'
+  templateUrl: './comentarios.component.html'
 })
 export class ComentariosComponent {
 

@@ -5,8 +5,7 @@ import * as L from 'leaflet';
   selector: 'app-map',
 
   standalone: true,
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  templateUrl: './map.component.html'
 })
 export class MapComponent implements AfterViewInit, OnChanges {
   @Input() lat!: number;

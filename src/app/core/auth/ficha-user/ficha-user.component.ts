@@ -7,8 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-ficha-user',
   standalone: true,
   imports: [RouterLink,CommonModule],
-  templateUrl: './ficha-user.component.html',
-  styleUrl: './ficha-user.component.css'
+  templateUrl: './ficha-user.component.html'
 })
 
 export class FichaUserComponent {

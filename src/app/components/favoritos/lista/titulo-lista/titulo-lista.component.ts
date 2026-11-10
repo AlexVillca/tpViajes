@@ -9,8 +9,7 @@ import { FeedbackService } from '../../../../core/service/feedback.service';
   selector: 'app-titulo-lista',
   standalone: true,
   imports: [FormsModule, NgIf,PopUpConfirmarComponent],
-  templateUrl: './titulo-lista.component.html',
-  styleUrl: './titulo-lista.component.css'
+  templateUrl: './titulo-lista.component.html'
 })
 export class TituloListaComponent{
 

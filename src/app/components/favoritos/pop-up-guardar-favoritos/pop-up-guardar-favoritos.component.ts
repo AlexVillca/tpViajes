@@ -15,8 +15,7 @@ import { FeedbackService } from '../../../core/service/feedback.service';
   selector: 'app-pop-up-guardar-favoritos',
   standalone: true,
   imports: [CommonModule,FormsModule,ReactiveFormsModule],
-  templateUrl: './pop-up-guardar-favoritos.component.html',
-  styleUrl: './pop-up-guardar-favoritos.component.css'
+  templateUrl: './pop-up-guardar-favoritos.component.html'
 })
 export class PopUpGuardarFavoritosComponent implements OnInit{
 

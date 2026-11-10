@@ -1,44 +1,44 @@
 @if(logueado){
-  <button (click)="abrePopUp()">Guardar</button>
+  <button type="button" class="btn btn-primario" (click)="abrePopUp()">Guardar</button>
   @if(visible){
-    <div class="popup-overlay"></div>
-    <div class="popup-content" role="dialog" aria-modal="true">
+    <div class="modal-fondo"></div>
+    <div class="modal max-w-[500px]" role="dialog" aria-modal="true">
 
-      <form [formGroup]="formulario" (ngSubmit)="saveSelection()">
+      <form class="flex w-full flex-col gap-4" [formGroup]="formulario" (ngSubmit)="saveSelection()">
 
-        <h4>Guardar en favoritos</h4>
+        <h4 class="m-0 text-lg font-bold text-tinta">Guardar en favoritos</h4>
 
-        <div class="div-listas" [formGroup]="groupCheckbox">
+        <div class="max-h-[268px] w-full space-y-2 overflow-y-auto" [formGroup]="groupCheckbox">
           @for(idLista of idsGroupCheckbox;track $index){
-            <label>
-              <input type="checkbox" [formControlName]="idLista" />{{mapNombresListas.get(idLista) }}
+            <label class="flex max-w-full cursor-pointer items-center gap-2.5 rounded-xl border border-solid border-superficie-linea bg-superficie px-3 py-2 text-[15px] text-tinta transition-colors hover:border-acento-medio motion-reduce:transition-none">
+              <input type="checkbox" class="m-0 h-[18px] w-[18px] shrink-0 accent-marca" [formControlName]="idLista" />{{mapNombresListas.get(idLista) }}
             </label>
           }
         </div>
 
         <div>
-          <div class="div-agregar">
-            <input type="text" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista" maxlength="20" aria-label="Nombre de la nueva lista" />
-            <button type="button" (click)="agregarNuevaLista()">Agregar</button>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <input type="text" class="campo min-h-11 min-w-[120px] flex-1 py-2" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista" maxlength="20" aria-label="Nombre de la nueva lista" />
+            <button type="button" class="btn btn-secundario" (click)="agregarNuevaLista()">Agregar</button>
           </div>
 
-          <div class="div-error">
+          <div class="min-h-[15px]">
             @if(nuevaListaInput.errors?.['required'] && nuevaListaInput.touched){
-              <small class="error">Ingresa un nombre para la lista</small>
+              <small class="mensaje-error block">Ingresa un nombre para la lista</small>
             }@else{
               @if(nuevaListaInput.errors?.['maxItemsAlcanzado'] && nuevaListaInput.touched){
-                <small class="error">Se ha llegado al maximo de listas</small>
+                <small class="mensaje-error block">Se ha llegado al maximo de listas</small>
               }@else{
                 @if(nuevaListaInput.errors?.['valorExistente']  && nuevaListaInput.touched){
-                  <small class="error">Ya existe una lista con ese nombre</small>
+                  <small class="mensaje-error block">Ya existe una lista con ese nombre</small>
                 }
               }
             }
           </div>
         </div>
-        <div class="div-acciones">
-          <button type="button" (click)="cancelar()">Cancelar</button>
-          <button type="submit">Guardar</button>
+        <div class="flex justify-end gap-2.5 max-[480px]:flex-col max-[480px]:items-stretch">
+          <button type="button" class="btn btn-secundario" (click)="cancelar()">Cancelar</button>
+          <button type="submit" class="btn btn-primario">Guardar</button>
         </div>
 
       </form>

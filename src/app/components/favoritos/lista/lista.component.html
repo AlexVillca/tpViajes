@@ -1,13 +1,14 @@
-<div class="div-layout">
+<div class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] space-y-6 text-tinta sm:mb-12 sm:mt-28">
 
-  <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+  <div class="video-fondo">
+    <video autoplay loop muted playsinline>
       <source src="assets/background-video.mp4" type="video/mp4" />
       Tu navegador no soporta reproducción de vídeos.
     </video>
   </div>
 
- <app-titulo-lista
+  <app-titulo-lista
+    class="block"
     *ngIf="lista"
     (eliminarLista)="eliminarLista()"
     (nuevoTitulo)="guardarNuevoTitulo($event)"
@@ -15,33 +16,36 @@
     [idUser]="this.idUsuario">
   </app-titulo-lista>
 
-  <div class="div-central" [class.visible]="containerVisible">
-    <div class="estado-carga" *ngIf="cargando">
-      <div class="spinner"></div>
-      <p class="estado">Cargando ciudades guardadas...</p>
+  <div class="space-y-6 motion-safe:animate-aparecer">
+    <div class="estado" *ngIf="cargando" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="m-0">Cargando ciudades guardadas...</p>
     </div>
 
-    <p class="error" *ngIf="errorCarga && !cargando">{{ errorCarga }}</p>
+    <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga }}</p>
 
-    <p class="estado-vacio" *ngIf="!cargando && !errorCarga && listaImagenes.length === 0">
+    <p class="estado font-medium" *ngIf="!cargando && !errorCarga && listaImagenes.length === 0" role="status">
       Esta lista aun no tiene ciudades guardadas.
     </p>
 
-    <div class="div-ciudades" *ngIf="!cargando && !errorCarga && listaImagenes.length > 0">
+    <div class="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3" *ngIf="!cargando && !errorCarga && listaImagenes.length > 0">
 
       @for(l of listaImagenes;track  l.ciudad.codigoPais + l.ciudad.nombre){
-        <app-card-eliminar
+        <app-card
+          class="block min-w-0"
+          [eliminable]="true"
           [arregloImagenes]="l.imagenes"
           [titulo]="l.ciudad.nombre"
           (click) ="accederCiudad(l.ciudad)"
           (borrar)="eliminarDeLaLista(l.ciudad)"
-        ></app-card-eliminar>
+        ></app-card>
       }
 
     </div>
 
-    <button type="button" class="button-volver"(click)="volver()">Volver</button>
+    <div class="flex justify-center">
+      <button type="button" class="btn btn-primario px-6" (click)="volver()">Volver</button>
+    </div>
 
   </div>
 </div>
-

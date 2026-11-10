@@ -44,6 +44,15 @@ testem.log
 /tmp_frontend.log
 /SEGUIMIENTO_LOCAL.md
 
+# Apuntes personales para preparar la defensa (no forman parte del proyecto)
+/docs/
+
+# Configuracion local de herramientas del editor (no forma parte del proyecto)
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+
 # System files
 .DS_Store
 Thumbs.db

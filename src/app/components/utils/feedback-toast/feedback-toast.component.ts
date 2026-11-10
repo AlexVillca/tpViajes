@@ -6,8 +6,7 @@ import { FeedbackService } from '../../../core/service/feedback.service';
   selector: 'app-feedback-toast',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './feedback-toast.component.html',
-  styleUrl: './feedback-toast.component.css'
+  templateUrl: './feedback-toast.component.html'
 })
 export class FeedbackToastComponent {
   feedback = inject(FeedbackService);

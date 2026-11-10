@@ -6,8 +6,7 @@ import { RestCountriesService, PaisInfo } from '../../../core/service/rest-count
   selector: 'app-info-pais',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './info-pais.component.html',
-  styleUrls: ['./info-pais.component.css']
+  templateUrl: './info-pais.component.html'
 })
 export class InfoPaisComponent implements OnInit {
   @Input() codigo?: string;

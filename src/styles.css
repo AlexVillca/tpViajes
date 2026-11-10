@@ -1,18 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
 @import "leaflet/dist/leaflet.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
+@layer base {
+  *,
+  ::before,
+  ::after {
     box-sizing: border-box;
   }
 
+  /* Sin preflight, los controles de formulario no heredan la fuente: se aplica a todos los elementos. */
   * {
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
+    font-family: theme('fontFamily.sans');
   }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Piezas reutilizables de la interfaz. Cada una combina utilidades de Tailwind. */
+@layer components {
+  .panel {
+    @apply rounded-3xl border border-solid border-white/80 bg-white/90 p-5 text-tinta shadow-[0_8px_30px_rgba(22,78,110,0.07)] sm:p-8;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-solid px-5 py-3 text-sm font-bold no-underline shadow-sm transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none;
+  }
+
+  .btn-primario {
+    @apply border-marca bg-marca text-white hover:border-marca-oscuro hover:bg-marca-oscuro active:bg-marca-profundo;
+  }
+
+  .btn-secundario {
+    @apply border-superficie-borde bg-white text-marca-texto hover:border-acento-medio hover:bg-superficie-clara;
+  }
+
+  .btn-peligro {
+    @apply border-peligro bg-peligro text-white hover:border-peligro-oscuro hover:bg-peligro-oscuro;
+  }
+
+  .btn-icono {
+    @apply inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-solid p-0 shadow-sm transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco motion-reduce:transition-none;
+  }
+
+  .campo {
+    @apply min-h-12 w-full min-w-0 rounded-xl border border-solid border-superficie-borde bg-white px-4 py-3 text-base text-tinta transition-colors placeholder:text-tinta-placeholder hover:border-acento-medio focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco motion-reduce:transition-none [&.ng-invalid.ng-touched]:border-peligro;
+  }
+
+  .etiqueta {
+    @apply block text-sm font-semibold text-tinta-media;
+  }
+
+  .enlace {
+    @apply rounded font-semibold text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco;
+  }
+
+  .mensaje-error {
+    @apply mt-2 text-sm leading-relaxed text-peligro;
+  }
+
+  .aviso-error {
+    @apply m-0 rounded-2xl border border-solid border-peligro-borde bg-peligro-fondo p-5 text-center text-sm leading-relaxed text-peligro-oscuro;
+  }
+
+  .estado {
+    @apply m-0 flex flex-col items-center gap-3 rounded-2xl border border-solid border-white/80 bg-white/90 p-8 text-center text-sm font-semibold leading-relaxed text-tinta-suave shadow-sm;
+  }
+
+  .spinner {
+    @apply h-9 w-9 animate-spin rounded-full border-4 border-solid border-superficie-spinner border-t-acento-medio [animation-duration:800ms] motion-reduce:animate-none;
+  }
+
+  /* Modales: quedan por encima del navbar (z 1000) y por debajo de los avisos (z 1500). */
+  .modal-fondo {
+    @apply fixed inset-0 z-[1100] bg-tinta/50 backdrop-blur-sm;
+  }
+
+  .modal {
+    @apply fixed left-1/2 top-1/2 z-[1101] max-h-[90vh] w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-solid border-white/80 bg-white p-6 text-tinta shadow-[0_18px_60px_rgba(18,58,83,0.25)];
+  }
+
+  /* Fondo de video propio de algunas páginas. */
+  .video-fondo {
+    @apply fixed inset-0 -z-[1] overflow-hidden;
+  }
+
+  .video-fondo video {
+    @apply h-screen w-screen object-cover;
+  }
+}

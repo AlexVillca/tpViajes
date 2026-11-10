@@ -10,8 +10,7 @@ import { PaisesService } from '../../../core/service/paises.service';
   selector: 'app-paises-list',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './paises-list.component.html',
-  styleUrls: ['./paises-list.component.css']
+  templateUrl: './paises-list.component.html'
 })
 export class PaisesListComponent implements OnInit {
   paises: Pais[] = [];
@@ -51,14 +50,6 @@ export class PaisesListComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      const contenedor = document.querySelector('.contenedor');
-      if (contenedor) {
-        contenedor.classList.add('visible');
-      }
-    }, 100);
-  }
 
   filtrarPaises(letra: string) {
     this.letraSeleccionada = letra;
@@ -106,19 +97,6 @@ export class PaisesListComponent implements OnInit {
   seleccionarPais(pais: Pais) {
     this.paisDataService.setPais(pais);
     this.router.navigate(['/pais']);
-  }
-
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-      const buttons = document.querySelectorAll('button');
-
-      buttons.forEach((button) => {
-        button.classList.add('visible');
-      });
-    }, 200);
   }
 
 }

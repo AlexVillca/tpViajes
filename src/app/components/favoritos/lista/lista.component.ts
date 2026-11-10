@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { ImagenesCiudad } from '../../../models/interface/imagenesLista.interface';
 
-import { CardEliminarComponent } from '../../utils/card-eliminar/card-eliminar.component';
+import { CardComponent } from '../../utils/card/card.component';
 import { FormsModule } from '@angular/forms';
 import { FeedbackService } from '../../../core/service/feedback.service';
 
@@ -20,9 +20,8 @@ import { TituloListaComponent } from './titulo-lista/titulo-lista.component';
 @Component({
   selector: 'app-lista',
   standalone: true,
-  imports: [CommonModule,CardEliminarComponent, FormsModule,TituloListaComponent],
-  templateUrl: './lista.component.html',
-  styleUrl: './lista.component.css'
+  imports: [CommonModule,CardComponent, FormsModule,TituloListaComponent],
+  templateUrl: './lista.component.html'
 })
 export class ListaComponent implements OnInit,OnDestroy{
   activatedRoute = inject(ActivatedRoute);
@@ -265,17 +264,6 @@ export class ListaComponent implements OnInit,OnDestroy{
 
   volver() {
     this.locationService.back();
-  }
-
-  containerVisible = false;
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-      this.containerVisible = true;
-
-    }, 200);
   }
 
 }

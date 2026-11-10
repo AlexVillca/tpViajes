@@ -1,15 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   standalone: true,
   imports: [],
-  templateUrl: './card.component.html',
-  styleUrl: './card.component.css'
+  templateUrl: './card.component.html'
 })
 export class CardComponent {
   @Input() titulo:string = "";
   @Input() arregloImagenes:string[] = [];
+  /** Muestra el botón para quitar el elemento (por ejemplo, una ciudad de una lista). */
+  @Input() eliminable = false;
+  @Output() borrar = new EventEmitter<void>();
 
   imagenActual: string = '';
   private index = 0;
@@ -43,6 +45,11 @@ export class CardComponent {
   setImagenError(event: Event) {
     const img = event.target as HTMLImageElement;
     img.src = 'assets/imagennodisponible.png';
+  }
+
+  borrarCiudad(event: MouseEvent): void {
+    event.stopPropagation();
+    this.borrar.emit();
   }
 
 }

@@ -19,7 +19,6 @@ describe('PaisesListComponent - presentación y paginación', () => {
     const fixture = TestBed.createComponent(PaisesListComponent);
     const component = fixture.componentInstance;
     spyOn(component, 'cargarPaises');
-    spyOn(component, 'onVideoLoaded');
     component.paises = Array.from({ length: count }, (_, index) => ({
       id: String(index), nombre: `Argentina ${index + 1}`, visible: true
     }));
@@ -78,7 +77,7 @@ describe('PaisesListComponent - presentación y paginación', () => {
         frame.style.width = `${width}px`;
         frame.style.height = '600px';
         const loaded = new Promise<void>(resolve => { frame.onload = () => resolve(); });
-        frame.srcdoc = `<style>${styles}\n*{transition:none!important} .contenedor{opacity:1!important;transform:none!important}</style>${fixture.nativeElement.outerHTML}`;
+        frame.srcdoc = `<style>${styles}\n*{transition:none!important;animation:none!important}</style>${fixture.nativeElement.outerHTML}`;
         document.body.appendChild(frame);
         try {
           await loaded;

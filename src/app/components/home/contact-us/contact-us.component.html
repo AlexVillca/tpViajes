@@ -1,47 +1,51 @@
 <section>
-  <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
+  <div class="video-fondo">
+    <video autoplay loop muted playsinline>
       <source src="assets/background-video.mp4" type="video/mp4" />
       Tu navegador no soporta reproduccion de videos.
     </video>
   </div>
 
-  <div class="contenedor" [class.visible]="containerVisible">
-    <h2>Contactanos</h2>
-    <p>Si tienes alguna duda o recomendacion, por favor completa el siguiente formulario y nos pondremos en contacto contigo.</p>
+  <div class="mx-auto mb-10 mt-24 w-[92%] max-w-[500px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28">
+    <div class="panel">
+      <h2 class="m-0 mb-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Contactanos</h2>
+      <p class="m-0 mb-6 text-sm leading-relaxed text-tinta-suave sm:text-base">Si tienes alguna duda o recomendacion, por favor completa el siguiente formulario y nos pondremos en contacto contigo.</p>
 
-    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" formControlName="name" placeholder="Ingresa tu nombre" />
-        <div class="error" *ngIf="formulario.controls['name'].errors?.['required'] && formulario.controls['name'].touched">
-          El nombre es obligatorio
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="space-y-5">
+        <div class="space-y-2">
+          <label class="etiqueta" for="name">Nombre:</label>
+          <input class="campo" type="text" id="name" formControlName="name" placeholder="Ingresa tu nombre" />
+          <div class="mensaje-error" *ngIf="formulario.controls['name'].errors?.['required'] && formulario.controls['name'].touched">
+            El nombre es obligatorio
+          </div>
+          <div class="mensaje-error" *ngIf="formulario.controls['name'].errors?.['minlength'] && formulario.controls['name'].touched">
+            El nombre debe tener al menos 3 caracteres
+          </div>
         </div>
-        <div class="error" *ngIf="formulario.controls['name'].errors?.['minlength'] && formulario.controls['name'].touched">
-          El nombre debe tener al menos 3 caracteres
+        <div class="space-y-2">
+          <label class="etiqueta" for="email">Correo electronico:</label>
+          <input class="campo" type="email" id="email" formControlName="email" placeholder="Ingresa tu correo" />
+          <div class="mensaje-error" *ngIf="formulario.controls['email'].errors?.['required'] && formulario.controls['email'].touched">
+            El correo electronico es obligatorio
+          </div>
+          <div class="mensaje-error" *ngIf="formulario.controls['email'].errors?.['email'] && formulario.controls['email'].touched">
+            El correo electronico no es valido
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Correo electronico:</label>
-        <input type="email" id="email" formControlName="email" placeholder="Ingresa tu correo" />
-        <div class="error" *ngIf="formulario.controls['email'].errors?.['required'] && formulario.controls['email'].touched">
-          El correo electronico es obligatorio
+        <div class="space-y-2">
+          <label class="etiqueta" for="message">Mensaje:</label>
+          <textarea class="campo resize-y" id="message" rows="4" formControlName="message" placeholder="Escribe tu mensaje aqui..."></textarea>
+          <div class="mensaje-error" *ngIf="formulario.controls['message'].errors?.['required'] && formulario.controls['message'].touched">
+            El mensaje es obligatorio
+          </div>
+          <div class="mensaje-error" *ngIf="formulario.controls['message'].errors?.['minlength'] && formulario.controls['message'].touched">
+            El mensaje debe tener al menos 10 caracteres
+          </div>
         </div>
-        <div class="error" *ngIf="formulario.controls['email'].errors?.['email'] && formulario.controls['email'].touched">
-          El correo electronico no es valido
+        <div class="flex justify-center">
+          <button type="submit" class="btn btn-primario px-8">Enviar</button>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="message">Mensaje:</label>
-        <textarea id="message" rows="4" formControlName="message" placeholder="Escribe tu mensaje aqui..."></textarea>
-        <div class="error" *ngIf="formulario.controls['message'].errors?.['required'] && formulario.controls['message'].touched">
-          El mensaje es obligatorio
-        </div>
-        <div class="error" *ngIf="formulario.controls['message'].errors?.['minlength'] && formulario.controls['message'].touched">
-          El mensaje debe tener al menos 10 caracteres
-        </div>
-      </div>
-      <button type="submit">Enviar</button>
-    </form>
+      </form>
+    </div>
   </div>
 </section>

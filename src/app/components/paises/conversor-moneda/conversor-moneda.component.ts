@@ -7,8 +7,7 @@ import { CurrencyService } from '../../../core/service/currency.service';
   selector: 'app-conversor-moneda',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './conversor-moneda.component.html',
-  styleUrls: ['./conversor-moneda.component.css']
+  templateUrl: './conversor-moneda.component.html'
 })
 export class ConversorMonedaComponent implements OnInit {
   @Input() monedaPais?: string;

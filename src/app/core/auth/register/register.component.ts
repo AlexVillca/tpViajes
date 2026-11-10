@@ -9,8 +9,7 @@ import { Usuario } from '../../../models/interface/usuario.interface'
   selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule,RouterModule],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent {
 
@@ -100,26 +99,6 @@ export class RegisterComponent {
       }
       }
     );
-  }
-
-  videoLoaded = false;
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-      const buttons = document.querySelectorAll('button');
-
-      buttons.forEach((button) => {
-        button.classList.add('visible');
-      });
-    }, 200);
-  }
-
-  containerVisible = false;
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.containerVisible = true;
-    }, 200);
   }
 
 }

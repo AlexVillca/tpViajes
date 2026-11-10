@@ -1,43 +1,43 @@
-  <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] space-y-6 text-[#123a53] sm:mb-12 sm:mt-28" *ngIf="pais$ | async as pais" aria-labelledby="pais-title">
+  <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] space-y-6 text-tinta sm:mb-12 sm:mt-28" *ngIf="pais$ | async as pais" aria-labelledby="pais-title">
     <nav aria-label="Migas de pan">
-      <ol class="m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-1 p-0 text-xs leading-relaxed text-[#416277] sm:text-sm">
-        <li><a routerLink="/home" class="rounded font-medium text-[#176c8d] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b]">Inicio</a></li>
+      <ol class="m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-1 p-0 text-xs leading-relaxed text-tinta-suave sm:text-sm">
+        <li><a routerLink="/home" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">Inicio</a></li>
         <li aria-hidden="true">›</li>
-        <li><a routerLink="/paises" class="rounded font-medium text-[#176c8d] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b]">Países</a></li>
+        <li><a routerLink="/paises" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">Países</a></li>
         <li aria-hidden="true">›</li>
-        <li class="min-w-0 break-words font-semibold text-[#123a53] [overflow-wrap:anywhere]" aria-current="page">{{ pais.nombre }}</li>
+        <li class="min-w-0 break-words font-semibold text-tinta [overflow-wrap:anywhere]" aria-current="page">{{ pais.nombre }}</li>
       </ol>
     </nav>
 
     <section class="relative isolate overflow-hidden rounded-3xl border border-solid border-white/80 bg-white/80 p-4 shadow-[0_8px_30px_rgba(22,78,110,0.07)] sm:p-8">
 
 
-      <header class="mb-6 flex flex-wrap items-center justify-between gap-5 border-0 border-b border-solid border-[#cce4ec] pb-6">
+      <header class="mb-6 flex flex-wrap items-center justify-between gap-5 border-0 border-b border-solid border-superficie-borde pb-6">
         <h1 id="pais-title" class="m-0 min-w-0 break-words text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{{ pais.nombre }}</h1>
         <img *ngIf="pais.bandera" class="h-auto w-24 shrink-0 rounded-xl border border-solid border-white/80 shadow-md sm:w-32" [src]="pais.bandera"
              alt="Bandera de {{ pais.nombre }}" (error)="setImagenError($event)">
       </header>
 
-      <div class="space-y-4 rounded-2xl border border-solid border-[#d9eaf0] bg-white/90 p-4 text-sm leading-relaxed text-[#416277] sm:p-6 sm:text-base">
-        <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Nombre oficial:</strong> {{ pais.nombreOficial }}</p>
-        <p class="m-0"><strong class="font-semibold text-[#123a53]">Código:</strong> {{ pais.codigo }}</p>
+      <div class="space-y-4 rounded-2xl border border-solid border-superficie-linea bg-white/90 p-4 text-sm leading-relaxed text-tinta-suave sm:p-6 sm:text-base">
+        <p class="m-0 break-words"><strong class="font-semibold text-tinta">Nombre oficial:</strong> {{ pais.nombreOficial }}</p>
+        <p class="m-0"><strong class="font-semibold text-tinta">Código:</strong> {{ pais.codigo }}</p>
 
         <app-conversor-moneda [monedaPais]="pais.moneda"></app-conversor-moneda>
 
         <ng-container *ngIf="pais.visa">
-          <p class="m-0"><strong class="font-semibold text-[#123a53]">Visa necesaria:</strong> {{ pais.visa.necesaria ? 'Sí' : 'No' }}</p>
-          <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Descripción de visa:</strong> {{ pais.visa.descripcion }}</p>
+          <p class="m-0"><strong class="font-semibold text-tinta">Visa necesaria:</strong> {{ pais.visa.necesaria ? 'Sí' : 'No' }}</p>
+          <p class="m-0 break-words"><strong class="font-semibold text-tinta">Descripción de visa:</strong> {{ pais.visa.descripcion }}</p>
         </ng-container>
-        <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Clima:</strong> {{ pais.clima }}</p>
-        <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Gastronomía:</strong> {{ pais.gastronomia }}</p>
-        <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Cultura:</strong> {{ pais.cultura }}</p>
-        <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Seguridad:</strong> {{ pais.seguridad }}</p>
-        <p class="m-0 break-words"><strong class="font-semibold text-[#123a53]">Transporte:</strong> {{ pais.transporte }}</p>
+        <p class="m-0 break-words"><strong class="font-semibold text-tinta">Clima:</strong> {{ pais.clima }}</p>
+        <p class="m-0 break-words"><strong class="font-semibold text-tinta">Gastronomía:</strong> {{ pais.gastronomia }}</p>
+        <p class="m-0 break-words"><strong class="font-semibold text-tinta">Cultura:</strong> {{ pais.cultura }}</p>
+        <p class="m-0 break-words"><strong class="font-semibold text-tinta">Seguridad:</strong> {{ pais.seguridad }}</p>
+        <p class="m-0 break-words"><strong class="font-semibold text-tinta">Transporte:</strong> {{ pais.transporte }}</p>
       </div>
 
       <app-info-pais [codigo]="pais.codigo"></app-info-pais>
 
-      <div class="relative isolate mt-6 overflow-hidden rounded-2xl border border-solid border-[#cce4ec] shadow-sm">
+      <div class="relative isolate mt-6 overflow-hidden rounded-2xl border border-solid border-superficie-borde shadow-sm">
         <app-map [lat]="pais.latitud ?? 0" [lon]="pais.longitud ?? 0"
                  [nombre]="pais.nombre" [flagUrl]="pais.bandera!"></app-map>
       </div>
@@ -47,12 +47,12 @@
       <h2 id="ciudades-title" class="m-0 mb-4 text-xl font-bold tracking-tight sm:text-2xl">Ciudades</h2>
       <ul class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
         <li class="min-w-0" *ngFor="let ciudad of pais.ciudades">
-          <a class="flex h-full min-h-11 cursor-pointer items-center rounded-xl border border-solid border-[#cce4ec] bg-white px-4 py-3 text-sm font-semibold text-[#176c8d] no-underline shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#14b8b3] hover:bg-[#e7f6f8] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" role="button" tabindex="0" (click)="seleccionarCiudad(ciudad)" (keyup.enter)="seleccionarCiudad(ciudad)"><span class="min-w-0 break-words">{{ ciudad.nombre }}</span></a>
+          <a class="flex h-full min-h-11 cursor-pointer items-center rounded-xl border border-solid border-superficie-borde bg-white px-4 py-3 text-sm font-semibold text-marca-texto no-underline shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-acento hover:bg-superficie-clara hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" role="button" tabindex="0" (click)="seleccionarCiudad(ciudad)" (keyup.enter)="seleccionarCiudad(ciudad)"><span class="min-w-0 break-words">{{ ciudad.nombre }}</span></a>
         </li>
       </ul>
     </section>
 
     <div class="flex justify-center">
-      <button class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-solid border-[#1685a8] bg-[#1685a8] px-6 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#126b9b] hover:bg-[#126b9b] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087d9b] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" type="button" (click)="volver()">Ver todos los países</button>
+      <button class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-solid border-marca bg-marca px-6 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-marca-oscuro hover:bg-marca-oscuro hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" type="button" (click)="volver()">Ver todos los países</button>
     </div>
   </main>

@@ -1,65 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
+<div class="video-fondo">
+  <video autoplay loop muted playsinline>
+    <source src="assets/background-video.mp4" type="video/mp4" />
+    Tu navegador no soporta reproduccion de videos.
+  </video>
+</div>
 
-<body>
-  <div class="video-background">
-    <video autoplay loop muted playsinline class="background-video" (loadeddata)="onVideoLoaded()">
-      <source src="assets/background-video.mp4" type="video/mp4" />
-      Tu navegador no soporta reproduccion de videos.
-    </video>
+<div class="mx-auto mb-10 mt-24 w-[92%] max-w-[420px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28" id="container">
+  <div class="panel">
+    <form [formGroup]="formulario" (ngSubmit)="loguearse()" class="space-y-5">
+      <h1 class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Inicia sesion aqui</h1>
+
+      <div>
+        <input type="email" class="campo" formControlName="email" placeholder="Correo electronico" aria-label="Correo electrónico" autocomplete="email" />
+        <div *ngIf="formulario.controls['email'].touched || formulario.controls['email'].dirty">
+          @if(formulario.controls['email'].getError('required')){
+            <div class="mensaje-error">Campo requerido</div>
+          }
+          @if(formulario.controls['email'].getError('email')){
+            <div class="mensaje-error">Correo electronico no valido</div>
+          }
+        </div>
+        <div *ngIf="emailIncorrecto" class="mensaje-error">Email incorrecto</div>
+      </div>
+
+      <div>
+        <input type="password" class="campo" formControlName="password" placeholder="Contrasena" aria-label="Contraseña" autocomplete="current-password" />
+        <div *ngIf="formulario.controls['password'].touched || formulario.controls['password'].dirty">
+          @if(formulario.controls['password'].getError('required')){
+            <div class="mensaje-error">Campo requerido</div>
+          }
+        </div>
+        <div *ngIf="passwordIncorrecto" class="mensaje-error">Password incorrecto</div>
+      </div>
+
+      <div *ngIf="serverError" class="mensaje-error">{{ serverError }}</div>
+
+      <button type="submit" class="btn btn-primario w-full">Iniciar sesion</button>
+      <p class="m-0 text-center text-sm text-tinta-suave">No tienes cuenta? <a class="enlace" routerLink="/register">Registrate aqui</a></p>
+    </form>
   </div>
-
-  <div class="container" id="container" [class.visible]="containerVisible">
-    <div class="login-container">
-      <form [formGroup]="formulario" (ngSubmit)="loguearse()" class="form-lg">
-        <h1 class="titulaso">Inicia sesion aqui</h1>
-        <div class="form-control2">
-          <input type="email" class="email-2" formControlName="email" placeholder="Correo electronico" aria-label="Correo electrónico" />
-          <div *ngIf="formulario.controls['email'].touched || formulario.controls['email'].dirty">
-            @if(formulario.controls['email'].getError('required')){
-              <div class="error">
-                Campo requerido
-              </div>
-            }
-            @if(formulario.controls['email'].getError('email')){
-              <div class="error">
-                Correo electronico no valido
-              </div>
-            }
-          </div>
-          <div *ngIf="emailIncorrecto" class="error">
-            Email incorrecto
-          </div>
-        </div>
-
-        <div class="form-control">
-          <input type="password" formControlName="password" placeholder="Contrasena" aria-label="Contraseña" />
-          <small class="error"></small>
-          <div *ngIf="formulario.controls['password'].touched || formulario.controls['password'].dirty">
-            @if(formulario.controls['password'].getError('required')){
-              <div class="error">
-                Campo requerido
-              </div>
-            }
-          </div>
-          <div *ngIf="passwordIncorrecto" class="error">
-            Password incorrecto
-          </div>
-        </div>
-
-        <div *ngIf="serverError" class="error">
-          {{ serverError }}
-        </div>
-
-        <button type="submit">Iniciar sesion</button>
-        <small class="minireg">No tienes cuenta? <a class="minireg" routerLink="/register"><strong>Registrate aqui</strong></a></small>
-      </form>
-    </div>
-  </div>
-</body>
-</html>
+</div>

@@ -7,8 +7,7 @@ import { FeedbackService } from '../../../core/service/feedback.service';
   selector: 'app-contact-us',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './contact-us.component.html',
-  styleUrl: './contact-us.component.css'
+  templateUrl: './contact-us.component.html'
 })
 export class ContactUsComponent {
   email: string = "drarroundtheworld@gmail.com"
@@ -20,23 +19,6 @@ export class ContactUsComponent {
     email: ['', [Validators.required, Validators.email]],
     message: ['', [Validators.required, Validators.minLength(10)]]
   });
-
-  videoLoaded = false;
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-
-    }, 200);
-  }
-
-  containerVisible = false;
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.containerVisible = true;
-    }, 200);
-  }
 
   onSubmit() {
     if (this.formulario.invalid) {

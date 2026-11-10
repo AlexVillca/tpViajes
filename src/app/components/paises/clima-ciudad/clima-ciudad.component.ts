@@ -6,8 +6,7 @@ import { ClimaService, ClimaActual } from '../../../core/service/clima.service';
   selector: 'app-clima-ciudad',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './clima-ciudad.component.html',
-  styleUrls: ['./clima-ciudad.component.css']
+  templateUrl: './clima-ciudad.component.html'
 })
 export class ClimaCiudadComponent implements OnInit {
   @Input() ciudad?: string;

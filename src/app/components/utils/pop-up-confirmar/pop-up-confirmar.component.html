@@ -1,11 +1,11 @@
-<div class="overlay">
+<div class="modal-fondo">
 
-  <div class="popup" role="dialog" aria-modal="true">
-    <p>{{ texto }}</p>
+  <div class="modal max-w-sm" role="dialog" aria-modal="true">
+    <p class="m-0 text-base font-bold leading-relaxed text-tinta">{{ texto }}</p>
 
-    <div class="acciones">
-      <button class="boton-confirmar" (click)="confirmar.emit()">Confirmar</button>
-      <button class="boton-cancelar" (click)="cancelar.emit()">Cancelar</button>
+    <div class="mt-5 flex justify-end gap-2.5">
+      <button type="button" class="btn btn-peligro" (click)="confirmar.emit()">Confirmar</button>
+      <button type="button" class="btn btn-secundario" (click)="cancelar.emit()">Cancelar</button>
     </div>
 
   </div>

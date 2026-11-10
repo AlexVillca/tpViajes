@@ -12,8 +12,7 @@ import { InfoPaisComponent } from '../info-pais/info-pais.component';
   selector: 'app-pais-detail',
   standalone: true,
   imports: [MapComponent, CommonModule, ConversorMonedaComponent, InfoPaisComponent, RouterLink],
-  templateUrl: './pais-detail.component.html',
-  styleUrls: ['./pais-detail.component.css']
+  templateUrl: './pais-detail.component.html'
 })
 export class PaisDetailComponent implements OnInit {
   paisDataService = inject(PaisDataService);

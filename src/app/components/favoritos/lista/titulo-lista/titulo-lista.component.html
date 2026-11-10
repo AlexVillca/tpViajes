@@ -1,26 +1,26 @@
- <div class="div-titulo">
+<div class="flex min-h-[60px] flex-wrap items-center justify-center gap-2.5 px-2.5 py-1">
 
-      @if(!this.editarTitulo){
-        <h1 class="titulo" >{{nombreOriginal}}</h1>
-      }@else {
-        <input  class="input-titulo" maxlength="20" [class.error]="mensajeNombreRepetido" (ngModelChange)="onTituloChange()" type="text" aria-label="Nombre de la lista" [(ngModel)]="tituloInput" >
-        <small  [class.visible]="mensajeNombreRepetido" >Nombre de lista existente</small>
-      }
+  @if(!this.editarTitulo){
+    <h1 class="m-0 break-words text-center text-3xl font-bold leading-tight tracking-tight text-tinta [overflow-wrap:anywhere] sm:text-4xl">{{nombreOriginal}}</h1>
+  }@else {
+    <input class="campo max-w-[220px] text-lg font-semibold text-marca-texto [&.error]:border-peligro [&.error]:text-peligro" maxlength="20" [class.error]="mensajeNombreRepetido" (ngModelChange)="onTituloChange()" type="text" aria-label="Nombre de la lista" [(ngModel)]="tituloInput" >
+    <small class="order-last w-full text-center text-sm text-peligro" [class.invisible]="!mensajeNombreRepetido">Nombre de lista existente</small>
+  }
 
-      <div class="div-botones">
-        @if (!this.editarTitulo) {
-          <button class="boton-renombrar-confirmar" (click)="cambiarEditarTitulo()" aria-label="Renombrar lista"><i class="material-icons" aria-hidden="true">edit</i></button>
-          <button class="boton-borrar-cancelar" (click)="mostrarPopUp=true" aria-label="Eliminar lista"><i class="material-icons" aria-hidden="true">delete</i></button>
-        }@else {
-          <button class="boton-renombrar-confirmar" (click)="guardarNuevoTitulo()" aria-label="Guardar nombre"><i class="material-icons" aria-hidden="true">check</i></button>
-          <button class="boton-borrar-cancelar" (click)="cancelarNuevoTitulo()" aria-label="Cancelar edición"><i class="material-icons" aria-hidden="true">close</i></button>
-        }
-      </div>
+  <div class="flex items-center gap-1.5">
+    @if (!this.editarTitulo) {
+      <button class="btn-icono border-marca bg-marca text-white hover:border-marca-oscuro hover:bg-marca-oscuro" (click)="cambiarEditarTitulo()" aria-label="Renombrar lista"><i class="material-icons" aria-hidden="true">edit</i></button>
+      <button class="btn-icono border-marca bg-marca text-white hover:border-peligro hover:bg-peligro" (click)="mostrarPopUp=true" aria-label="Eliminar lista"><i class="material-icons" aria-hidden="true">delete</i></button>
+    }@else {
+      <button class="btn-icono border-marca bg-marca text-white hover:border-marca-oscuro hover:bg-marca-oscuro" (click)="guardarNuevoTitulo()" aria-label="Guardar nombre"><i class="material-icons" aria-hidden="true">check</i></button>
+      <button class="btn-icono border-marca bg-marca text-white hover:border-peligro hover:bg-peligro" (click)="cancelarNuevoTitulo()" aria-label="Cancelar edición"><i class="material-icons" aria-hidden="true">close</i></button>
+    }
   </div>
+</div>
 
-  <app-pop-up-confirmar *ngIf="mostrarPopUp"
-    [texto]="textoPopUp()"
-    (confirmar)="eliminarLista.emit()"
-    (cancelar)="mostrarPopUp = false"
-    >
-  </app-pop-up-confirmar>
+<app-pop-up-confirmar *ngIf="mostrarPopUp"
+  [texto]="textoPopUp()"
+  (confirmar)="eliminarLista.emit()"
+  (cancelar)="mostrarPopUp = false"
+  >
+</app-pop-up-confirmar>

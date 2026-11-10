@@ -14,8 +14,7 @@ import { CardComponent } from "../../utils/card/card.component";
   selector: 'app-lista-de-listas',
   standalone: true,
   imports: [CommonModule, RouterModule, CardComponent],
-  templateUrl: './lista-de-listas.component.html',
-  styleUrl: './lista-de-listas.component.css'
+  templateUrl: './lista-de-listas.component.html'
 })
 export class ListaDeListasComponent implements OnInit {
   us = inject(UsuariosService);

@@ -14,8 +14,7 @@ import { Usuario } from '../models/interface/usuario.interface';
   selector: 'app-game',
   standalone: true,
   imports: [FormsModule, CommonModule, HttpClientModule],
-  templateUrl: './game.component.html',
-  styleUrl: './game.component.css'
+  templateUrl: './game.component.html'
 })
 export class GameComponent {
   paisesService = inject(PaisesService);
@@ -38,7 +37,6 @@ export class GameComponent {
   id: string | null = null;
   errorJuego = '';
   errorRanking = '';
-  videoLoaded = false;
 
   ngOnInit(): void {
     this.listar();
@@ -126,13 +124,6 @@ export class GameComponent {
     }, 200);
 
     setTimeout(() => {
-      const listaOpciones = document.querySelectorAll('.lista-opciones li');
-      listaOpciones.forEach((li) => {
-        li.classList.add('visible');
-      });
-    }, 100);
-
-    setTimeout(() => {
       this.opciones.forEach(opcion => opcion['visible'] = true);
     }, 100);
   }
@@ -179,16 +170,5 @@ export class GameComponent {
     if (!this.errorJuego && this.arregloPaises.length >= 4) {
       this.generarPregunta();
     }
-  }
-
-  onVideoLoaded() {
-    this.videoLoaded = true;
-    setTimeout(() => {
-      const buttons = document.querySelectorAll('button');
-
-      buttons.forEach((button) => {
-        button.classList.add('visible');
-      });
-    }, 200);
   }
 }

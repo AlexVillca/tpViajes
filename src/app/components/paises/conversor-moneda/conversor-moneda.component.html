@@ -1,16 +1,16 @@
-<section class="rounded-2xl border border-solid border-[#b8e3e6] bg-[#f0fafb] p-4 sm:p-5" aria-labelledby="conversor-title">
-  <h2 id="conversor-title" class="m-0 mb-4 text-lg font-bold text-[#123a53]">💱 Conversor de moneda</h2>
+<section class="rounded-2xl border border-solid border-superficie-resalte bg-superficie p-4 sm:p-5" aria-labelledby="conversor-title">
+  <h2 id="conversor-title" class="m-0 mb-4 text-lg font-bold text-tinta">💱 Conversor de moneda</h2>
 
-  <p class="m-0 text-sm italic leading-relaxed text-[#416277]" *ngIf="!monedaDestino">
+  <p class="m-0 text-sm italic leading-relaxed text-tinta-suave" *ngIf="!monedaDestino">
     No hay una moneda convertible disponible para este país.
   </p>
 
   <ng-container *ngIf="monedaDestino">
     <div class="grid grid-cols-1 items-end gap-4 sm:grid-cols-2">
       <div class="flex min-w-0 flex-col gap-2">
-        <label class="text-xs font-semibold uppercase tracking-wide text-[#416277]" for="monto">Monto</label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-tinta-suave" for="monto">Monto</label>
         <input
-          class="min-h-11 w-full min-w-0 rounded-xl border border-solid border-[#cce4ec] bg-white px-3 py-2 text-base text-[#123a53] transition-colors hover:border-[#149eae] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b] motion-reduce:transition-none"
+          class="min-h-11 w-full min-w-0 rounded-xl border border-solid border-superficie-borde bg-white px-3 py-2 text-base text-tinta transition-colors hover:border-acento-medio focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco motion-reduce:transition-none"
           id="monto"
           type="number"
           min="0"
@@ -19,9 +19,9 @@
       </div>
 
       <div class="flex min-w-0 flex-col gap-2">
-        <label class="text-xs font-semibold uppercase tracking-wide text-[#416277]" for="base">Moneda de origen</label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-tinta-suave" for="base">Moneda de origen</label>
         <select
-          class="min-h-11 w-full min-w-0 cursor-pointer rounded-xl border border-solid border-[#cce4ec] bg-white px-3 py-2 text-base text-[#123a53] transition-colors hover:border-[#149eae] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#087d9b] motion-reduce:transition-none"
+          class="min-h-11 w-full min-w-0 cursor-pointer rounded-xl border border-solid border-superficie-borde bg-white px-3 py-2 text-base text-tinta transition-colors hover:border-acento-medio focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco motion-reduce:transition-none"
           id="base"
           [(ngModel)]="baseSeleccionada"
           (ngModelChange)="cargarTasas()">
@@ -29,24 +29,24 @@
         </select>
       </div>
 
-      <div class="text-center text-xl font-bold text-[#1685a8] sm:col-span-2" aria-hidden="true">=</div>
+      <div class="text-center text-xl font-bold text-marca sm:col-span-2" aria-hidden="true">=</div>
 
-      <div class="flex min-w-0 flex-col gap-2 rounded-xl border border-solid border-[#cce4ec] bg-white p-4 sm:col-span-2" role="status" aria-live="polite" aria-atomic="true">
-        <span class="text-xs font-semibold uppercase tracking-wide text-[#416277]">En {{ monedaDestino }}</span>
-        <span class="break-words text-xl font-bold tabular-nums text-[#1685a8] sm:text-2xl" *ngIf="!cargando && !error && resultado !== null">
+      <div class="flex min-w-0 flex-col gap-2 rounded-xl border border-solid border-superficie-borde bg-white p-4 sm:col-span-2" role="status" aria-live="polite" aria-atomic="true">
+        <span class="text-xs font-semibold uppercase tracking-wide text-tinta-suave">En {{ monedaDestino }}</span>
+        <span class="break-words text-xl font-bold tabular-nums text-marca sm:text-2xl" *ngIf="!cargando && !error && resultado !== null">
           {{ resultado | number: '1.2-2' }} {{ monedaDestino }}
         </span>
-        <span class="text-sm italic text-[#416277] motion-safe:animate-pulse" *ngIf="cargando">Calculando…</span>
-        <span class="text-sm italic text-[#416277]"
+        <span class="text-sm italic text-tinta-suave motion-safe:animate-pulse" *ngIf="cargando">Calculando…</span>
+        <span class="text-sm italic text-tinta-suave"
               *ngIf="!cargando && !error && resultado === null">
           No cotiza esta moneda
         </span>
       </div>
     </div>
 
-    <p class="mb-0 mt-4 rounded-xl border border-solid border-[#f3c7c2] bg-[#fff4f2] p-3 text-sm leading-relaxed text-[#9d291f]" *ngIf="error" role="alert">{{ error }}</p>
+    <p class="mb-0 mt-4 rounded-xl border border-solid border-peligro-borde bg-peligro-fondo p-3 text-sm leading-relaxed text-peligro-oscuro" *ngIf="error" role="alert">{{ error }}</p>
 
-    <p class="mb-0 mt-4 text-sm leading-relaxed text-[#416277]"
+    <p class="mb-0 mt-4 text-sm leading-relaxed text-tinta-suave"
        *ngIf="!cargando && !error && tasa !== null">
       1 {{ baseSeleccionada }} = {{ tasa | number: '1.2-4' }} {{ monedaDestino }}
       <br />
