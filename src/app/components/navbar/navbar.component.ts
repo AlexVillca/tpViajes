@@ -3,6 +3,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 
 import { IdUsuarioService } from '../../core/service/id-usuario.service';
+import { UsuariosService } from '../../core/service/usuarios.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent implements OnInit{
 
   idUsuarioService = inject(IdUsuarioService);
+  usuariosService = inject(UsuariosService);
   routerService = inject(Router);
   flag:boolean = false;
   username: string | null = null;
@@ -70,8 +72,7 @@ export class NavbarComponent implements OnInit{
 
   logOut(){
     this.cerrarMenus();
-    this.idUsuarioService.clearUserId();
-    this.routerService.navigate(['home']);
+    this.usuariosService.logout().subscribe(() => this.routerService.navigate(['home']));
   }
 
   goToUserProfile() {

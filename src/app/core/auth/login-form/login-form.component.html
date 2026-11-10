@@ -4,17 +4,14 @@
       <h1 id="login-titulo" class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Inicia sesión aquí</h1>
 
       <div class="space-y-2">
-        <label class="etiqueta" for="login-email">Correo electrónico</label>
-        <input id="login-email" type="email" class="campo" formControlName="email" placeholder="nombre@correo.com" autocomplete="email" />
-        <div *ngIf="formulario.controls['email'].touched || formulario.controls['email'].dirty">
-          @if(formulario.controls['email'].getError('required')){
+        <label class="etiqueta" for="login-usuario">Correo o nombre de usuario</label>
+        <input id="login-usuario" type="text" class="campo" formControlName="usuario" autocomplete="username" autocapitalize="none" spellcheck="false" />
+        <div *ngIf="formulario.controls['usuario'].touched || formulario.controls['usuario'].dirty">
+          @if(formulario.controls['usuario'].getError('required')){
             <div class="mensaje-error">Campo requerido</div>
           }
-          @if(formulario.controls['email'].getError('email')){
-            <div class="mensaje-error">Correo electrónico no válido</div>
-          }
         </div>
-        <div *ngIf="emailIncorrecto" class="mensaje-error">Email incorrecto</div>
+        <div *ngIf="usuarioIncorrecto" class="mensaje-error">No encontramos una cuenta con ese correo o nombre de usuario</div>
       </div>
 
       <div class="space-y-2">
@@ -25,7 +22,7 @@
             <div class="mensaje-error">Campo requerido</div>
           }
         </div>
-        <div *ngIf="passwordIncorrecto" class="mensaje-error">Password incorrecto</div>
+        <div *ngIf="passwordIncorrecto" class="mensaje-error">Contraseña incorrecta</div>
       </div>
 
       <div *ngIf="serverError" class="mensaje-error" role="alert">{{ serverError }}</div>

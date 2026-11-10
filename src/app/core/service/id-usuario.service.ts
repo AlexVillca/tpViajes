@@ -7,19 +7,29 @@ export interface SessionUser {
   email: string;
 }
 
+/**
+ * Guarda los datos visibles de la sesión (id, nombre y email) para la interfaz.
+ * El token NO se guarda acá: el backend lo manda en una cookie httpOnly que el
+ * JavaScript de la página no puede leer.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class IdUsuarioService {
   private readonly STORAGE_KEY = 'deruta_session';
   private readonly LEGACY_STORAGE_KEY = 'userId';
-  private readonly TOKEN_KEY = 'deruta_token';
+  // Versiones anteriores guardaban el token en localStorage; se borra si quedó.
+  private readonly LEGACY_TOKEN_KEY = 'deruta_token';
 
   private readonly sessionSubject = new BehaviorSubject<SessionUser | null>(
     this.readStoredSession()
   );
 
   readonly session$ = this.sessionSubject.asObservable();
+
+  constructor() {
+    localStorage.removeItem(this.LEGACY_TOKEN_KEY);
+  }
 
   get id$(): Observable<string | null> {
     return this.session$.pipe(map(session => session?.id ?? null));
@@ -33,17 +43,10 @@ export class IdUsuarioService {
     return this.currentSession !== null;
   }
 
-  setSession(session: SessionUser, token?: string): void {
+  setSession(session: SessionUser): void {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem(this.LEGACY_STORAGE_KEY, session.id);
-    if (token) {
-      localStorage.setItem(this.TOKEN_KEY, token);
-    }
     this.sessionSubject.next(session);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   setId(nuevoId: string | null): void {
@@ -68,7 +71,6 @@ export class IdUsuarioService {
   clearUserId() {
     localStorage.removeItem(this.STORAGE_KEY);
     localStorage.removeItem(this.LEGACY_STORAGE_KEY);
-    localStorage.removeItem(this.TOKEN_KEY);
     this.sessionSubject.next(null);
   }
 
@@ -107,6 +109,4 @@ export class IdUsuarioService {
       return null;
     }
   }
-
-  constructor() { }
 }

@@ -1,10 +1,21 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ListaFav, Usuario } from '../../models/interface/usuario.interface';
-import { IdUsuarioService } from './id-usuario.service';
+import { IdUsuarioService, SessionUser } from './id-usuario.service';
 import { buildHttpError } from '../utils/http-error.util';
+
+interface RespuestaSesion {
+  user: SessionUser;
+}
+
+/** El nombre de usuario o el email que se quiso guardar ya pertenece a otra cuenta. */
+export class ErrorDatoEnUso extends Error {
+  constructor(readonly campo: 'username' | 'email') {
+    super(campo === 'email' ? 'El email ya está en uso.' : 'El nombre de usuario ya está en uso.');
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -33,17 +44,15 @@ export class UsuariosService {
     );
   }
 
-  login(email: string, password: string): Observable<boolean | null> {
+  /** Inicia sesión con email o nombre de usuario. El backend deja el token en una cookie httpOnly. */
+  login(usuario: string, password: string): Observable<boolean | null> {
     const url = `${environment.apiBaseUrl}/login`;
 
     return this.http
-      .post<{ token: string; user: { id: string; username: string; email: string } }>(
-        url,
-        { email, password }
-      )
+      .post<RespuestaSesion>(url, { usuario: usuario.trim(), password })
       .pipe(
         map(respuesta => {
-          this.idUs.setSession(respuesta.user, respuesta.token);
+          this.idUs.setSession(respuesta.user);
           return true;
         }),
         catchError((error: HttpErrorResponse) => {
@@ -56,6 +65,50 @@ export class UsuariosService {
           return buildHttpError(error, 'No se pudo iniciar sesión.');
         })
       );
+  }
+
+  /** Cierra la sesión en el backend (borra la cookie) y en la interfaz, aunque el backend no responda. */
+  logout(): Observable<void> {
+    return this.http.post<void>(`${environment.apiBaseUrl}/logout`, {}).pipe(
+      catchError(() => of(undefined)),
+      map(() => this.idUs.clearUserId())
+    );
+  }
+
+  /**
+   * Confirma con el backend que la cookie de sesión sigue vigente y actualiza los datos locales.
+   * Si venció, cierra la sesión local; si el backend no responde, deja todo como estaba.
+   */
+  verificarSesion(): Observable<SessionUser | null> {
+    return this.http.get<RespuestaSesion>(`${environment.apiBaseUrl}/sesion`).pipe(
+      map(respuesta => {
+        this.idUs.setSession(respuesta.user);
+        return respuesta.user;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.idUs.clearUserId();
+        }
+        return of(this.idUs.currentSession);
+      })
+    );
+  }
+
+  /** Cambia nombre de usuario y/o email. Ante un dato repetido devuelve el campo en conflicto. */
+  actualizarPerfil(cambios: { username?: string; email?: string }): Observable<SessionUser> {
+    return this.http.patch<RespuestaSesion>(`${environment.apiBaseUrl}/perfil`, cambios).pipe(
+      map(respuesta => {
+        this.idUs.setSession(respuesta.user);
+        return respuesta.user;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 409) {
+          const campo = error.error?.campo === 'email' ? 'email' : 'username';
+          return throwError(() => new ErrorDatoEnUso(campo));
+        }
+        return buildHttpError(error, 'No se pudieron guardar los datos del perfil.');
+      })
+    );
   }
 
   comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {

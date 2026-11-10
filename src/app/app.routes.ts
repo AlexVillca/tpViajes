@@ -13,6 +13,7 @@ import { AboutUsComponent } from './components/home/about-us/about-us.component'
 import { UpdatePasswordComponent } from './core/auth/update-password/update-password.component';
 import { FichaUserComponent } from './core/auth/ficha-user/ficha-user.component';
 import { authGuard } from './core/auth/auth.guard';
+import { EditarPerfilComponent } from './core/auth/editar-perfil/editar-perfil.component';
 
 export const routes: Routes = [
 
@@ -30,6 +31,7 @@ export const routes: Routes = [
   { path: 'about', component:AboutUsComponent},
   { path:'updateP', component:UpdatePasswordComponent, canActivate: [authGuard]},
   { path: 'fichaUser', component:FichaUserComponent, canActivate: [authGuard]},
+  { path: 'editarPerfil', component: EditarPerfilComponent, canActivate: [authGuard]},
   { path:'**',redirectTo: ''}
 
 ];

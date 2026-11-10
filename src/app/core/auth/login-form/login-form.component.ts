@@ -17,26 +17,26 @@ export class LoginFormComponent {
   route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   formulario = this.fb.nonNullable.group({
-    email: ['',[Validators.required, Validators.email]],
+    usuario: ['',[Validators.required]],
     password: ['',[Validators.required]]
   })
 
-  emailIncorrecto = false;
+  usuarioIncorrecto = false;
   passwordIncorrecto = false;
   serverError = '';
   loguearse(){
-    this.emailIncorrecto = false;
+    this.usuarioIncorrecto = false;
     this.passwordIncorrecto =false;
     this.serverError = '';
     if(this.formulario.invalid){
       this.formulario.markAllAsTouched();
       return;
     }
-    this.usuarioService.login(this.formulario.get("email")?.value ?? "", this.formulario.get("password")?.value ?? "").subscribe(
+    this.usuarioService.login(this.formulario.get("usuario")?.value ?? "", this.formulario.get("password")?.value ?? "").subscribe(
       {
         next:(value)=>{
           if(value === null){
-            this.emailIncorrecto = true;
+            this.usuarioIncorrecto = true;
 
           }else{
             if(value){

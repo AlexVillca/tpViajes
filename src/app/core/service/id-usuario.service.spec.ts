@@ -7,32 +7,32 @@ describe('IdUsuarioService', () => {
   beforeEach(() => {
     localStorage.clear();
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IdUsuarioService);
   });
 
   afterEach(() => localStorage.clear());
 
-  it('guarda la sesion y el token', () => {
-    service.setSession({ id: '1', username: 'u', email: 'e' }, 'tok123');
+  it('guarda los datos visibles de la sesión', () => {
+    service = TestBed.inject(IdUsuarioService);
+    service.setSession({ id: '1', username: 'u', email: 'e' });
 
     expect(service.isLoggedIn).toBeTrue();
-    expect(service.getToken()).toBe('tok123');
     expect(service.currentSession).toEqual({ id: '1', username: 'u', email: 'e' });
   });
 
-  it('clearUserId limpia sesion y token', () => {
-    service.setSession({ id: '1', username: 'u', email: 'e' }, 'tok');
+  it('clearUserId limpia la sesión', () => {
+    service = TestBed.inject(IdUsuarioService);
+    service.setSession({ id: '1', username: 'u', email: 'e' });
     service.clearUserId();
 
     expect(service.isLoggedIn).toBeFalse();
-    expect(service.getToken()).toBeNull();
     expect(service.currentSession).toBeNull();
+    expect(localStorage.getItem('deruta_session')).toBeNull();
   });
 
-  it('setSession sin token deja getToken en null pero mantiene la sesion', () => {
-    service.setSession({ id: '1', username: 'u', email: 'e' });
+  it('borra el token que versiones anteriores dejaban en localStorage', () => {
+    localStorage.setItem('deruta_token', 'viejo');
+    service = TestBed.inject(IdUsuarioService);
 
-    expect(service.getToken()).toBeNull();
-    expect(service.isLoggedIn).toBeTrue();
+    expect(localStorage.getItem('deruta_token')).toBeNull();
   });
 });

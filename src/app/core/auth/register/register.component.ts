@@ -18,7 +18,7 @@ export class RegisterComponent {
   registroExitoso = false;
   fb = inject(FormBuilder)
   formulario = this.fb.nonNullable.group({
-    username:["",[Validators.required,Validators.minLength(4),Validators.maxLength(20)]],
+    username:["",[Validators.required,Validators.minLength(4),Validators.maxLength(20),Validators.pattern(/^[^@]+$/)]],
     email:["",[Validators.required,Validators.email]],
     password:["",[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
 

@@ -27,6 +27,7 @@ describe('authInterceptor', () => {
     http = TestBed.inject(HttpClient);
     httpMock = TestBed.inject(HttpTestingController);
     idUs = TestBed.inject(IdUsuarioService);
+    idUs.setSession({ id: '1', username: 'u', email: 'e' });
   });
 
   afterEach(() => {
@@ -34,50 +35,53 @@ describe('authInterceptor', () => {
     localStorage.clear();
   });
 
-  it('agrega Authorization en requests a la API propia cuando hay token', () => {
-    idUs.setSession({ id: '1', username: 'u', email: 'e' }, 'mitoken');
-
+  it('envía la cookie de sesión (withCredentials) a la API propia, sin encabezado Authorization', () => {
     http.get(`${environment.apiBaseUrl}/usuarios/1`).subscribe();
 
     const req = httpMock.expectOne(`${environment.apiBaseUrl}/usuarios/1`);
-    expect(req.request.headers.get('Authorization')).toBe('Bearer mitoken');
+    expect(req.request.withCredentials).toBeTrue();
+    expect(req.request.headers.has('Authorization')).toBeFalse();
     req.flush({});
   });
 
-  it('NO agrega Authorization a APIs externas', () => {
-    idUs.setSession({ id: '1', username: 'u', email: 'e' }, 'mitoken');
-
+  it('NO envía credenciales a APIs externas', () => {
     http.get(`${environment.currencyApiUrl}/ARS`).subscribe();
 
     const req = httpMock.expectOne(`${environment.currencyApiUrl}/ARS`);
-    expect(req.request.headers.has('Authorization')).toBeFalse();
+    expect(req.request.withCredentials).toBeFalse();
     req.flush({});
   });
 
-  it('NO agrega Authorization al endpoint de login', () => {
-    idUs.setSession({ id: '1', username: 'u', email: 'e' }, 'mitoken');
-
-    http.post(`${environment.apiBaseUrl}/login`, {}).subscribe();
-
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/login`);
-    expect(req.request.headers.has('Authorization')).toBeFalse();
-    req.flush({});
-  });
-
-  it('ante un 401 limpia la sesion y redirige a /login', () => {
-    idUs.setSession({ id: '1', username: 'u', email: 'e' }, 'mitoken');
-    const clearSpy = spyOn(idUs, 'clearUserId').and.callThrough();
-
-    http.get(`${environment.apiBaseUrl}/usuarios/1`).subscribe({
-      next: () => {},
-      error: () => {}
-    });
+  it('ante un 401 limpia la sesión y redirige a /login', () => {
+    http.get(`${environment.apiBaseUrl}/usuarios/1`).subscribe({ error: () => {} });
 
     httpMock
       .expectOne(`${environment.apiBaseUrl}/usuarios/1`)
       .flush('no', { status: 401, statusText: 'Unauthorized' });
 
-    expect(clearSpy).toHaveBeenCalled();
+    expect(idUs.isLoggedIn).toBeFalse();
     expect(router.navigate).toHaveBeenCalledWith(['/login']);
+  });
+
+  it('un 403 (sin permiso) no cierra la sesión', () => {
+    http.patch(`${environment.apiBaseUrl}/usuarios/2`, {}).subscribe({ error: () => {} });
+
+    httpMock
+      .expectOne(`${environment.apiBaseUrl}/usuarios/2`)
+      .flush('no', { status: 403, statusText: 'Forbidden' });
+
+    expect(idUs.isLoggedIn).toBeTrue();
+    expect(router.navigate).not.toHaveBeenCalled();
+  });
+
+  it('un 401 del login o de la verificación de sesión no redirige', () => {
+    for (const ruta of ['login', 'sesion']) {
+      http.get(`${environment.apiBaseUrl}/${ruta}`).subscribe({ error: () => {} });
+      httpMock
+        .expectOne(`${environment.apiBaseUrl}/${ruta}`)
+        .flush('no', { status: 401, statusText: 'Unauthorized' });
+    }
+
+    expect(router.navigate).not.toHaveBeenCalled();
   });
 });

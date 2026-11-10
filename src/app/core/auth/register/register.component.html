@@ -11,6 +11,7 @@
             <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['required']">Nombre es requerido</div>
             <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['minlength']">Nombre debe tener al menos 4 caracteres</div>
             <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['maxlength']">Nombre debe tener máximo 20 caracteres</div>
+            <div class="mensaje-error" *ngIf="formulario.controls['username']?.errors?.['pattern']">El nombre de usuario no puede contener "&#64;"</div>
           </div>
           <div *ngIf="userNameInvalid" class="mensaje-error">El nombre ya está en uso</div>
         </div>
