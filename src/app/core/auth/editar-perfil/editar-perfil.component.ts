@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { IdUsuarioService } from '../../service/id-usuario.service';
 import { ErrorDatoEnUso, UsuariosService } from '../../service/usuarios.service';
 import { FeedbackService } from '../../service/feedback.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-editar-perfil',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './editar-perfil.component.html'
 })
 export class EditarPerfilComponent implements OnInit {
@@ -61,7 +62,7 @@ export class EditarPerfilComponent implements OnInit {
     this.usuarios.actualizarPerfil(cambios).subscribe({
       next: () => {
         this.guardando = false;
-        this.feedback.success('Datos del perfil actualizados.');
+        this.feedback.success('mensajes.perfilActualizado');
         this.volver();
       },
       error: (error: Error) => {

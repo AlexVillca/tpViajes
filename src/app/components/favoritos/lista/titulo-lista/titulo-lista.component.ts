@@ -4,11 +4,12 @@ import { NgIf } from '@angular/common';
 import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-confirmar.component';
 import { UsuariosService } from '../../../../core/service/usuarios.service';
 import { FeedbackService } from '../../../../core/service/feedback.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-titulo-lista',
   standalone: true,
-  imports: [FormsModule, NgIf,PopUpConfirmarComponent],
+  imports: [FormsModule, NgIf,PopUpConfirmarComponent, TranslatePipe],
   templateUrl: './titulo-lista.component.html'
 })
 export class TituloListaComponent{
@@ -36,9 +37,6 @@ export class TituloListaComponent{
 
   mostrarPopUp:boolean = false;
 
-  textoPopUp():string{
-    return "Desea eliminar la lista " + this.nombreOriginal + "?";
-  }
 
   guardarNuevoTitulo():void{
     this.tituloInput = this.tituloInput.trim();

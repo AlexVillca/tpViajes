@@ -1,12 +1,12 @@
 @if(logueado){
-  <button type="button" class="btn btn-primario" (click)="abrePopUp()">Guardar</button>
+  <button type="button" class="btn btn-primario" (click)="abrePopUp()">{{ 'comun.guardar' | translate }}</button>
   @if(visible){
     <div class="modal-fondo"></div>
     <div class="modal max-w-[500px]" role="dialog" aria-modal="true" aria-labelledby="guardar-favoritos-titulo" appDialogo (cerrar)="cancelar()">
 
       <form class="flex w-full flex-col gap-4" [formGroup]="formulario" (ngSubmit)="saveSelection()">
 
-        <h2 id="guardar-favoritos-titulo" class="m-0 text-lg font-bold text-tinta">Guardar en favoritos</h2>
+        <h2 id="guardar-favoritos-titulo" class="m-0 text-lg font-bold text-tinta">{{ 'favoritos.guardarEnFavoritos' | translate }}</h2>
 
         <div class="max-h-[268px] w-full space-y-2 overflow-y-auto" [formGroup]="groupCheckbox">
           @for(idLista of idsGroupCheckbox;track $index){
@@ -18,27 +18,27 @@
 
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <input type="text" class="campo min-h-11 min-w-[120px] flex-1 py-2" formControlName="nuevocheckboxListaFavorito" placeholder="Nueva lista" maxlength="20" aria-label="Nombre de la nueva lista" />
-            <button type="button" class="btn btn-secundario" (click)="agregarNuevaLista()">Agregar</button>
+            <input type="text" class="campo min-h-11 min-w-[120px] flex-1 py-2" formControlName="nuevocheckboxListaFavorito" [placeholder]="'favoritos.nuevaLista' | translate" maxlength="20" [attr.aria-label]="'favoritos.nombreNuevaLista' | translate" />
+            <button type="button" class="btn btn-secundario" (click)="agregarNuevaLista()">{{ 'comun.agregar' | translate }}</button>
           </div>
 
           <div class="min-h-[15px]">
             @if(nuevaListaInput.errors?.['required'] && nuevaListaInput.touched){
-              <small class="mensaje-error block">Ingresa un nombre para la lista</small>
+              <small class="mensaje-error block">{{ 'favoritos.ingresaNombre' | translate }}</small>
             }@else{
               @if(nuevaListaInput.errors?.['maxItemsAlcanzado'] && nuevaListaInput.touched){
-                <small class="mensaje-error block">Se ha llegado al máximo de listas</small>
+                <small class="mensaje-error block">{{ 'favoritos.maximoListas' | translate }}</small>
               }@else{
                 @if(nuevaListaInput.errors?.['valorExistente']  && nuevaListaInput.touched){
-                  <small class="mensaje-error block">Ya existe una lista con ese nombre</small>
+                  <small class="mensaje-error block">{{ 'favoritos.nombreRepetido' | translate }}</small>
                 }
               }
             }
           </div>
         </div>
         <div class="flex justify-end gap-2.5 max-[480px]:flex-col max-[480px]:items-stretch">
-          <button type="button" class="btn btn-secundario" (click)="cancelar()">Cancelar</button>
-          <button type="submit" class="btn btn-primario">Guardar</button>
+          <button type="button" class="btn btn-secundario" (click)="cancelar()">{{ 'comun.cancelar' | translate }}</button>
+          <button type="submit" class="btn btn-primario">{{ 'comun.guardar' | translate }}</button>
         </div>
 
       </form>

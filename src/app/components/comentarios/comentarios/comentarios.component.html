@@ -1,20 +1,20 @@
 <form [formGroup]="formulario" (ngSubmit)="agregarComentarioDb()">
 
   <div class="flex flex-col gap-2 sm:flex-row">
-    <input class="campo sm:flex-1" type="text" formControlName="comentario" placeholder="Ingresa tu comentario aquí" aria-label="Comentario">
-    <button class="btn btn-primario shrink-0">Agregar</button>
+    <input class="campo sm:flex-1" type="text" formControlName="comentario" [placeholder]="'comentarios.placeholder' | translate" [attr.aria-label]="'comentarios.campo' | translate">
+    <button class="btn btn-primario shrink-0">{{ 'comun.agregar' | translate }}</button>
   </div>
 
   <div class="mensaje-error" *ngIf="formulario.controls['comentario'].getError('required') && formulario.controls['comentario'].touched">
-    El comentario es obligatorio
+    {{ 'comentarios.obligatorio' | translate }}
   </div>
 
   <div class="mensaje-error" *ngIf="formulario.controls['comentario'].getError('minlength') && formulario.controls['comentario'].touched">
-    Debe tener 3 letras o más
+    {{ 'comentarios.minimo' | translate }}
   </div>
 
   <div class="mensaje-error" *ngIf="errorMessage">
-    {{ errorMessage }}
+    {{ errorMessage | translate }}
   </div>
 
 </form>

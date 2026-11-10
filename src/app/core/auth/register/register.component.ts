@@ -3,12 +3,13 @@ import { Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { UsuariosService } from '../../service/usuarios.service';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Usuario } from '../../../models/interface/usuario.interface'
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,RouterModule],
+  imports: [ReactiveFormsModule,CommonModule,RouterModule, TranslatePipe],
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {
@@ -89,7 +90,7 @@ export class RegisterComponent {
             }
           );
         } else {
-          console.log('El email ya está en uso.');
+          console.log('mensajes.emailEnUso');
           this.emailInvalid = true;
 
         }

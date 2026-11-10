@@ -9,11 +9,12 @@ import { ImagenesLista } from '../../../models/interface/imagenesLista.interface
 import { PaisesService } from '../../../core/service/paises.service';
 import { Pais } from '../../../models/interface/pais.interface';
 import { CardComponent } from "../../utils/card/card.component";
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lista-de-listas',
   standalone: true,
-  imports: [CommonModule, RouterModule, CardComponent],
+  imports: [CommonModule, RouterModule, CardComponent, TranslatePipe],
   templateUrl: './lista-de-listas.component.html'
 })
 export class ListaDeListasComponent implements OnInit {
@@ -44,24 +45,24 @@ export class ListaDeListasComponent implements OnInit {
                       this.cargando = false;
                     },
                     error: (e) => {
-                      this.errorCarga = e?.message ?? 'No se pudieron cargar los países.';
+                      this.errorCarga = e?.message ?? 'mensajes.cargarPaises';
                       this.cargando = false;
                     }
                   });
                 },
                 error: (e) => {
-                  this.errorCarga = e?.message ?? 'No se pudieron cargar las listas.';
+                  this.errorCarga = e?.message ?? 'mensajes.cargarListas';
                   this.cargando = false;
                 }
               }
             );
           } else {
-            this.errorCarga = 'No se pudo obtener el usuario actual.';
+            this.errorCarga = 'mensajes.usuarioActual';
             this.cargando = false;
           }
         },
         error: (e) => {
-          this.errorCarga = e?.message ?? 'No se pudo obtener el usuario actual.';
+          this.errorCarga = e?.message ?? 'mensajes.usuarioActual';
           this.cargando = false;
         }
       });

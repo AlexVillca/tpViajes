@@ -8,11 +8,12 @@ import { ComentariosComponent } from '../../comentarios/comentarios.component';
 import { CiudadDataService } from '../../../../core/service/ciudad-data.service';
 import { FeedbackService } from '../../../../core/service/feedback.service';
 import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-confirmar.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comentarios-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ComentariosComponent, PopUpConfirmarComponent],
+  imports: [CommonModule, FormsModule, ComentariosComponent, PopUpConfirmarComponent, TranslatePipe],
   templateUrl: './comentarios-list.component.html'
 })
 export class ComentariosListComponent implements OnInit {
@@ -103,7 +104,7 @@ export class ComentariosListComponent implements OnInit {
     const mensajeNormalizado = this.mensajeEditado.trim();
 
     if (mensajeNormalizado.length < 3) {
-      this.errorEdicion = 'El comentario debe tener al menos 3 caracteres.';
+      this.errorEdicion = 'mensajes.comentarioMinimo';
       return;
     }
 
@@ -114,7 +115,7 @@ export class ComentariosListComponent implements OnInit {
         );
 
         this.cancelarEdicion();
-        this.feedback.success('Comentario editado.');
+        this.feedback.success('mensajes.comentarioEditado');
       },
       error: (error) => {
         this.feedback.error(error.message);
@@ -149,7 +150,7 @@ export class ComentariosListComponent implements OnInit {
 
         this.cancelarEliminar();
         this.paginaActual = Math.min(this.paginaActual, this.totalPaginas);
-        this.feedback.success('Comentario eliminado.');
+        this.feedback.success('mensajes.comentarioEliminado');
       },
       error: (error) => {
         this.feedback.error(error.message);

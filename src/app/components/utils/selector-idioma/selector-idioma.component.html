@@ -1,0 +1,17 @@
+<button
+  type="button"
+  role="switch"
+  class="relative inline-flex h-9 shrink-0 cursor-pointer items-center rounded-full border border-solid border-white/40 bg-white/10 p-0.5 text-xs font-bold text-white transition-colors hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none max-[480px]:h-8"
+  [attr.aria-checked]="idioma.esIngles"
+  [attr.aria-label]="'idioma.interruptor' | translate"
+  [title]="'idioma.interruptor' | translate"
+  (click)="idioma.alternar()"
+>
+  <span
+    class="absolute bottom-0.5 left-0.5 top-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow transition-transform duration-200 motion-reduce:transition-none"
+    [class.translate-x-full]="idioma.esIngles"
+    aria-hidden="true"
+  ></span>
+  <span class="relative z-[1] w-9 text-center transition-colors duration-200 max-[480px]:w-8" [class.text-marca-oscuro]="!idioma.esIngles" aria-hidden="true">{{ 'idioma.es' | translate }}</span>
+  <span class="relative z-[1] w-9 text-center transition-colors duration-200 max-[480px]:w-8" [class.text-marca-oscuro]="idioma.esIngles" aria-hidden="true">{{ 'idioma.en' | translate }}</span>
+</button>

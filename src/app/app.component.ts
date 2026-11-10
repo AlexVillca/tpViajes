@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { IdUsuarioService } from './core/service/id-usuario.service';
 import { UsuariosService } from './core/service/usuarios.service';
+import { IdiomaService } from './core/i18n/idioma.service';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { RouterOutlet } from '@angular/router';
@@ -25,6 +26,8 @@ import { FeedbackToastComponent } from './components/utils/feedback-toast/feedba
 export class AppComponent implements OnInit, OnDestroy {
   private readonly idUsuario = inject(IdUsuarioService);
   private readonly usuarios = inject(UsuariosService);
+  // Se crea al iniciar la app para aplicar el idioma guardado antes del primer render.
+  private readonly idioma = inject(IdiomaService);
   reproducirFondo = false;
   private preferenciaMovimiento?: MediaQueryList;
   private readonly actualizarMovimiento = (evento: MediaQueryListEvent): void => {

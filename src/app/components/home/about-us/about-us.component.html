@@ -1,16 +1,14 @@
 <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[900px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28" aria-labelledby="nosotros-titulo">
     <div class="panel space-y-5 text-center">
       <img class="mx-auto block h-auto w-[250px] max-w-[80%]" src="../../../assets/logo_grande.png" alt="deRuta" width="671" height="372" />
-      <h1 id="nosotros-titulo" class="m-0 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Sobre Nosotros</h1>
-      <p class="m-0 text-base leading-relaxed text-tinta-suave sm:text-lg">Somos un equipo de profesionales apasionados por ayudar a las personas a tomar decisiones informadas al momento de viajar. Nuestro proyecto consiste en una plataforma web que ofrece información útil y relevante sobre destinos turísticos en todo el mundo, desde países hasta las ciudades más populares en términos de turismo.
-
-        El objetivo de nuestra web es guiarte en el proceso de selección de tu próximo destino, brindándote detalles que te permitan tomar decisiones basadas en datos precisos. Aunque el proyecto aún está en desarrollo, planeamos ampliar nuestras funcionalidades para incluir herramientas que te ayuden no solo en la elección del lugar al que viajar, sino también en la organización completa del viaje, desde la búsqueda de vuelos hasta la planificación de rutas personalizadas.</p>
-      <p class="m-0 font-semibold text-tinta">Responsables del proyecto:</p>
+      <h1 id="nosotros-titulo" class="m-0 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{{ 'nosotros.titulo' | translate }}</h1>
+      <p class="m-0 text-base leading-relaxed text-tinta-suave sm:text-lg">{{ 'nosotros.texto' | translate }}</p>
+      <p class="m-0 font-semibold text-tinta">{{ 'nosotros.responsables' | translate }}</p>
       <ul class="m-0 flex list-none flex-wrap justify-center gap-2 p-0">
         @for (integrante of integrantes; track integrante) {
           <li class="rounded-full border border-solid border-superficie-resalte bg-superficie-clara px-4 py-1.5 text-sm font-semibold text-marca-texto">{{ integrante }}</li>
         }
       </ul>
-      <p class="m-0 text-base leading-relaxed text-tinta-suave sm:text-lg">Gracias por seguirnos en este viaje y por tu interés en nuestro proyecto. Estamos comprometidos en ofrecerte las mejores herramientas para hacer de tu experiencia de viaje algo inolvidable.</p>
+      <p class="m-0 text-base leading-relaxed text-tinta-suave sm:text-lg">{{ 'nosotros.gracias' | translate }}</p>
     </div>
 </main>

@@ -62,7 +62,10 @@ export interface PaisInfo {
   idiomas: string[];
   monedas: string[];
   zonasHorarias: string[];
+  /** Nombres en español de los países limítrofes. */
   limitrofes: string[];
+  /** Los mismos países con su nombre en inglés. */
+  limitrofesEn: string[];
 }
 
 @Injectable({
@@ -77,7 +80,7 @@ export class RestCountriesService {
   getInfoPais(codigo: string): Observable<PaisInfo> {
     if (!this.apiKey) {
       return throwError(() => new Error(
-        'Falta configurar la API key de REST Countries.'
+        'mensajes.sinApiKey'
       ));
     }
 
@@ -103,7 +106,7 @@ export class RestCountriesService {
       .pipe(
         map(resp => this.requireFirstObject(resp)),
         switchMap(resp => this.agregarLimitrofes(resp)),
-        catchError(error => this.normalizeApiError(error, 'No se pudo obtener la información del país.'))
+        catchError(error => this.normalizeApiError(error, 'mensajes.infoPais'))
       );
   }
 
@@ -127,7 +130,8 @@ export class RestCountriesService {
             .filter((nombre): nombre is string => Boolean(nombre))
         : [],
       zonasHorarias: resp.timezones ?? [],
-      limitrofes: []
+      limitrofes: [],
+      limitrofesEn: []
     };
 
     if (!resp.borders || resp.borders.length === 0) {
@@ -142,15 +146,19 @@ export class RestCountriesService {
         )
         .pipe(
           map(response => this.requireFirstObject(response)),
-          map(limitrofe => limitrofe.names?.translations?.spa?.common ?? limitrofe.names?.common ?? code),
-          catchError(() => of(code))
+          map(limitrofe => ({
+            es: limitrofe.names?.translations?.spa?.common ?? limitrofe.names?.common ?? code,
+            en: limitrofe.names?.common ?? code
+          })),
+          catchError(() => of({ es: code, en: code }))
         )
     );
 
     return forkJoin(requests).pipe(
       map(limitrofes => ({
         ...base,
-        limitrofes
+        limitrofes: limitrofes.map(l => l.es),
+        limitrofesEn: limitrofes.map(l => l.en)
       }))
     );
   }
@@ -163,14 +171,14 @@ export class RestCountriesService {
 
   private requireFirstObject<T>(resp: ApiListResponse<T>): T {
     if (resp.success === false) {
-      const message = resp.errors?.[0]?.message ?? 'La API de REST Countries devolvió un error.';
+      const message = resp.errors?.[0]?.message ?? 'mensajes.errorRestCountries';
       throw new Error(message);
     }
 
     const first = resp.data?.objects?.[0];
 
     if (!first) {
-      throw new Error('No se encontró información para el país solicitado.');
+      throw new Error('mensajes.sinInfoPais');
     }
 
     return first;

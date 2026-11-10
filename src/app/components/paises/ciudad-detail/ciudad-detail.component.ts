@@ -11,6 +11,8 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
 import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-favoritos/pop-up-guardar-favoritos.component';
 import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
 import { ValoracionCiudadComponent } from '../valoracion-ciudad/valoracion-ciudad.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DatoPipe } from '../../../core/i18n/idioma.pipes';
 
 @Component({
   selector: 'app-ciudad-detail',
@@ -18,7 +20,7 @@ import { ValoracionCiudadComponent } from '../valoracion-ciudad/valoracion-ciuda
   imports: [ComentariosListComponent
     ,CommonModule
     ,PopUpGuardarFavoritosComponent
-    ,ClimaCiudadComponent, ValoracionCiudadComponent, RouterLink],
+    ,ClimaCiudadComponent, ValoracionCiudadComponent, RouterLink, TranslatePipe, DatoPipe],
   templateUrl: './ciudad-detail.component.html'
 })
 export class CiudadDetailComponent implements OnInit{

@@ -33,7 +33,7 @@ export class CurrencyService {
         rates: resp.rates
       })),
       catchError(error =>
-        buildHttpError(error, 'No se pudieron obtener las cotizaciones.')
+        buildHttpError(error, 'mensajes.cotizaciones')
       )
     );
   }

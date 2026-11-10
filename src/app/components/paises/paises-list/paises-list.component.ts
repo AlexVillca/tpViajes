@@ -6,11 +6,14 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
 import { Router } from '@angular/router';
 import { PaisesService } from '../../../core/service/paises.service';
 import { BuscadorCiudadesComponent } from '../buscador-ciudades/buscador-ciudades.component';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DatoPipe } from '../../../core/i18n/idioma.pipes';
 
 @Component({
   selector: 'app-paises-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, BuscadorCiudadesComponent],
+  imports: [CommonModule, RouterModule, BuscadorCiudadesComponent, TranslatePipe, DatoPipe],
   templateUrl: './paises-list.component.html'
 })
 export class PaisesListComponent implements OnInit {
@@ -20,6 +23,7 @@ export class PaisesListComponent implements OnInit {
   paisesService = inject(PaisesService);
   paisDataService = inject(PaisDataService);
   router =  inject(Router);
+  idioma = inject(IdiomaService);
 
   letras = 'ABCDEFGHIJKLMNOPQRSTUVZ'.split('');
   letraSeleccionada = 'todos';
@@ -45,7 +49,7 @@ export class PaisesListComponent implements OnInit {
         this.cargando = false;
       },
       error: (error) => {
-        this.errorCarga = error?.message ?? 'No se pudieron cargar los países.';
+        this.errorCarga = error?.message ?? 'mensajes.cargarPaises';
         this.cargando = false;
       }
     });
@@ -58,8 +62,9 @@ export class PaisesListComponent implements OnInit {
     if (!letra || letra === 'todos') {
       this.paisesFiltrados = this.paises;
     } else {
+      // Se filtra por el nombre que se ve en pantalla (en inglés, "Germany" va con la G).
       this.paisesFiltrados = this.paises.filter(pais =>
-        pais.nombre.toLowerCase().startsWith(letra.toLowerCase())
+        this.idioma.dato(pais, 'nombre').toLowerCase().startsWith(letra.toLowerCase())
       );
     }
 
@@ -89,10 +94,10 @@ export class PaisesListComponent implements OnInit {
 
   get mensajeVacio(): string {
     if (this.letraSeleccionada === 'todos') {
-      return 'No hay países para mostrar.';
+      return 'mensajes.sinPaises';
     }
 
-    return `No se encontraron paises con la letra ${this.letraSeleccionada.toUpperCase()}.`;
+    return 'mensajes.sinPaisesLetra';
   }
 
   seleccionarPais(pais: Pais) {

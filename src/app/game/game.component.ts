@@ -9,11 +9,13 @@ import { IdUsuarioService } from '../core/service/id-usuario.service';
 import { UsuariosService } from '../core/service/usuarios.service';
 import { Pais } from '../models/interface/pais.interface';
 import { Usuario } from '../models/interface/usuario.interface';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DatoPipe } from '../core/i18n/idioma.pipes';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule, TranslatePipe, DatoPipe],
   templateUrl: './game.component.html'
 })
 export class GameComponent {
@@ -95,7 +97,7 @@ export class GameComponent {
 
   generarPregunta() {
     if (this.arregloPaises.length < 4) {
-      this.errorJuego = 'No hay suficientes países para iniciar el minijuego.';
+      this.errorJuego = 'mensajes.juegoSinPaises';
       this.paisAleatorio = null;
       this.opciones = [];
       this.mensaje = '';
@@ -130,7 +132,7 @@ export class GameComponent {
 
   verificarRespuesta(pais: Pais) {
     if (pais === this.paisAleatorio) {
-      this.mensaje = 'Correcto!';
+      this.mensaje = 'mensajes.juegoCorrecto';
       this.puntaje++;
       this.opcionesDesHabilitadas = true;
       setTimeout(() => this.reiniciarJuego(), 2000);
@@ -139,7 +141,7 @@ export class GameComponent {
 
     this.intentos++;
     if (this.intentos >= 2) {
-      this.mensaje = 'Intentos agotados. Reiniciando...';
+      this.mensaje = 'mensajes.juegoAgotados';
 
       if (this.puntaje > this.mejorPuntaje) {
         this.mejorPuntaje = this.puntaje;
@@ -160,7 +162,7 @@ export class GameComponent {
       return;
     }
 
-    this.mensaje = 'Incorrecto, intenta de nuevo.';
+    this.mensaje = 'mensajes.juegoIncorrecto';
   }
 
   reiniciarJuego() {

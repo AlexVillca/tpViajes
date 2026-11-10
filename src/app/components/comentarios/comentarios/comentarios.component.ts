@@ -11,11 +11,12 @@ import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { concatMap, Observable } from 'rxjs';
 import { FeedbackService } from '../../../core/service/feedback.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comentarios',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './comentarios.component.html'
 })
 export class ComentariosComponent {
@@ -67,7 +68,7 @@ export class ComentariosComponent {
     const comentarioString = this.formulario.getRawValue().comentario.trim();
 
     if (comentarioString.length < 3) {
-      this.errorMessage = 'El comentario debe tener al menos 3 caracteres.';
+      this.errorMessage = 'mensajes.comentarioMinimo';
       return;
     }
 
@@ -78,7 +79,7 @@ export class ComentariosComponent {
     });
 
     if (!this.idPais || !this.nombreCiudad) {
-      this.feedback.error('No se pudo obtener el país o la ciudad.');
+      this.feedback.error('mensajes.obtenerPaisCiudad');
       return;
     }
 
@@ -95,7 +96,7 @@ export class ComentariosComponent {
           this.emitirComentario.emit(comentario);
           this.formulario.reset({ comentario: '' });
           this.errorMessage = '';
-          this.feedback.success('Comentario publicado.');
+          this.feedback.success('mensajes.comentarioPublicado');
         },
         error: (error) => {
           this.feedback.error(error.message);

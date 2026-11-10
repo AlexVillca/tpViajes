@@ -2,37 +2,37 @@
   <section class="rounded-3xl border border-solid border-white/80 bg-white/90 p-5 text-tinta shadow-[0_8px_30px_rgba(22,78,110,0.07)] sm:p-8">
     <header class="mb-6 flex items-center gap-4 border-0 border-b border-solid border-superficie-linea pb-6">
       <span class="h-10 w-1 shrink-0 rounded-full bg-gradient-to-b from-marca-logo to-acento" aria-hidden="true"></span>
-      <h1 id="perfil-title" class="m-0 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Mi cuenta</h1>
+      <h1 id="perfil-title" class="m-0 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{{ 'perfil.titulo' | translate }}</h1>
     </header>
 
     <ng-container *ngIf="session$ | async as session; else sinSesion">
       <section class="mb-6" aria-labelledby="datos-cuenta-title">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <h2 id="datos-cuenta-title" class="m-0 text-lg font-bold">Datos de la cuenta</h2>
-          <a routerLink="/editarPerfil" class="btn btn-secundario min-h-10 px-4 py-2">Editar datos</a>
+          <h2 id="datos-cuenta-title" class="m-0 text-lg font-bold">{{ 'perfil.datos' | translate }}</h2>
+          <a routerLink="/editarPerfil" class="btn btn-secundario min-h-10 px-4 py-2">{{ 'perfil.editar' | translate }}</a>
         </div>
         <dl class="m-0 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div class="min-w-0 rounded-2xl border border-solid border-superficie-linea bg-superficie p-4">
-            <dt class="mb-2 text-sm font-semibold text-tinta-media">Nombre de usuario</dt>
-            <dd class="m-0 break-words text-base text-tinta [overflow-wrap:anywhere]">{{ session.username || 'No disponible en la sesión actual' }}</dd>
+            <dt class="mb-2 text-sm font-semibold text-tinta-media">{{ 'perfil.usuario' | translate }}</dt>
+            <dd class="m-0 break-words text-base text-tinta [overflow-wrap:anywhere]">{{ session.username || ('perfil.noDisponible' | translate) }}</dd>
           </div>
           <div class="min-w-0 rounded-2xl border border-solid border-superficie-linea bg-superficie p-4">
-            <dt class="mb-2 text-sm font-semibold text-tinta-media">Correo electrónico</dt>
-            <dd class="m-0 break-words text-base text-tinta [overflow-wrap:anywhere]">{{ session.email || 'No disponible en la sesión actual' }}</dd>
+            <dt class="mb-2 text-sm font-semibold text-tinta-media">{{ 'perfil.email' | translate }}</dt>
+            <dd class="m-0 break-words text-base text-tinta [overflow-wrap:anywhere]">{{ session.email || ('perfil.noDisponible' | translate) }}</dd>
           </div>
         </dl>
       </section>
-    <nav aria-label="Opciones del perfil">
+    <nav [attr.aria-label]="'perfil.opciones' | translate">
       <ul class="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2">
         <li class="min-w-0">
           <a class="group flex h-full min-h-16 items-center justify-between gap-3 rounded-2xl border border-solid border-superficie-resalte bg-superficie-clara p-4 text-base font-semibold leading-snug text-marca-texto no-underline shadow-sm transition-colors duration-200 hover:border-acento-medio hover:bg-superficie-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco active:bg-[#c5e8ed] motion-reduce:transition-none sm:p-5" routerLink="/favoritos">
-            <span class="min-w-0 break-words">Favoritos</span>
+            <span class="min-w-0 break-words">{{ 'perfil.favoritos' | translate }}</span>
             <svg class="h-5 w-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </a>
         </li>
         <li class="min-w-0">
           <a class="group flex h-full min-h-16 items-center justify-between gap-3 rounded-2xl border border-solid border-marca bg-marca p-4 text-base font-semibold leading-snug text-white no-underline shadow-sm transition-colors duration-200 hover:border-marca-oscuro hover:bg-marca-oscuro focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco active:bg-marca-profundo motion-reduce:transition-none sm:p-5" routerLink="/updateP">
-            <span class="min-w-0 break-words">Cambiar Contraseña</span>
+            <span class="min-w-0 break-words">{{ 'perfil.cambiarContrasena' | translate }}</span>
             <svg class="h-5 w-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </a>
         </li>
@@ -40,8 +40,8 @@
     </nav>
     </ng-container>
     <ng-template #sinSesion>
-      <p class="m-0 mb-4 text-sm leading-relaxed text-tinta-suave" role="status">Iniciá sesión para consultar los datos de tu cuenta.</p>
-      <a routerLink="/login" [queryParams]="{ returnUrl: '/fichaUser' }" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-marca px-5 py-3 text-sm font-semibold text-white no-underline hover:bg-marca-oscuro focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco">Iniciar sesión</a>
+      <p class="m-0 mb-4 text-sm leading-relaxed text-tinta-suave" role="status">{{ 'perfil.sinSesion' | translate }}</p>
+      <a routerLink="/login" [queryParams]="{ returnUrl: '/fichaUser' }" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-marca px-5 py-3 text-sm font-semibold text-white no-underline hover:bg-marca-oscuro focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco">{{ 'perfil.iniciarSesion' | translate }}</a>
     </ng-template>
   </section>
 </main>

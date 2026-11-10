@@ -24,6 +24,7 @@ import { LoginFormComponent } from './core/auth/login-form/login-form.component'
 import { RegisterComponent } from './core/auth/register/register.component';
 import { ContactUsComponent } from './components/home/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/home/about-us/about-us.component';
+import { proveerTraducciones } from './core/i18n/traducciones.providers';
 
 describe('AppComponent - fondo compartido', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -43,7 +44,7 @@ describe('AppComponent - fondo compartido', () => {
     const pais = { id: 'ar', nombre: 'Argentina', codigo: 'AR', visible: true, ciudades: [ciudad] };
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [provideRouter([
+      providers: [proveerTraducciones(), provideRouter([
         { path: '', component: HomeComponent },
         { path: 'fichaUser', component: FichaUserComponent },
         { path: 'paises', component: PaisesListComponent },

@@ -12,13 +12,13 @@
   <div class="space-y-6 motion-safe:animate-aparecer">
     <div class="estado" *ngIf="cargando" role="status" aria-live="polite">
       <div class="spinner" aria-hidden="true"></div>
-      <p class="m-0">Cargando ciudades guardadas...</p>
+      <p class="m-0">{{ 'favoritos.cargandoCiudades' | translate }}</p>
     </div>
 
-    <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga }}</p>
+    <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga | translate }}</p>
 
     <p class="estado font-medium" *ngIf="!cargando && !errorCarga && listaImagenes.length === 0" role="status">
-      Esta lista aún no tiene ciudades guardadas.
+      {{ 'favoritos.listaVacia' | translate }}
     </p>
 
     <div class="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3" *ngIf="!cargando && !errorCarga && listaImagenes.length > 0">
@@ -28,7 +28,7 @@
           class="block min-w-0"
           [eliminable]="true"
           [arregloImagenes]="l.imagenes"
-          [titulo]="l.ciudad.nombre"
+          [titulo]="tituloCiudad(l)"
           (click) ="accederCiudad(l.ciudad)"
           (borrar)="eliminarDeLaLista(l.ciudad)"
         ></app-card>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="flex justify-center">
-      <button type="button" class="btn btn-primario px-6" (click)="volver()">Volver</button>
+      <button type="button" class="btn btn-primario px-6" (click)="volver()">{{ 'comun.volver' | translate }}</button>
     </div>
 
   </div>

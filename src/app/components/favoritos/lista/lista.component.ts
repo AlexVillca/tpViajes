@@ -16,15 +16,18 @@ import { FormsModule } from '@angular/forms';
 import { FeedbackService } from '../../../core/service/feedback.service';
 
 import { TituloListaComponent } from './titulo-lista/titulo-lista.component';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lista',
   standalone: true,
-  imports: [CommonModule,CardComponent, FormsModule,TituloListaComponent],
+  imports: [CommonModule,CardComponent, FormsModule,TituloListaComponent, TranslatePipe],
   templateUrl: './lista.component.html'
 })
 export class ListaComponent implements OnInit,OnDestroy{
   activatedRoute = inject(ActivatedRoute);
+  idioma = inject(IdiomaService);
   usuariosService = inject(UsuariosService);
   idUsuarioService = inject(IdUsuarioService);
   ciudadDataService = inject(CiudadDataService);
@@ -52,7 +55,7 @@ export class ListaComponent implements OnInit,OnDestroy{
     this.usuariosService.actualizarListaFavoritos(this.idUsuario,this.lista).subscribe(
       {
         next:()=>{
-          this.feedback.success('Nombre de lista actualizado.');
+          this.feedback.success('mensajes.nombreListaActualizado');
         },
         error:(error)=>{
           if (this.lista) {
@@ -91,37 +94,37 @@ export class ListaComponent implements OnInit,OnDestroy{
                                 this.cargando = false;
                               },
                               error:(e)=>{
-                                this.errorCarga = e?.message ?? 'No se pudieron cargar las ciudades.';
+                                this.errorCarga = e?.message ?? 'mensajes.cargarCiudades';
                                 this.cargando = false;
                               }
 
                             }
                           )
                         } else {
-                          this.errorCarga = 'No se pudo obtener la lista.';
+                          this.errorCarga = 'mensajes.obtenerLista';
                           this.cargando = false;
                         }
                       },
                       error:(error)=>{
-                        this.errorCarga = error?.message ?? 'No se pudo obtener la lista.';
+                        this.errorCarga = error?.message ?? 'mensajes.obtenerLista';
                         this.cargando = false;
                       }
                     }
                   )
                 } else {
-                  this.errorCarga = 'No se pudo obtener el usuario actual.';
+                  this.errorCarga = 'mensajes.usuarioActual';
                   this.cargando = false;
                 }
               },
               error:(e)=>{
-                this.errorCarga = e?.message ?? 'No se pudo obtener el usuario actual.';
+                this.errorCarga = e?.message ?? 'mensajes.usuarioActual';
                 this.cargando = false;
               }
             }
           );
         },
         error:(e) =>{
-          this.errorCarga = e?.message ?? 'No se pudo abrir la lista.';
+          this.errorCarga = e?.message ?? 'mensajes.abrirLista';
           this.cargando = false;
         }
       }
@@ -147,10 +150,11 @@ export class ListaComponent implements OnInit,OnDestroy{
           ciudad: {
             codigoPais: pais.codigo,
             nombre: ciudad.nombre},
+          nombreEn: ciudad.en?.nombre,
           imagenes: imagenes
         } as ImagenesCiudad;
 
-      }).filter((x): x is ImagenesCiudad => x !== null);
+      }).filter((x): x is ImagenesCiudad => x != null);
 
   }
 
@@ -161,12 +165,12 @@ export class ListaComponent implements OnInit,OnDestroy{
           const paisRequerido = p.find(pais => pais.codigo === ciudadSelec.codigoPais);
 
           if(paisRequerido === undefined){
-            this.feedback.error('No se pudo encontrar el país seleccionado.');
+            this.feedback.error('mensajes.paisNoEncontrado');
             return;
           }
 
           if(paisRequerido.ciudades === undefined){
-            this.feedback.error('El país seleccionado no tiene ciudades disponibles.');
+            this.feedback.error('mensajes.paisSinCiudades');
             return;
           }
 
@@ -176,7 +180,7 @@ export class ListaComponent implements OnInit,OnDestroy{
             this.ciudadDataService.setCiudad(ciudadCargar);
             this.router.navigate(['/ciudad']);
           }else{
-            this.feedback.error('No se pudo encontrar la ciudad seleccionada.');
+            this.feedback.error('mensajes.ciudadNoEncontrada');
           }
 
         },
@@ -241,7 +245,7 @@ export class ListaComponent implements OnInit,OnDestroy{
       this.cambiosPendientes = true;
 
     }else{
-      this.feedback.error('No se pudo quitar la ciudad de la lista.');
+      this.feedback.error('mensajes.quitarCiudad');
     }
 
   }
@@ -253,7 +257,7 @@ export class ListaComponent implements OnInit,OnDestroy{
       next:()=>{
         this.listaEliminada = true;
         this.cambiosPendientes = false;
-        this.feedback.success('Lista eliminada.');
+        this.feedback.success('mensajes.listaEliminada');
         this.locationService.back();
       },
       error:(error)=>{
@@ -264,6 +268,11 @@ export class ListaComponent implements OnInit,OnDestroy{
 
   volver() {
     this.locationService.back();
+  }
+
+  /** Nombre de la ciudad en el idioma de la interfaz. */
+  tituloCiudad(item: ImagenesCiudad): string {
+    return this.idioma.esIngles && item.nombreEn ? item.nombreEn : item.ciudad.nombre;
   }
 
 }

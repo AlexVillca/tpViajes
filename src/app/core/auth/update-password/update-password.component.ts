@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { IdUsuarioService } from '../../service/id-usuario.service';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-password',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, TranslatePipe],
   templateUrl: './update-password.component.html'
 })
 export class UpdatePasswordComponent implements OnInit {
@@ -60,7 +61,7 @@ export class UpdatePasswordComponent implements OnInit {
     const { password } = this.formularioUpdate.getRawValue();
     this.usuariosService.cambiarContrasena(this.id, password).subscribe({
       next: () => {
-        this.successMessage = 'La contraseña ha sido actualizada con éxito.';
+        this.successMessage = 'mensajes.contrasenaActualizada';
         setTimeout(() => {
           this.router.navigateByUrl('home');
         }, 1500);

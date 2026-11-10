@@ -7,11 +7,13 @@ import { Router, RouterLink } from '@angular/router';
 import { Ciudad } from '../../../models/interface/pais.interface';
 import { ConversorMonedaComponent } from '../conversor-moneda/conversor-moneda.component';
 import { InfoPaisComponent } from '../info-pais/info-pais.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DatoPipe } from '../../../core/i18n/idioma.pipes';
 
 @Component({
   selector: 'app-pais-detail',
   standalone: true,
-  imports: [MapComponent, CommonModule, ConversorMonedaComponent, InfoPaisComponent, RouterLink],
+  imports: [MapComponent, CommonModule, ConversorMonedaComponent, InfoPaisComponent, RouterLink, TranslatePipe, DatoPipe],
   templateUrl: './pais-detail.component.html'
 })
 export class PaisDetailComponent implements OnInit {

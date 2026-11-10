@@ -13,7 +13,7 @@ interface RespuestaSesion {
 /** El nombre de usuario o el email que se quiso guardar ya pertenece a otra cuenta. */
 export class ErrorDatoEnUso extends Error {
   constructor(readonly campo: 'username' | 'email') {
-    super(campo === 'email' ? 'El email ya está en uso.' : 'El nombre de usuario ya está en uso.');
+    super(campo === 'email' ? 'mensajes.emailEnUso' : 'mensajes.usuarioEnUso');
   }
 }
 
@@ -28,19 +28,19 @@ export class UsuariosService {
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
-      catchError(error => buildHttpError(error, 'No se pudo registrar el usuario.'))
+      catchError(error => buildHttpError(error, 'mensajes.registrarUsuario'))
     );
   }
 
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.apiUrl).pipe(
-      catchError(error => buildHttpError(error, 'No se pudieron cargar los usuarios.'))
+      catchError(error => buildHttpError(error, 'mensajes.cargarUsuarios'))
     );
   }
 
   getUsuarioById(id: string | null): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
-      catchError(error => buildHttpError(error, 'No se pudo obtener el usuario.'))
+      catchError(error => buildHttpError(error, 'mensajes.obtenerUsuario'))
     );
   }
 
@@ -62,7 +62,7 @@ export class UsuariosService {
           if (error.status === 401) {
             return of(false);
           }
-          return buildHttpError(error, 'No se pudo iniciar sesión.');
+          return buildHttpError(error, 'mensajes.iniciarSesion');
         })
       );
   }
@@ -106,7 +106,7 @@ export class UsuariosService {
           const campo = error.error?.campo === 'email' ? 'email' : 'username';
           return throwError(() => new ErrorDatoEnUso(campo));
         }
-        return buildHttpError(error, 'No se pudieron guardar los datos del perfil.');
+        return buildHttpError(error, 'mensajes.guardarPerfil');
       })
     );
   }
@@ -124,7 +124,7 @@ export class UsuariosService {
 
         return false;
       }),
-      catchError(error => buildHttpError(error, 'No se pudo validar el email ingresado.'))
+      catchError(error => buildHttpError(error, 'mensajes.validarEmail'))
     );
   }
 
@@ -141,21 +141,21 @@ export class UsuariosService {
 
         return false;
       }),
-      catchError(error => buildHttpError(error, 'No se pudo validar el nombre de usuario ingresado.'))
+      catchError(error => buildHttpError(error, 'mensajes.validarUsuario'))
     );
   }
 
   obtenerListasFav(id: string): Observable<ListaFav[]> {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
       map(usuario => usuario.listasFavs),
-      catchError(error => buildHttpError(error, 'No se pudieron cargar las listas de favoritos.'))
+      catchError(error => buildHttpError(error, 'mensajes.cargarListasFavoritos'))
     );
   }
 
   obtenerListaFav(idUsuario: string, idListaBuscada: string): Observable<ListaFav | undefined> {
     return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
       map(usuario => usuario.listasFavs.find(l => l.idLista === idListaBuscada)),
-      catchError(error => buildHttpError(error, 'No se pudo cargar la lista seleccionada.'))
+      catchError(error => buildHttpError(error, 'mensajes.cargarListaSeleccionada'))
     );
   }
 
@@ -165,7 +165,7 @@ export class UsuariosService {
 
     return this.http.patch<Usuario>(url, body).pipe(
       map(usuario => usuario.listasFavs),
-      catchError(error => buildHttpError(error, 'No se pudieron guardar los favoritos.'))
+      catchError(error => buildHttpError(error, 'mensajes.guardarFavoritos'))
     );
   }
 
@@ -173,7 +173,7 @@ export class UsuariosService {
     const url = `${this.apiUrl}/${id}`;
     const body: Partial<Usuario> = { password: nuevaContrasena };
     return this.http.patch<Partial<Usuario>>(url, body).pipe(
-      catchError(error => buildHttpError(error, 'No se pudo actualizar la contraseña.'))
+      catchError(error => buildHttpError(error, 'mensajes.actualizarContrasena'))
     );
   }
 
@@ -181,7 +181,7 @@ export class UsuariosService {
     const url = `${this.apiUrl}/${id}`;
     const body: Partial<Usuario> = { mejorPuntaje: puntajeNuevo };
     return this.http.patch<Partial<Usuario>>(url, body).pipe(
-      catchError(error => buildHttpError(error, 'No se pudo actualizar el mejor puntaje.'))
+      catchError(error => buildHttpError(error, 'mensajes.actualizarPuntaje'))
     );
   }
 
@@ -196,7 +196,7 @@ export class UsuariosService {
         return { listasFavs: listasActualizadas } as Partial<Usuario>;
       }),
       switchMap(body => this.http.patch<Partial<Usuario>>(url, body)),
-      catchError(error => buildHttpError(error, 'No se pudo actualizar la lista de favoritos.'))
+      catchError(error => buildHttpError(error, 'mensajes.actualizarLista'))
     );
   }
 
@@ -208,14 +208,14 @@ export class UsuariosService {
         return { listasFavs: listasActualizadas } as Partial<Usuario>;
       }),
       switchMap(body => this.http.patch<Partial<Usuario>>(url, body)),
-      catchError(error => buildHttpError(error, 'No se pudo eliminar la lista de favoritos.'))
+      catchError(error => buildHttpError(error, 'mensajes.eliminarListaFavoritos'))
     );
   }
 
   comprobarNombreExistenteDeLista(idUsuario: string, nombreComprobar: string): Observable<boolean> {
     return this.http.get<Usuario>(`${this.apiUrl}/${idUsuario}`).pipe(
       map(usuario => usuario.listasFavs.some(l => l.nombreLista === nombreComprobar) ?? false),
-      catchError(error => buildHttpError(error, 'No se pudo validar el nombre de la lista.'))
+      catchError(error => buildHttpError(error, 'mensajes.validarNombreLista'))
     );
   }
 }

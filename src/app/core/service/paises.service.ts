@@ -15,7 +15,7 @@ export class PaisesService {
 
   getPaises(): Observable<Pais[]> {
     return this.http.get<Pais[]>(this.apiUrl).pipe(
-      catchError(error => buildHttpError(error, 'No se pudieron cargar los países.'))
+      catchError(error => buildHttpError(error, 'mensajes.cargarPaises'))
     );
   }
 }

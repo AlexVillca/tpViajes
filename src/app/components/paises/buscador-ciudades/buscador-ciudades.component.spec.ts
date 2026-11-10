@@ -4,6 +4,7 @@ import { BuscadorCiudadesComponent, normalizarBusqueda } from './buscador-ciudad
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
 import { Pais } from '../../../models/interface/pais.interface';
+import { proveerTraducciones } from '../../../core/i18n/traducciones.providers';
 
 describe('BuscadorCiudadesComponent', () => {
   const paises: Pais[] = [
@@ -38,7 +39,7 @@ describe('BuscadorCiudadesComponent', () => {
     ciudadData = jasmine.createSpyObj<CiudadDataService>('CiudadDataService', ['setCiudad']);
     TestBed.configureTestingModule({
       imports: [BuscadorCiudadesComponent],
-      providers: [
+      providers: [proveerTraducciones(),
         { provide: Router, useValue: router },
         { provide: PaisDataService, useValue: paisData },
         { provide: CiudadDataService, useValue: ciudadData }

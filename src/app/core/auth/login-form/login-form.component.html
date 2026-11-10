@@ -1,34 +1,34 @@
 <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[420px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28" id="container" aria-labelledby="login-titulo">
   <div class="panel">
     <form [formGroup]="formulario" (ngSubmit)="loguearse()" class="space-y-5">
-      <h1 id="login-titulo" class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Inicia sesión aquí</h1>
+      <h1 id="login-titulo" class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{{ 'login.titulo' | translate }}</h1>
 
       <div class="space-y-2">
-        <label class="etiqueta" for="login-usuario">Correo o nombre de usuario</label>
+        <label class="etiqueta" for="login-usuario">{{ 'login.usuario' | translate }}</label>
         <input id="login-usuario" type="text" class="campo" formControlName="usuario" autocomplete="username" autocapitalize="none" spellcheck="false" />
         <div *ngIf="formulario.controls['usuario'].touched || formulario.controls['usuario'].dirty">
           @if(formulario.controls['usuario'].getError('required')){
-            <div class="mensaje-error">Campo requerido</div>
+            <div class="mensaje-error">{{ 'comun.campoRequerido' | translate }}</div>
           }
         </div>
-        <div *ngIf="usuarioIncorrecto" class="mensaje-error">No encontramos una cuenta con ese correo o nombre de usuario</div>
+        <div *ngIf="usuarioIncorrecto" class="mensaje-error">{{ 'login.usuarioNoEncontrado' | translate }}</div>
       </div>
 
       <div class="space-y-2">
-        <label class="etiqueta" for="login-password">Contraseña</label>
+        <label class="etiqueta" for="login-password">{{ 'login.contrasena' | translate }}</label>
         <input id="login-password" type="password" class="campo" formControlName="password" autocomplete="current-password" />
         <div *ngIf="formulario.controls['password'].touched || formulario.controls['password'].dirty">
           @if(formulario.controls['password'].getError('required')){
-            <div class="mensaje-error">Campo requerido</div>
+            <div class="mensaje-error">{{ 'comun.campoRequerido' | translate }}</div>
           }
         </div>
-        <div *ngIf="passwordIncorrecto" class="mensaje-error">Contraseña incorrecta</div>
+        <div *ngIf="passwordIncorrecto" class="mensaje-error">{{ 'login.contrasenaIncorrecta' | translate }}</div>
       </div>
 
-      <div *ngIf="serverError" class="mensaje-error" role="alert">{{ serverError }}</div>
+      <div *ngIf="serverError" class="mensaje-error" role="alert">{{ serverError | translate }}</div>
 
-      <button type="submit" class="btn btn-primario w-full">Iniciar sesión</button>
-      <p class="m-0 text-center text-sm text-tinta-suave">¿No tienes cuenta? <a class="enlace" routerLink="/register">Regístrate aquí</a></p>
+      <button type="submit" class="btn btn-primario w-full">{{ 'login.entrar' | translate }}</button>
+      <p class="m-0 text-center text-sm text-tinta-suave">{{ 'login.sinCuenta' | translate }} <a class="enlace" routerLink="/register">{{ 'login.registrate' | translate }}</a></p>
     </form>
   </div>
 </main>

@@ -6,6 +6,7 @@ import { ListaDeListasComponent } from './lista-de-listas.component';
 import { UsuariosService } from '../../../core/service/usuarios.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { PaisesService } from '../../../core/service/paises.service';
+import { proveerTraducciones } from '../../../core/i18n/traducciones.providers';
 
 describe('ListaDeListasComponent - video decorativo', () => {
   let fixture: ComponentFixture<ListaDeListasComponent>;
@@ -16,7 +17,7 @@ describe('ListaDeListasComponent - video decorativo', () => {
     location = jasmine.createSpyObj<Location>('Location', ['back']);
     await TestBed.configureTestingModule({
       imports: [ListaDeListasComponent],
-      providers: [provideRouter([]),
+      providers: [proveerTraducciones(), provideRouter([]),
         { provide: Location, useValue: location },
         { provide: IdUsuarioService, useValue: { id$: of('usuario') } },
         { provide: UsuariosService, useValue: {

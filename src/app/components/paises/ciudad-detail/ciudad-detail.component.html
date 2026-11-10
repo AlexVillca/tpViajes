@@ -1,18 +1,18 @@
-  <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] text-tinta sm:mb-12 sm:mt-28" aria-label="Detalle de ciudad">
-    <nav class="mb-6" aria-label="Migas de pan">
+  <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] text-tinta sm:mb-12 sm:mt-28" [attr.aria-label]="'ciudad.detalle' | translate">
+    <nav class="mb-6" [attr.aria-label]="'comun.migasDePan' | translate">
       <ol class="m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-1 p-0 text-xs leading-relaxed text-tinta-suave sm:text-sm">
-        <li><a routerLink="/home" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">Inicio</a></li>
+        <li><a routerLink="/home" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">{{ 'comun.inicio' | translate }}</a></li>
         <li aria-hidden="true">›</li>
-        <li><a routerLink="/paises" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">Países</a></li>
+        <li><a routerLink="/paises" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">{{ 'comun.paises' | translate }}</a></li>
         <ng-container *ngIf="ciudad$ | async as ciudad">
           <ng-container *ngIf="pais$ | async as pais">
             <ng-container *ngIf="pais.nombre">
               <li aria-hidden="true">›</li>
-              <li class="min-w-0 [overflow-wrap:anywhere]"><a routerLink="/pais" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">{{ pais.nombre }}</a></li>
+              <li class="min-w-0 [overflow-wrap:anywhere]"><a routerLink="/pais" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">{{ pais | dato:'nombre' }}</a></li>
             </ng-container>
           </ng-container>
           <li aria-hidden="true">›</li>
-          <li class="min-w-0 break-words font-semibold text-tinta [overflow-wrap:anywhere]" aria-current="page">{{ ciudad.nombre }}</li>
+          <li class="min-w-0 break-words font-semibold text-tinta [overflow-wrap:anywhere]" aria-current="page">{{ ciudad | dato:'nombre' }}</li>
         </ng-container>
       </ol>
     </nav>
@@ -22,40 +22,40 @@
       <section class="relative rounded-3xl border border-solid border-white/80 bg-white/90 p-4 shadow-[0_8px_30px_rgba(22,78,110,0.07)] sm:p-8" aria-labelledby="ciudad-title">
 
         <header class="relative mb-6 flex flex-col items-start justify-between gap-4 border-0 border-b border-solid border-superficie-borde pb-6 sm:flex-row sm:flex-wrap sm:items-center">
-          <h1 id="ciudad-title" class="m-0 min-w-0 break-words text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{{ ciudad.nombre }}</h1>
+          <h1 id="ciudad-title" class="m-0 min-w-0 break-words text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{{ ciudad | dato:'nombre' }}</h1>
           <app-pop-up-guardar-favoritos></app-pop-up-guardar-favoritos>
         </header>
         <app-valoracion-ciudad class="mb-4 block" [ciudad]="ciudad.nombre" [paisId]="(pais$ | async)?.id ?? ''"></app-valoracion-ciudad>
         <div class="relative space-y-4 rounded-2xl border border-solid border-superficie-linea bg-white/90 p-4 text-sm leading-relaxed text-tinta-suave sm:p-6 sm:text-base">
           <app-clima-ciudad [ciudad]="ciudad.nombre" [codigoPais]="(pais$ | async)?.codigo ?? null"></app-clima-ciudad>
           <p class="m-0 break-words">{{ ciudad.infoWikipedia }}</p>
-          <p class="m-0 break-words"><strong class="font-semibold text-tinta">Actividades:</strong> {{ ciudad.actividades }}</p>
-          <p class="m-0 break-words"><strong class="font-semibold text-tinta">Consejos:</strong> {{ ciudad.consejos }}</p>
-          <p class="m-0 break-words"><strong class="font-semibold text-tinta">Comentarios:</strong> {{ ciudad.comentarios }}</p>
+          <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.actividades' | translate }}</strong> {{ ciudad | dato:'actividades' }}</p>
+          <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.consejos' | translate }}</strong> {{ ciudad | dato:'consejos' }}</p>
+          <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.comentarios' | translate }}</strong> {{ ciudad | dato:'comentarios' }}</p>
         </div>
 
       </section>
 
       <section class="relative isolate overflow-hidden rounded-3xl border border-solid border-white/80 bg-white/85 p-4 shadow-sm sm:p-6" aria-labelledby="atracciones-title">
 
-        <h2 id="atracciones-title" class="m-0 mb-5 text-xl font-bold tracking-tight sm:text-2xl">Atracciones</h2>
+        <h2 id="atracciones-title" class="m-0 mb-5 text-xl font-bold tracking-tight sm:text-2xl">{{ 'ciudad.atracciones' | translate }}</h2>
         <ul class="m-0 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-2">
           <li class="min-w-0 rounded-2xl border border-solid border-superficie-linea bg-white/95 p-4 shadow-sm transition-[border-color,box-shadow] duration-200 hover:border-acento/50 hover:shadow-md motion-reduce:transition-none sm:p-5" *ngFor="let atraccion of ciudad.atracciones">
-            <h3 class="m-0 mb-3 break-words text-lg font-bold leading-snug text-tinta">{{ atraccion.nombre }}</h3>
-            <p class="m-0 mb-4 break-words text-sm leading-relaxed text-tinta-suave">{{ atraccion.descripcion }}</p>
-            <img class="mb-4 block h-auto w-full rounded-xl border border-solid border-superficie-linea shadow-sm" *ngIf="atraccion.imagen" [src]="atraccion.imagen" alt="Imagen de {{ atraccion.nombre }}" (error)="setImagenError($event)">
+            <h3 class="m-0 mb-3 break-words text-lg font-bold leading-snug text-tinta">{{ atraccion | dato:'nombre' }}</h3>
+            <p class="m-0 mb-4 break-words text-sm leading-relaxed text-tinta-suave">{{ atraccion | dato:'descripcion' }}</p>
+            <img class="mb-4 block h-auto w-full rounded-xl border border-solid border-superficie-linea shadow-sm" *ngIf="atraccion.imagen" [src]="atraccion.imagen" [alt]="'ciudad.imagen' | translate: { nombre: (atraccion | dato:'nombre') }" (error)="setImagenError($event)">
             <div class="space-y-3 text-sm leading-relaxed text-tinta-suave">
-              <p class="m-0 break-words"><strong class="font-semibold text-tinta">Horario:</strong> {{ atraccion.horario }}</p>
-              <p class="m-0 break-words"><strong class="font-semibold text-tinta">Página web:</strong> {{ atraccion.paginaWeb }}</p>
-              <p class="m-0 break-words" *ngIf="atraccion.ubicacion"><strong class="font-semibold text-tinta">Ubicación:</strong> {{ atraccion.ubicacion.direccion }}</p>
-              <p class="m-0 break-words"><strong class="font-semibold text-tinta">Tipo:</strong> {{ atraccion.tipo }}</p>
-              <p class="m-0 break-words"><strong class="font-semibold text-tinta">Valoración:</strong> <span class="inline-flex rounded-full border border-solid border-superficie-resalte bg-superficie-clara px-2.5 py-0.5 font-semibold tabular-nums text-marca-texto">{{ atraccion.valoracion }}</span></p>
+              <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.horario' | translate }}</strong> {{ atraccion | dato:'horario' }}</p>
+              <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.paginaWeb' | translate }}</strong> {{ atraccion.paginaWeb }}</p>
+              <p class="m-0 break-words" *ngIf="atraccion.ubicacion"><strong class="font-semibold text-tinta">{{ 'ciudad.ubicacion' | translate }}</strong> {{ atraccion | dato:'ubicacion.direccion' }}</p>
+              <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.tipo' | translate }}</strong> {{ atraccion | dato:'tipo' }}</p>
+              <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.valoracion' | translate }}</strong> <span class="inline-flex rounded-full border border-solid border-superficie-resalte bg-superficie-clara px-2.5 py-0.5 font-semibold tabular-nums text-marca-texto">{{ atraccion.valoracion }}</span></p>
             </div>
           </li>
         </ul>
       </section>
       <div class="flex justify-center">
-        <button class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-solid border-marca bg-marca px-6 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-marca-oscuro hover:bg-marca-oscuro hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" type="button" (click)="volver()">{{ (destinoRegreso$ | async) === '/pais' ? 'Volver al país' : 'Ver todos los países' }}</button>
+        <button class="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-solid border-marca bg-marca px-6 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-marca-oscuro hover:bg-marca-oscuro hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marca-foco active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none" type="button" (click)="volver()">{{ ((destinoRegreso$ | async) === '/pais' ? 'ciudad.volverPais' : 'ciudad.verTodos') | translate }}</button>
       </div>
     </div>
     <app-comentarios-list class="mt-6 block"></app-comentarios-list>

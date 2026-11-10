@@ -1,5 +1,8 @@
-import { Component, AfterViewInit, Input, OnChanges, SimpleChanges, Output } from '@angular/core';
+import { Component, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
+
+const escaparHtml = (texto: string) =>
+  texto.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 @Component({
   selector: 'app-map',
@@ -13,15 +16,20 @@ export class MapComponent implements AfterViewInit, OnChanges {
   @Input() nombre!: string;
   @Input() flagUrl!: string;
 
-  private map!: L.Map;
+  private map?: L.Map;
+  private marcador?: L.Marker;
 
-  private initMap(lat: number, lon: number, nombre: string ,flagUrl: string): void {
+  private contenidoPopup(): string {
+    return `${escaparHtml(this.nombre ?? '')}
+      <div class="text-center">
+        <img src="${escaparHtml(this.flagUrl ?? '')}" alt="" class="mx-auto mt-1 block h-auto w-[30px] border border-solid border-superficie-borde" />
+      </div>`;
+  }
 
-    if(this.map){
-      this.map.remove();
-    }
+  private initMap(): void {
+    this.map?.remove();
     this.map = L.map('map', {
-      center: [lat, lon],
+      center: [this.lat, this.lon],
       zoom: 6
     });
 
@@ -30,23 +38,23 @@ export class MapComponent implements AfterViewInit, OnChanges {
       attribution: '© OpenStreetMap'
     }).addTo(this.map);
 
-    L.marker([lat, lon]).addTo(this.map)
-      .bindPopup(nombre + `
-        <div style="text-align: center;">
-          <img src="${flagUrl}" alt="Ubicación" style="width: 30px; height: auto; border: 1px solid #ccc;" />
-        </div>
-      `)
+    this.marcador = L.marker([this.lat, this.lon]).addTo(this.map)
+      .bindPopup(this.contenidoPopup())
       .openPopup();
   }
 
   ngAfterViewInit(): void {
-    this.initMap(this.lat, this.lon, this.nombre, this.flagUrl);
+    this.initMap();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // Antes del primer render no existe el contenedor: el mapa se crea en ngAfterViewInit.
+    if (!this.map) return;
     if (changes['lat'] || changes['lon']) {
-      this.initMap(this.lat, this.lon, this.nombre,this.flagUrl);
+      this.initMap();
+    } else if (changes['nombre'] || changes['flagUrl']) {
+      // Por ejemplo, al cambiar de idioma: solo se actualiza el texto del marcador.
+      this.marcador?.setPopupContent(this.contenidoPopup());
     }
   }
 }
-

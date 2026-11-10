@@ -9,12 +9,12 @@
     role="status"
     [attr.aria-live]="message.type === 'error' ? 'assertive' : 'polite'"
   >
-    <span class="text-sm leading-[1.4]">{{ message.text }}</span>
+    <span class="text-sm leading-[1.4]">{{ message.text | translate }}</span>
     <button
       type="button"
       class="cursor-pointer border-0 bg-transparent p-0 text-lg leading-none text-inherit focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       (click)="feedback.clear()"
-      aria-label="Cerrar mensaje"
+      [attr.aria-label]="'aviso.cerrar' | translate"
     >
       ×
     </button>

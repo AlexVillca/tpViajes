@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ConversorMonedaComponent } from './conversor-moneda.component';
 import { environment } from '../../../../environments/environment';
+import { proveerTraducciones } from '../../../core/i18n/traducciones.providers';
 
 describe('ConversorMonedaComponent', () => {
   let fixture: ComponentFixture<ConversorMonedaComponent>;
@@ -10,7 +11,8 @@ describe('ConversorMonedaComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ConversorMonedaComponent, HttpClientTestingModule]
+      imports: [ConversorMonedaComponent, HttpClientTestingModule],
+      providers: [proveerTraducciones()]
     });
     fixture = TestBed.createComponent(ConversorMonedaComponent);
     component = fixture.componentInstance;

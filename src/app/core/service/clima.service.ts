@@ -28,6 +28,8 @@ export interface ClimaActual {
   humedad: number;
   viento: number;
   descripcion: string;
+  /** Clave del texto traducible: clima.codigos.<clave> (c0, c3, ..., sinDatos). */
+  claveDescripcion: string;
   emoji: string;
 }
 
@@ -50,7 +52,7 @@ export class ClimaService {
         if (error instanceof Error) {
           return throwError(() => error);
         }
-        return buildHttpError(error, 'No se pudo obtener el clima.');
+        return buildHttpError(error, 'mensajes.obtenerClima');
       })
     );
   }
@@ -59,7 +61,7 @@ export class ClimaService {
     const resultados = resp.results ?? [];
 
     if (resultados.length === 0) {
-      throw new Error('No se encontró la ubicación de la ciudad.');
+      throw new Error('mensajes.ubicacionNoEncontrada');
     }
 
     if (codigoPais) {
@@ -83,10 +85,10 @@ export class ClimaService {
       map(resp => {
         const actual = resp.current;
         if (!actual) {
-          throw new Error('El servicio de clima no devolvió datos.');
+          throw new Error('mensajes.climaSinDatos');
         }
 
-        const { descripcion, emoji } = this.interpretarCodigo(actual.weather_code);
+        const { descripcion, emoji, clave } = this.interpretarCodigo(actual.weather_code);
 
         return {
           ciudad: ubicacion.name,
@@ -94,13 +96,14 @@ export class ClimaService {
           humedad: actual.relative_humidity_2m,
           viento: actual.wind_speed_10m,
           descripcion,
+          claveDescripcion: clave,
           emoji
         };
       })
     );
   }
 
-  private interpretarCodigo(code: number): { descripcion: string; emoji: string } {
+  private interpretarCodigo(code: number): { descripcion: string; emoji: string; clave: string } {
     const mapa: Record<number, { descripcion: string; emoji: string }> = {
       0: { descripcion: 'Despejado', emoji: '☀️' },
       1: { descripcion: 'Mayormente despejado', emoji: '🌤️' },
@@ -132,6 +135,7 @@ export class ClimaService {
       99: { descripcion: 'Tormenta con granizo fuerte', emoji: '⛈️' }
     };
 
-    return mapa[code] ?? { descripcion: 'Sin datos', emoji: '🌡️' };
+    const conocido = mapa[code];
+    return conocido ? { ...conocido, clave: `c${code}` } : { descripcion: 'Sin datos', emoji: '🌡️', clave: 'sinDatos' };
   }
 }

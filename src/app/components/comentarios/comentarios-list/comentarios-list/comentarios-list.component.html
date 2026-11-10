@@ -1,7 +1,7 @@
 <section class="text-tinta" aria-labelledby="comentarios-title">
   <div class="panel space-y-5">
     <h2 id="comentarios-title" class="m-0 text-xl font-bold tracking-tight sm:text-2xl">
-      Lista de comentarios
+      {{ 'comentarios.titulo' | translate }}
       @if (!cargando && getComentariosDeCiudadActual().length > 0) {
         <span class="ml-1 text-base font-semibold text-tinta-suave">({{ getComentariosDeCiudadActual().length }})</span>
       }
@@ -11,13 +11,13 @@
 
     <div class="flex flex-col items-center gap-3 py-6" *ngIf="cargando" role="status" aria-live="polite">
       <div class="spinner" aria-hidden="true"></div>
-      <p class="m-0 text-center text-sm font-semibold text-tinta-suave">Cargando comentarios...</p>
+      <p class="m-0 text-center text-sm font-semibold text-tinta-suave">{{ 'comentarios.cargando' | translate }}</p>
     </div>
 
-    <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga }}</p>
+    <p class="aviso-error" *ngIf="errorCarga && !cargando" role="alert">{{ errorCarga | translate }}</p>
 
     <p class="m-0 rounded-2xl border border-dashed border-superficie-borde px-5 py-8 text-center text-sm font-medium text-tinta-suave" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length === 0" role="status">
-      Aún no hay comentarios
+      {{ 'comentarios.sinComentarios' | translate }}
     </p>
 
     <ul class="m-0 list-none space-y-3 p-0" *ngIf="!cargando && !errorCarga && getComentariosDeCiudadActual().length > 0">
@@ -36,9 +36,9 @@
                 [(ngModel)]="mensajeEditado"
                 maxlength="200"
                 class="campo min-h-11 py-2 text-sm"
-                aria-label="Editar comentario"
+                [attr.aria-label]="'comentarios.editarCampo' | translate"
               />
-              <small class="mensaje-error mt-0" *ngIf="errorEdicion">{{ errorEdicion }}</small>
+              <small class="mensaje-error mt-0" *ngIf="errorEdicion">{{ errorEdicion | translate }}</small>
             </div>
           </ng-template>
 
@@ -49,7 +49,7 @@
               *ngIf="comentarioEnEdicionId !== comentarioActual.id"
               (click)="iniciarEdicion(comentarioActual)"
             >
-              Editar
+              {{ 'comun.editar' | translate }}
             </button>
 
             <button
@@ -58,7 +58,7 @@
               *ngIf="comentarioEnEdicionId === comentarioActual.id"
               (click)="guardarEdicion(comentarioActual)"
             >
-              Guardar
+              {{ 'comun.guardar' | translate }}
             </button>
 
             <button
@@ -67,7 +67,7 @@
               *ngIf="comentarioEnEdicionId === comentarioActual.id"
               (click)="cancelarEdicion()"
             >
-              Cancelar
+              {{ 'comun.cancelar' | translate }}
             </button>
 
             <button
@@ -76,24 +76,24 @@
               *ngIf="comentarioEnEdicionId !== comentarioActual.id"
               (click)="pedirEliminar(comentarioActual)"
             >
-              Eliminar
+              {{ 'comun.eliminar' | translate }}
             </button>
           </div>
         </div>
       </li>
     </ul>
 
-    <nav class="flex flex-wrap items-center justify-center gap-3" *ngIf="!cargando && !errorCarga && totalPaginas > 1" aria-label="Paginación de comentarios">
-      <button type="button" class="btn btn-secundario" (click)="paginaAnterior()" [disabled]="paginaActual === 1" aria-label="Comentarios más nuevos">‹ Anterior</button>
-      <span class="text-sm font-semibold tabular-nums text-tinta-media" aria-live="polite" aria-atomic="true">Página {{ paginaActual }} de {{ totalPaginas }}</span>
-      <button type="button" class="btn btn-secundario" (click)="paginaSiguiente()" [disabled]="paginaActual === totalPaginas" aria-label="Comentarios más viejos">Siguiente ›</button>
+    <nav class="flex flex-wrap items-center justify-center gap-3" *ngIf="!cargando && !errorCarga && totalPaginas > 1" [attr.aria-label]="'comentarios.paginacion' | translate">
+      <button type="button" class="btn btn-secundario" (click)="paginaAnterior()" [disabled]="paginaActual === 1" [attr.aria-label]="'comentarios.masNuevos' | translate">{{ 'comun.anterior' | translate }}</button>
+      <span class="text-sm font-semibold tabular-nums text-tinta-media" aria-live="polite" aria-atomic="true">{{ 'comun.pagina' | translate: { actual: paginaActual, total: totalPaginas } }}</span>
+      <button type="button" class="btn btn-secundario" (click)="paginaSiguiente()" [disabled]="paginaActual === totalPaginas" [attr.aria-label]="'comentarios.masViejos' | translate">{{ 'comun.siguiente' | translate }}</button>
     </nav>
   </div>
 </section>
 
 <app-pop-up-confirmar
   *ngIf="comentarioAEliminar"
-  [texto]="'¿Eliminar este comentario?'"
+  [texto]="'comentarios.confirmarEliminar'"
   (confirmar)="confirmarEliminar()"
   (cancelar)="cancelarEliminar()"
 ></app-pop-up-confirmar>

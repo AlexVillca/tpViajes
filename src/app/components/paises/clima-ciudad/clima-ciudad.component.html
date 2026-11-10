@@ -1,16 +1,16 @@
 <div class="mb-4">
-  <p class="m-0 rounded-xl border border-solid border-superficie-borde bg-superficie p-4 text-sm text-tinta-suave motion-safe:animate-pulse" *ngIf="cargando" role="status" aria-live="polite">Cargando clima actual…</p>
-  <p class="m-0 rounded-xl border border-solid border-peligro-borde bg-peligro-fondo p-4 text-sm leading-relaxed text-peligro-oscuro" *ngIf="error && !cargando" role="alert">🌡️ {{ error }}</p>
+  <p class="m-0 rounded-xl border border-solid border-superficie-borde bg-superficie p-4 text-sm text-tinta-suave motion-safe:animate-pulse" *ngIf="cargando" role="status" aria-live="polite">{{ 'clima.cargando' | translate }}</p>
+  <p class="m-0 rounded-xl border border-solid border-peligro-borde bg-peligro-fondo p-4 text-sm leading-relaxed text-peligro-oscuro" *ngIf="error && !cargando" role="alert">🌡️ {{ error | translate }}</p>
 
-  <div class="flex flex-col items-start gap-4 rounded-2xl border border-solid border-superficie-resalte bg-gradient-to-br from-superficie-clara to-white p-4 shadow-sm sm:flex-row sm:items-center sm:gap-5 sm:p-5" *ngIf="clima && !cargando && !error" role="region" aria-label="Clima actual">
+  <div class="flex flex-col items-start gap-4 rounded-2xl border border-solid border-superficie-resalte bg-gradient-to-br from-superficie-clara to-white p-4 shadow-sm sm:flex-row sm:items-center sm:gap-5 sm:p-5" *ngIf="clima && !cargando && !error" role="region" [attr.aria-label]="'clima.titulo' | translate">
     <div class="shrink-0 text-5xl leading-none" aria-hidden="true">{{ clima.emoji }}</div>
     <div class="flex min-w-0 flex-col gap-1">
-      <span class="text-3xl font-bold leading-tight tabular-nums tracking-tight text-tinta sm:text-4xl">{{ clima.temperatura | number: '1.0-0' }}°C</span>
-      <span class="break-words text-base font-semibold text-marca-texto">{{ clima.descripcion }}</span>
+      <span class="text-3xl font-bold leading-tight tabular-nums tracking-tight text-tinta sm:text-4xl">{{ clima.temperatura | numero: '1.0-0' }}°C</span>
+      <span class="break-words text-base font-semibold text-marca-texto">{{ 'clima.codigos.' + clima.claveDescripcion | translate }}</span>
       <span class="mt-1 text-sm leading-relaxed text-tinta-suave">
-        💧 {{ clima.humedad | number: '1.0-0' }}%  ·  💨 {{ clima.viento | number: '1.0-0' }} km/h
+        💧 {{ clima.humedad | numero: '1.0-0' }}%  ·  💨 {{ clima.viento | numero: '1.0-0' }} km/h
       </span>
-      <span class="mt-2 break-words text-xs leading-relaxed text-tinta-suave">Clima actual en {{ clima.ciudad }} · Open-Meteo</span>
+      <span class="mt-2 break-words text-xs leading-relaxed text-tinta-suave">{{ 'clima.fuente' | translate: { ciudad: clima.ciudad } }}</span>
     </div>
   </div>
 </div>

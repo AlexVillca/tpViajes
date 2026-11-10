@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { IdUsuarioService } from '../../service/id-usuario.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ficha-user',
   standalone: true,
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink,CommonModule, TranslatePipe],
   templateUrl: './ficha-user.component.html'
 })
 

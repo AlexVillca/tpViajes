@@ -1,35 +1,35 @@
 <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[480px] motion-safe:animate-aparecer sm:mb-12 sm:mt-28" aria-labelledby="editar-perfil-titulo">
   <div class="panel">
     <form class="space-y-5" [formGroup]="formulario" (ngSubmit)="guardar()">
-      <h1 id="editar-perfil-titulo" class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">Editar datos de la cuenta</h1>
+      <h1 id="editar-perfil-titulo" class="m-0 mb-6 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{{ 'editarPerfil.titulo' | translate }}</h1>
 
       <div class="space-y-2">
-        <label class="etiqueta" for="perfil-usuario">Nombre de usuario</label>
+        <label class="etiqueta" for="perfil-usuario">{{ 'editarPerfil.usuario' | translate }}</label>
         <input id="perfil-usuario" type="text" class="campo" formControlName="username" autocomplete="username" [class.border-peligro]="campoEnUso === 'username'" />
         <div *ngIf="formulario.controls.username.invalid && (formulario.controls.username.touched || formulario.controls.username.dirty)">
-          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['required']">El nombre de usuario es obligatorio</div>
-          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['minlength']">Debe tener al menos 4 caracteres</div>
-          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['maxlength']">Debe tener como máximo 20 caracteres</div>
-          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['pattern']">No puede contener "&#64;"</div>
+          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['required']">{{ 'editarPerfil.usuarioRequerido' | translate }}</div>
+          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['minlength']">{{ 'editarPerfil.minimo' | translate }}</div>
+          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['maxlength']">{{ 'editarPerfil.maximo' | translate }}</div>
+          <div class="mensaje-error" *ngIf="formulario.controls.username.errors?.['pattern']">{{ 'editarPerfil.sinArroba' | translate }}</div>
         </div>
-        <div class="mensaje-error" *ngIf="campoEnUso === 'username'" role="alert">Ese nombre de usuario ya está en uso</div>
+        <div class="mensaje-error" *ngIf="campoEnUso === 'username'" role="alert">{{ 'editarPerfil.usuarioEnUso' | translate }}</div>
       </div>
 
       <div class="space-y-2">
-        <label class="etiqueta" for="perfil-email">Correo electrónico</label>
+        <label class="etiqueta" for="perfil-email">{{ 'editarPerfil.email' | translate }}</label>
         <input id="perfil-email" type="email" class="campo" formControlName="email" autocomplete="email" [class.border-peligro]="campoEnUso === 'email'" />
         <div *ngIf="formulario.controls.email.invalid && (formulario.controls.email.touched || formulario.controls.email.dirty)">
-          <div class="mensaje-error" *ngIf="formulario.controls.email.errors?.['required']">El correo electrónico es obligatorio</div>
-          <div class="mensaje-error" *ngIf="formulario.controls.email.errors?.['email']">El correo electrónico no es válido</div>
+          <div class="mensaje-error" *ngIf="formulario.controls.email.errors?.['required']">{{ 'editarPerfil.emailRequerido' | translate }}</div>
+          <div class="mensaje-error" *ngIf="formulario.controls.email.errors?.['email']">{{ 'editarPerfil.emailInvalido' | translate }}</div>
         </div>
-        <div class="mensaje-error" *ngIf="campoEnUso === 'email'" role="alert">Ese correo electrónico ya está en uso</div>
+        <div class="mensaje-error" *ngIf="campoEnUso === 'email'" role="alert">{{ 'editarPerfil.emailEnUso' | translate }}</div>
       </div>
 
-      <div *ngIf="errorServidor" class="mensaje-error" role="alert">{{ errorServidor }}</div>
+      <div *ngIf="errorServidor" class="mensaje-error" role="alert">{{ errorServidor | translate }}</div>
 
       <div class="flex flex-col gap-3 sm:flex-row">
-        <button type="submit" class="btn btn-primario w-full sm:flex-1" [disabled]="guardando">{{ guardando ? 'Guardando...' : 'Guardar cambios' }}</button>
-        <button type="button" class="btn btn-secundario w-full sm:flex-1" (click)="volver()">Cancelar</button>
+        <button type="submit" class="btn btn-primario w-full sm:flex-1" [disabled]="guardando">{{ (guardando ? 'editarPerfil.guardando' : 'editarPerfil.guardar') | translate }}</button>
+        <button type="button" class="btn btn-secundario w-full sm:flex-1" (click)="volver()">{{ 'comun.cancelar' | translate }}</button>
       </div>
     </form>
   </div>

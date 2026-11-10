@@ -1,14 +1,14 @@
 <section class="rounded-2xl border border-solid border-superficie-resalte bg-superficie p-4 sm:p-5" aria-labelledby="conversor-title">
-  <h2 id="conversor-title" class="m-0 mb-4 text-lg font-bold text-tinta">💱 Conversor de moneda</h2>
+  <h2 id="conversor-title" class="m-0 mb-4 text-lg font-bold text-tinta">{{ 'conversor.titulo' | translate }}</h2>
 
   <p class="m-0 text-sm italic leading-relaxed text-tinta-suave" *ngIf="!monedaDestino">
-    No hay una moneda convertible disponible para este país.
+    {{ 'conversor.sinMoneda' | translate }}
   </p>
 
   <ng-container *ngIf="monedaDestino">
     <div class="grid grid-cols-1 items-end gap-4 sm:grid-cols-2">
       <div class="flex min-w-0 flex-col gap-2">
-        <label class="text-xs font-semibold uppercase tracking-wide text-tinta-suave" for="monto">Monto</label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-tinta-suave" for="monto">{{ 'conversor.monto' | translate }}</label>
         <input
           class="min-h-11 w-full min-w-0 rounded-xl border border-solid border-superficie-borde bg-white px-3 py-2 text-base text-tinta transition-colors hover:border-acento-medio focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco motion-reduce:transition-none"
           id="monto"
@@ -19,7 +19,7 @@
       </div>
 
       <div class="flex min-w-0 flex-col gap-2">
-        <label class="text-xs font-semibold uppercase tracking-wide text-tinta-suave" for="base">Moneda de origen</label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-tinta-suave" for="base">{{ 'conversor.origen' | translate }}</label>
         <select
           class="min-h-11 w-full min-w-0 cursor-pointer rounded-xl border border-solid border-superficie-borde bg-white px-3 py-2 text-base text-tinta transition-colors hover:border-acento-medio focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco motion-reduce:transition-none"
           id="base"
@@ -32,25 +32,25 @@
       <div class="text-center text-xl font-bold text-marca sm:col-span-2" aria-hidden="true">=</div>
 
       <div class="flex min-w-0 flex-col gap-2 rounded-xl border border-solid border-superficie-borde bg-white p-4 sm:col-span-2" role="status" aria-live="polite" aria-atomic="true">
-        <span class="text-xs font-semibold uppercase tracking-wide text-tinta-suave">En {{ monedaDestino }}</span>
+        <span class="text-xs font-semibold uppercase tracking-wide text-tinta-suave">{{ 'conversor.en' | translate: { moneda: monedaDestino } }}</span>
         <span class="break-words text-xl font-bold tabular-nums text-marca sm:text-2xl" *ngIf="!cargando && !error && resultado !== null">
-          {{ resultado | number: '1.2-2' }} {{ monedaDestino }}
+          {{ resultado | numero: '1.2-2' }} {{ monedaDestino }}
         </span>
-        <span class="text-sm italic text-tinta-suave motion-safe:animate-pulse" *ngIf="cargando">Calculando…</span>
+        <span class="text-sm italic text-tinta-suave motion-safe:animate-pulse" *ngIf="cargando">{{ 'conversor.calculando' | translate }}</span>
         <span class="text-sm italic text-tinta-suave"
               *ngIf="!cargando && !error && resultado === null">
-          No cotiza esta moneda
+          {{ 'conversor.noCotiza' | translate }}
         </span>
       </div>
     </div>
 
-    <p class="mb-0 mt-4 rounded-xl border border-solid border-peligro-borde bg-peligro-fondo p-3 text-sm leading-relaxed text-peligro-oscuro" *ngIf="error" role="alert">{{ error }}</p>
+    <p class="mb-0 mt-4 rounded-xl border border-solid border-peligro-borde bg-peligro-fondo p-3 text-sm leading-relaxed text-peligro-oscuro" *ngIf="error" role="alert">{{ error | translate }}</p>
 
     <p class="mb-0 mt-4 text-sm leading-relaxed text-tinta-suave"
        *ngIf="!cargando && !error && tasa !== null">
-      1 {{ baseSeleccionada }} = {{ tasa | number: '1.2-4' }} {{ monedaDestino }}
+      1 {{ baseSeleccionada }} = {{ tasa | numero: '1.2-4' }} {{ monedaDestino }}
       <br />
-      <small class="text-xs">Actualizado: {{ ultimaActualizacion }}</small>
+      <small class="text-xs">{{ 'conversor.actualizado' | translate: { fecha: (ultimaActualizacion | fecha) } }}</small>
     </p>
   </ng-container>
 </section>

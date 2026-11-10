@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FichaUserComponent } from './ficha-user.component';
 import { IdUsuarioService, SessionUser } from '../../service/id-usuario.service';
 import { authGuard } from '../auth.guard';
+import { proveerTraducciones } from '../../i18n/traducciones.providers';
 
 describe('FichaUserComponent - cuenta', () => {
   let session: BehaviorSubject<SessionUser | null>;
@@ -12,7 +13,7 @@ describe('FichaUserComponent - cuenta', () => {
     session = new BehaviorSubject<SessionUser | null>(null);
     TestBed.configureTestingModule({
       imports: [FichaUserComponent],
-      providers: [provideRouter([]), {
+      providers: [proveerTraducciones(), provideRouter([]), {
         provide: IdUsuarioService,
         useValue: { session$: session, get isLoggedIn() { return session.value !== null; } }
       }]

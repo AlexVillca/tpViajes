@@ -14,7 +14,7 @@ export class ValoracionesService {
 
   getValoraciones(ciudad: string, paisId: string): Observable<Valoracion[]> {
     return this.http.get<Valoracion[]>(this.apiUrl, { params: { ciudad, paisId } }).pipe(
-      catchError(error => buildHttpError(error, 'No se pudieron cargar las valoraciones.'))
+      catchError(error => buildHttpError(error, 'mensajes.cargarValoraciones'))
     );
   }
 
@@ -24,7 +24,7 @@ export class ValoracionesService {
       ? this.http.patch<Valoracion>(`${this.apiUrl}/${existente.id}`, { puntaje })
       : this.http.post<Valoracion>(this.apiUrl, { ciudad, paisId, puntaje });
     return pedido.pipe(
-      catchError(error => buildHttpError(error, 'No se pudo guardar tu valoración.'))
+      catchError(error => buildHttpError(error, 'mensajes.guardarValoracion'))
     );
   }
 }

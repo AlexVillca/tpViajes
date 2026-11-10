@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FeedbackService } from '../../../core/service/feedback.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './contact-us.component.html'
 })
 export class ContactUsComponent {
@@ -26,7 +27,7 @@ export class ContactUsComponent {
       return;
     }
 
-    this.feedback.success('Gracias por tu mensaje. Pronto nos pondremos en contacto contigo.');
+    this.feedback.success('mensajes.graciasContacto');
     this.formulario.reset({
       name: '',
       email: '',

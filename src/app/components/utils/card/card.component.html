@@ -25,7 +25,7 @@
   <div class="flex h-[50px] w-full items-center gap-2 bg-marca px-3 text-sm font-bold text-white transition-colors duration-200 group-hover:bg-marca-oscuro motion-reduce:transition-none" [class.justify-between]="eliminable" [class.justify-center]="!eliminable">
     <span class="min-w-0 overflow-hidden text-ellipsis whitespace-nowrap" [class.flex-1]="eliminable">{{ titulo }}</span>
     @if (eliminable) {
-      <button type="button" (click)="borrarCiudad($event)" class="btn-icono h-[35px] w-[35px] border-transparent bg-white/15 text-white shadow-none hover:bg-peligro" aria-label="Eliminar ciudad"><i class="material-icons" aria-hidden="true">delete</i></button>
+      <button type="button" (click)="borrarCiudad($event)" class="btn-icono h-[35px] w-[35px] border-transparent bg-white/15 text-white shadow-none hover:bg-peligro" [attr.aria-label]="'favoritos.eliminarCiudad' | translate"><i class="material-icons" aria-hidden="true">delete</i></button>
     }
   </div>
 </div>

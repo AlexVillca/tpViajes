@@ -5,6 +5,7 @@ import { ComentariosService } from '../../../../core/service/comentarios.service
 import { CiudadDataService } from '../../../../core/service/ciudad-data.service';
 import { IdUsuarioService } from '../../../../core/service/id-usuario.service';
 import { Comentario } from '../../../../models/interface/pais.interface';
+import { proveerTraducciones } from '../../../../core/i18n/traducciones.providers';
 
 describe('ComentariosListComponent - paginación', () => {
   const comentarios: Comentario[] = Array.from({ length: 12 }, (_, i) => ({
@@ -14,7 +15,7 @@ describe('ComentariosListComponent - paginación', () => {
   function crear(lista: Comentario[] = comentarios) {
     TestBed.configureTestingModule({
       imports: [ComentariosListComponent],
-      providers: [
+      providers: [proveerTraducciones(),
         { provide: ComentariosService, useValue: { getComentarios: () => of(lista) } },
         { provide: CiudadDataService, useValue: { ciudad$: new BehaviorSubject({ nombre: 'Fez' }) } },
         { provide: IdUsuarioService, useValue: { id$: of(null) } }

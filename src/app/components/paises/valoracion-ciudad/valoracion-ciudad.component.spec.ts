@@ -5,6 +5,7 @@ import { ValoracionCiudadComponent } from './valoracion-ciudad.component';
 import { ValoracionesService } from '../../../core/service/valoraciones.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { Valoracion } from '../../../models/interface/valoracion.interface';
+import { proveerTraducciones } from '../../../core/i18n/traducciones.providers';
 
 describe('ValoracionCiudadComponent', () => {
   let sesion: BehaviorSubject<string | null>;
@@ -30,7 +31,7 @@ describe('ValoracionCiudadComponent', () => {
     servicio.getValoraciones.and.returnValue(of(existentes));
     TestBed.configureTestingModule({
       imports: [ValoracionCiudadComponent],
-      providers: [
+      providers: [proveerTraducciones(),
         provideRouter([]),
         { provide: ValoracionesService, useValue: servicio },
         { provide: IdUsuarioService, useValue: { id$: sesion } }

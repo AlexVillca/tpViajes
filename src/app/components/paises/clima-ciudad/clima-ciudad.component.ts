@@ -1,11 +1,13 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClimaService, ClimaActual } from '../../../core/service/clima.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { NumeroPipe } from '../../../core/i18n/idioma.pipes';
 
 @Component({
   selector: 'app-clima-ciudad',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe, NumeroPipe],
   templateUrl: './clima-ciudad.component.html'
 })
 export class ClimaCiudadComponent implements OnInit {
@@ -20,7 +22,7 @@ export class ClimaCiudadComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.ciudad) {
-      this.error = 'No hay ciudad para consultar el clima.';
+      this.error = 'mensajes.sinCiudadClima';
       return;
     }
 
@@ -31,7 +33,7 @@ export class ClimaCiudadComponent implements OnInit {
         this.cargando = false;
       },
       error: (err) => {
-        this.error = err?.message ?? 'No se pudo obtener el clima.';
+        this.error = err?.message ?? 'mensajes.obtenerClima';
         this.cargando = false;
       }
     });

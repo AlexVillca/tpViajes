@@ -11,11 +11,12 @@ import { valorExistenteMap } from '../../../validators/valorExistenteMap.validat
 import { maxItemsValidator } from '../../../validators/maxItems.validator';
 import { FeedbackService } from '../../../core/service/feedback.service';
 import { DialogoDirective } from '../../utils/dialogo/dialogo.directive';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pop-up-guardar-favoritos',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,DialogoDirective],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,DialogoDirective, TranslatePipe],
   templateUrl: './pop-up-guardar-favoritos.component.html'
 })
 export class PopUpGuardarFavoritosComponent implements OnInit{
@@ -58,7 +59,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
     return this.formulario.get('nuevocheckboxListaFavorito') as FormControl;
   }
 
-  private marcarContextoNoDisponible(mensaje = 'No se pudieron cargar tus listas de favoritos.'): void {
+  private marcarContextoNoDisponible(mensaje = 'mensajes.cargarTusListas'): void {
     this.contextoListo = false;
     this.errorCargaContexto = mensaje;
   }
@@ -70,7 +71,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
         next: (id) => {
           if(!id){
             this.logueado = false;
-            this.marcarContextoNoDisponible('Debes iniciar sesión para guardar favoritos.');
+            this.marcarContextoNoDisponible('mensajes.iniciarSesionFavoritos');
             return;
           }
 
@@ -79,7 +80,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
             {
               next:(p) => {
                 if (!p) {
-                  this.marcarContextoNoDisponible('No se pudo obtener el país seleccionado.');
+                  this.marcarContextoNoDisponible('mensajes.obtenerPais');
                   return;
                 }
 
@@ -88,7 +89,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
                   {
                     next:(c) => {
                       if (!c) {
-                        this.marcarContextoNoDisponible('No se pudo obtener la ciudad seleccionada.');
+                        this.marcarContextoNoDisponible('mensajes.obtenerCiudad');
                         return;
                       }
 
@@ -204,7 +205,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
 
   saveSelection() {
     if (!this.contextoListo || !this.paisSeleccionado || !this.ciudadSeleccionada) {
-      this.feedback.error(this.errorCargaContexto || 'No se pudieron guardar los favoritos.');
+      this.feedback.error(this.errorCargaContexto || 'mensajes.guardarFavoritos');
       return;
     }
 
@@ -217,18 +218,18 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
             {
               next:() => {
                 this.cierraPopUp();
-                this.feedback.success('Lista guardada.');
+                this.feedback.success('mensajes.listaGuardada');
               },
               error:(error) => {
                 this.feedback.error(error.message);
               }
             });
           } else {
-            this.feedback.error('No se pudo obtener el usuario actual.');
+            this.feedback.error('mensajes.usuarioActual');
           }
         },
         error:() => {
-          this.feedback.error('No se pudo obtener el usuario actual.');
+          this.feedback.error('mensajes.usuarioActual');
         }
       }
     );
@@ -241,7 +242,7 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   }
   abrePopUp(){
     if (!this.contextoListo) {
-      this.feedback.error(this.errorCargaContexto || 'No se pudieron cargar tus listas de favoritos.');
+      this.feedback.error(this.errorCargaContexto || 'mensajes.cargarTusListas');
       return;
     }
 

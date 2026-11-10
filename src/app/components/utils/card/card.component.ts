@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './card.component.html'
 })
 export class CardComponent {

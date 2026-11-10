@@ -3,12 +3,13 @@ import { provideRouter, Router } from '@angular/router';
 import { PaisesListComponent } from './paises-list.component';
 import { PaisesService } from '../../../core/service/paises.service';
 import { PaisDataService } from '../../../core/service/pais-data.service';
+import { proveerTraducciones } from '../../../core/i18n/traducciones.providers';
 
 describe('PaisesListComponent - presentación y paginación', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PaisesListComponent],
-      providers: [provideRouter([]),
+      providers: [proveerTraducciones(), provideRouter([]),
         { provide: PaisesService, useValue: {} },
         { provide: PaisDataService, useValue: { setPais: jasmine.createSpy('setPais') } }
       ]

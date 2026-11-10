@@ -1,11 +1,11 @@
 <div class="modal-fondo">
 
   <div class="modal max-w-sm" role="alertdialog" aria-modal="true" aria-labelledby="confirmar-texto" appDialogo (cerrar)="cancelar.emit()">
-    <p id="confirmar-texto" class="m-0 text-base font-bold leading-relaxed text-tinta">{{ texto }}</p>
+    <p id="confirmar-texto" class="m-0 text-base font-bold leading-relaxed text-tinta">{{ texto | translate: parametros }}</p>
 
     <div class="mt-5 flex justify-end gap-2.5">
-      <button type="button" class="btn btn-peligro" (click)="confirmar.emit()">Confirmar</button>
-      <button type="button" class="btn btn-secundario" data-foco-inicial (click)="cancelar.emit()">Cancelar</button>
+      <button type="button" class="btn btn-peligro" (click)="confirmar.emit()">{{ 'comun.confirmar' | translate }}</button>
+      <button type="button" class="btn btn-secundario" data-foco-inicial (click)="cancelar.emit()">{{ 'comun.cancelar' | translate }}</button>
     </div>
 
   </div>

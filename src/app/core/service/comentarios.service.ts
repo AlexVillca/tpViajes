@@ -16,25 +16,25 @@ export class ComentariosService {
 
   getComentarios(): Observable<Comentario[]> {
     return this.http.get<Comentario[]>(this.apiUrl).pipe(
-      catchError(error => buildHttpError(error, 'No se pudieron cargar los comentarios.'))
+      catchError(error => buildHttpError(error, 'mensajes.cargarComentarios'))
     );
   }
 
   postComentario(comentario : Comentario): Observable<Comentario>{
     return this.http.post<Comentario>(this.apiUrl, comentario).pipe(
-      catchError(error => buildHttpError(error, 'No se pudo publicar el comentario.'))
+      catchError(error => buildHttpError(error, 'mensajes.publicarComentario'))
     );
   }
 
   updateComentario(id: string, comentario: Partial<Comentario>): Observable<Comentario> {
     return this.http.patch<Comentario>(`${this.apiUrl}/${id}`, comentario).pipe(
-      catchError(error => buildHttpError(error, 'No se pudo editar el comentario.'))
+      catchError(error => buildHttpError(error, 'mensajes.editarComentario'))
     );
   }
 
   deleteComentario(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      catchError(error => buildHttpError(error, 'No se pudo eliminar el comentario.'))
+      catchError(error => buildHttpError(error, 'mensajes.eliminarComentario'))
     );
   }
 }

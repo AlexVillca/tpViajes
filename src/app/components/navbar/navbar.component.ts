@@ -5,11 +5,13 @@ import { filter } from 'rxjs';
 import { IdUsuarioService } from '../../core/service/id-usuario.service';
 import { UsuariosService } from '../../core/service/usuarios.service';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { SelectorIdiomaComponent } from '../utils/selector-idioma/selector-idioma.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule,CommonModule, TranslatePipe, SelectorIdiomaComponent],
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit{

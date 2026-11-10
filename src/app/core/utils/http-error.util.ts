@@ -6,15 +6,15 @@ export function buildHttpError(
   fallbackMessage: string
 ) {
   if (error.status === 0) {
-    return throwError(() => new Error('No se pudo conectar con el servidor.'));
+    return throwError(() => new Error('mensajes.sinConexion'));
   }
 
   if (error.status === 404) {
-    return throwError(() => new Error('No se encontró el recurso solicitado.'));
+    return throwError(() => new Error('mensajes.recursoNoEncontrado'));
   }
 
   if (error.status >= 500) {
-    return throwError(() => new Error('Ocurrió un error en el servidor.'));
+    return throwError(() => new Error('mensajes.errorServidor'));
   }
 
   return throwError(() => new Error(fallbackMessage));

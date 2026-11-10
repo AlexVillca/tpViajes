@@ -42,6 +42,7 @@ describe('ClimaService', () => {
       humedad: 50,
       viento: 10,
       descripcion: 'Despejado',
+      claveDescripcion: 'c0',
       emoji: '☀️'
     });
   });
@@ -58,6 +59,6 @@ describe('ClimaService', () => {
       .expectOne(r => r.url.startsWith(environment.geocodingApiUrl))
       .flush({ results: [] });
 
-    expect(error?.message).toContain('No se encontró');
+    expect(error?.message).toBe('mensajes.ubicacionNoEncontrada');
   });
 });

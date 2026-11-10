@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Ciudad, Pais } from '../../../models/interface/pais.interface';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
-
+import { TranslatePipe } from '@ngx-translate/core';
+import { DatoPipe } from '../../../core/i18n/idioma.pipes';
 interface OpcionCiudad {
   id: string;
   ciudad: Ciudad;
@@ -27,7 +28,7 @@ export function normalizarBusqueda(texto: string): string {
 @Component({
   selector: 'app-buscador-ciudades',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe, DatoPipe],
   templateUrl: './buscador-ciudades.component.html'
 })
 export class BuscadorCiudadesComponent {

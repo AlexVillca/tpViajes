@@ -6,11 +6,13 @@ import { ValoracionesService } from '../../../core/service/valoraciones.service'
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
 import { FeedbackService } from '../../../core/service/feedback.service';
 import { Valoracion } from '../../../models/interface/valoracion.interface';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-valoracion-ciudad',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './valoracion-ciudad.component.html'
 })
 export class ValoracionCiudadComponent implements OnInit, OnChanges, OnDestroy {
@@ -20,6 +22,7 @@ export class ValoracionCiudadComponent implements OnInit, OnChanges, OnDestroy {
   private readonly servicio = inject(ValoracionesService);
   private readonly idUsuario = inject(IdUsuarioService);
   private readonly feedback = inject(FeedbackService);
+  private readonly idioma = inject(IdiomaService);
   private sesion?: Subscription;
 
   readonly estrellas = [1, 2, 3, 4, 5];
@@ -52,9 +55,9 @@ export class ValoracionCiudadComponent implements OnInit, OnChanges, OnDestroy {
     return this.valoraciones.reduce((suma, v) => suma + v.puntaje, 0) / this.cantidad;
   }
 
-  /** Promedio con un decimal y coma decimal (4,3). */
+  /** Promedio con un decimal en el formato del idioma (4,3 / 4.3). */
   get promedioTexto(): string {
-    return new Intl.NumberFormat('es-AR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(this.promedio);
+    return new Intl.NumberFormat(this.idioma.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(this.promedio);
   }
 
   get miValoracion(): Valoracion | undefined {
@@ -101,7 +104,7 @@ export class ValoracionCiudadComponent implements OnInit, OnChanges, OnDestroy {
           return;
         }
         this.pendiente = null;
-        this.feedback.success('¡Gracias por tu valoración!');
+        this.feedback.success('mensajes.graciasValoracion');
       },
       error: (e: Error) => {
         this.guardando = false;

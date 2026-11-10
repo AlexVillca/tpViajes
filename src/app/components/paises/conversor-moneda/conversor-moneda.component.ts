@@ -2,11 +2,13 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CurrencyService } from '../../../core/service/currency.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { NumeroPipe, FechaPipe } from '../../../core/i18n/idioma.pipes';
 
 @Component({
   selector: 'app-conversor-moneda',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe, NumeroPipe, FechaPipe],
   templateUrl: './conversor-moneda.component.html'
 })
 export class ConversorMonedaComponent implements OnInit {
@@ -43,7 +45,7 @@ export class ConversorMonedaComponent implements OnInit {
         this.cargando = false;
       },
       error: (err) => {
-        this.error = err?.message ?? 'No se pudieron obtener las cotizaciones.';
+        this.error = err?.message ?? 'mensajes.cotizaciones';
         this.cargando = false;
       }
     });
