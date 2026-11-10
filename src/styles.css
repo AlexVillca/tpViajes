@@ -1,26 +1,9 @@
 @import "leaflet/dist/leaflet.css";
 
+/* "base" incluye preflight: normaliza márgenes, bordes, fuentes heredadas y tamaño de caja. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  *,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-  }
-
-  /* Sin preflight, los controles de formulario no heredan la fuente: se aplica a todos los elementos. */
-  * {
-    font-family: theme('fontFamily.sans');
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-  }
-}
 
 /* Piezas reutilizables de la interfaz. Cada una combina utilidades de Tailwind. */
 @layer components {
