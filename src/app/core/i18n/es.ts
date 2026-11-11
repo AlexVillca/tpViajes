@@ -340,6 +340,13 @@ export const es = {
     vacio: 'Todavía no hay puntajes. ¡Jugá al minijuego y aparecé acá!',
     jugar: 'Jugar al minijuego'
   },
+  explorar: {
+    titulo: 'Explorar el mundo',
+    subtitulo: 'Buscá un país o ciudad, o tocá un punto en el mapa',
+    todos: 'Todos',
+    filtroContinente: 'Filtrar por continente',
+    cargando: 'Cargando el mapa...'
+  },
   aviso: {
     cerrar: 'Cerrar mensaje'
   },

@@ -338,6 +338,13 @@ export const en: Diccionario = {
     vacio: 'No scores yet. Play the minigame and show up here!',
     jugar: 'Play the minigame'
   },
+  explorar: {
+    titulo: 'Explore the world',
+    subtitulo: 'Search a country or city, or tap a point on the map',
+    todos: 'All',
+    filtroContinente: 'Filter by continent',
+    cargando: 'Loading the map...'
+  },
   aviso: {
     cerrar: 'Close message'
   },

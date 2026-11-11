@@ -1,0 +1,26 @@
+<main class="contenedor-pagina mb-8 mt-[88px] text-tinta">
+  <h1 class="m-0 mb-1 border-0 border-l-4 border-solid border-marca pl-3 text-3xl font-bold">{{ 'explorar.titulo' | translate }}</h1>
+  <p class="m-0 mb-5 pl-3 text-sm text-tinta-suave">{{ 'explorar.subtitulo' | translate }}</p>
+
+  <div class="relative z-[500] mb-4">
+    <app-buscador-ciudades [paises]="paises"></app-buscador-ciudades>
+  </div>
+
+  <div class="mb-4 flex flex-wrap gap-2" role="group" [attr.aria-label]="'explorar.filtroContinente' | translate">
+    <button type="button" (click)="filtrar('todos')" [attr.aria-pressed]="continenteSeleccionado === 'todos'"
+      class="rounded-xl border border-solid px-3 py-1.5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco"
+      [ngClass]="continenteSeleccionado === 'todos' ? 'border-marca bg-marca text-white' : 'border-superficie-borde bg-white text-tinta-media hover:bg-superficie-clara'">
+      {{ 'explorar.todos' | translate }}
+    </button>
+    <button *ngFor="let c of continentes" type="button" (click)="filtrar(c)" [attr.aria-pressed]="continenteSeleccionado === c"
+      class="rounded-xl border border-solid px-3 py-1.5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco"
+      [ngClass]="continenteSeleccionado === c ? 'border-marca bg-marca text-white' : 'border-superficie-borde bg-white text-tinta-media hover:bg-superficie-clara'">
+      {{ c }}
+    </button>
+  </div>
+
+  <p *ngIf="error" class="m-0 mb-3 text-sm text-peligro" role="alert">{{ error | translate }}</p>
+  <p *ngIf="cargando" class="m-0 py-6 text-center text-sm text-tinta-suave">{{ 'explorar.cargando' | translate }}</p>
+
+  <app-mapa-paises *ngIf="!cargando && paises.length" [paises]="paisesVisibles" (seleccionar)="abrirPais($event)"></app-mapa-paises>
+</main>

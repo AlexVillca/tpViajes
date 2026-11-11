@@ -5,7 +5,7 @@ import { NgZone } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FichaUserComponent } from './core/auth/ficha-user/ficha-user.component';
-import { PaisesListComponent } from './components/paises/paises-list/paises-list.component';
+import { ExplorarComponent } from './components/paises/explorar/explorar.component';
 import { CiudadDetailComponent } from './components/paises/ciudad-detail/ciudad-detail.component';
 import { PaisDetailComponent } from './components/paises/pais-detail/pais-detail.component';
 import { ListaDeListasComponent } from './components/favoritos/lista-de-listas/lista-de-listas.component';
@@ -47,7 +47,7 @@ describe('AppComponent - fondo compartido', () => {
       providers: [proveerTraducciones(), provideRouter([
         { path: '', component: HomeComponent },
         { path: 'fichaUser', component: FichaUserComponent },
-        { path: 'paises', component: PaisesListComponent },
+        { path: 'paises', component: ExplorarComponent },
         { path: 'pais', component: PaisDetailComponent },
         { path: 'ciudad', component: CiudadDetailComponent },
         { path: 'favoritos', component: ListaDeListasComponent },

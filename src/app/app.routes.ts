@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', loadComponent: () => import('./core/auth/login-form/login-form.component').then(m => m.LoginFormComponent) },
   { path: 'register', loadComponent: () => import('./core/auth/register/register.component').then(m => m.RegisterComponent) },
-  { path: 'paises', loadComponent: () => import('./components/paises/paises-list/paises-list.component').then(m => m.PaisesListComponent) },
+  { path: 'paises', loadComponent: () => import('./components/paises/explorar/explorar.component').then(m => m.ExplorarComponent) },
   { path: 'ciudad', loadComponent: () => import('./components/paises/ciudad-detail/ciudad-detail.component').then(m => m.CiudadDetailComponent) },
   { path: 'Juego', loadComponent: () => import('./game/game.component').then(m => m.GameComponent) },
   { path: 'ranking', loadComponent: () => import('./components/ranking/ranking.component').then(m => m.RankingComponent) },
