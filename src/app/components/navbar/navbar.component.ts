@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit{
       if (['paises', 'pais', 'ciudad'].includes(segmentos[0])) return 'paises';
       if (segmentos[0] === 'favoritos') return 'favoritos';
       if (segmentos[0] === 'Juego') return 'minijuego';
+      if (segmentos[0] === 'ranking') return 'ranking';
     }
 
     if (segmentos.length === 2 && segmentos[0] === 'listaCiudadesComp') {

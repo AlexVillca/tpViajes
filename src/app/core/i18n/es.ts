@@ -33,6 +33,7 @@ export const es = {
     abrirMenu: 'Abrir menú',
     cerrarMenu: 'Cerrar menú',
     minijuego: 'Minijuego',
+    ranking: 'Ranking',
     bienvenida: '¡Bienvenido, {{nombre}}!',
     iniciarSesion: 'Iniciar Sesión',
     registro: 'Registro',
@@ -332,6 +333,13 @@ export const es = {
     respuestaCorrecta: 'Respuesta correcta',
     respuestaIncorrecta: 'Respuesta incorrecta'
   },
+  ranking: {
+    titulo: 'Ranking global',
+    subtitulo: 'Los mejores puntajes del minijuego de banderas',
+    cargando: 'Cargando el ranking...',
+    vacio: 'Todavía no hay puntajes. ¡Jugá al minijuego y aparecé acá!',
+    jugar: 'Jugar al minijuego'
+  },
   aviso: {
     cerrar: 'Cerrar mensaje'
   },
@@ -340,6 +348,7 @@ export const es = {
     recursoNoEncontrado: 'No se encontró el recurso solicitado.',
     errorServidor: 'Ocurrió un error en el servidor.',
     cargarPaises: 'No se pudieron cargar los países.',
+    cargarRanking: 'No se pudieron cargar los puntajes.',
     sinPaises: 'No hay países para mostrar.',
     sinPaisesLetra: 'No se encontraron países con la letra {{letra}}.',
     cargarComentarios: 'No se pudieron cargar los comentarios.',

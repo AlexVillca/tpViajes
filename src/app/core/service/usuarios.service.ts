@@ -10,6 +10,12 @@ interface RespuestaSesion {
   user: SessionUser;
 }
 
+/** Entrada del ranking público del minijuego. */
+export interface RankingItem {
+  username: string;
+  mejorPuntaje: number;
+}
+
 /** El nombre de usuario o el email que se quiso guardar ya pertenece a otra cuenta. */
 export class ErrorDatoEnUso extends Error {
   constructor(readonly campo: 'username' | 'email') {
@@ -35,6 +41,14 @@ export class UsuariosService {
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.apiUrl).pipe(
       catchError(error => buildHttpError(error, 'mensajes.cargarUsuarios'))
+    );
+  }
+
+  /** Ranking público del minijuego (top por mejor puntaje), sin datos sensibles. */
+  getRanking(limite = 10): Observable<RankingItem[]> {
+    const url = `${environment.apiBaseUrl}/ranking`;
+    return this.http.get<RankingItem[]>(url, { params: { limite: String(limite) } }).pipe(
+      catchError(error => buildHttpError(error, 'mensajes.cargarRanking'))
     );
   }
 

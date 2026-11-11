@@ -282,6 +282,16 @@ app.get('/usuarios', h(async (req, res) => {
   return res.json(filas);
 }));
 
+// Ranking público del minijuego: top por mejor puntaje. Solo username y puntaje (sin email).
+app.get('/ranking', h(async (req, res) => {
+  const limite = Math.min(Math.max(Number(req.query.limite) || 10, 1), 50);
+  const [filas] = await pool.query(
+    'SELECT username, mejor_puntaje FROM usuarios WHERE mejor_puntaje > 0 ORDER BY mejor_puntaje DESC, username ASC LIMIT ?',
+    [limite]
+  );
+  return res.json(filas.map(f => ({ username: f.username, mejorPuntaje: f.mejor_puntaje })));
+}));
+
 app.get('/usuarios/:id', h(async (req, res) => {
   const usuario = await usuarioPorId(req.params.id);
   if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado.' });

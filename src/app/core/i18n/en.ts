@@ -31,6 +31,7 @@ export const en: Diccionario = {
     abrirMenu: 'Open menu',
     cerrarMenu: 'Close menu',
     minijuego: 'Minigame',
+    ranking: 'Ranking',
     bienvenida: 'Welcome, {{nombre}}!',
     iniciarSesion: 'Log In',
     registro: 'Sign Up',
@@ -330,6 +331,13 @@ export const en: Diccionario = {
     respuestaCorrecta: 'Correct answer',
     respuestaIncorrecta: 'Wrong answer'
   },
+  ranking: {
+    titulo: 'Global ranking',
+    subtitulo: 'The best scores from the flags minigame',
+    cargando: 'Loading the ranking...',
+    vacio: 'No scores yet. Play the minigame and show up here!',
+    jugar: 'Play the minigame'
+  },
   aviso: {
     cerrar: 'Close message'
   },
@@ -338,6 +346,7 @@ export const en: Diccionario = {
     recursoNoEncontrado: 'The requested resource was not found.',
     errorServidor: 'Something went wrong on the server.',
     cargarPaises: 'Could not load the countries.',
+    cargarRanking: 'Could not load the scores.',
     sinPaises: 'There are no countries to show.',
     sinPaisesLetra: 'No countries found starting with {{letra}}.',
     cargarComentarios: 'Could not load the comments.',

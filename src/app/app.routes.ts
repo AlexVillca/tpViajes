@@ -13,6 +13,7 @@ export const routes: Routes = [
   { path: 'paises', loadComponent: () => import('./components/paises/paises-list/paises-list.component').then(m => m.PaisesListComponent) },
   { path: 'ciudad', loadComponent: () => import('./components/paises/ciudad-detail/ciudad-detail.component').then(m => m.CiudadDetailComponent) },
   { path: 'Juego', loadComponent: () => import('./game/game.component').then(m => m.GameComponent) },
+  { path: 'ranking', loadComponent: () => import('./components/ranking/ranking.component').then(m => m.RankingComponent) },
   { path: 'pais', loadComponent: () => import('./components/paises/pais-detail/pais-detail.component').then(m => m.PaisDetailComponent) },
   { path: 'favoritos', canActivate: [authGuard], loadComponent: () => import('./components/favoritos/lista-de-listas/lista-de-listas.component').then(m => m.ListaDeListasComponent) },
   { path: 'listaCiudadesComp/:idLista', canActivate: [authGuard], loadComponent: () => import('./components/favoritos/lista/lista.component').then(m => m.ListaComponent) },

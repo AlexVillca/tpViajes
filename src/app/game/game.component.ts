@@ -6,9 +6,8 @@ import { Router } from '@angular/router';
 import { PaisesService } from '../core/service/paises.service';
 import { FeedbackService } from '../core/service/feedback.service';
 import { IdUsuarioService } from '../core/service/id-usuario.service';
-import { UsuariosService } from '../core/service/usuarios.service';
+import { UsuariosService, RankingItem } from '../core/service/usuarios.service';
 import { Pais } from '../models/interface/pais.interface';
-import { Usuario } from '../models/interface/usuario.interface';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatoPipe } from '../core/i18n/idioma.pipes';
 
@@ -25,7 +24,7 @@ export class GameComponent {
   routerService = inject(Router);
   feedback = inject(FeedbackService);
 
-  topUsuarios: Usuario[] = [];
+  topUsuarios: RankingItem[] = [];
   arregloPaises: Pais[] = [];
   paisAleatorio: Pais | null = null;
   opciones: Pais[] = [];
@@ -66,12 +65,10 @@ export class GameComponent {
   }
 
   cargarTop3() {
-    this.servicioUsuario.getUsuarios().subscribe({
-      next: (usuarios: Usuario[]) => {
+    this.servicioUsuario.getRanking(3).subscribe({
+      next: (ranking) => {
         this.errorRanking = '';
-        this.topUsuarios = usuarios
-          .sort((a, b) => (b.mejorPuntaje || 0) - (a.mejorPuntaje || 0))
-          .slice(0, 3);
+        this.topUsuarios = ranking;
       },
       error: (e) => {
         this.errorRanking = e.message;

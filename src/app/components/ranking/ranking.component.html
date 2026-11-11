@@ -1,0 +1,26 @@
+<main class="contenedor-pagina mb-8 mt-[88px] text-tinta">
+  <h1 class="m-0 mb-1 border-0 border-l-4 border-solid border-marca pl-3 text-3xl font-bold">{{ 'ranking.titulo' | translate }}</h1>
+  <p class="m-0 mb-5 pl-3 text-sm text-tinta-suave">{{ 'ranking.subtitulo' | translate }}</p>
+
+  <div class="rounded-3xl border border-solid border-superficie-linea bg-white/90 p-4 shadow-sm sm:p-6">
+    <p *ngIf="cargando" class="m-0 py-4 text-center text-sm text-tinta-suave">{{ 'ranking.cargando' | translate }}</p>
+    <p *ngIf="error" class="m-0 py-4 text-center text-sm text-peligro" role="alert">{{ error | translate }}</p>
+
+    <ng-container *ngIf="!cargando && !error">
+      <div *ngIf="ranking.length === 0" class="flex flex-col items-center gap-3 py-6 text-center">
+        <p class="m-0 text-sm text-tinta-suave">{{ 'ranking.vacio' | translate }}</p>
+        <a routerLink="/Juego" class="rounded-xl bg-marca px-4 py-2 text-sm font-semibold text-white no-underline transition-colors hover:bg-marca-oscuro focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">{{ 'ranking.jugar' | translate }}</a>
+      </div>
+
+      <ol *ngIf="ranking.length > 0" class="m-0 flex list-none flex-col gap-2 p-0">
+        <li *ngFor="let r of ranking; let i = index"
+            class="flex items-center gap-3 rounded-2xl border border-solid border-superficie-linea p-3"
+            [ngClass]="i < 3 ? 'bg-superficie-clara' : 'bg-superficie'">
+          <span class="w-9 shrink-0 text-center text-lg font-bold tabular-nums text-marca-texto">{{ i < 3 ? medallas[i] : (i + 1) }}</span>
+          <span class="min-w-0 flex-1 truncate font-semibold text-tinta [overflow-wrap:anywhere]">{{ r.username }}</span>
+          <span class="shrink-0 text-lg font-bold tabular-nums text-marca">{{ r.mejorPuntaje }}</span>
+        </li>
+      </ol>
+    </ng-container>
+  </div>
+</main>
