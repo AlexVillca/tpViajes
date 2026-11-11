@@ -32,9 +32,32 @@ Calidad
 
 ## Arquitectura
 
-- Frontend: Angular 17 con componentes standalone, RxJS y Leaflet.
-- Backend: Node.js con Express, que utiliza json-server como capa de datos e implementa la autenticación con bcrypt y JWT (db/server.js).
-- Base de datos: archivo JSON (db/db.json) con las colecciones paises, usuarios y comentarios.
+- Frontend: Angular 17 con componentes standalone, RxJS y Leaflet. Consume la API publicada del proyecto.
+- Backend: Node.js con Express; API REST propia con autenticación bcrypt + JWT y persistencia en MySQL (db/server.js), desplegada en el servidor del proyecto.
+- Base de datos: MySQL 8.
+
+## Cómo usar la app
+
+La app consume la API ya publicada en el servidor del proyecto, así que **no hace falta instalar ni configurar ninguna base de datos**.
+
+Requisitos: Node 20.
+
+1. Clonar el repositorio.
+2. Instalar las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. Levantar la app:
+
+   ```bash
+   npm start
+   ```
+
+Se abre en el navegador (http://localhost:4200) y consume la API publicada en `https://api-deviaje.facuramallo.com.ar`. No hay que levantar base de datos ni backend local.
+
+Cuenta de prueba: usuario **admin**, contraseña **admin**.
 
 ## Testing
 
@@ -56,13 +79,12 @@ src/app/
   game/         minijuego de banderas
   models/       interfaces (Pais, Ciudad, Usuario, ...)
 db/
-  server.js     backend (Express + json-server + bcrypt + JWT)
-  db.json       base de datos
+  server.js     backend / API (Express + MySQL + bcrypt + JWT)
 ```
 
 ## Tecnologías
 
-Angular 17, TypeScript, RxJS, Leaflet / OpenStreetMap, Node.js, Express, json-server, bcrypt, JSON Web Tokens, Jasmine y Karma.
+Angular 17, TypeScript, RxJS, Leaflet / OpenStreetMap, Node.js, Express, MySQL (mysql2), bcrypt, JSON Web Tokens, Docker, Jasmine y Karma.
 
 ## Equipo
 

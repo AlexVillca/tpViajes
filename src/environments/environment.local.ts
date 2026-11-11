@@ -1,3 +1,5 @@
+// Configuración para desarrollo LOCAL (devs): apunta al backend local en localhost:3000.
+// Se usa con: npm run start:local
 export const environment = {
   apiBaseUrl: 'http://localhost:3000',
   currencyApiUrl: 'https://open.er-api.com/v6/latest',

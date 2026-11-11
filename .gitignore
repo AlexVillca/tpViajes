@@ -61,3 +61,11 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Notas de trabajo locales (pendientes, apuntes) — nunca se pushean
+/PENDIENTES-FRONTEND.md
+/PENDIENTES-*.md
+
+# Setup de la base de datos: local durante la tesis, se vuelve al git despues de la defensa
+/database/
+/docker-compose.yml
