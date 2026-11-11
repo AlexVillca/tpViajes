@@ -42,7 +42,6 @@ export class ComentariosComponent {
   pais$ = this.paisDataService.pais$;
   nombreCiudad = '';
   idPais = '';
-  errorMessage = '';
   feedback = inject(FeedbackService);
 
   ngOnInit() {
@@ -56,15 +55,7 @@ export class ComentariosComponent {
   idUser = inject(IdUsuarioService);
   userService = inject(UsuariosService);
 
-  getCiudadActual() {
-    this.cds.ciudad$.subscribe(ciudad => {
-      return ciudad;
-    });
-  }
-
   agregarComentarioDb() {
-    this.errorMessage = '';
-
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched();
       return;
@@ -99,7 +90,6 @@ export class ComentariosComponent {
         next: (comentario) => {
           this.emitirComentario.emit(comentario);
           this.formulario.reset({ comentario: '' });
-          this.errorMessage = '';
           this.feedback.success('mensajes.comentarioPublicado');
         },
         error: (error) => {

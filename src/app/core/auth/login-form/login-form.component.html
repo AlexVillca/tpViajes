@@ -11,7 +11,6 @@
             <div class="mensaje-error">{{ 'comun.campoRequerido' | translate }}</div>
           }
         </div>
-        <div *ngIf="usuarioIncorrecto" class="mensaje-error">{{ 'login.usuarioNoEncontrado' | translate }}</div>
       </div>
 
       <div class="space-y-2">
@@ -22,9 +21,9 @@
             <div class="mensaje-error">{{ 'comun.campoRequerido' | translate }}</div>
           }
         </div>
-        <div *ngIf="passwordIncorrecto" class="mensaje-error">{{ 'login.contrasenaIncorrecta' | translate }}</div>
       </div>
 
+      <div *ngIf="credencialesInvalidas" class="mensaje-error" role="alert">{{ 'login.credencialesInvalidas' | translate }}</div>
       <div *ngIf="serverError" class="mensaje-error" role="alert">{{ serverError | translate }}</div>
 
       <button type="submit" class="btn btn-primario w-full">{{ 'login.entrar' | translate }}</button>

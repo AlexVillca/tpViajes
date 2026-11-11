@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UsuariosService } from '../../service/usuarios.service';
+import { ErrorDatoEnUso, UsuariosService } from '../../service/usuarios.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Usuario } from '../../../models/interface/usuario.interface'
 
@@ -45,56 +45,32 @@ export class RegisterComponent {
     this.emailInvalid = false;
     this.userNameInvalid = false;
     this.serverError = '';
-    if (this.formulario.invalid) {return}
+    if (this.formulario.invalid) { return; }
+
     this.user.username = this.formulario.get('username')?.value || "";
     this.user.email = this.formulario.get('email')?.value || "";
     this.user.password = this.formulario.get('password')?.value || "";
-    this.usuarioService.comprobarEmailUsuario(this.user.email).subscribe(
-      {
-      next: (emailDisponible) => {
-        if (emailDisponible) {
-          this.emailInvalid = false;
-          this.usuarioService.comprobarUserNameUsuario(this.user.username).subscribe(
-            {
-              next: (usernameDisponible) => {
-                if(usernameDisponible){
-                  this.userNameInvalid = false;
 
-                  this.usuarioService.postUsuario({...this.user})
-                  .subscribe(
-                    {
-                    next: () => {
-                      this.registroExitoso = true;
-
-                      setTimeout(() => {
-                        this.routerService.navigate(['login']);
-                      }, 4000);
-                     },
-                    error: (error) => {
-                      this.serverError = error.message;
-                    }
-                    }
-                  );
-
-                }else{
-                  this.userNameInvalid = true;
-                }
-              },
-            error: (error) => {
-              this.serverError = error.message;
-            }
-            }
-          );
-        } else {
-          this.emailInvalid = true;
-
-        }
+    // El backend valida la unicidad del usuario y el email; ante un dato repetido devuelve 409.
+    this.usuarioService.postUsuario({ ...this.user }).subscribe({
+      next: () => {
+        this.registroExitoso = true;
+        setTimeout(() => {
+          this.routerService.navigate(['login']);
+        }, 4000);
       },
       error: (error) => {
-        this.serverError = error.message;
+        if (error instanceof ErrorDatoEnUso) {
+          if (error.campo === 'email') {
+            this.emailInvalid = true;
+          } else {
+            this.userNameInvalid = true;
+          }
+        } else {
+          this.serverError = error.message;
+        }
       }
-      }
-    );
+    });
   }
 
 }

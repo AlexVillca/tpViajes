@@ -34,7 +34,14 @@ export class UsuariosService {
 
   postUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
-      catchError(error => buildHttpError(error, 'mensajes.registrarUsuario'))
+      catchError((error: HttpErrorResponse) => {
+        // El backend es la fuente de verdad de la unicidad: ante un dato repetido devuelve 409.
+        if (error.status === 409) {
+          const campo = error.error?.campo === 'email' ? 'email' : 'username';
+          return throwError(() => new ErrorDatoEnUso(campo));
+        }
+        return buildHttpError(error, 'mensajes.registrarUsuario');
+      })
     );
   }
 
@@ -58,8 +65,12 @@ export class UsuariosService {
     );
   }
 
-  /** Inicia sesión con email o nombre de usuario. El backend deja el token en una cookie httpOnly. */
-  login(usuario: string, password: string): Observable<boolean | null> {
+  /**
+   * Inicia sesión con email o nombre de usuario. El backend deja el token en una cookie httpOnly.
+   * Devuelve false ante credenciales inválidas (el backend no distingue usuario inexistente de
+   * contraseña incorrecta, para no revelar qué cuentas existen).
+   */
+  login(usuario: string, password: string): Observable<boolean> {
     const url = `${environment.apiBaseUrl}/login`;
 
     return this.http
@@ -70,10 +81,7 @@ export class UsuariosService {
           return true;
         }),
         catchError((error: HttpErrorResponse) => {
-          if (error.status === 404) {
-            return of(null);
-          }
-          if (error.status === 401) {
+          if (error.status === 401 || error.status === 404) {
             return of(false);
           }
           return buildHttpError(error, 'mensajes.iniciarSesion');
@@ -125,40 +133,6 @@ export class UsuariosService {
     );
   }
 
-  comprobarEmailUsuario(emailIngresado: string): Observable<boolean> {
-    return this.http.get<Usuario[] | undefined>(this.apiUrl).pipe(
-      map(usuarios => {
-        if (usuarios) {
-          if (usuarios.find(u => u.email === emailIngresado) !== undefined) {
-            return false;
-          }
-
-          return true;
-        }
-
-        return false;
-      }),
-      catchError(error => buildHttpError(error, 'mensajes.validarEmail'))
-    );
-  }
-
-  comprobarUserNameUsuario(usernameIngresado: string): Observable<boolean> {
-    return this.http.get<Usuario[]>(this.apiUrl).pipe(
-      map(usuarios => {
-        if (usuarios) {
-          if (usuarios.find(u => u.username === usernameIngresado) !== undefined) {
-            return false;
-          }
-
-          return true;
-        }
-
-        return false;
-      }),
-      catchError(error => buildHttpError(error, 'mensajes.validarUsuario'))
-    );
-  }
-
   obtenerListasFav(id: string): Observable<ListaFav[]> {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`).pipe(
       map(usuario => usuario.listasFavs),
@@ -183,11 +157,17 @@ export class UsuariosService {
     );
   }
 
-  cambiarContrasena(id: string, nuevaContrasena: string): Observable<Partial<Usuario>> {
+  /** Cambia la contraseña. El backend exige la contraseña actual; si no coincide devuelve 401. */
+  cambiarContrasena(id: string, nuevaContrasena: string, contrasenaActual: string): Observable<Partial<Usuario>> {
     const url = `${this.apiUrl}/${id}`;
-    const body: Partial<Usuario> = { password: nuevaContrasena };
+    const body = { password: nuevaContrasena, currentPassword: contrasenaActual };
     return this.http.patch<Partial<Usuario>>(url, body).pipe(
-      catchError(error => buildHttpError(error, 'mensajes.actualizarContrasena'))
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          return throwError(() => new Error('mensajes.contrasenaActualIncorrecta'));
+        }
+        return buildHttpError(error, 'mensajes.actualizarContrasena');
+      })
     );
   }
 

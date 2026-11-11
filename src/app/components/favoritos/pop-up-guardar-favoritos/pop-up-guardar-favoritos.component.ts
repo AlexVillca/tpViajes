@@ -37,8 +37,6 @@ export class PopUpGuardarFavoritosComponent implements OnInit{
   ciudadSeleccionada: Ciudad | null = null;
   paisSeleccionado: Pais | null = null;
 
-  alertaMaxListas = false;
-  alertaNombreRepetido = false;
   feedback = inject(FeedbackService);
   contextoListo = false;
   errorCargaContexto = '';

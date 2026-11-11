@@ -22,12 +22,10 @@ export class LoginFormComponent {
     password: ['',[Validators.required]]
   })
 
-  usuarioIncorrecto = false;
-  passwordIncorrecto = false;
+  credencialesInvalidas = false;
   serverError = '';
   loguearse(){
-    this.usuarioIncorrecto = false;
-    this.passwordIncorrecto =false;
+    this.credencialesInvalidas = false;
     this.serverError = '';
     if(this.formulario.invalid){
       this.formulario.markAllAsTouched();
@@ -35,19 +33,12 @@ export class LoginFormComponent {
     }
     this.usuarioService.login(this.formulario.get("usuario")?.value ?? "", this.formulario.get("password")?.value ?? "").subscribe(
       {
-        next:(value)=>{
-          if(value === null){
-            this.usuarioIncorrecto = true;
-
+        next:(ok)=>{
+          if(ok){
+            const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+            this.routerService.navigateByUrl(returnUrl || '/home');
           }else{
-            if(value){
-              const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-              this.routerService.navigateByUrl(returnUrl || '/home');
-
-            }else{
-              this.passwordIncorrecto = true;
-
-            }
+            this.credencialesInvalidas = true;
           }
         },
         error:(e)=>{

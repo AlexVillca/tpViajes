@@ -24,17 +24,18 @@ export class UpdatePasswordComponent implements OnInit {
   location = inject(Location);
 
   formularioUpdate: FormGroup = this.fb.nonNullable.group({
+    currentPassword: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
     confirmPassword: ['', [Validators.required]]
   });
 
-  passwordNotMatch = false;
   serverError = '';
   successMessage = '';
 
-  checkPasswordMatch(): void {
+  /** La nueva contraseña y su confirmación no coinciden (solo si ya se escribió la confirmación). */
+  get passwordNotMatch(): boolean {
     const { password, confirmPassword } = this.formularioUpdate.getRawValue();
-    this.passwordNotMatch = password !== confirmPassword;
+    return !!confirmPassword && password !== confirmPassword;
   }
 
   ngOnInit(): void {
@@ -52,14 +53,12 @@ export class UpdatePasswordComponent implements OnInit {
   update(): void {
     this.serverError = '';
     this.successMessage = '';
-    this.checkPasswordMatch();
 
-    if (this.passwordNotMatch) { return; }
     if (!this.id) { return; }
-    if (this.formularioUpdate.invalid) { return; }
+    if (this.formularioUpdate.invalid || this.passwordNotMatch) { return; }
 
-    const { password } = this.formularioUpdate.getRawValue();
-    this.usuariosService.cambiarContrasena(this.id, password).subscribe({
+    const { password, currentPassword } = this.formularioUpdate.getRawValue();
+    this.usuariosService.cambiarContrasena(this.id, password, currentPassword).subscribe({
       next: () => {
         this.successMessage = 'mensajes.contrasenaActualizada';
         setTimeout(() => {

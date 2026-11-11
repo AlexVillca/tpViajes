@@ -202,11 +202,9 @@ app.post('/login', h(async (req, res) => {
   }
 
   const encontrado = await buscarUsuarioPorIdentificador(identificador);
-  if (!encontrado) {
-    return res.status(404).json({ error: 'Usuario no encontrado.' });
-  }
-  if (!bcrypt.compareSync(password, encontrado.password || '')) {
-    return res.status(401).json({ error: 'Contraseña incorrecta.' });
+  // Mismo 401 para "no existe" y "contraseña incorrecta": no revela qué cuentas existen.
+  if (!encontrado || !bcrypt.compareSync(password, encontrado.password || '')) {
+    return res.status(401).json({ error: 'Usuario o contraseña incorrectos.' });
   }
   return res.json({ user: iniciarSesion(res, encontrado) });
 }));
@@ -308,8 +306,8 @@ app.post('/usuarios', h(async (req, res) => {
   if (typeof password !== 'string' || password.length === 0) {
     return res.status(400).json({ error: 'La contraseña es requerida.' });
   }
-  if (await datoEnUso('username', username)) return res.status(409).json({ error: 'El nombre de usuario ya está en uso.' });
-  if (await datoEnUso('email', email)) return res.status(409).json({ error: 'El email ya está en uso.' });
+  if (await datoEnUso('username', username)) return res.status(409).json({ error: 'El nombre de usuario ya está en uso.', campo: 'username' });
+  if (await datoEnUso('email', email)) return res.status(409).json({ error: 'El email ya está en uso.', campo: 'email' });
 
   const id = nuevoId();
   const hash = password.startsWith('$2') ? password : bcrypt.hashSync(password, SALT_ROUNDS);
@@ -338,6 +336,11 @@ app.patch('/usuarios/:id', requiereAuth, h(async (req, res) => {
   if (body.listasFavs !== undefined) cambios.listas_favs = JSON.stringify(body.listasFavs ?? []);
   if (body.mejorPuntaje !== undefined) cambios.mejor_puntaje = Number(body.mejorPuntaje) || 0;
   if (typeof body.password === 'string' && body.password.length > 0) {
+    // Para cambiar la contraseña hay que acreditar la actual (aunque la sesión sea válida).
+    const actual = typeof body.currentPassword === 'string' ? body.currentPassword : '';
+    if (!bcrypt.compareSync(actual, usuario.password || '')) {
+      return res.status(401).json({ error: 'La contraseña actual no es correcta.' });
+    }
     cambios.password = body.password.startsWith('$2') ? body.password : bcrypt.hashSync(body.password, SALT_ROUNDS);
   }
 
