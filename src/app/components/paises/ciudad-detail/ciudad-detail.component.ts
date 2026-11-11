@@ -10,6 +10,7 @@ import { PaisDataService } from '../../../core/service/pais-data.service';
 import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-favoritos/pop-up-guardar-favoritos.component';
 import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
 import { ValoracionCiudadComponent } from '../valoracion-ciudad/valoracion-ciudad.component';
+import { MapaAtraccionesComponent } from '../mapa-atracciones/mapa-atracciones.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatoPipe } from '../../../core/i18n/idioma.pipes';
 import { imagenPorDefecto } from '../../../core/utils/imagen.util';
@@ -20,7 +21,7 @@ import { imagenPorDefecto } from '../../../core/utils/imagen.util';
   imports: [ComentariosListComponent
     ,CommonModule
     ,PopUpGuardarFavoritosComponent
-    ,ClimaCiudadComponent, ValoracionCiudadComponent, RouterLink, TranslatePipe, DatoPipe],
+    ,ClimaCiudadComponent, ValoracionCiudadComponent, MapaAtraccionesComponent, RouterLink, TranslatePipe, DatoPipe],
   templateUrl: './ciudad-detail.component.html'
 })
 export class CiudadDetailComponent implements OnInit{
@@ -47,6 +48,16 @@ export class CiudadDetailComponent implements OnInit{
       this.router.navigate([destino]);
     });
   }
+
+  /** Al tocar un pin del mapa, lleva el foco a la tarjeta de esa atracción. */
+  irATarjeta(indice: number): void {
+    const el = document.getElementById(`atraccion-${indice}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.focus({ preventScroll: true });
+    }
+  }
+
   setImagenError = imagenPorDefecto;
 
 }

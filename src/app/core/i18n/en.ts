@@ -212,6 +212,7 @@ export const en: Diccionario = {
     titulo: 'Current weather',
     cargando: 'Loading current weather…',
     fuente: 'Current weather in {{ciudad}} · Open-Meteo',
+    pronostico: 'Next days',
     codigos: {
       c0: 'Clear sky',
       c1: 'Mainly clear',
@@ -265,6 +266,9 @@ export const en: Diccionario = {
     idiomas: 'Languages',
     monedas: 'Currencies',
     zonaHoraria: 'Time zone',
+    horaLocal: 'Local time',
+    mismaHora: 'same time as you',
+    diferencia: '{{horas}} h from your time',
     limitrofes: 'Bordering countries',
     bandera: 'Flag'
   },
@@ -344,9 +348,7 @@ export const en: Diccionario = {
     todos: 'All',
     filtroContinente: 'Filter by continent',
     cargando: 'Loading the map...',
-    listaPaises: 'Countries',
-    paisesCount: 'countries on the map',
-    listaAyuda: 'Pick a country from the list or the map'
+    listaPaises: 'Countries'
   },
   continentes: {
     africa: 'Africa',

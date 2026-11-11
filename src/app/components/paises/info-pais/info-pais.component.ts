@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestCountriesService, PaisInfo } from '../../../core/service/rest-countries.service';
 import { IdiomaService } from '../../../core/i18n/idioma.service';
@@ -45,7 +45,7 @@ const REGIONES_ES: Record<string, string> = {
   imports: [CommonModule, TranslatePipe, NumeroPipe],
   templateUrl: './info-pais.component.html'
 })
-export class InfoPaisComponent implements OnInit {
+export class InfoPaisComponent implements OnInit, OnDestroy {
   @Input() codigo?: string;
 
   private rest = inject(RestCountriesService);
@@ -54,6 +54,11 @@ export class InfoPaisComponent implements OnInit {
   info: PaisInfo | null = null;
   cargando = false;
   error: string | null = null;
+
+  /** Hora actual en el destino (HH:MM) y diferencia en horas respecto a la del usuario. */
+  horaLocal = '';
+  diferenciaHoras = 0;
+  private reloj?: ReturnType<typeof setInterval>;
 
   ngOnInit(): void {
     if (!this.codigo) {
@@ -65,12 +70,42 @@ export class InfoPaisComponent implements OnInit {
       next: (data) => {
         this.info = data;
         this.cargando = false;
+        this.iniciarReloj();
       },
       error: (err) => {
         this.error = err?.message ?? 'mensajes.obtenerInformacion';
         this.cargando = false;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.reloj) clearInterval(this.reloj);
+  }
+
+  private iniciarReloj(): void {
+    this.actualizarHora();
+    this.reloj = setInterval(() => this.actualizarHora(), 30000);
+  }
+
+  /** Minutos de desfase respecto a UTC de la primera zona horaria ("UTC+01:00" -> 60). */
+  private offsetDestinoMin(): number | null {
+    const tz = this.info?.zonasHorarias?.[0];
+    if (!tz) return null;
+    if (tz === 'UTC') return 0;
+    const m = /^UTC([+-])(\d{2}):(\d{2})$/.exec(tz);
+    if (!m) return null;
+    return (m[1] === '-' ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3]));
+  }
+
+  private actualizarHora(): void {
+    const off = this.offsetDestinoMin();
+    if (off === null) { this.horaLocal = ''; return; }
+    // El epoch desplazado por el offset, leído en UTC, da la hora de pared del destino.
+    const d = new Date(Date.now() + off * 60000);
+    this.horaLocal = `${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`;
+    const offUsuario = -new Date().getTimezoneOffset();
+    this.diferenciaHoras = Math.round((off - offUsuario) / 60);
   }
 
   region(nombre: string): string {

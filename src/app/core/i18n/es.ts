@@ -214,6 +214,7 @@ export const es = {
     titulo: 'Clima actual',
     cargando: 'Cargando clima actual…',
     fuente: 'Clima actual en {{ciudad}} · Open-Meteo',
+    pronostico: 'Próximos días',
     codigos: {
       c0: 'Despejado',
       c1: 'Mayormente despejado',
@@ -267,6 +268,9 @@ export const es = {
     idiomas: 'Idiomas',
     monedas: 'Monedas',
     zonaHoraria: 'Zona horaria',
+    horaLocal: 'Hora local',
+    mismaHora: 'misma hora que vos',
+    diferencia: '{{horas}} h respecto a tu hora',
     limitrofes: 'Países limítrofes',
     bandera: 'Bandera'
   },
@@ -346,9 +350,7 @@ export const es = {
     todos: 'Todos',
     filtroContinente: 'Filtrar por continente',
     cargando: 'Cargando el mapa...',
-    listaPaises: 'Países',
-    paisesCount: 'países en el mapa',
-    listaAyuda: 'Elegí un país de la lista o del mapa'
+    listaPaises: 'Países'
   },
   continentes: {
     africa: 'África',

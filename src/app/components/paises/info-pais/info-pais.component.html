@@ -4,6 +4,16 @@
   <p class="m-0 text-sm text-tinta-suave motion-safe:animate-pulse" *ngIf="cargando" role="status" aria-live="polite">{{ 'infoPais.cargando' | translate }}</p>
   <p class="m-0 rounded-xl border border-solid border-peligro-borde bg-peligro-fondo p-4 text-sm leading-relaxed text-peligro-oscuro" *ngIf="error && !cargando" role="alert">{{ error | translate }}</p>
 
+  <div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-solid border-superficie-resalte bg-superficie-clara px-4 py-3" *ngIf="info && !cargando && !error && horaLocal" role="region" [attr.aria-label]="'infoPais.horaLocal' | translate">
+    <span class="text-xs font-semibold uppercase tracking-wide text-tinta-suave">{{ 'infoPais.horaLocal' | translate }}</span>
+    <span class="text-2xl font-bold tabular-nums text-tinta" aria-live="polite">🕐 {{ horaLocal }}</span>
+    <span class="text-xs text-tinta-suave">
+      {{ info.zonasHorarias[0] }}
+      <ng-container *ngIf="diferenciaHoras === 0"> · {{ 'infoPais.mismaHora' | translate }}</ng-container>
+      <ng-container *ngIf="diferenciaHoras !== 0"> · {{ 'infoPais.diferencia' | translate: { horas: (diferenciaHoras > 0 ? '+' : '') + diferenciaHoras } }}</ng-container>
+    </span>
+  </div>
+
   <div class="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3" *ngIf="info && !cargando && !error">
     <div class="flex min-w-0 flex-col gap-1">
       <span class="text-xs font-semibold uppercase tracking-wide text-tinta-suave">{{ 'infoPais.capital' | translate }}</span>

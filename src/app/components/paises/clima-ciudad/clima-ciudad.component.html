@@ -13,4 +13,16 @@
       <span class="mt-2 break-words text-xs leading-relaxed text-tinta-suave">{{ 'clima.fuente' | translate: { ciudad: clima.ciudad } }}</span>
     </div>
   </div>
+
+  <div *ngIf="clima && !cargando && !error && clima.pronostico.length">
+    <p class="m-0 mb-1.5 mt-3 text-xs font-semibold uppercase tracking-wide text-tinta-suave">{{ 'clima.pronostico' | translate }}</p>
+    <div class="grid grid-cols-3 gap-2" role="list">
+      <div class="flex flex-col items-center gap-0.5 rounded-xl border border-solid border-superficie-linea bg-white/80 px-2 py-2.5 text-center" role="listitem" *ngFor="let dia of clima.pronostico">
+        <span class="text-xs font-semibold capitalize text-tinta-suave">{{ diaCorto(dia.fecha) }}</span>
+        <span class="text-2xl leading-none" aria-hidden="true">{{ dia.emoji }}</span>
+        <span class="text-sm font-bold tabular-nums text-tinta">{{ dia.tempMax | numero: '1.0-0' }}°</span>
+        <span class="text-xs tabular-nums text-tinta-suave">{{ dia.tempMin | numero: '1.0-0' }}°</span>
+      </div>
+    </div>
+  </div>
 </div>

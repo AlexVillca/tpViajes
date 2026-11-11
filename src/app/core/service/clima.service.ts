@@ -20,6 +20,21 @@ interface ForecastResponse {
     weather_code: number;
     wind_speed_10m: number;
   };
+  daily?: {
+    time: string[];
+    weather_code: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+  };
+}
+
+/** Un día del pronóstico: fecha ISO (YYYY-MM-DD), máxima y mínima, e ícono/clave del estado. */
+export interface DiaPronostico {
+  fecha: string;
+  tempMax: number;
+  tempMin: number;
+  claveDescripcion: string;
+  emoji: string;
 }
 
 export interface ClimaActual {
@@ -30,6 +45,8 @@ export interface ClimaActual {
   /** Clave del texto traducible: clima.codigos.<clave> (c0, c3, ..., sinDatos). */
   claveDescripcion: string;
   emoji: string;
+  /** Pronóstico de los próximos días (sin incluir el día de hoy). */
+  pronostico: DiaPronostico[];
 }
 
 @Injectable({
@@ -78,7 +95,8 @@ export class ClimaService {
   private consultarClima(ubicacion: GeoResult): Observable<ClimaActual> {
     const url =
       `${this.forecastUrl}?latitude=${ubicacion.latitude}&longitude=${ubicacion.longitude}` +
-      `&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m`;
+      `&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m` +
+      `&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=4`;
 
     return this.http.get<ForecastResponse>(url).pipe(
       map(resp => {
@@ -95,10 +113,28 @@ export class ClimaService {
           humedad: actual.relative_humidity_2m,
           viento: actual.wind_speed_10m,
           claveDescripcion: clave,
-          emoji
+          emoji,
+          pronostico: this.armarPronostico(resp.daily)
         };
       })
     );
+  }
+
+  /** Toma los próximos 3 días (sin hoy) del bloque "daily" de open-meteo. */
+  private armarPronostico(daily?: ForecastResponse['daily']): DiaPronostico[] {
+    if (!daily?.time?.length) return [];
+    const dias: DiaPronostico[] = [];
+    for (let i = 1; i < daily.time.length && dias.length < 3; i++) {
+      const { emoji, clave } = this.interpretarCodigo(daily.weather_code[i]);
+      dias.push({
+        fecha: daily.time[i],
+        tempMax: daily.temperature_2m_max[i],
+        tempMin: daily.temperature_2m_min[i],
+        claveDescripcion: clave,
+        emoji
+      });
+    }
+    return dias;
   }
 
   private interpretarCodigo(code: number): { emoji: string; clave: string } {
