@@ -5,6 +5,7 @@ import { Comentario } from '../../models/interface/pais.interface';
 import { catchError, Observable } from 'rxjs';
 import { buildHttpError } from '../utils/http-error.util';
 
+/** Acceso a la API de comentarios: listar, crear, editar y borrar comentarios de una ciudad. */
 @Injectable({
   providedIn: 'root'
 })

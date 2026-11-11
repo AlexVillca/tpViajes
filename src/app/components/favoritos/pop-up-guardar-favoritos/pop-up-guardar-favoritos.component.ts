@@ -13,6 +13,11 @@ import { FeedbackService } from '../../../core/service/feedback.service';
 import { DialogoDirective } from '../../utils/dialogo/dialogo.directive';
 import { TranslatePipe } from '@ngx-translate/core';
 
+/**
+ * Ventana para guardar la ciudad actual en una o varias listas de favoritos, o crear una lista nueva.
+ * Carga el contexto (usuario logueado, país y ciudad), valida nombres repetidos y el máximo de listas,
+ * y sincroniza los cambios con el backend.
+ */
 @Component({
   selector: 'app-pop-up-guardar-favoritos',
   standalone: true,

@@ -13,6 +13,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DatoPipe } from '../../../core/i18n/idioma.pipes';
 import { imagenPorDefecto } from '../../../core/utils/imagen.util';
 
+/**
+ * Página de detalle de un país. Usa el país que está en memoria o, si se recargó o se abrió un link
+ * compartido (ruta /pais/:id), lo vuelve a cargar desde el servidor por su id. Muestra los datos del
+ * país, el conversor de moneda, el mapa y la lista de ciudades.
+ */
 @Component({
   selector: 'app-pais-detail',
   standalone: true,

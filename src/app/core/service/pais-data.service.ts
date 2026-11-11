@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Pais } from '../../models/interface/pais.interface';
 
+/** Guarda en memoria el país seleccionado para compartirlo entre componentes (detalle, ciudad, favoritos). */
 @Injectable({
   providedIn: 'root'
 })

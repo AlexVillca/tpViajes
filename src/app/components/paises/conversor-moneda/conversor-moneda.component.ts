@@ -5,6 +5,10 @@ import { CurrencyService } from '../../../core/service/currency.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NumeroPipe, FechaPipe } from '../../../core/i18n/idioma.pipes';
 
+/**
+ * Conversor de moneda: convierte un monto desde una moneda base (ARS, USD, EUR…) a la moneda del
+ * país, usando cotizaciones traídas de una API pública. Muestra la tasa y la fecha de actualización.
+ */
 @Component({
   selector: 'app-conversor-moneda',
   standalone: true,

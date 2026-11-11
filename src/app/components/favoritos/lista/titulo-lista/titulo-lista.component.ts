@@ -6,6 +6,7 @@ import { UsuariosService } from '../../../../core/service/usuarios.service';
 import { FeedbackService } from '../../../../core/service/feedback.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
+/** Título editable de una lista de favoritos: permite renombrarla (avisando si el nombre ya existe) y pedir su borrado. */
 @Component({
   selector: 'app-titulo-lista',
   standalone: true,

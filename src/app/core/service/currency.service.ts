@@ -17,6 +17,10 @@ export interface TasasCambio {
   rates: Record<string, number>;
 }
 
+/**
+ * Acceso a la API pública de cotizaciones: trae las tasas de cambio de una moneda base y ayuda a
+ * extraer el código ISO (ej. "USD") del texto de la moneda de un país.
+ */
 @Injectable({
   providedIn: 'root'
 })

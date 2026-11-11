@@ -7,6 +7,10 @@ import { ErrorDatoEnUso, UsuariosService } from '../../service/usuarios.service'
 import { FeedbackService } from '../../service/feedback.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
+/**
+ * Formulario para editar el perfil (nombre de usuario y email). Valida en el front y, si el backend
+ * responde que el dato ya está en uso, marca el campo correspondiente.
+ */
 @Component({
   selector: 'app-editar-perfil',
   standalone: true,

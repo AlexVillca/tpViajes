@@ -6,6 +6,10 @@ import { UsuariosService } from '../../service/usuarios.service';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
+/**
+ * Formulario de inicio de sesión. Ante credenciales inválidas muestra un mensaje genérico (no revela
+ * si la cuenta existe) y, al entrar, respeta el returnUrl para volver a donde se quería ir.
+ */
 @Component({
   selector: 'app-login-form',
   standalone: true,

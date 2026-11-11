@@ -8,6 +8,10 @@ export interface FeedbackMessage {
   type: FeedbackType;
 }
 
+/**
+ * Centraliza los mensajes de éxito/error/info de toda la app. Los componentes llaman a success()/error()
+ * y el FeedbackToast los muestra; se ocultan solos después de unos segundos.
+ */
 @Injectable({
   providedIn: 'root'
 })

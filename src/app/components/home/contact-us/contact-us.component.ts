@@ -4,6 +4,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FeedbackService } from '../../../core/service/feedback.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
+/**
+ * Formulario de contacto. Valida nombre, email y mensaje, y muestra un agradecimiento.
+ * Es una demo del proyecto (ficticio): no envía un correo real.
+ */
 @Component({
   selector: 'app-contact-us',
   standalone: true,

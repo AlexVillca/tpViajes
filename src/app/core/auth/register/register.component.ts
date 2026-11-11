@@ -6,6 +6,10 @@ import { ErrorDatoEnUso, UsuariosService } from '../../service/usuarios.service'
 import { TranslatePipe } from '@ngx-translate/core';
 import { Usuario } from '../../../models/interface/usuario.interface'
 
+/**
+ * Formulario de registro de una cuenta nueva. La unicidad del usuario y el email la valida el backend
+ * (responde 409) y acá se muestra el error en el campo que corresponde.
+ */
 @Component({
   selector: 'app-register',
   standalone: true,

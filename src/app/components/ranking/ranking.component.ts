@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { UsuariosService, RankingItem } from '../../core/service/usuarios.service';
 
+/** Página del ranking global del minijuego: los 10 mejores puntajes, con medallas para el top 3. */
 @Component({
   selector: 'app-ranking',
   standalone: true,

@@ -11,6 +11,11 @@ import { Pais } from '../models/interface/pais.interface';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatoPipe } from '../core/i18n/idioma.pipes';
 
+/**
+ * Minijuego "adiviná el país por la bandera": arma una pregunta con 4 opciones (una correcta),
+ * da 2 intentos, lleva el puntaje y, si el usuario está logueado, guarda su mejor puntaje y
+ * refresca el top 3 del ranking.
+ */
 @Component({
   selector: 'app-game',
   standalone: true,
@@ -104,9 +109,11 @@ export class GameComponent {
     this.errorJuego = '';
     this.opcionesDesHabilitadas = false;
 
+    // Elige el país correcto al azar...
     const indiceCorrecto = Math.floor(Math.random() * this.arregloPaises.length);
     this.paisAleatorio = this.arregloPaises[indiceCorrecto];
 
+    // ...y completa hasta 4 opciones con otros países distintos, también al azar.
     this.opciones = [this.paisAleatorio];
     while (this.opciones.length < 4) {
       const opcionAleatoria = this.arregloPaises[Math.floor(Math.random() * this.arregloPaises.length)];
@@ -115,8 +122,10 @@ export class GameComponent {
       }
     }
 
+    // Mezcla las opciones para que la correcta no quede siempre primera.
     this.opciones = this.opciones.sort(() => Math.random() - 0.5);
 
+    // Pequeñas demoras para la animación de aparición de la bandera y las opciones.
     this.banderaVisible = false;
     setTimeout(() => {
       this.banderaVisible = true;
@@ -136,6 +145,7 @@ export class GameComponent {
       return;
     }
 
+    // A los 2 intentos fallidos se termina la ronda: si fue récord y hay sesión, se guarda en el servidor.
     this.intentos++;
     if (this.intentos >= 2) {
       this.mensaje = 'mensajes.juegoAgotados';

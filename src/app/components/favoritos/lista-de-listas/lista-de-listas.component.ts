@@ -11,6 +11,10 @@ import { Pais } from '../../../models/interface/pais.interface';
 import { CardComponent } from "../../utils/card/card.component";
 import { TranslatePipe } from '@ngx-translate/core';
 
+/**
+ * Página de favoritos: muestra las listas de ciudades guardadas del usuario como tarjetas, cada una
+ * con imágenes de muestra tomadas de las atracciones de sus ciudades.
+ */
 @Component({
   selector: 'app-lista-de-listas',
   standalone: true,

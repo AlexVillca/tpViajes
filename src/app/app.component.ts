@@ -8,6 +8,11 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { RouterOutlet } from '@angular/router';
 import { FeedbackToastComponent } from './components/utils/feedback-toast/feedback-toast.component';
 
+/**
+ * Componente raíz de la aplicación: arma el layout general (barra de navegación, contenido de la
+ * página y pie), aplica el idioma guardado antes del primer render y, si había una sesión guardada,
+ * revalida con el backend que la cookie siga vigente. También respeta "reducir movimiento".
+ */
 @Component({
   selector: 'app-root',
   standalone: true,

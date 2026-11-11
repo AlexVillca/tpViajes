@@ -8,6 +8,11 @@ import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectorIdiomaComponent } from '../utils/selector-idioma/selector-idioma.component';
 
+/**
+ * Barra de navegación superior: enlaces a las secciones, selector de idioma y menú de usuario
+ * (iniciar/cerrar sesión, perfil). Resalta la sección activa según la URL y cierra los menús al
+ * navegar o al hacer clic afuera.
+ */
 @Component({
   selector: 'app-navbar',
   standalone: true,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
+/** Página "Acerca de": presenta el proyecto y lista a los integrantes del equipo. */
 @Component({
   selector: 'app-about-us',
   standalone: true,

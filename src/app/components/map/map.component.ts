@@ -4,6 +4,7 @@ import * as L from 'leaflet';
 const escaparHtml = (texto: string) =>
   texto.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+/** Mapa chico que ubica un único punto (el país) con su bandera en un popup. Se usa en el detalle del país. */
 @Component({
   selector: 'app-map',
 

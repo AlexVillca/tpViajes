@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
+/** Pie de página: enlaces secundarios y el año actual. */
 @Component({
   selector: 'app-footer',
   standalone: true,
