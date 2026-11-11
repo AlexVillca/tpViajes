@@ -53,20 +53,17 @@ export class RegisterComponent {
       {
       next: (emailDisponible) => {
         if (emailDisponible) {
-          console.log("email disponible");
           this.emailInvalid = false;
           this.usuarioService.comprobarUserNameUsuario(this.user.username).subscribe(
             {
               next: (usernameDisponible) => {
                 if(usernameDisponible){
-                  console.log("username aceptado");
                   this.userNameInvalid = false;
 
                   this.usuarioService.postUsuario({...this.user})
                   .subscribe(
                     {
-                    next: (response) => {
-                      console.log(response);
+                    next: () => {
                       this.registroExitoso = true;
 
                       setTimeout(() => {
@@ -80,7 +77,6 @@ export class RegisterComponent {
                   );
 
                 }else{
-                  console.error('El username está en uso');
                   this.userNameInvalid = true;
                 }
               },
@@ -90,7 +86,6 @@ export class RegisterComponent {
             }
           );
         } else {
-          console.log('mensajes.emailEnUso');
           this.emailInvalid = true;
 
         }

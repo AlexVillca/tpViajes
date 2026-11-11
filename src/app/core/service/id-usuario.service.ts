@@ -49,25 +49,6 @@ export class IdUsuarioService {
     this.sessionSubject.next(session);
   }
 
-  setId(nuevoId: string | null): void {
-    if (!nuevoId) {
-      this.clearUserId();
-      return;
-    }
-
-    const current = this.currentSession;
-
-    if (current?.id === nuevoId) {
-      return;
-    }
-
-    this.setSession({
-      id: nuevoId,
-      username: current?.username ?? '',
-      email: current?.email ?? ''
-    });
-  }
-
   clearUserId() {
     localStorage.removeItem(this.STORAGE_KEY);
     localStorage.removeItem(this.LEGACY_STORAGE_KEY);

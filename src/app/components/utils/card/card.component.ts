@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import { imagenPorDefecto } from '../../../core/utils/imagen.util';
 
 @Component({
   selector: 'app-card',
@@ -20,8 +21,9 @@ export class CardComponent {
   girando = false;
 
   ngOnInit(): void {
-    if(this.arregloImagenes.length == 0){this.imagenActual = "assets/img/imagenvacio.png"}
-    this.imagenActual = this.arregloImagenes[0];
+    this.imagenActual = this.arregloImagenes.length > 0
+      ? this.arregloImagenes[0]
+      : 'assets/imagennodisponible.png';
   }
 
   iniciarCarrusel() {
@@ -43,10 +45,7 @@ export class CardComponent {
     this.girando = false;
   }
 
-  setImagenError(event: Event) {
-    const img = event.target as HTMLImageElement;
-    img.src = 'assets/imagennodisponible.png';
-  }
+  setImagenError = imagenPorDefecto;
 
   borrarCiudad(event: MouseEvent): void {
     event.stopPropagation();

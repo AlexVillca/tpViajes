@@ -20,11 +20,9 @@ export const es = {
     paises: 'Países',
     migasDePan: 'Migas de pan',
     si: 'Sí',
-    no: 'No',
-    sinDato: '—'
+    no: 'No'
   },
   idioma: {
-    etiqueta: 'Idioma',
     interruptor: 'Ver el sitio en inglés',
     es: 'ES',
     en: 'EN'

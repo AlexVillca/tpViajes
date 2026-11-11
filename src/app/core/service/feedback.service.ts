@@ -34,10 +34,6 @@ export class FeedbackService {
     this.show(text, 'error', duration);
   }
 
-  info(text: string, duration = 3000): void {
-    this.show(text, 'info', duration);
-  }
-
   clear(): void {
     this.clearTimeout();
     this.messageSubject.next(null);

@@ -9,6 +9,7 @@ import { ConversorMonedaComponent } from '../conversor-moneda/conversor-moneda.c
 import { InfoPaisComponent } from '../info-pais/info-pais.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatoPipe } from '../../../core/i18n/idioma.pipes';
+import { imagenPorDefecto } from '../../../core/utils/imagen.util';
 
 @Component({
   selector: 'app-pais-detail',
@@ -35,8 +36,5 @@ export class PaisDetailComponent implements OnInit {
     this.router.navigate(['/paises']);
   }
 
-  setImagenError(event: Event) {
-    const img = event.target as HTMLImageElement;
-    img.src = 'assets/imagennodisponible.png';
-  }
+  setImagenError = imagenPorDefecto;
 }

@@ -18,11 +18,9 @@ export const en: Diccionario = {
     paises: 'Countries',
     migasDePan: 'Breadcrumb',
     si: 'Yes',
-    no: 'No',
-    sinDato: '—'
+    no: 'No'
   },
   idioma: {
-    etiqueta: 'Language',
     interruptor: 'View the site in English',
     es: 'ES',
     en: 'EN'

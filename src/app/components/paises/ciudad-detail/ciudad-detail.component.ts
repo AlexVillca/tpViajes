@@ -6,13 +6,13 @@ import { Router, RouterLink } from '@angular/router';
 import { combineLatest, map, take } from 'rxjs';
 
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
-import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.component';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { PopUpGuardarFavoritosComponent } from '../../favoritos/pop-up-guardar-favoritos/pop-up-guardar-favoritos.component';
 import { ClimaCiudadComponent } from '../clima-ciudad/clima-ciudad.component';
 import { ValoracionCiudadComponent } from '../valoracion-ciudad/valoracion-ciudad.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatoPipe } from '../../../core/i18n/idioma.pipes';
+import { imagenPorDefecto } from '../../../core/utils/imagen.util';
 
 @Component({
   selector: 'app-ciudad-detail',
@@ -36,16 +36,8 @@ export class CiudadDetailComponent implements OnInit{
 
   ngOnInit(){
     window.scrollTo(0, 0);
-    this.idus.id$.subscribe({
-      next:(id) => {
-        if(id){
-          this.usuarioLogueado = true;
-        console.log("logueado");
-      }else{
-        this.usuarioLogueado = false;
-        console.log("no logueado");
-      }},
-      error:() => {console.log("error al comprobar log")}
+    this.idus.id$.subscribe(id => {
+      this.usuarioLogueado = !!id;
     });
   }
   constructor(private ciudadDataService: CiudadDataService, private router: Router) { }
@@ -55,9 +47,6 @@ export class CiudadDetailComponent implements OnInit{
       this.router.navigate([destino]);
     });
   }
-  setImagenError(event: Event) {
-    const img = event.target as HTMLImageElement;
-    img.src = 'assets/imagennodisponible.png';
-  }
+  setImagenError = imagenPorDefecto;
 
 }

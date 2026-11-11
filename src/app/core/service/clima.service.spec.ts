@@ -41,7 +41,6 @@ describe('ClimaService', () => {
       temperatura: 20,
       humedad: 50,
       viento: 10,
-      descripcion: 'Despejado',
       claveDescripcion: 'c0',
       emoji: '☀️'
     });

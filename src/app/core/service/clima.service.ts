@@ -27,7 +27,6 @@ export interface ClimaActual {
   temperatura: number;
   humedad: number;
   viento: number;
-  descripcion: string;
   /** Clave del texto traducible: clima.codigos.<clave> (c0, c3, ..., sinDatos). */
   claveDescripcion: string;
   emoji: string;
@@ -88,14 +87,13 @@ export class ClimaService {
           throw new Error('mensajes.climaSinDatos');
         }
 
-        const { descripcion, emoji, clave } = this.interpretarCodigo(actual.weather_code);
+        const { emoji, clave } = this.interpretarCodigo(actual.weather_code);
 
         return {
           ciudad: ubicacion.name,
           temperatura: actual.temperature_2m,
           humedad: actual.relative_humidity_2m,
           viento: actual.wind_speed_10m,
-          descripcion,
           claveDescripcion: clave,
           emoji
         };
@@ -103,39 +101,19 @@ export class ClimaService {
     );
   }
 
-  private interpretarCodigo(code: number): { descripcion: string; emoji: string; clave: string } {
-    const mapa: Record<number, { descripcion: string; emoji: string }> = {
-      0: { descripcion: 'Despejado', emoji: '☀️' },
-      1: { descripcion: 'Mayormente despejado', emoji: '🌤️' },
-      2: { descripcion: 'Parcialmente nublado', emoji: '⛅' },
-      3: { descripcion: 'Nublado', emoji: '☁️' },
-      45: { descripcion: 'Niebla', emoji: '🌫️' },
-      48: { descripcion: 'Niebla con escarcha', emoji: '🌫️' },
-      51: { descripcion: 'Llovizna ligera', emoji: '🌦️' },
-      53: { descripcion: 'Llovizna', emoji: '🌦️' },
-      55: { descripcion: 'Llovizna intensa', emoji: '🌦️' },
-      56: { descripcion: 'Llovizna helada', emoji: '🌧️' },
-      57: { descripcion: 'Llovizna helada intensa', emoji: '🌧️' },
-      61: { descripcion: 'Lluvia ligera', emoji: '🌧️' },
-      63: { descripcion: 'Lluvia', emoji: '🌧️' },
-      65: { descripcion: 'Lluvia intensa', emoji: '🌧️' },
-      66: { descripcion: 'Lluvia helada', emoji: '🌧️' },
-      67: { descripcion: 'Lluvia helada intensa', emoji: '🌧️' },
-      71: { descripcion: 'Nieve ligera', emoji: '🌨️' },
-      73: { descripcion: 'Nieve', emoji: '🌨️' },
-      75: { descripcion: 'Nieve intensa', emoji: '❄️' },
-      77: { descripcion: 'Granos de nieve', emoji: '🌨️' },
-      80: { descripcion: 'Chubascos ligeros', emoji: '🌦️' },
-      81: { descripcion: 'Chubascos', emoji: '🌧️' },
-      82: { descripcion: 'Chubascos violentos', emoji: '⛈️' },
-      85: { descripcion: 'Chubascos de nieve', emoji: '🌨️' },
-      86: { descripcion: 'Chubascos de nieve intensos', emoji: '❄️' },
-      95: { descripcion: 'Tormenta', emoji: '⛈️' },
-      96: { descripcion: 'Tormenta con granizo', emoji: '⛈️' },
-      99: { descripcion: 'Tormenta con granizo fuerte', emoji: '⛈️' }
+  private interpretarCodigo(code: number): { emoji: string; clave: string } {
+    // El texto se resuelve por i18n con la clave (clima.codigos.<clave>); acá solo el emoji.
+    const emojis: Record<number, string> = {
+      0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+      45: '🌫️', 48: '🌫️',
+      51: '🌦️', 53: '🌦️', 55: '🌦️', 56: '🌧️', 57: '🌧️',
+      61: '🌧️', 63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧️',
+      71: '🌨️', 73: '🌨️', 75: '❄️', 77: '🌨️',
+      80: '🌦️', 81: '🌧️', 82: '⛈️', 85: '🌨️', 86: '❄️',
+      95: '⛈️', 96: '⛈️', 99: '⛈️'
     };
 
-    const conocido = mapa[code];
-    return conocido ? { ...conocido, clave: `c${code}` } : { descripcion: 'Sin datos', emoji: '🌡️', clave: 'sinDatos' };
+    const emoji = emojis[code];
+    return emoji ? { emoji, clave: `c${code}` } : { emoji: '🌡️', clave: 'sinDatos' };
   }
 }
