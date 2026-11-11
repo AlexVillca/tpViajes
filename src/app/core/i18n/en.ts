@@ -343,7 +343,19 @@ export const en: Diccionario = {
     subtitulo: 'Search a country or city, or tap a point on the map',
     todos: 'All',
     filtroContinente: 'Filter by continent',
-    cargando: 'Loading the map...'
+    cargando: 'Loading the map...',
+    listaPaises: 'Countries',
+    paisesCount: 'countries on the map',
+    listaAyuda: 'Pick a country from the list or the map'
+  },
+  continentes: {
+    africa: 'Africa',
+    americaCentral: 'Central America',
+    americaNorte: 'North America',
+    americaSur: 'South America',
+    asia: 'Asia',
+    europa: 'Europe',
+    oceania: 'Oceania'
   },
   aviso: {
     cerrar: 'Close message'

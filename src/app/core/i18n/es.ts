@@ -345,7 +345,19 @@ export const es = {
     subtitulo: 'Buscá un país o ciudad, o tocá un punto en el mapa',
     todos: 'Todos',
     filtroContinente: 'Filtrar por continente',
-    cargando: 'Cargando el mapa...'
+    cargando: 'Cargando el mapa...',
+    listaPaises: 'Países',
+    paisesCount: 'países en el mapa',
+    listaAyuda: 'Elegí un país de la lista o del mapa'
+  },
+  continentes: {
+    africa: 'África',
+    americaCentral: 'América Central',
+    americaNorte: 'América del Norte',
+    americaSur: 'América del Sur',
+    asia: 'Asia',
+    europa: 'Europa',
+    oceania: 'Oceanía'
   },
   aviso: {
     cerrar: 'Cerrar mensaje'

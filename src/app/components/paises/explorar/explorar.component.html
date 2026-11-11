@@ -15,12 +15,35 @@
     <button *ngFor="let c of continentes" type="button" (click)="filtrar(c)" [attr.aria-pressed]="continenteSeleccionado === c"
       class="rounded-xl border border-solid px-3 py-1.5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco"
       [ngClass]="continenteSeleccionado === c ? 'border-marca bg-marca text-white' : 'border-superficie-borde bg-white text-tinta-media hover:bg-superficie-clara'">
-      {{ c }}
+      {{ claveContinente(c) | translate }}
     </button>
   </div>
 
   <p *ngIf="error" class="m-0 mb-3 text-sm text-peligro" role="alert">{{ error | translate }}</p>
   <p *ngIf="cargando" class="m-0 py-6 text-center text-sm text-tinta-suave">{{ 'explorar.cargando' | translate }}</p>
 
-  <app-mapa-paises *ngIf="!cargando && paises.length" [paises]="paisesVisibles" (seleccionar)="abrirPais($event)"></app-mapa-paises>
+  <div *ngIf="!cargando && paises.length" class="flex flex-col gap-4 lg:flex-row lg:items-stretch">
+    <!-- Mapa -->
+    <div class="min-w-0 lg:flex-1">
+      <app-mapa-paises [paises]="paisesVisibles" (seleccionar)="abrirPais($event)"></app-mapa-paises>
+    </div>
+
+    <!-- Lista accesible de países: alternativa por teclado/lector de pantalla y blancos grandes -->
+    <aside class="lg:w-[320px] lg:shrink-0" [attr.aria-label]="'explorar.listaPaises' | translate">
+      <div class="flex h-full flex-col overflow-hidden rounded-3xl border border-solid border-superficie-linea bg-white/90 shadow-sm">
+        <div class="border-0 border-b border-solid border-superficie-linea px-4 py-3">
+          <h2 class="m-0 text-sm font-bold text-tinta">{{ 'explorar.listaPaises' | translate }}</h2>
+          <p class="m-0 text-xs text-tinta-suave">{{ paisesVisibles.length }} {{ 'explorar.paisesCount' | translate }}</p>
+        </div>
+        <ul class="m-0 max-h-[38vh] list-none overflow-y-auto p-2 lg:max-h-none lg:flex-1">
+          <li *ngFor="let p of paisesLista">
+            <button type="button" (click)="abrirPais(p)"
+              class="flex min-h-11 w-full items-center rounded-xl border-0 bg-transparent px-3 py-2 text-left text-sm font-semibold text-tinta-media transition-colors hover:bg-superficie-clara focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">
+              <span class="truncate">{{ nombre(p) }}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
 </main>

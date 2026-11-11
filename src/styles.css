@@ -73,3 +73,33 @@
     @apply mx-auto w-full max-w-[1200px] px-5 sm:px-10;
   }
 }
+
+/* ----- Mapa de exploración (Leaflet): accesibilidad y legibilidad ----- */
+/* Punto visible de cada país: sombra para despegarlo del mapa y cursor de mano. */
+.marcador-pais {
+  filter: drop-shadow(0 1px 2px rgba(15, 76, 92, 0.45));
+  cursor: pointer;
+}
+/* Área de click ampliada e invisible alrededor de cada país. */
+.marcador-halo {
+  cursor: pointer;
+}
+/* Nombre del país al pasar/enfocar: texto más grande y con buen contraste. */
+.leaflet-container .tooltip-pais {
+  background: #ffffff;
+  color: #0f3b4c;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(18, 58, 83, 0.18);
+}
+/* Botones de zoom más grandes (blanco táctil accesible ≥ 44px). */
+.leaflet-bar a,
+.leaflet-touch .leaflet-bar a {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 1.4rem;
+}
