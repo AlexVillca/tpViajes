@@ -30,8 +30,13 @@ export class ComentariosComponent {
   paisesService = inject(PaisesService);
 
   formulario = this.fb.nonNullable.group({
-    comentario: ['', [Validators.required, Validators.minLength(3)]]
+    comentario: ['', [Validators.minLength(3)]]
   });
+
+  /** Comentar es opcional: el botón se habilita solo con 3 o más caracteres. */
+  get comentarioCorto(): boolean {
+    return this.formulario.controls.comentario.value.trim().length < 3;
+  }
 
   paisDataService = inject(PaisDataService);
   pais$ = this.paisDataService.pais$;
@@ -68,7 +73,6 @@ export class ComentariosComponent {
     const comentarioString = this.formulario.getRawValue().comentario.trim();
 
     if (comentarioString.length < 3) {
-      this.errorMessage = 'mensajes.comentarioMinimo';
       return;
     }
 

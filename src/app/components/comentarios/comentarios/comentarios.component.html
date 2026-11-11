@@ -2,7 +2,7 @@
 
   <div class="flex flex-col gap-2 sm:flex-row">
     <input class="campo sm:flex-1" type="text" formControlName="comentario" [placeholder]="'comentarios.placeholder' | translate" [attr.aria-label]="'comentarios.campo' | translate">
-    <button class="btn btn-primario shrink-0" type="submit" [disabled]="formulario.invalid">{{ 'comun.agregar' | translate }}</button>
+    <button class="btn btn-primario shrink-0" type="submit" [disabled]="comentarioCorto">{{ 'comun.agregar' | translate }}</button>
   </div>
 
   <div class="mensaje-error" *ngIf="formulario.controls['comentario'].getError('minlength') && formulario.controls['comentario'].touched">
