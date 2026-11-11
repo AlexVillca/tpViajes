@@ -288,7 +288,6 @@ export const es = {
     sinComentarios: 'Aún no hay comentarios',
     campo: 'Comentario',
     placeholder: 'Ingresa tu comentario aquí',
-    obligatorio: 'El comentario es obligatorio',
     minimo: 'Debe tener 3 letras o más',
     editarCampo: 'Editar comentario',
     paginacion: 'Paginación de comentarios',

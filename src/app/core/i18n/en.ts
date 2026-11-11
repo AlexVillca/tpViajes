@@ -286,7 +286,6 @@ export const en: Diccionario = {
     sinComentarios: 'No comments yet',
     campo: 'Comment',
     placeholder: 'Write your comment here',
-    obligatorio: 'A comment is required',
     minimo: 'Must be at least 3 characters long',
     editarCampo: 'Edit comment',
     paginacion: 'Comments pagination',
