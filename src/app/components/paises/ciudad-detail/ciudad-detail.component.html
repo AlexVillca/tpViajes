@@ -45,11 +45,11 @@
             <p class="m-0 mb-4 break-words text-sm leading-relaxed text-tinta-suave">{{ atraccion | dato:'descripcion' }}</p>
             <img class="mb-4 block h-auto w-full rounded-xl border border-solid border-superficie-linea shadow-sm" *ngIf="atraccion.imagen" [src]="atraccion.imagen" [alt]="'ciudad.imagen' | translate: { nombre: (atraccion | dato:'nombre') }" (error)="setImagenError($event)">
             <div class="space-y-3 text-sm leading-relaxed text-tinta-suave">
-              <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.horario' | translate }}</strong> {{ atraccion | dato:'horario' }}</p>
-              <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.paginaWeb' | translate }}</strong> {{ atraccion.paginaWeb }}</p>
+              <p class="m-0 break-words" *ngIf="atraccion.horario"><strong class="font-semibold text-tinta">{{ 'ciudad.horario' | translate }}</strong> {{ atraccion | dato:'horario' }}</p>
+              <p class="m-0 break-words" *ngIf="atraccion.paginaWeb"><strong class="font-semibold text-tinta">{{ 'ciudad.paginaWeb' | translate }}</strong> <a [href]="atraccion.paginaWeb" target="_blank" rel="noopener" class="enlace break-all">{{ atraccion.paginaWeb }}</a></p>
               <p class="m-0 break-words" *ngIf="atraccion.ubicacion"><strong class="font-semibold text-tinta">{{ 'ciudad.ubicacion' | translate }}</strong> {{ atraccion | dato:'ubicacion.direccion' }}</p>
               <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.tipo' | translate }}</strong> {{ atraccion | dato:'tipo' }}</p>
-              <p class="m-0 break-words"><strong class="font-semibold text-tinta">{{ 'ciudad.valoracion' | translate }}</strong> <span class="inline-flex rounded-full border border-solid border-superficie-resalte bg-superficie-clara px-2.5 py-0.5 font-semibold tabular-nums text-marca-texto">{{ atraccion.valoracion }}</span></p>
+              <p class="m-0 break-words" *ngIf="atraccion.valoracion"><strong class="font-semibold text-tinta">{{ 'ciudad.valoracion' | translate }}</strong> <span class="inline-flex rounded-full border border-solid border-superficie-resalte bg-superficie-clara px-2.5 py-0.5 font-semibold tabular-nums text-marca-texto">{{ atraccion.valoracion }}</span></p>
             </div>
           </li>
         </ul>
