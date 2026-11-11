@@ -1,3 +1,7 @@
+  <div *ngIf="cargando && !(pais$ | async)" class="mx-auto mt-24 flex w-[92%] max-w-[1000px] justify-center sm:mt-28">
+    <div class="estado"><span class="spinner" aria-hidden="true"></span>{{ 'comun.cargando' | translate }}</div>
+  </div>
+
   <main class="mx-auto mb-10 mt-24 w-[92%] max-w-[1000px] space-y-6 text-tinta sm:mb-12 sm:mt-28" *ngIf="pais$ | async as pais" aria-labelledby="pais-title">
     <nav [attr.aria-label]="'comun.migasDePan' | translate">
       <ol class="m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-1 p-0 text-xs leading-relaxed text-tinta-suave sm:text-sm">

@@ -103,7 +103,7 @@ export class BuscadorCiudadesComponent {
     this.paisData.setPais(opcion.pais);
     this.ciudadData.setCiudad(opcion.ciudad);
     this.abierto = false;
-    this.router.navigate(['/ciudad']);
+    this.router.navigate(['/ciudad', opcion.pais.id, opcion.ciudad.nombre]);
   }
 
   private actualizarSugerencias(): void {

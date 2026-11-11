@@ -12,6 +12,7 @@ export const es = {
     eliminar: 'Eliminar',
     agregar: 'Agregar',
     confirmar: 'Confirmar',
+    cargando: 'Cargando…',
     anterior: '‹ Anterior',
     siguiente: 'Siguiente ›',
     pagina: 'Página {{actual}} de {{total}}',

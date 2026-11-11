@@ -10,6 +10,7 @@ export const en: Diccionario = {
     eliminar: 'Delete',
     agregar: 'Add',
     confirmar: 'Confirm',
+    cargando: 'Loading…',
     anterior: '‹ Previous',
     siguiente: 'Next ›',
     pagina: 'Page {{actual}} of {{total}}',

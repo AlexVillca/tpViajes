@@ -91,6 +91,6 @@ export class ExplorarComponent implements OnInit, OnDestroy {
 
   abrirPais(pais: Pais): void {
     this.paisData.setPais(pais);
-    this.router.navigate(['/pais']);
+    this.router.navigate(['/pais', pais.id]);
   }
 }

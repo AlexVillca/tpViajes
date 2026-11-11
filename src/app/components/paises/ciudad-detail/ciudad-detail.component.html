@@ -8,7 +8,7 @@
           <ng-container *ngIf="pais$ | async as pais">
             <ng-container *ngIf="pais.nombre">
               <li aria-hidden="true">›</li>
-              <li class="min-w-0 [overflow-wrap:anywhere]"><a routerLink="/pais" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">{{ pais | dato:'nombre' }}</a></li>
+              <li class="min-w-0 [overflow-wrap:anywhere]"><a [routerLink]="['/pais', pais.id]" class="rounded font-medium text-marca-texto underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco">{{ pais | dato:'nombre' }}</a></li>
             </ng-container>
           </ng-container>
           <li aria-hidden="true">›</li>
@@ -16,6 +16,10 @@
         </ng-container>
       </ol>
     </nav>
+
+    <div *ngIf="cargando && !(ciudad$ | async)" class="flex justify-center py-10">
+      <div class="estado"><span class="spinner" aria-hidden="true"></span>{{ 'comun.cargando' | translate }}</div>
+    </div>
 
     <div class="space-y-6" *ngIf="ciudad$ | async as ciudad">
 

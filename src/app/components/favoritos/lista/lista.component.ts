@@ -178,7 +178,7 @@ export class ListaComponent implements OnInit,OnDestroy{
           if(ciudadCargar){
             this.paisDataService.setPais(paisRequerido);
             this.ciudadDataService.setCiudad(ciudadCargar);
-            this.router.navigate(['/ciudad']);
+            this.router.navigate(['/ciudad', paisRequerido.id, ciudadCargar.nombre]);
           }else{
             this.feedback.error('mensajes.ciudadNoEncontrada');
           }
