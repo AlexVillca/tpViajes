@@ -17,7 +17,7 @@ const RADIO_HALO = 22; // área de click invisible: no hace falta apuntar exacto
 @Component({
   selector: 'app-mapa-paises',
   standalone: true,
-  template: `<div id="mapa-paises" class="h-[58vh] min-h-[380px] w-full overflow-hidden rounded-3xl border border-solid border-superficie-linea shadow-sm"></div>`
+  template: `<div id="mapa-paises" class="isolate h-[58vh] min-h-[380px] w-full overflow-hidden rounded-3xl border border-solid border-superficie-linea shadow-sm"></div>`
 })
 export class MapaPaisesComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() paises: Pais[] = [];

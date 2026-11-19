@@ -11,7 +11,7 @@ import { IdiomaService } from '../../../core/i18n/idioma.service';
 @Component({
   selector: 'app-mapa-atracciones',
   standalone: true,
-  template: `<div [id]="idMapa" class="h-[42vh] min-h-[300px] w-full overflow-hidden rounded-2xl border border-solid border-superficie-linea shadow-sm"></div>`
+  template: `<div [id]="idMapa" class="isolate h-[42vh] min-h-[300px] w-full overflow-hidden rounded-2xl border border-solid border-superficie-linea shadow-sm"></div>`
 })
 export class MapaAtraccionesComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() atracciones: Atraccion[] = [];
