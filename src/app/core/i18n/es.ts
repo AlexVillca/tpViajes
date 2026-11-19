@@ -385,7 +385,7 @@ export const es = {
     comentarioEliminado: 'Comentario eliminado.',
     obtenerPaisCiudad: 'No se pudo obtener el país o la ciudad.',
     registrarUsuario: 'No se pudo registrar el usuario.',
-    cargarUsuarios: 'No se pudieron cargar los usuarios.',
+    demasiadosIntentos: 'Demasiados intentos fallidos. Esperá unos minutos y volvé a probar.',
     obtenerUsuario: 'No se pudo obtener el usuario.',
     iniciarSesion: 'No se pudo iniciar sesión.',
     guardarPerfil: 'No se pudieron guardar los datos del perfil.',

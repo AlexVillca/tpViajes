@@ -45,12 +45,6 @@ export class UsuariosService {
     );
   }
 
-  getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl).pipe(
-      catchError(error => buildHttpError(error, 'mensajes.cargarUsuarios'))
-    );
-  }
-
   /** Ranking público del minijuego (top por mejor puntaje), sin datos sensibles. */
   getRanking(limite = 10): Observable<RankingItem[]> {
     const url = `${environment.apiBaseUrl}/ranking`;
@@ -83,6 +77,9 @@ export class UsuariosService {
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401 || error.status === 404) {
             return of(false);
+          }
+          if (error.status === 429) {
+            return throwError(() => new Error('mensajes.demasiadosIntentos'));
           }
           return buildHttpError(error, 'mensajes.iniciarSesion');
         })

@@ -15,9 +15,22 @@ const jwt = require('jsonwebtoken');
 const mysql = require('mysql2/promise');
 
 // ---------- Configuración ----------
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
+// Por defecto solo escucha en la propia máquina; con HOST=0.0.0.0 acepta conexiones de otras.
+const HOST = process.env.HOST || '127.0.0.1';
 const SALT_ROUNDS = 10;
-const JWT_SECRET = process.env.JWT_SECRET || 'deruta-dev-secret-cambiar-en-produccion';
+
+// Sin un secreto propio cualquiera podría firmar tokens válidos, así que el servidor no arranca.
+const SECRETOS_DE_EJEMPLO = ['cambiar_por_un_secreto_largo_y_aleatorio', 'deruta-dev-secret-cambiar-en-produccion'];
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET || SECRETOS_DE_EJEMPLO.includes(JWT_SECRET)) {
+  console.error('Falta JWT_SECRET en el .env (o tiene el valor de ejemplo). Generá uno con:');
+  console.error("  node -e \"console.log(require('crypto').randomBytes(48).toString('hex'))\"");
+  process.exit(1);
+}
+if (JWT_SECRET.length < 32) {
+  console.warn('Aviso: JWT_SECRET tiene menos de 32 caracteres; conviene uno más largo.');
+}
 const JWT_EXPIRES_IN = '7d';
 const SIETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -31,8 +44,13 @@ const OPCIONES_COOKIE = {
   secure: COOKIE_CROSS_SITE,
   path: '/'
 };
-// Origen del frontend permitido por CORS. Sin valor (dev) se refleja el origen que llega.
-const FRONTEND_URL = process.env.FRONTEND_URL;
+// Orígenes del frontend que pueden usar la API con la sesión (separados por coma).
+// Sin FRONTEND_URL solo se aceptan los de desarrollo local. Nunca se acepta cualquier origen.
+const ORIGENES_PERMITIDOS = (process.env.FRONTEND_URL || 'http://localhost:4200,http://127.0.0.1:4200')
+  .split(',')
+  .map(origen => origen.trim().replace(/\/+$/, ''))
+  .filter(Boolean);
+const origenPermitido = (origen) => ORIGENES_PERMITIDOS.includes(origen);
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || '127.0.0.1',
@@ -46,8 +64,22 @@ const pool = mysql.createPool({
 });
 
 const app = express();
-app.use(express.json());
-app.use(cors({ origin: FRONTEND_URL || true, credentials: true }));
+app.disable('x-powered-by');
+app.use(express.json({ limit: '100kb' }));
+app.use(cors({
+  // Pedidos sin Origin (curl, el propio servidor) no son de un navegador y no llevan CORS.
+  origin: (origen, responder) => responder(null, !origen || origenPermitido(origen)),
+  credentials: true
+}));
+// Defensa extra contra CSRF: un navegador en otro sitio no puede cambiar datos aunque mande la cookie.
+app.use((req, res, next) => {
+  const soloLectura = ['GET', 'HEAD', 'OPTIONS'].includes(req.method);
+  const origen = req.headers.origin;
+  if (!soloLectura && origen && !origenPermitido(origen)) {
+    return res.status(403).json({ error: 'Origen no permitido.' });
+  }
+  return next();
+});
 
 // ---------- Utilidades ----------
 const mismoId = (a, b) => String(a) === String(b);
@@ -59,6 +91,38 @@ function parseJson(v, fallback = null) {
   if (v === null || v === undefined) return fallback;
   if (typeof v === 'object') return v; // mysql2 ya puede devolver JSON parseado
   try { return JSON.parse(v); } catch { return fallback; }
+}
+
+// bcrypt solo usa los primeros 72 bytes; el front pide entre 8 y 20 caracteres.
+function validarPassword(password) {
+  if (typeof password !== 'string' || password.length < 8 || Buffer.byteLength(password) > 72) {
+    return 'La contraseña debe tener al menos 8 caracteres.';
+  }
+  return null;
+}
+
+// Se guarda solo la forma esperada de las listas, con topes, para no aceptar cualquier JSON.
+const MAX_LISTAS = 20;
+const MAX_CIUDADES_POR_LISTA = 500;
+const textoCorto = (valor, maximo) => typeof valor === 'string' && valor.trim().length > 0 && valor.length <= maximo;
+
+function limpiarListasFavs(listas) {
+  if (!Array.isArray(listas) || listas.length > MAX_LISTAS) return null;
+  const limpias = [];
+  for (const lista of listas) {
+    const idLista = typeof lista?.idLista === 'number' ? String(lista.idLista) : lista?.idLista;
+    if (!lista || !textoCorto(idLista, 40) || !textoCorto(lista.nombreLista, 40)) return null;
+    if (!Array.isArray(lista.listaCiudades) || lista.listaCiudades.length > MAX_CIUDADES_POR_LISTA) return null;
+    const ciudades = [];
+    for (const ciudad of lista.listaCiudades) {
+      if (!ciudad || typeof ciudad.codigoPais !== 'string' || ciudad.codigoPais.length > 10 || !textoCorto(ciudad.nombre, 120)) {
+        return null;
+      }
+      ciudades.push({ codigoPais: ciudad.codigoPais, nombre: ciudad.nombre });
+    }
+    limpias.push({ idLista, nombreLista: lista.nombreLista.trim(), listaCiudades: ciudades });
+  }
+  return limpias;
 }
 
 function validarUsername(username) {
@@ -185,6 +249,42 @@ function requiereAuth(req, res, next) {
   }
 }
 
+// ---------- Límite de intentos de login ----------
+// Por cuenta (no por IP, porque detrás de un proxy todas las conexiones llegan desde la misma dirección): después de
+// MAX_FALLOS contraseñas incorrectas seguidas, esa cuenta queda frenada VENTANA_MS.
+const MAX_FALLOS = 10;
+const VENTANA_MS = 15 * 60 * 1000;
+const intentosFallidos = new Map();
+const HASH_DE_RELLENO = bcrypt.hashSync(crypto.randomBytes(16).toString('hex'), SALT_ROUNDS);
+
+function segundosDeBloqueo(clave) {
+  const registro = intentosFallidos.get(clave);
+  if (!registro) return 0;
+  const restante = registro.desde + VENTANA_MS - Date.now();
+  if (restante <= 0) {
+    intentosFallidos.delete(clave);
+    return 0;
+  }
+  return registro.fallos >= MAX_FALLOS ? Math.ceil(restante / 1000) : 0;
+}
+
+function registrarFallo(clave) {
+  const registro = intentosFallidos.get(clave);
+  if (!registro || registro.desde + VENTANA_MS <= Date.now()) {
+    intentosFallidos.set(clave, { fallos: 1, desde: Date.now() });
+  } else {
+    registro.fallos += 1;
+  }
+}
+
+// Limpia los registros vencidos para que el mapa no crezca sin fin.
+setInterval(() => {
+  const ahora = Date.now();
+  for (const [clave, registro] of intentosFallidos) {
+    if (registro.desde + VENTANA_MS <= ahora) intentosFallidos.delete(clave);
+  }
+}, VENTANA_MS).unref();
+
 // Envuelve un handler async y manda los errores al manejador global.
 const h = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
@@ -201,11 +301,22 @@ app.post('/login', h(async (req, res) => {
     return res.status(400).json({ error: 'Usuario y contraseña son requeridos.' });
   }
 
+  const clave = normalizar(identificador);
+  const espera = segundosDeBloqueo(clave);
+  if (espera > 0) {
+    res.set('Retry-After', String(espera));
+    return res.status(429).json({ error: 'Demasiados intentos. Probá de nuevo en unos minutos.' });
+  }
+
   const encontrado = await buscarUsuarioPorIdentificador(identificador);
-  // Mismo 401 para "no existe" y "contraseña incorrecta": no revela qué cuentas existen.
-  if (!encontrado || !bcrypt.compareSync(password, encontrado.password || '')) {
+  // Si la cuenta no existe se compara igual contra un hash cualquiera, para que la demora
+  // no delate qué cuentas existen. Mismo 401 para los dos casos.
+  const passwordValida = bcrypt.compareSync(String(password), encontrado?.password || HASH_DE_RELLENO);
+  if (!encontrado || !passwordValida) {
+    registrarFallo(clave);
     return res.status(401).json({ error: 'Usuario o contraseña incorrectos.' });
   }
+  intentosFallidos.delete(clave);
   return res.json({ user: iniciarSesion(res, encontrado) });
 }));
 
@@ -274,11 +385,8 @@ app.patch('/perfil', requiereAuth, h(async (req, res) => {
 // Usuarios
 // ============================================================
 
-// Lista mínima (solo lo que el front usa para validar unicidad). Nunca expone la contraseña.
-app.get('/usuarios', h(async (req, res) => {
-  const [filas] = await pool.query('SELECT id, username, email FROM usuarios');
-  return res.json(filas);
-}));
+// No hay listado de usuarios: exponía los emails de todas las cuentas. La unicidad la valida
+// el backend al registrar (409) y el ranking solo muestra nombre y puntaje.
 
 // Ranking público del minijuego: top por mejor puntaje. Solo username y puntaje (sin email).
 app.get('/ranking', h(async (req, res) => {
@@ -290,7 +398,11 @@ app.get('/ranking', h(async (req, res) => {
   return res.json(filas.map(f => ({ username: f.username, mejorPuntaje: f.mejor_puntaje })));
 }));
 
-app.get('/usuarios/:id', h(async (req, res) => {
+// Cada usuario solo puede ver su propia cuenta (tiene el email y las listas de favoritos).
+app.get('/usuarios/:id', requiereAuth, h(async (req, res) => {
+  if (!mismoId(req.params.id, req.usuario.id)) {
+    return res.status(403).json({ error: 'No podés ver otra cuenta.' });
+  }
   const usuario = await usuarioPorId(req.params.id);
   if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado.' });
   return res.json(usuarioPublico(usuario));
@@ -302,18 +414,22 @@ app.post('/usuarios', h(async (req, res) => {
 
   const errorUsername = validarUsername(username);
   if (errorUsername) return res.status(400).json({ error: errorUsername });
-  if (!EMAIL_VALIDO.test(email || '')) return res.status(400).json({ error: 'El email no es válido.' });
-  if (typeof password !== 'string' || password.length === 0) {
-    return res.status(400).json({ error: 'La contraseña es requerida.' });
+  if (typeof email !== 'string' || email.length > 254 || !EMAIL_VALIDO.test(email)) {
+    return res.status(400).json({ error: 'El email no es válido.' });
   }
+  const errorPassword = validarPassword(password);
+  if (errorPassword) return res.status(400).json({ error: errorPassword });
+  const listas = listasFavs === undefined ? [] : limpiarListasFavs(listasFavs);
+  if (!listas) return res.status(400).json({ error: 'Las listas de favoritos no tienen el formato esperado.' });
   if (await datoEnUso('username', username)) return res.status(409).json({ error: 'El nombre de usuario ya está en uso.', campo: 'username' });
   if (await datoEnUso('email', email)) return res.status(409).json({ error: 'El email ya está en uso.', campo: 'email' });
 
+  // Siempre se hashea acá: no se acepta un hash armado por el cliente.
   const id = nuevoId();
-  const hash = password.startsWith('$2') ? password : bcrypt.hashSync(password, SALT_ROUNDS);
+  const hash = bcrypt.hashSync(password, SALT_ROUNDS);
   await pool.query(
     'INSERT INTO usuarios (id, username, email, password, mejor_puntaje, listas_favs) VALUES (?, ?, ?, ?, 0, ?)',
-    [id, username.trim(), email.trim(), hash, JSON.stringify(Array.isArray(listasFavs) ? listasFavs : [])]
+    [id, username.trim(), email.trim(), hash, JSON.stringify(listas)]
   );
   const creado = await usuarioPorId(id);
   return res.status(201).json(usuarioPublico(creado));
@@ -333,15 +449,28 @@ app.patch('/usuarios/:id', requiereAuth, h(async (req, res) => {
   if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado.' });
 
   const cambios = {};
-  if (body.listasFavs !== undefined) cambios.listas_favs = JSON.stringify(body.listasFavs ?? []);
-  if (body.mejorPuntaje !== undefined) cambios.mejor_puntaje = Number(body.mejorPuntaje) || 0;
-  if (typeof body.password === 'string' && body.password.length > 0) {
+  if (body.listasFavs !== undefined) {
+    const listas = limpiarListasFavs(body.listasFavs ?? []);
+    if (!listas) return res.status(400).json({ error: 'Las listas de favoritos no tienen el formato esperado.' });
+    cambios.listas_favs = JSON.stringify(listas);
+  }
+  if (body.mejorPuntaje !== undefined) {
+    const puntaje = Number(body.mejorPuntaje);
+    if (!Number.isInteger(puntaje) || puntaje < 0 || puntaje > 1000000) {
+      return res.status(400).json({ error: 'El puntaje no es válido.' });
+    }
+    // Solo se guarda si supera al anterior: el mejor puntaje nunca baja.
+    cambios.mejor_puntaje = Math.max(puntaje, Number(usuario.mejor_puntaje) || 0);
+  }
+  if (body.password !== undefined) {
+    const errorPassword = validarPassword(body.password);
+    if (errorPassword) return res.status(400).json({ error: errorPassword });
     // Para cambiar la contraseña hay que acreditar la actual (aunque la sesión sea válida).
     const actual = typeof body.currentPassword === 'string' ? body.currentPassword : '';
-    if (!bcrypt.compareSync(actual, usuario.password || '')) {
+    if (!bcrypt.compareSync(actual, usuario.password || HASH_DE_RELLENO)) {
       return res.status(401).json({ error: 'La contraseña actual no es correcta.' });
     }
-    cambios.password = body.password.startsWith('$2') ? body.password : bcrypt.hashSync(body.password, SALT_ROUNDS);
+    cambios.password = bcrypt.hashSync(body.password, SALT_ROUNDS);
   }
 
   if (Object.keys(cambios).length > 0) {
@@ -480,10 +609,14 @@ app.patch('/valoraciones/:id', requiereAuth, h(async (req, res) => {
 app.get('/health', (req, res) => res.json({ ok: true }));
 
 app.use((err, req, res, next) => {
+  // JSON mal formado o demasiado grande: es un error del pedido, no del servidor.
+  if (err.type === 'entity.parse.failed') return res.status(400).json({ error: 'El cuerpo del pedido no es un JSON válido.' });
+  if (err.type === 'entity.too.large') return res.status(413).json({ error: 'El pedido es demasiado grande.' });
   console.error('Error no controlado:', err);
   res.status(500).json({ error: 'Error interno del servidor.' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend de TpViajes corriendo en http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Backend de TpViajes corriendo en http://${HOST}:${PORT}`);
+  console.log(`Orígenes permitidos: ${ORIGENES_PERMITIDOS.join(', ')}`);
 });

@@ -383,7 +383,7 @@ export const en: Diccionario = {
     comentarioEliminado: 'Comment deleted.',
     obtenerPaisCiudad: 'Could not get the country or the city.',
     registrarUsuario: 'Could not create the account.',
-    cargarUsuarios: 'Could not load the users.',
+    demasiadosIntentos: 'Too many failed attempts. Wait a few minutes and try again.',
     obtenerUsuario: 'Could not get the user.',
     iniciarSesion: 'Could not log in.',
     guardarPerfil: 'Could not save your profile details.',

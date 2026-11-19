@@ -17,8 +17,11 @@ Núcleo
 Seguridad
 - Autenticación con validación de contraseña en el backend (bcrypt).
 - Contraseñas hasheadas, nunca en texto plano ni expuestas en las respuestas.
-- Sesión con JWT e interceptor HTTP que inyecta el token y maneja los errores 401/403.
+- Sesión con JWT en una cookie httpOnly (el JavaScript de la página no puede leer el token) e interceptor HTTP que manda la cookie y maneja los errores 401/403.
 - Guards de ruta para las secciones privadas.
+- Cada usuario solo puede ver y modificar su propia cuenta; no hay listados públicos con emails.
+- CORS con lista de orígenes permitidos y límite de intentos de inicio de sesión por cuenta.
+- La API escucha por defecto solo en la propia máquina.
 
 Integraciones con APIs externas
 - Conversor de moneda en vivo (ExchangeRate-API).
@@ -33,12 +36,12 @@ Calidad
 ## Arquitectura
 
 - Frontend: Angular 17 con componentes standalone, RxJS y Leaflet. Consume la API publicada del proyecto.
-- Backend: Node.js con Express; API REST propia con autenticación bcrypt + JWT y persistencia en MySQL (db/server.js), desplegada en el servidor del proyecto.
+- Backend: Node.js con Express; API REST propia con autenticación bcrypt + JWT y persistencia en MySQL (db/server.js), publicada en internet.
 - Base de datos: MySQL 8.
 
 ## Cómo usar la app
 
-La app consume la API ya publicada en el servidor del proyecto, así que **no hace falta instalar ni configurar ninguna base de datos**.
+La app consume la API ya publicada del proyecto, así que **no hace falta instalar ni configurar ninguna base de datos**.
 
 Requisitos: Node 20.
 

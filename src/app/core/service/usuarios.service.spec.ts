@@ -53,8 +53,8 @@ describe('UsuariosService - sesión y perfil', () => {
     expect(res).toBeFalse();
   });
 
-  it('usuario inexistente (404) devuelve null', () => {
-    let res: boolean | null = false;
+  it('usuario inexistente (404) devuelve false, igual que una contraseña incorrecta', () => {
+    let res: boolean | null = true;
 
     service.login('nadie', 'x').subscribe(v => (res = v));
 
@@ -62,7 +62,22 @@ describe('UsuariosService - sesión y perfil', () => {
       .expectOne(`${environment.apiBaseUrl}/login`)
       .flush('no', { status: 404, statusText: 'Not Found' });
 
-    expect(res).toBeNull();
+    expect(res).toBeFalse();
+  });
+
+  it('demasiados intentos (429) avisa con su propio mensaje', () => {
+    let error: Error | undefined;
+
+    service.login('viajera', 'x').subscribe({
+      next: () => fail('no debería emitir un valor'),
+      error: (e) => (error = e)
+    });
+
+    httpMock
+      .expectOne(`${environment.apiBaseUrl}/login`)
+      .flush('no', { status: 429, statusText: 'Too Many Requests' });
+
+    expect(error?.message).toBe('mensajes.demasiadosIntentos');
   });
 
   it('logout cierra la sesión local aunque el backend no responda', () => {
