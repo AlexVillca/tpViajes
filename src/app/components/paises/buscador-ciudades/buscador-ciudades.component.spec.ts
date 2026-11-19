@@ -79,7 +79,8 @@ describe('BuscadorCiudadesComponent', () => {
 
     expect(paisData.setPais).toHaveBeenCalledWith(paises[1]);
     expect(ciudadData.setCiudad).toHaveBeenCalledWith({ nombre: 'Cordoba' });
-    expect(router.navigate).toHaveBeenCalledWith(['/ciudad']);
+    // La ruta lleva el país y la ciudad para que el link se pueda compartir o recargar.
+    expect(router.navigate).toHaveBeenCalledWith(['/ciudad', 'es', 'Cordoba']);
   });
 
   it('Escape cierra la lista y avisa cuando no hay resultados', () => {

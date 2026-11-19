@@ -162,15 +162,6 @@ export const en: Diccionario = {
     actualizar: 'Update',
     volverPerfil: 'Back to my profile'
   },
-  paises: {
-    titulo: 'Countries',
-    filtro: 'Filter countries by initial',
-    todos: 'All',
-    cargando: 'Loading countries...',
-    paginacion: 'Countries pagination',
-    paginaAnterior: 'Previous page',
-    paginaSiguiente: 'Next page'
-  },
   buscador: {
     etiqueta: 'Search for a city',
     placeholder: 'For example: Kyoto, Cusco, Marrakesh',
@@ -371,8 +362,6 @@ export const en: Diccionario = {
     errorServidor: 'Something went wrong on the server.',
     cargarPaises: 'Could not load the countries.',
     cargarRanking: 'Could not load the scores.',
-    sinPaises: 'There are no countries to show.',
-    sinPaisesLetra: 'No countries found starting with {{letra}}.',
     cargarComentarios: 'Could not load the comments.',
     publicarComentario: 'Could not post the comment.',
     editarComentario: 'Could not edit the comment.',

@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
 import { CiudadDetailComponent } from './ciudad-detail.component';
 import { Ciudad, Pais } from '../../../models/interface/pais.interface';
 import { CiudadDataService } from '../../../core/service/ciudad-data.service';
 import { PaisDataService } from '../../../core/service/pais-data.service';
 import { IdUsuarioService } from '../../../core/service/id-usuario.service';
+import { PaisesService } from '../../../core/service/paises.service';
 
 describe('CiudadDetailComponent - regreso contextual', () => {
   let pais: BehaviorSubject<Pais | null>;
@@ -21,7 +22,9 @@ describe('CiudadDetailComponent - regreso contextual', () => {
     TestBed.configureTestingModule({ providers: [
       { provide: PaisDataService, useValue: { pais$: pais } },
       { provide: CiudadDataService, useValue: ciudades },
-      { provide: IdUsuarioService, useValue: { id$: of(null) } }
+      { provide: IdUsuarioService, useValue: { id$: of(null) } },
+      { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap({}) } } },
+      { provide: PaisesService, useValue: { getPaisPorId: () => of(undefined) } }
     ] });
     component = TestBed.runInInjectionContext(() => new CiudadDetailComponent(ciudades, router));
   });
@@ -32,7 +35,7 @@ describe('CiudadDetailComponent - regreso contextual', () => {
     pais.next(argentina);
     ciudad.next(seleccion);
     component.volver();
-    expect(router.navigate).toHaveBeenCalledOnceWith(['/pais']);
+    expect(router.navigate).toHaveBeenCalledOnceWith(['/pais', 'ar']);
     expect(pais.value).toBe(argentina);
     expect(ciudad.value).toBe(seleccion);
     pais.next(null);

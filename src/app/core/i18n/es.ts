@@ -164,15 +164,6 @@ export const es = {
     actualizar: 'Actualizar',
     volverPerfil: 'Volver a mi perfil'
   },
-  paises: {
-    titulo: 'Lista Países',
-    filtro: 'Filtrar países por inicial',
-    todos: 'Todos',
-    cargando: 'Cargando países...',
-    paginacion: 'Paginación de países',
-    paginaAnterior: 'Página anterior',
-    paginaSiguiente: 'Página siguiente'
-  },
   buscador: {
     etiqueta: 'Buscar una ciudad',
     placeholder: 'Por ejemplo: Kioto, Cusco, Marrakech',
@@ -373,8 +364,6 @@ export const es = {
     errorServidor: 'Ocurrió un error en el servidor.',
     cargarPaises: 'No se pudieron cargar los países.',
     cargarRanking: 'No se pudieron cargar los puntajes.',
-    sinPaises: 'No hay países para mostrar.',
-    sinPaisesLetra: 'No se encontraron países con la letra {{letra}}.',
     cargarComentarios: 'No se pudieron cargar los comentarios.',
     publicarComentario: 'No se pudo publicar el comentario.',
     editarComentario: 'No se pudo editar el comentario.',
