@@ -1,4 +1,6 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { combineLatest } from 'rxjs';
 import { ListaFav } from '../../../models/interface/usuario.interface';
 import { Ciudad, Pais } from '../../../models/interface/pais.interface';
 import { CommonModule } from '@angular/common';
@@ -15,247 +17,215 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 /**
  * Ventana para guardar la ciudad actual en una o varias listas de favoritos, o crear una lista nueva.
- * Carga el contexto (usuario logueado, país y ciudad), valida nombres repetidos y el máximo de listas,
- * y sincroniza los cambios con el backend.
+ * Solo agrega: las listas que ya tienen la ciudad aparecen marcadas y bloqueadas, y para quitarla
+ * de una lista se usa la página de favoritos. Las listas se piden al backend cada vez que se abre,
+ * así lo que se muestra coincide siempre con lo guardado.
  */
 @Component({
   selector: 'app-pop-up-guardar-favoritos',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,DialogoDirective, TranslatePipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, DialogoDirective, TranslatePipe],
   templateUrl: './pop-up-guardar-favoritos.component.html'
 })
-export class PopUpGuardarFavoritosComponent implements OnInit{
+export class PopUpGuardarFavoritosComponent {
 
-  fb = inject(FormBuilder);
-  us = inject(UsuariosService);
-  ids = inject(IdUsuarioService);
-
-  paisDataService = inject (PaisDataService);
-  ciudadDataService = inject(CiudadDataService);
+  private readonly fb = inject(FormBuilder);
+  private readonly us = inject(UsuariosService);
+  private readonly ids = inject(IdUsuarioService);
+  private readonly paisDataService = inject(PaisDataService);
+  private readonly ciudadDataService = inject(CiudadDataService);
+  private readonly feedback = inject(FeedbackService);
 
   visible = false;
   logueado = false;
+  cargando = false;
+  guardando = false;
 
-  listasFavoritosDB:ListaFav[] = [];
-  mapNombresListas = new Map<string,string>();
+  private idUsuario: string | null = null;
+  private paisSeleccionado: Pais | null = null;
+  private ciudadSeleccionada: Ciudad | null = null;
 
-  ciudadSeleccionada: Ciudad | null = null;
-  paisSeleccionado: Pais | null = null;
+  private listasFavoritosDB: ListaFav[] = [];
+  mapNombresListas = new Map<string, string>();
+  /** Ids de las listas que ya tienen la ciudad (se muestran marcadas y no se pueden destildar). */
+  listasConLaCiudad = new Set<string>();
 
-  feedback = inject(FeedbackService);
-  contextoListo = false;
-  errorCargaContexto = '';
-
-  formulario:FormGroup = this.fb.group({
-    nuevocheckboxListaFavorito: ['', [Validators.required,valorExistenteMap(this.mapNombresListas),maxItemsValidator(this.mapNombresListas,6)]],
+  formulario: FormGroup = this.fb.group({
+    nuevocheckboxListaFavorito: ['', [Validators.required, valorExistenteMap(this.mapNombresListas), maxItemsValidator(this.mapNombresListas, 6)]],
     checkboxesListasFavoritos: this.fb.group({})
   });
 
   get groupCheckbox(): FormGroup {
     return this.formulario.get('checkboxesListasFavoritos') as FormGroup;
   }
-  get idsGroupCheckbox(){
-    return Object.keys( this.groupCheckbox.value || {});
+
+  // Se leen los controles (no el value) porque los controles deshabilitados no aparecen en value.
+  get idsGroupCheckbox(): string[] {
+    return Object.keys(this.groupCheckbox.controls);
   }
 
-  get nuevaListaInput():FormControl {
+  get nuevaListaInput(): FormControl {
     return this.formulario.get('nuevocheckboxListaFavorito') as FormControl;
   }
 
-  private marcarContextoNoDisponible(mensaje = 'mensajes.cargarTusListas'): void {
-    this.contextoListo = false;
-    this.errorCargaContexto = mensaje;
-  }
-
-  ngOnInit(): void {
-
-    this.ids.id$.subscribe(
-      {
-        next: (id) => {
-          if(!id){
-            this.logueado = false;
-            this.marcarContextoNoDisponible('mensajes.iniciarSesionFavoritos');
-            return;
-          }
-
-          this.logueado = true;
-          this.paisDataService.pais$.subscribe(
-            {
-              next:(p) => {
-                if (!p) {
-                  this.marcarContextoNoDisponible('mensajes.obtenerPais');
-                  return;
-                }
-
-                this.paisSeleccionado = p
-                this.ciudadDataService.ciudad$.subscribe(
-                  {
-                    next:(c) => {
-                      if (!c) {
-                        this.marcarContextoNoDisponible('mensajes.obtenerCiudad');
-                        return;
-                      }
-
-                      this.ciudadSeleccionada = c
-                      this.us.obtenerListasFav(id).subscribe(
-                        {
-                          next:(l) => {
-                            this.listasFavoritosDB = l;
-                            this.pasajeDBaFormulario();
-                            this.contextoListo = true;
-                            this.errorCargaContexto = '';
-
-                          },
-                          error: (e) => {
-                            this.marcarContextoNoDisponible(e.message);
-                          }
-                        }
-                    )
-
-                    },
-                    error:(error) => {
-                      this.marcarContextoNoDisponible(error.message);
-                    }
-                  }
-                );
-
-              },
-              error:(error) => {
-                this.marcarContextoNoDisponible(error.message);
-              }
-            }
-          );
-        },
-        error: (e) => {
-          this.marcarContextoNoDisponible(e.message);
+  constructor() {
+    combineLatest([this.ids.id$, this.paisDataService.pais$, this.ciudadDataService.ciudad$])
+      .pipe(takeUntilDestroyed(inject(DestroyRef)))
+      .subscribe(([id, pais, ciudad]) => {
+        const cambioLaCiudad = pais?.codigo !== this.paisSeleccionado?.codigo || ciudad?.nombre !== this.ciudadSeleccionada?.nombre;
+        this.idUsuario = id;
+        this.logueado = !!id;
+        this.paisSeleccionado = pais;
+        this.ciudadSeleccionada = ciudad;
+        // Si cambia la ciudad o se cierra la sesión con la ventana abierta, se cierra para no guardar en la equivocada.
+        if (this.visible && (!id || cambioLaCiudad)) {
+          this.cierraPopUp();
         }
-      }
-    );
+      });
   }
 
-  private nuevoIdLista():string{
-    let idGenerado:string;
-    do{
+  /** Pide las listas al backend y, recién con eso, abre la ventana con el estado real. */
+  abrePopUp(): void {
+    const id = this.idUsuario;
+    if (!id) {
+      this.feedback.error('mensajes.iniciarSesionFavoritos');
+      return;
+    }
+    if (!this.paisSeleccionado) {
+      this.feedback.error('mensajes.obtenerPais');
+      return;
+    }
+    if (!this.ciudadSeleccionada) {
+      this.feedback.error('mensajes.obtenerCiudad');
+      return;
+    }
+    if (this.cargando) {
+      return;
+    }
+
+    this.cargando = true;
+    this.us.obtenerListasFav(id).subscribe({
+      next: (listas) => {
+        this.cargando = false;
+        this.listasFavoritosDB = listas ?? [];
+        this.pasajeDBaFormulario();
+        document.body.style.overflow = 'hidden';
+        this.visible = true;
+      },
+      error: () => {
+        this.cargando = false;
+        this.feedback.error('mensajes.cargarTusListas');
+      }
+    });
+  }
+
+  private nuevoIdLista(): string {
+    let idGenerado: string;
+    do {
       idGenerado = Math.random().toString(36).substring(2, 9);
-    }while(Object.keys(this.groupCheckbox.controls).some( (l:string)=> l === idGenerado));
+    } while (this.idsGroupCheckbox.includes(idGenerado));
     return idGenerado;
   }
 
- agregarNuevaLista(){
-  if(!this.nuevaListaInput.valid){
-    this.nuevaListaInput.markAsTouched();
-    return;
+  agregarNuevaLista(): void {
+    if (!this.nuevaListaInput.valid) {
+      this.nuevaListaInput.markAsTouched();
+      return;
+    }
+    const nuevoId = this.nuevoIdLista();
+    this.mapNombresListas.set(nuevoId, this.nuevaListaInput.value.trim());
+    this.groupCheckbox.addControl(nuevoId, new FormControl(true));
+    this.nuevaListaInput.reset();
   }
-  let nuevoId = this.nuevoIdLista();
-  this.mapNombresListas.set(nuevoId,this.nuevaListaInput.value);
-  this.groupCheckbox.addControl(nuevoId,new FormControl(true));
-  this.nuevaListaInput.reset();
- }
 
-  private pasajeDBaFormulario(){
-    const groupAux = this.fb.group({});
+  private ciudadEstaEn(lista: ListaFav): boolean {
+    return lista.listaCiudades.some(c =>
+      c.codigoPais === this.paisSeleccionado?.codigo && c.nombre === this.ciudadSeleccionada?.nombre
+    );
+  }
+
+  private pasajeDBaFormulario(): void {
+    const grupo = this.fb.group({});
     this.mapNombresListas.clear();
+    this.listasConLaCiudad.clear();
+
     this.listasFavoritosDB.forEach(lista => {
-      let selec = lista.listaCiudades.some(c => c.codigoPais === this.paisSeleccionado?.codigo && c.nombre === this.ciudadSeleccionada?.nombre);
-      this.mapNombresListas.set(lista.idLista,lista.nombreLista);
-      groupAux.addControl(lista.idLista,new FormControl(selec));
+      this.mapNombresListas.set(lista.idLista, lista.nombreLista);
+      if (this.ciudadEstaEn(lista)) {
+        this.listasConLaCiudad.add(lista.idLista);
+        grupo.addControl(lista.idLista, new FormControl({ value: true, disabled: true }));
+      } else {
+        grupo.addControl(lista.idLista, new FormControl(false));
+      }
     });
 
-    this.formulario.setControl('checkboxesListasFavoritos',groupAux);
+    this.formulario.setControl('checkboxesListasFavoritos', grupo);
+    this.nuevaListaInput.reset();
   }
 
-  private pasajeFormularioaDB(){
+  /** Ids de las listas tildadas en las que la ciudad todavía no está (incluye las listas nuevas). */
+  private listasElegidas(): string[] {
+    return Object.entries(this.groupCheckbox.controls)
+      .filter(([id, control]) => control.enabled && control.value === true && !this.listasConLaCiudad.has(id))
+      .map(([id]) => id);
+  }
+
+  saveSelection(): void {
+    const id = this.idUsuario;
     const pais = this.paisSeleccionado;
     const ciudad = this.ciudadSeleccionada;
-    if (!pais || !ciudad) { return; }
-    const codigoPais = pais.codigo ?? '';
-
-    Object.entries(this.groupCheckbox.controls).forEach(([id, control]) => {
-
-      const ciudadSeleccionadaFormulario = control.value;
-
-      let listaOriginal = this.listasFavoritosDB.find(ldb => ldb.idLista === id);
-
-      if(listaOriginal === undefined){
-        listaOriginal = {
-          idLista:id,
-          nombreLista:this.mapNombresListas.get(id) || "error",
-          listaCiudades:[]
-        }
-        this.listasFavoritosDB.push(listaOriginal);
-      }
-
-      const ciudadExisteEnLista = listaOriginal.listaCiudades.some(c =>
-        c.codigoPais === codigoPais &&
-        c.nombre === ciudad.nombre
-      );
-
-      if(ciudadSeleccionadaFormulario && !ciudadExisteEnLista){
-        listaOriginal.listaCiudades.push({
-          codigoPais: codigoPais,
-          nombre: ciudad.nombre
-        });
-      }
-
-      if(!ciudadSeleccionadaFormulario && ciudadExisteEnLista){
-        listaOriginal.listaCiudades = listaOriginal.listaCiudades.filter(c =>
-          !(c.codigoPais === pais.codigo &&
-            c.nombre === ciudad.nombre)
-        );
-      }
-    });
-  }
-
-  saveSelection() {
-    if (!this.contextoListo || !this.paisSeleccionado || !this.ciudadSeleccionada) {
-      this.feedback.error(this.errorCargaContexto || 'mensajes.guardarFavoritos');
+    if (!id || !pais || !ciudad) {
+      this.feedback.error('mensajes.guardarFavoritos');
+      return;
+    }
+    if (this.guardando) {
       return;
     }
 
-    this.pasajeFormularioaDB();
-    this.ids.id$.subscribe(
-      {
-        next:(id) => {
-         if(id){
-          this.us.actualizarListasFavoritos(id,this.listasFavoritosDB).subscribe(
-            {
-              next:() => {
-                this.cierraPopUp();
-                this.feedback.success('mensajes.listaGuardada');
-              },
-              error:(error) => {
-                this.feedback.error(error.message);
-              }
-            });
-          } else {
-            this.feedback.error('mensajes.usuarioActual');
-          }
-        },
-        error:() => {
-          this.feedback.error('mensajes.usuarioActual');
-        }
-      }
-    );
+    const elegidas = this.listasElegidas();
+    if (elegidas.length === 0) {
+      this.feedback.error('mensajes.elegiUnaLista');
+      return;
+    }
 
+    // Se arma una copia: si el backend falla, la ventana sigue mostrando lo que estaba guardado.
+    const listasActualizadas: ListaFav[] = this.listasFavoritosDB.map(lista => ({
+      ...lista,
+      listaCiudades: [...lista.listaCiudades]
+    }));
+    const ciudadAGuardar = { codigoPais: pais.codigo ?? '', nombre: ciudad.nombre };
+
+    elegidas.forEach(idLista => {
+      let lista = listasActualizadas.find(l => l.idLista === idLista);
+      if (!lista) {
+        lista = { idLista, nombreLista: this.mapNombresListas.get(idLista) ?? '', listaCiudades: [] };
+        listasActualizadas.push(lista);
+      }
+      lista.listaCiudades.push(ciudadAGuardar);
+    });
+
+    this.guardando = true;
+    this.us.actualizarListasFavoritos(id, listasActualizadas).subscribe({
+      next: () => {
+        this.guardando = false;
+        this.listasFavoritosDB = listasActualizadas;
+        this.cierraPopUp();
+        this.feedback.success('mensajes.ciudadGuardada');
+      },
+      error: (error) => {
+        this.guardando = false;
+        this.feedback.error(error.message);
+      }
+    });
   }
-  cierraPopUp(){
-    document.body.style.overflow = "auto";
+
+  cierraPopUp(): void {
+    document.body.style.overflow = 'auto';
     this.nuevaListaInput.reset();
     this.visible = false;
   }
-  abrePopUp(){
-    if (!this.contextoListo) {
-      this.feedback.error(this.errorCargaContexto || 'mensajes.cargarTusListas');
-      return;
-    }
 
-    document.body.style.overflow = "hidden";
-    this.visible=true;
-  }
-  cancelar() {
+  cancelar(): void {
     this.cierraPopUp();
-    this.pasajeDBaFormulario();
-
   }
-
 }

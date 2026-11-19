@@ -321,7 +321,9 @@ export const es = {
     nombreNuevaLista: 'Nombre de la nueva lista',
     ingresaNombre: 'Ingresa un nombre para la lista',
     maximoListas: 'Se ha llegado al máximo de listas',
-    nombreRepetido: 'Ya existe una lista con ese nombre'
+    nombreRepetido: 'Ya existe una lista con ese nombre',
+    ayudaGuardar: 'Elegí en qué listas guardar esta ciudad. Para quitarla de una lista, entrá a Mis favoritos.',
+    yaGuardada: 'Ya guardada'
   },
   juego: {
     puntuacionYRanking: 'Puntuación y ranking',
@@ -413,7 +415,8 @@ export const es = {
     obtenerCiudad: 'No se pudo obtener la ciudad seleccionada.',
     quitarCiudad: 'No se pudo quitar la ciudad de la lista.',
     listaEliminada: 'Lista eliminada.',
-    listaGuardada: 'Lista guardada.',
+    ciudadGuardada: 'Ciudad guardada en tus favoritos.',
+    elegiUnaLista: 'Elegí al menos una lista para guardar la ciudad.',
     nombreListaActualizado: 'Nombre de lista actualizado.',
     iniciarSesionFavoritos: 'Debes iniciar sesión para guardar favoritos.',
     graciasContacto: 'Gracias por tu mensaje. Pronto nos pondremos en contacto contigo.',

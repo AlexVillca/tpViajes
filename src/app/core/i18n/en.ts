@@ -319,7 +319,9 @@ export const en: Diccionario = {
     nombreNuevaLista: 'Name of the new list',
     ingresaNombre: 'Enter a name for the list',
     maximoListas: 'You have reached the maximum number of lists',
-    nombreRepetido: 'A list with that name already exists'
+    nombreRepetido: 'A list with that name already exists',
+    ayudaGuardar: 'Choose which lists to save this city to. To remove it from a list, go to My favorites.',
+    yaGuardada: 'Already saved'
   },
   juego: {
     puntuacionYRanking: 'Score and ranking',
@@ -411,7 +413,8 @@ export const en: Diccionario = {
     obtenerCiudad: 'Could not get the selected city.',
     quitarCiudad: 'Could not remove the city from the list.',
     listaEliminada: 'List deleted.',
-    listaGuardada: 'List saved.',
+    ciudadGuardada: 'City saved to your favorites.',
+    elegiUnaLista: 'Choose at least one list to save the city.',
     nombreListaActualizado: 'List name updated.',
     iniciarSesionFavoritos: 'You need to log in to save favorites.',
     graciasContacto: 'Thank you for your message. We will get back to you soon.',

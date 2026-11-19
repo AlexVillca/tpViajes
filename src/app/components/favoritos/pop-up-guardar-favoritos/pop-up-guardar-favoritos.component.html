@@ -1,17 +1,25 @@
 @if(logueado){
-  <button type="button" class="btn btn-primario" (click)="abrePopUp()">{{ 'comun.guardar' | translate }}</button>
+  <button type="button" class="btn btn-primario" (click)="abrePopUp()" [disabled]="cargando" [attr.aria-busy]="cargando">{{ 'comun.guardar' | translate }}</button>
   @if(visible){
     <div class="modal-fondo"></div>
-    <div class="modal max-w-[500px]" role="dialog" aria-modal="true" aria-labelledby="guardar-favoritos-titulo" appDialogo (cerrar)="cancelar()">
+    <div class="modal max-w-[500px]" role="dialog" aria-modal="true" aria-labelledby="guardar-favoritos-titulo" aria-describedby="guardar-favoritos-ayuda" appDialogo (cerrar)="cancelar()">
 
       <form class="flex w-full flex-col gap-4" [formGroup]="formulario" (ngSubmit)="saveSelection()">
 
-        <h2 id="guardar-favoritos-titulo" class="m-0 text-lg font-bold text-tinta">{{ 'favoritos.guardarEnFavoritos' | translate }}</h2>
+        <div>
+          <h2 id="guardar-favoritos-titulo" class="m-0 text-lg font-bold text-tinta">{{ 'favoritos.guardarEnFavoritos' | translate }}</h2>
+          <p id="guardar-favoritos-ayuda" class="m-0 mt-1 text-sm text-tinta-suave">{{ 'favoritos.ayudaGuardar' | translate }}</p>
+        </div>
 
         <div class="max-h-[268px] w-full space-y-2 overflow-y-auto" [formGroup]="groupCheckbox">
-          @for(idLista of idsGroupCheckbox;track $index){
-            <label class="flex max-w-full cursor-pointer items-center gap-2.5 rounded-xl border border-solid border-superficie-linea bg-superficie px-3 py-2 text-[15px] text-tinta transition-colors hover:border-acento-medio motion-reduce:transition-none">
-              <input type="checkbox" class="m-0 h-[18px] w-[18px] shrink-0 accent-marca" [formControlName]="idLista" />{{mapNombresListas.get(idLista) }}
+          @for(idLista of idsGroupCheckbox; track idLista){
+            <label class="flex max-w-full items-center gap-2.5 rounded-xl border border-solid border-superficie-linea bg-superficie px-3 py-2 text-[15px] text-tinta transition-colors motion-reduce:transition-none"
+              [ngClass]="listasConLaCiudad.has(idLista) ? 'opacity-80' : 'cursor-pointer hover:border-acento-medio'">
+              <input type="checkbox" class="m-0 h-[18px] w-[18px] shrink-0 accent-marca" [formControlName]="idLista" />
+              <span class="min-w-0 flex-1 truncate">{{ mapNombresListas.get(idLista) }}</span>
+              @if(listasConLaCiudad.has(idLista)){
+                <span class="shrink-0 text-xs font-semibold text-tinta-suave">{{ 'favoritos.yaGuardada' | translate }}</span>
+              }
             </label>
           }
         </div>
@@ -38,7 +46,7 @@
         </div>
         <div class="flex justify-end gap-2.5 max-[480px]:flex-col max-[480px]:items-stretch">
           <button type="button" class="btn btn-secundario" (click)="cancelar()">{{ 'comun.cancelar' | translate }}</button>
-          <button type="submit" class="btn btn-primario">{{ 'comun.guardar' | translate }}</button>
+          <button type="submit" class="btn btn-primario" [disabled]="guardando" [attr.aria-busy]="guardando">{{ 'comun.guardar' | translate }}</button>
         </div>
 
       </form>
