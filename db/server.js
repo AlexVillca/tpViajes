@@ -468,8 +468,10 @@ app.patch('/usuarios/:id', requiereAuth, h(async (req, res) => {
     if (errorPassword) return res.status(400).json({ error: errorPassword });
     // Para cambiar la contraseña hay que acreditar la actual (aunque la sesión sea válida).
     const actual = typeof body.currentPassword === 'string' ? body.currentPassword : '';
+    // 400 y no 401: la sesión sigue siendo válida, solo está mal el dato. Con 401 el front
+    // entendería "sesión vencida" y cerraría la sesión sin mostrar el aviso.
     if (!bcrypt.compareSync(actual, usuario.password || HASH_DE_RELLENO)) {
-      return res.status(401).json({ error: 'La contraseña actual no es correcta.' });
+      return res.status(400).json({ error: 'La contraseña actual no es correcta.', campo: 'currentPassword' });
     }
     cambios.password = bcrypt.hashSync(body.password, SALT_ROUNDS);
   }
@@ -486,8 +488,9 @@ app.patch('/usuarios/:id', requiereAuth, h(async (req, res) => {
 // ============================================================
 // Países (catálogo de referencia, solo lectura)
 // ============================================================
+// Solo los países visibles: los que un admin ocultó no aparecen en ninguna parte de la app.
 app.get('/paises', h(async (req, res) => {
-  const [filas] = await pool.query('SELECT * FROM paises ORDER BY nombre');
+  const [filas] = await pool.query('SELECT * FROM paises WHERE visible = 1 ORDER BY nombre');
   return res.json(filas.map(paisPublico));
 }));
 
@@ -700,6 +703,12 @@ app.get('/admin/resumen', requiereAdmin, h(async (req, res) => {
     paises: await contar('SELECT COUNT(*) AS n FROM paises'),
     paisesOcultos: await contar('SELECT COUNT(*) AS n FROM paises WHERE visible = 0')
   });
+}));
+
+// Todos los países, incluidos los ocultos, para que el panel pueda volver a mostrarlos.
+app.get('/admin/paises', requiereAdmin, h(async (req, res) => {
+  const [filas] = await pool.query('SELECT * FROM paises ORDER BY nombre');
+  return res.json(filas.map(paisPublico));
 }));
 
 // Edita un país: textos, visibilidad, traducción y la lista completa de ciudades con sus atracciones.

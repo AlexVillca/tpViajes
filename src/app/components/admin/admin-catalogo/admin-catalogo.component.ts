@@ -67,7 +67,8 @@ export class AdminCatalogoComponent implements OnInit {
   imagenesRotas: ImagenRota[] | null = null;
 
   ngOnInit(): void {
-    this.paisesService.getPaises().subscribe({
+    // Con los ocultos incluidos, así se pueden volver a mostrar.
+    this.paisesService.getPaises({ incluirOcultos: true }).subscribe({
       next: paises => {
         this.paises = [...paises].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
         this.cargando = false;

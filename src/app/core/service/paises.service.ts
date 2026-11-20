@@ -35,8 +35,13 @@ export class PaisesService {
 
   constructor(private http: HttpClient) { }
 
-  getPaises(): Observable<Pais[]> {
-    const paises$ = this.http.get<Pais[]>(this.apiUrl).pipe(
+  /**
+   * Países del catálogo. La API pública devuelve solo los visibles; el panel de administración pide
+   * también los ocultos (incluirOcultos) por la ruta de admin, que exige ese rol.
+   */
+  getPaises(opciones: { incluirOcultos?: boolean } = {}): Observable<Pais[]> {
+    const url = opciones.incluirOcultos ? `${environment.apiBaseUrl}/admin/paises` : this.apiUrl;
+    const paises$ = this.http.get<Pais[]>(url).pipe(
       catchError(error => buildHttpError(error, 'mensajes.cargarPaises'))
     );
     return forkJoin([paises$, this.imagenesLocales$]).pipe(

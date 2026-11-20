@@ -154,13 +154,16 @@ export class UsuariosService {
     );
   }
 
-  /** Cambia la contraseña. El backend exige la contraseña actual; si no coincide devuelve 401. */
+  /**
+   * Cambia la contraseña. El backend exige la contraseña actual; si no coincide responde 400 con
+   * campo "currentPassword" (no 401, porque la sesión sigue vigente y el interceptor la cerraría).
+   */
   cambiarContrasena(id: string, nuevaContrasena: string, contrasenaActual: string): Observable<Partial<Usuario>> {
     const url = `${this.apiUrl}/${id}`;
     const body = { password: nuevaContrasena, currentPassword: contrasenaActual };
     return this.http.patch<Partial<Usuario>>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
+        if (error.status === 400 && error.error?.campo === 'currentPassword') {
           return throwError(() => new Error('mensajes.contrasenaActualIncorrecta'));
         }
         return buildHttpError(error, 'mensajes.actualizarContrasena');
