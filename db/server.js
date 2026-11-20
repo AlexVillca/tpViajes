@@ -13,6 +13,7 @@ const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql2/promise');
+const { asegurarEsquema } = require('./esquema');
 
 // ---------- Configuración ----------
 const PORT = Number(process.env.PORT) || 3000;
@@ -154,7 +155,7 @@ function leerToken(req) {
   return header.startsWith('Bearer ') ? header.slice(7) : null;
 }
 
-const datosSesion = (u) => ({ id: u.id, username: u.username, email: u.email });
+const datosSesion = (u) => ({ id: u.id, username: u.username, email: u.email, rol: u.rol === 'admin' ? 'admin' : 'usuario' });
 
 function iniciarSesion(res, usuario) {
   const sesion = datosSesion(usuario);
@@ -605,6 +606,169 @@ app.patch('/valoraciones/:id', requiereAuth, h(async (req, res) => {
   return res.json(valoracionPublica(actualizado[0]));
 }));
 
+// ============================================================
+// Administración
+// El rol se vuelve a leer de la base en cada pedido: si a alguien le sacan el rol, deja de
+// poder entrar al instante, aunque su token todavía diga "admin".
+// ============================================================
+const requiereAdmin = [requiereAuth, h(async (req, res, next) => {
+  const usuario = await usuarioPorId(req.usuario.id);
+  if (!usuario || usuario.rol !== 'admin') {
+    return res.status(403).json({ error: 'Solo para administradores.' });
+  }
+  req.admin = usuario;
+  return next();
+})];
+
+async function registrarAccion(req, accion, objetivo, detalle = null) {
+  await pool.query(
+    'INSERT INTO admin_registro (id, usuario_id, usuario, accion, objetivo, detalle) VALUES (?, ?, ?, ?, ?, ?)',
+    [nuevoId(), req.admin.id, req.admin.username, accion, String(objetivo).slice(0, 255), detalle === null ? null : JSON.stringify(detalle)]
+  );
+}
+
+// ---------- Validación del catálogo ----------
+const TEXTOS_PAIS = {
+  nombre: 'nombre', nombreOficial: 'nombre_oficial', capital: 'capital', idiomaOficial: 'idioma_oficial',
+  moneda: 'moneda', continente: 'continente', clima: 'clima', gastronomia: 'gastronomia',
+  cultura: 'cultura', seguridad: 'seguridad', transporte: 'transporte'
+};
+const textoOpcional = (valor, maximo) => valor === undefined || valor === null || (typeof valor === 'string' && valor.length <= maximo);
+// Solo se aceptan links http(s) o imágenes guardadas en la propia app; nunca "javascript:" y similares.
+const urlSegura = (valor) => valor === undefined || valor === null || valor === '' ||
+  (typeof valor === 'string' && valor.length <= 1000 && (/^https?:\/\//i.test(valor) || /^assets\/[\w./-]+$/.test(valor)));
+
+// Objeto chico de un nivel (la visa o la dirección traducida): solo textos, números o sí/no.
+const objetoSimple = (valor) => valor !== null && typeof valor === 'object' && !Array.isArray(valor) &&
+  Object.values(valor).every(v => v === null || ['boolean', 'number'].includes(typeof v) || (typeof v === 'string' && v.length <= 1000));
+
+// Las traducciones al inglés (campo "en") solo pueden tener los campos conocidos, con textos acotados.
+function enValido(en, campos, maximo) {
+  if (en === undefined || en === null) return true;
+  if (typeof en !== 'object' || Array.isArray(en)) return false;
+  return Object.entries(en).every(([clave, valor]) => campos.includes(clave) &&
+    (['visa', 'ubicacion'].includes(clave) ? valor === null || objetoSimple(valor) : textoOpcional(valor, maximo)));
+}
+
+// Devuelve un mensaje de error o null. Revisa forma, largos, coordenadas y links de cada ciudad y atracción.
+function validarCiudades(ciudades) {
+  if (!Array.isArray(ciudades) || ciudades.length > 60) return 'Las ciudades tienen que ser una lista (máximo 60).';
+  const camposCiudad = ['nombre', 'consejos', 'actividades', 'comentarios'];
+  const camposAtraccion = ['nombre', 'descripcion', 'horario', 'tipo', 'ubicacion'];
+  const nombres = new Set();
+  for (const ciudad of ciudades) {
+    if (!ciudad || typeof ciudad !== 'object') return 'Hay una ciudad vacía.';
+    if (typeof ciudad.nombre !== 'string' || !ciudad.nombre.trim() || ciudad.nombre.length > 120) return 'Cada ciudad necesita un nombre (hasta 120 caracteres).';
+    if (nombres.has(ciudad.nombre)) return `La ciudad "${ciudad.nombre}" está repetida.`;
+    nombres.add(ciudad.nombre);
+    if (!['consejos', 'actividades', 'comentarios'].every(c => textoOpcional(ciudad[c], 3000))) return `Un texto de ${ciudad.nombre} es demasiado largo.`;
+    if (!urlSegura(ciudad.infoWikipedia)) return `El link de Wikipedia de ${ciudad.nombre} no es válido.`;
+    if (!enValido(ciudad.en, camposCiudad, 3000)) return `La traducción de ${ciudad.nombre} no tiene el formato esperado.`;
+    const atracciones = ciudad.atracciones ?? [];
+    if (!Array.isArray(atracciones) || atracciones.length > 30) return `Las atracciones de ${ciudad.nombre} tienen que ser una lista (máximo 30).`;
+    for (const a of atracciones) {
+      if (!a || typeof a.nombre !== 'string' || !a.nombre.trim() || a.nombre.length > 160) return `Cada atracción de ${ciudad.nombre} necesita un nombre.`;
+      if (!['descripcion'].every(c => textoOpcional(a[c], 3000)) || !['horario', 'tipo'].every(c => textoOpcional(a[c], 300))) return `Un texto de "${a.nombre}" es demasiado largo.`;
+      // Los textos de relleno que quedaron de la carga inicial ("url_imagen_x.jpg", "No disponible")
+      // no son links: se descartan en vez de rechazar todo el país.
+      for (const campo of ['imagen', 'paginaWeb']) {
+        if (typeof a[campo] === 'string' && !a[campo].includes(':') && !a[campo].startsWith('assets/')) delete a[campo];
+      }
+      if (!urlSegura(a.imagen)) return `La imagen de "${a.nombre}" tiene que ser un link http(s).`;
+      if (!urlSegura(a.paginaWeb)) return `La página web de "${a.nombre}" tiene que ser un link http(s).`;
+      if (a.valoracion !== undefined && a.valoracion !== null && !(typeof a.valoracion === 'number' && a.valoracion >= 0 && a.valoracion <= 5)) return `La valoración de "${a.nombre}" tiene que ir de 0 a 5.`;
+      const u = a.ubicacion;
+      if (u !== undefined && u !== null) {
+        if (typeof u !== 'object' || !textoOpcional(u.direccion, 300)) return `La ubicación de "${a.nombre}" no es válida.`;
+        if (typeof u.latitud !== 'number' || u.latitud < -90 || u.latitud > 90 || typeof u.longitud !== 'number' || u.longitud < -180 || u.longitud > 180) {
+          return `Las coordenadas de "${a.nombre}" no son válidas.`;
+        }
+      }
+      if (!enValido(a.en, camposAtraccion, 3000)) return `La traducción de "${a.nombre}" no tiene el formato esperado.`;
+    }
+  }
+  return null;
+}
+
+// Números generales para la portada del panel.
+app.get('/admin/resumen', requiereAdmin, h(async (req, res) => {
+  const contar = async (sql) => Number((await pool.query(sql))[0][0].n);
+  return res.json({
+    usuarios: await contar('SELECT COUNT(*) AS n FROM usuarios'),
+    comentarios: await contar('SELECT COUNT(*) AS n FROM comentarios'),
+    valoraciones: await contar('SELECT COUNT(*) AS n FROM valoraciones'),
+    paises: await contar('SELECT COUNT(*) AS n FROM paises'),
+    paisesOcultos: await contar('SELECT COUNT(*) AS n FROM paises WHERE visible = 0')
+  });
+}));
+
+// Edita un país: textos, visibilidad, traducción y la lista completa de ciudades con sus atracciones.
+app.patch('/admin/paises/:id', requiereAdmin, h(async (req, res) => {
+  const [filas] = await pool.query('SELECT * FROM paises WHERE id = ? LIMIT 1', [req.params.id]);
+  const pais = filas[0];
+  if (!pais) return res.status(404).json({ error: 'País no encontrado.' });
+
+  const body = req.body || {};
+  const cambios = {};
+  for (const [campo, columna] of Object.entries(TEXTOS_PAIS)) {
+    if (body[campo] === undefined) continue;
+    if (!textoOpcional(body[campo], 3000)) return res.status(400).json({ error: `El campo ${campo} no es válido.` });
+    if (campo === 'nombre' && !String(body.nombre || '').trim()) return res.status(400).json({ error: 'El país necesita un nombre.' });
+    cambios[columna] = body[campo];
+  }
+  if (body.visible !== undefined) {
+    if (typeof body.visible !== 'boolean') return res.status(400).json({ error: 'visible tiene que ser verdadero o falso.' });
+    cambios.visible = body.visible ? 1 : 0;
+  }
+  if (body.en !== undefined) {
+    if (!enValido(body.en, [...Object.keys(TEXTOS_PAIS), 'visa'], 3000)) return res.status(400).json({ error: 'La traducción del país no tiene el formato esperado.' });
+    cambios.en = JSON.stringify(body.en);
+  }
+  if (body.ciudades !== undefined) {
+    const error = validarCiudades(body.ciudades);
+    if (error) return res.status(400).json({ error });
+    cambios.ciudades = JSON.stringify(body.ciudades);
+  }
+  if (Object.keys(cambios).length === 0) return res.status(400).json({ error: 'No hay cambios para guardar.' });
+
+  const sets = Object.keys(cambios).map(c => `${c} = ?`).join(', ');
+  await pool.query(`UPDATE paises SET ${sets} WHERE id = ?`, [...Object.values(cambios), req.params.id]);
+  // En el registro se guardan los campos que cambiaron (las ciudades, solo cuántas quedaron).
+  const detalle = Object.fromEntries(Object.entries(body).map(([k, v]) => [k, k === 'ciudades' ? `${v.length} ciudades` : v]));
+  await registrarAccion(req, body.visible !== undefined && Object.keys(body).length === 1 ? (body.visible ? 'mostrar_pais' : 'ocultar_pais') : 'editar_pais', pais.nombre, detalle);
+
+  const [actualizado] = await pool.query('SELECT * FROM paises WHERE id = ?', [req.params.id]);
+  return res.json(paisPublico(actualizado[0]));
+}));
+
+// Todos los comentarios, los más nuevos primero, para moderar.
+app.get('/admin/comentarios', requiereAdmin, h(async (req, res) => {
+  const limite = Math.min(Math.max(Number(req.query.limite) || 200, 1), 500);
+  const [filas] = await pool.query(
+    `SELECT c.*, p.nombre AS pais_nombre FROM comentarios c LEFT JOIN paises p ON p.id = c.pais_id
+     ORDER BY c.created_at DESC LIMIT ?`,
+    [limite]
+  );
+  return res.json(filas.map(f => ({ ...comentarioPublico(f), paisId: f.pais_id, pais: f.pais_nombre, fecha: f.created_at })));
+}));
+
+app.delete('/admin/comentarios/:id', requiereAdmin, h(async (req, res) => {
+  const [filas] = await pool.query('SELECT * FROM comentarios WHERE id = ?', [req.params.id]);
+  const comentario = filas[0];
+  if (!comentario) return res.status(404).json({ error: 'Comentario no encontrado.' });
+  await pool.query('DELETE FROM comentarios WHERE id = ?', [req.params.id]);
+  await registrarAccion(req, 'borrar_comentario', `${comentario.usuario} en ${comentario.ciudad}`, { mensaje: comentario.mensaje });
+  return res.status(204).end();
+}));
+
+// Últimas acciones de los admins.
+app.get('/admin/registro', requiereAdmin, h(async (req, res) => {
+  const [filas] = await pool.query('SELECT * FROM admin_registro ORDER BY fecha DESC LIMIT 100');
+  return res.json(filas.map(f => ({
+    id: f.id, usuario: f.usuario, accion: f.accion, objetivo: f.objetivo, detalle: parseJson(f.detalle), fecha: f.fecha
+  })));
+}));
+
 // ---------- Salud y errores ----------
 app.get('/health', (req, res) => res.json({ ok: true }));
 
@@ -616,7 +780,15 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Error interno del servidor.' });
 });
 
-app.listen(PORT, HOST, () => {
-  console.log(`Backend de TpViajes corriendo en http://${HOST}:${PORT}`);
-  console.log(`Orígenes permitidos: ${ORIGENES_PERMITIDOS.join(', ')}`);
-});
+// Antes de aceptar pedidos se asegura que la base tenga lo que necesita el panel de administración.
+asegurarEsquema(pool)
+  .then(() => {
+    app.listen(PORT, HOST, () => {
+      console.log(`Backend de TpViajes corriendo en http://${HOST}:${PORT}`);
+      console.log(`Orígenes permitidos: ${ORIGENES_PERMITIDOS.join(', ')}`);
+    });
+  })
+  .catch(error => {
+    console.error('No se pudo preparar la base de datos:', error.message);
+    process.exit(1);
+  });
