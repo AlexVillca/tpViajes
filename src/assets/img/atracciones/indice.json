@@ -1,4 +1,14 @@
 {
+ "02f7|Boracay|D'Mall": {
+  "imagen": "assets/img/atracciones/02f7/boracay--d-mall.webp",
+  "archivoCommons": "D'mall Boracay - panoramio.jpg",
+  "urlOriginal": "url_imagen_d_mall_boracay.jpg"
+ },
+ "02f7|Boracay|White Beach": {
+  "imagen": "assets/img/atracciones/02f7/boracay--white-beach.webp",
+  "archivoCommons": "Boracay White Beach.png",
+  "urlOriginal": "url_imagen_white_beach_boracay.jpg"
+ },
  "02f7|Manila|Fuerte Santiago": {
   "imagen": "assets/img/atracciones/02f7/manila--fuerte-santiago.webp",
   "archivoCommons": "Fort_Santiago_Gate.jpg",
@@ -219,15 +229,30 @@
   },
   "urlOriginal": "https://www.shutterstock.com/image-illustration/okavango-delta-beautiful-place-on-600nw-2056993142.jpg"
  },
+ "1658|Gaborone|Parque Nacional Chobe": {
+  "imagen": "assets/img/atracciones/1658/gaborone--parque-nacional-chobe.webp",
+  "archivoCommons": "Gnus_zebras_chobe_national_park.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Elefantes_africanos_de_sabana_%28Loxodonta_africana%29%2C_parque_nacional_de_Chobe%2C_Botsuana%2C_2018-07-28%2C_DD_22.jpg"
+ },
  "1658|Maun|Delta del Okavango": {
   "imagen": "assets/img/atracciones/1658/maun--delta-del-okavango.webp",
   "archivoCommons": "A_view_down_into_the_Okavango_Delta.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/A_view_down_into_the_Okavango_Delta.jpg/960px-A_view_down_into_the_Okavango_Delta.jpg"
  },
+ "1658|Maun|Reserva de Caza del Kalahari Central": {
+  "imagen": "assets/img/atracciones/1658/maun--reserva-de-caza-del-kalahari-central.webp",
+  "archivoCommons": "Giraffe_standing.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Oryx_running_%288025786809%29.jpg/1920px-Oryx_running_%288025786809%29.jpg"
+ },
  "1658|Maun|Reserva de caza Moremi": {
   "imagen": "assets/img/atracciones/1658/maun--reserva-de-caza-moremi.webp",
   "archivoCommons": "Moremi_elephant.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Moremi_elephant.jpg/960px-Moremi_elephant.jpg"
+ },
+ "194f|Altos Tatras|Gerlachovský štít": {
+  "imagen": "assets/img/atracciones/194f/altos-tatras--gerlachovsky-stit.webp",
+  "archivoCommons": "Gerlachovský_štít_z_Granátovej_lávky.jpg",
+  "urlOriginal": "url_imagen_gerlachovsky_stit.jpg"
  },
  "194f|Altos Tatras|Lago Štrbské pleso": {
   "imagen": "assets/img/atracciones/194f/altos-tatras--lago-strbske-pleso.webp",
@@ -238,6 +263,11 @@
   "imagen": "assets/img/atracciones/194f/bratislava--castillo-de-bratislava.webp",
   "archivoCommons": "Bratislava_-_Burg_(b).JPG",
   "urlOriginal": "url_imagen_castillo_bratislava.jpg"
+ },
+ "194f|Bratislava|Plaza Mayor": {
+  "imagen": "assets/img/atracciones/194f/bratislava--plaza-mayor.webp",
+  "archivoCommons": "Bratislava - Main Square - View NW.jpg",
+  "urlOriginal": "url_imagen_plaza_mayor_bratislava.jpg"
  },
  "198d|Salzburgo|Casa natal de Mozart": {
   "imagen": "assets/img/atracciones/198d/salzburgo--casa-natal-de-mozart.webp",
@@ -389,6 +419,16 @@
   "archivoCommons": "Baitul_Mukarram_National_Mosque_in_2022.09.jpg",
   "urlOriginal": "url_imagen_mezquita_baitul_mukarram.jpg"
  },
+ "2973|Sundarbans|Sundarbans National Park": {
+  "imagen": "assets/img/atracciones/2973/sundarbans--sundarbans-national-park.webp",
+  "archivoCommons": "Sundarban_Tiger.jpg",
+  "urlOriginal": "url_imagen_sundarbans_national_park.jpg"
+ },
+ "2a8f|Parque Nacional Gorkhi-Terelj|Roca de la Tortuga": {
+  "imagen": "assets/img/atracciones/2a8f/parque-nacional-gorkhi-terelj--roca-de-la-tortuga.webp",
+  "archivoCommons": "Turtle rock, Gorkhi-Terelj National Park.jpg",
+  "urlOriginal": "url_imagen_roca_tortuga_gorkhi-terelj.jpg"
+ },
  "2a8f|Ulán Bator|Monasterio de Gandantegchinlen": {
   "imagen": "assets/img/atracciones/2a8f/ulan-bator--monasterio-de-gandantegchinlen.webp",
   "archivoCommons": "Gandantegchinlen_Monastery_(2024).jpg",
@@ -414,6 +454,11 @@
   },
   "urlOriginal": "url_imagen_rock_islands_palaos.jpg"
  },
+ "2d18|Creta|Garganta de Samaria": {
+  "imagen": "assets/img/atracciones/2d18/creta--garganta-de-samaria.webp",
+  "archivoCommons": "Samaria Gorge, Crete (150854) (9450552265).jpg",
+  "urlOriginal": "url_imagen_garganta_samaria.jpg"
+ },
  "2d18|Creta|Palacio de Knossos": {
   "imagen": "assets/img/atracciones/2d18/creta--palacio-de-knossos.webp",
   "archivoCommons": "Knossos_voie_royale.JPG",
@@ -423,6 +468,11 @@
   "imagen": "assets/img/atracciones/2d18/mykonos--molinos-de-viento-de-mykonos.webp",
   "archivoCommons": "Against_Greek_skies,_one_of_the_Mykonos_Island_Windmills,_Chora._Cyclades,_Agean_Sea,_Greece.jpg",
   "urlOriginal": "url_imagen_molinos_mykonos.jpg"
+ },
+ "2d18|Mykonos|Pequeña Venecia": {
+  "imagen": "assets/img/atracciones/2d18/mykonos--pequena-venecia.webp",
+  "archivoCommons": "Little Venice, Mykonos.jpg",
+  "urlOriginal": "url_imagen_pequena_venecia_mykonos.jpg"
  },
  "2d76|Dublín|Castillo de Dublín": {
   "imagen": "assets/img/atracciones/2d76/dublin--castillo-de-dublin.webp",
@@ -528,6 +578,11 @@
   "imagen": "assets/img/atracciones/3c1f/doha--zoco-waqif.webp",
   "archivoCommons": "Abdulla_bin_Zaid_Al_Mahmoud_Islamic_Cultural_Centre_seen_from_Corniche_Promenade.jpg",
   "urlOriginal": "url_imagen_zoco_waqif_doha.jpg"
+ },
+ "3c1f|The Pearl-Qatar|Medina Centrale": {
+  "imagen": "assets/img/atracciones/3c1f/the-pearl-qatar--medina-centrale.webp",
+  "archivoCommons": "Souq Al Medina at Medina Centrale in The Pearl Qatar.jpg",
+  "urlOriginal": "url_imagen_medina_centrale_pearl_qatar.jpg"
  },
  "3da8|Barcelona|Parque Güell": {
   "imagen": "assets/img/atracciones/3da8/barcelona--parque-guell.webp",
@@ -738,6 +793,11 @@
   "imagen": "assets/img/atracciones/554d/rotterdam--euromast.webp",
   "archivoCommons": "Rotterdam_euromast.jpg",
   "urlOriginal": "url_imagen_euromast.jpg"
+ },
+ "554d|Rotterdam|Markthal": {
+  "imagen": "assets/img/atracciones/554d/rotterdam--markthal.webp",
+  "archivoCommons": "Markthal-Rotterdam.jpg",
+  "urlOriginal": "url_imagen_markthal.jpg"
  },
  "554d|Ámsterdam|Casa de Ana Frank": {
   "imagen": "assets/img/atracciones/554d/amsterdam--casa-de-ana-frank.webp",
@@ -1164,6 +1224,11 @@
   "archivoCommons": "BOG_Museo_del_Oro.JPG",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/N1_Peace_from_Gold_Museum_Bogota.jpg/1280px-N1_Peace_from_Gold_Museum_Bogota.jpg"
  },
+ "923d|Medellín|Comuna 13": {
+  "imagen": "assets/img/atracciones/923d/medellin--comuna-13.webp",
+  "archivoCommons": "Comuna 13, Medellín 06.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Grafitti_-_Plaza_-_Comuna_13_-_Medell%C3%ADn_-_Colombia_2024.jpg/1920px-Grafitti_-_Plaza_-_Comuna_13_-_Medell%C3%ADn_-_Colombia_2024.jpg"
+ },
  "923d|Medellín|Plaza Botero": {
   "imagen": "assets/img/atracciones/923d/medellin--plaza-botero.webp",
   "archivoCommons": "Plaza_Botero_-_Medellín.jpg",
@@ -1234,10 +1299,25 @@
   "archivoCommons": "Cataratas_Victoria,_Zambia-Zimbabue,_2018-07-27,_DD_05.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Cataratas_Victoria%2C_Zambia-Zimbabue%2C_2018-07-27%2C_DD_05.jpg/320px-Cataratas_Victoria%2C_Zambia-Zimbabue%2C_2018-07-27%2C_DD_05.jpg"
  },
+ "9d19|Harare|Parque Nacional Hwange": {
+  "imagen": "assets/img/atracciones/9d19/harare--parque-nacional-hwange.webp",
+  "archivoCommons": "Down_the_water_hole.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/8/80/Down_the_water_hole.jpg"
+ },
+ "9da9|Apia|Cascadas Papase'ea Sliding Rocks": {
+  "imagen": "assets/img/atracciones/9da9/apia--cascadas-papase-ea-sliding-rocks.webp",
+  "archivoCommons": "Papase'ea Sliding Rocks - Samoa.jpg",
+  "urlOriginal": "url_imagen_cascadas_papaseea.jpg"
+ },
  "9da9|Apia|Museo de Samoa": {
   "imagen": "assets/img/atracciones/9da9/apia--museo-de-samoa.webp",
   "archivoCommons": "Grand_Cathedral_(29937423534).jpg",
   "urlOriginal": "url_imagen_museo_samoa.jpg"
+ },
+ "9da9|Upolu|To Sua Ocean Trench": {
+  "imagen": "assets/img/atracciones/9da9/upolu--to-sua-ocean-trench.webp",
+  "archivoCommons": "To Sua Ocean Trench, Upolu, Samoa - August 2016.jpg",
+  "urlOriginal": "url_imagen_to_sua_ocean_trench.jpg"
  },
  "9fa8|Ginebra|Catedral de San Pedro": {
   "imagen": "assets/img/atracciones/9fa8/ginebra--catedral-de-san-pedro.webp",
@@ -1368,6 +1448,11 @@
   "imagen": "assets/img/atracciones/b11a/guayaquil--malecon-2000.webp",
   "archivoCommons": "Vista_del_Malecón_2000.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/6/69/Guayaquil_Malecon2000.JPG"
+ },
+ "b11a|Guayaquil|Parque de las Iguanas": {
+  "imagen": "assets/img/atracciones/b11a/guayaquil--parque-de-las-iguanas.webp",
+  "archivoCommons": "Iguana park in Guayaquil - panoramio.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/SageoEG_-_Parque_Seminario.jpg/800px-SageoEG_-_Parque_Seminario.jpg"
  },
  "b11a|Quito|Centro histórico de Quito": {
   "imagen": "assets/img/atracciones/b11a/quito--centro-historico-de-quito.webp",
@@ -1564,6 +1649,11 @@
   "archivoCommons": "Dubai,_United_Arab_Emirates_(Unsplash_suv4vuJsH6g).jpg",
   "urlOriginal": "url_imagen_burj_khalifa.jpg"
  },
+ "c2a4|Dubái|Dubai Mall": {
+  "imagen": "assets/img/atracciones/c2a4/dubai--dubai-mall.webp",
+  "archivoCommons": "Dubai_Mall_10.jpg",
+  "urlOriginal": "url_imagen_dubai_mall.jpg"
+ },
  "c30a|Biskek|Museo Histórico Estatal": {
   "imagen": "assets/img/atracciones/c30a/biskek--museo-historico-estatal.webp",
   "archivoCommons": "State_History_Museum_in_Bishkek_2.jpg",
@@ -1573,6 +1663,11 @@
   "imagen": "assets/img/atracciones/c30a/biskek--plaza-ala-too.webp",
   "archivoCommons": "Ala_Too_Square_Bishkek_2021.jpg",
   "urlOriginal": "url_imagen_plaza_ala-too.jpg"
+ },
+ "c30a|Lago Issyk-Kul|Cañón de Skazka": {
+  "imagen": "assets/img/atracciones/c30a/lago-issyk-kul--canon-de-skazka.webp",
+  "archivoCommons": "Skazka Canyon, Kyrgyzstan (44623711181).jpg",
+  "urlOriginal": "url_imagen_canon_skazka.jpg"
  },
  "c30a|Lago Issyk-Kul|Karakol": {
   "imagen": "assets/img/atracciones/c30a/lago-issyk-kul--karakol.webp",
@@ -1684,6 +1779,11 @@
   "archivoCommons": "High_West_and_Victoria_Peak_from_Victoria_Gap_(crop1).jpg",
   "urlOriginal": "url_imagen_victoria_peak.jpg"
  },
+ "ca2f|Granada|Catedral de Granada": {
+  "imagen": "assets/img/atracciones/ca2f/granada--catedral-de-granada.webp",
+  "archivoCommons": "Catedral_de_Granada,_Nicaragua.jpg",
+  "urlOriginal": "https://catedraldegranada.com/wp-content/uploads/Catedral_de_Granada_-_Arquitectura_exterior_1.jpg"
+ },
  "ca2f|Managua|Catedral de Managua": {
   "imagen": "assets/img/atracciones/ca2f/managua--catedral-de-managua.webp",
   "archivoCommons": "ManaguaNicCollage.jpg",
@@ -1778,6 +1878,11 @@
   "imagen": "assets/img/atracciones/da29/saint-louis--ciudad-vieja-de-saint-louis.webp",
   "archivoCommons": "Island_of_Saint-Louis-113799.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Island_of_Saint-Louis-113799.jpg/1280px-Island_of_Saint-Louis-113799.jpg"
+ },
+ "da29|Saint-Louis|Parque Nacional de la Langue de Barbarie": {
+  "imagen": "assets/img/atracciones/da29/saint-louis--parque-nacional-de-la-langue-de-barbarie.webp",
+  "archivoCommons": "Senegal_2006.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/6/6a/LangueBarbarie.jpg"
  },
  "dd00|Chuuk|Laguna Truk": {
   "imagen": "assets/img/atracciones/dd00/chuuk--laguna-truk.webp",
@@ -1888,6 +1993,11 @@
   "imagen": "assets/img/atracciones/eca1/mykines--mykines.webp",
   "archivoCommons": "Mykineshólmur_1.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Mykines_map.jpg"
+ },
+ "eca1|Mykines|Mykineshólmur": {
+  "imagen": "assets/img/atracciones/eca1/mykines--mykinesholmur.webp",
+  "archivoCommons": "Mykineshólmur 1.jpg",
+  "urlOriginal": "url_imagen_mykineshólmur.jpg"
  },
  "eca1|Tórshavn|Catedral de Tórshavn": {
   "imagen": "assets/img/atracciones/eca1/torshavn--catedral-de-torshavn.webp",
