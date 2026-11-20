@@ -27,6 +27,7 @@ export const en: Diccionario = {
     en: 'EN'
   },
   navbar: {
+    admin: 'Admin',
     irInicio: 'Go to Home',
     logo: 'Logo',
     abrirMenu: 'Open menu',
@@ -356,6 +357,102 @@ export const en: Diccionario = {
   },
   aviso: {
     cerrar: 'Close message'
+  },
+  admin: {
+    titulo: 'Admin panel',
+    subtitulo: 'Catalog, comments and change log.',
+    cargando: 'Loading...',
+    pestanias: {
+      catalogo: 'Catalog',
+      comentarios: 'Comments',
+      registro: 'Log'
+    },
+    resumen: {
+      usuarios: 'Users',
+      comentarios: 'Comments',
+      valoraciones: 'Ratings',
+      paises: 'Countries',
+      ocultos: 'Hidden countries'
+    },
+    errores: {
+      cargar: 'Could not load the panel data.',
+      guardar: 'Could not save the changes.',
+      borrar: 'Could not delete.'
+    },
+    campos: {
+      capital: 'Capital',
+      moneda: 'Currency',
+      idiomaOficial: 'Official language',
+      continente: 'Continent',
+      clima: 'Climate',
+      gastronomia: 'Food',
+      cultura: 'Culture',
+      seguridad: 'Safety',
+      transporte: 'Transport',
+      nombre: 'Name',
+      tipo: 'Type',
+      descripcion: 'Description',
+      imagen: 'Image link',
+      horario: 'Opening hours',
+      paginaWeb: 'Website',
+      latitud: 'Latitude',
+      longitud: 'Longitude'
+    },
+    catalogo: {
+      paises: 'Countries',
+      buscar: 'Search country',
+      oculto: 'Hidden',
+      elegir: 'Pick a country from the list to edit it.',
+      datosPais: 'Country details',
+      ciudad: 'City',
+      ocultar: 'Hide country',
+      mostrar: 'Show country',
+      ocultado: 'Country hidden: it no longer shows in the app.',
+      mostrado: 'Country visible again.',
+      sinImagen: 'No image',
+      sinNombre: '(no name)',
+      agregarAtraccion: 'Add attraction',
+      quitarAtraccion: 'Remove attraction',
+      confirmarQuitar: 'Remove the attraction "{{nombre}}"? It is deleted when you save.',
+      confirmarSalir: 'There are unsaved changes in {{pais}}. Discard them and open another country?',
+      sinGuardar: 'Unsaved changes',
+      alDia: 'All saved',
+      descartar: 'Discard',
+      guardado: 'Changes saved.',
+      revisarAyuda: 'Checks in this browser that every catalog image actually loads.',
+      revisarTodo: 'Check all images',
+      revisarPais: 'Check country images',
+      revisando: 'Checking {{hechas}} of {{total}}...',
+      revisionLista: 'Image check finished.',
+      rotas: 'Broken or missing images: {{n}}',
+      estado: {
+        ok: 'The image loads fine',
+        rota: 'The image does not load',
+        sin: 'Image missing'
+      }
+    },
+    comentarios: {
+      filtrar: 'Filter by text, user or city',
+      cantidad: 'Comments: {{n}}',
+      vacio: 'No comments to show.',
+      borrar: 'Delete',
+      borrarDe: 'Delete the comment by {{usuario}}',
+      confirmar: 'Delete this comment by {{usuario}}?',
+      borrado: 'Comment deleted.'
+    },
+    registro: {
+      vacio: 'No actions logged yet.',
+      fecha: 'Date',
+      quien: 'Admin',
+      accion: 'Action',
+      sobre: 'On',
+      acciones: {
+        editar_pais: 'Edited a country',
+        ocultar_pais: 'Hid a country',
+        mostrar_pais: 'Showed a country',
+        borrar_comentario: 'Deleted a comment'
+      }
+    }
   },
   mensajes: {
     sinConexion: 'Could not connect to the server.',

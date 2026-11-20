@@ -29,6 +29,7 @@ export const es = {
     en: 'EN'
   },
   navbar: {
+    admin: 'Administración',
     irInicio: 'Ir a Inicio',
     logo: 'Logo',
     abrirMenu: 'Abrir menú',
@@ -358,6 +359,102 @@ export const es = {
   },
   aviso: {
     cerrar: 'Cerrar mensaje'
+  },
+  admin: {
+    titulo: 'Panel de administración',
+    subtitulo: 'Catálogo, comentarios y registro de cambios.',
+    cargando: 'Cargando...',
+    pestanias: {
+      catalogo: 'Catálogo',
+      comentarios: 'Comentarios',
+      registro: 'Registro'
+    },
+    resumen: {
+      usuarios: 'Usuarios',
+      comentarios: 'Comentarios',
+      valoraciones: 'Valoraciones',
+      paises: 'Países',
+      ocultos: 'Países ocultos'
+    },
+    errores: {
+      cargar: 'No se pudieron cargar los datos del panel.',
+      guardar: 'No se pudieron guardar los cambios.',
+      borrar: 'No se pudo borrar.'
+    },
+    campos: {
+      capital: 'Capital',
+      moneda: 'Moneda',
+      idiomaOficial: 'Idioma oficial',
+      continente: 'Continente',
+      clima: 'Clima',
+      gastronomia: 'Gastronomía',
+      cultura: 'Cultura',
+      seguridad: 'Seguridad',
+      transporte: 'Transporte',
+      nombre: 'Nombre',
+      tipo: 'Tipo',
+      descripcion: 'Descripción',
+      imagen: 'Link de la imagen',
+      horario: 'Horario',
+      paginaWeb: 'Página web',
+      latitud: 'Latitud',
+      longitud: 'Longitud'
+    },
+    catalogo: {
+      paises: 'Países',
+      buscar: 'Buscar país',
+      oculto: 'Oculto',
+      elegir: 'Elegí un país de la lista para editarlo.',
+      datosPais: 'Datos del país',
+      ciudad: 'Ciudad',
+      ocultar: 'Ocultar país',
+      mostrar: 'Mostrar país',
+      ocultado: 'País oculto: ya no aparece en la app.',
+      mostrado: 'País visible otra vez.',
+      sinImagen: 'Sin imagen',
+      sinNombre: '(sin nombre)',
+      agregarAtraccion: 'Agregar atracción',
+      quitarAtraccion: 'Quitar atracción',
+      confirmarQuitar: '¿Quitar la atracción "{{nombre}}"? Se borra al guardar.',
+      confirmarSalir: 'Hay cambios sin guardar en {{pais}}. ¿Descartarlos y abrir otro país?',
+      sinGuardar: 'Hay cambios sin guardar',
+      alDia: 'Todo guardado',
+      descartar: 'Descartar',
+      guardado: 'Cambios guardados.',
+      revisarAyuda: 'Revisa en este navegador que cada imagen del catálogo cargue de verdad.',
+      revisarTodo: 'Revisar todas las imágenes',
+      revisarPais: 'Revisar imágenes del país',
+      revisando: 'Revisando {{hechas}} de {{total}}...',
+      revisionLista: 'Revisión de imágenes terminada.',
+      rotas: 'Imágenes rotas o faltantes: {{n}}',
+      estado: {
+        ok: 'La imagen carga bien',
+        rota: 'La imagen no carga',
+        sin: 'Falta la imagen'
+      }
+    },
+    comentarios: {
+      filtrar: 'Filtrar por texto, usuario o ciudad',
+      cantidad: 'Comentarios: {{n}}',
+      vacio: 'No hay comentarios para mostrar.',
+      borrar: 'Borrar',
+      borrarDe: 'Borrar el comentario de {{usuario}}',
+      confirmar: '¿Borrar este comentario de {{usuario}}?',
+      borrado: 'Comentario borrado.'
+    },
+    registro: {
+      vacio: 'Todavía no hay acciones registradas.',
+      fecha: 'Fecha',
+      quien: 'Admin',
+      accion: 'Acción',
+      sobre: 'Sobre',
+      acciones: {
+        editar_pais: 'Editó un país',
+        ocultar_pais: 'Ocultó un país',
+        mostrar_pais: 'Mostró un país',
+        borrar_comentario: 'Borró un comentario'
+      }
+    }
   },
   mensajes: {
     sinConexion: 'No se pudo conectar con el servidor.',

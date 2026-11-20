@@ -1,0 +1,45 @@
+<main class="contenedor-pagina mb-10 mt-[88px] text-tinta">
+  <h1 class="m-0 mb-1 border-0 border-l-4 border-solid border-marca pl-3 text-3xl font-bold">{{ 'admin.titulo' | translate }}</h1>
+  <p class="m-0 mb-5 pl-3 text-sm text-tinta-suave">{{ 'admin.subtitulo' | translate }}</p>
+
+  <!-- Números generales -->
+  @if (errorResumen) {
+    <p class="m-0 mb-4 text-sm text-peligro" role="alert">{{ errorResumen | translate }}</p>
+  }
+  @if (resumen) {
+    <dl class="m-0 mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      @for (dato of [
+        { clave: 'admin.resumen.usuarios', valor: resumen.usuarios },
+        { clave: 'admin.resumen.comentarios', valor: resumen.comentarios },
+        { clave: 'admin.resumen.valoraciones', valor: resumen.valoraciones },
+        { clave: 'admin.resumen.paises', valor: resumen.paises },
+        { clave: 'admin.resumen.ocultos', valor: resumen.paisesOcultos }
+      ]; track dato.clave) {
+        <div class="panel m-0 px-4 py-3">
+          <dt class="text-xs font-semibold uppercase tracking-wide text-tinta-suave">{{ dato.clave | translate }}</dt>
+          <dd class="m-0 mt-1 text-2xl font-bold tabular-nums text-tinta">{{ dato.valor | numero }}</dd>
+        </div>
+      }
+    </dl>
+  }
+
+  <!-- Pestañas -->
+  <div class="mb-4 flex flex-wrap gap-2 border-0 border-b border-solid border-superficie-linea" role="tablist" [attr.aria-label]="'admin.titulo' | translate">
+    @for (p of pestanias; track p) {
+      <button type="button" role="tab" [id]="'pestania-' + p" [attr.aria-selected]="pestania === p" [attr.aria-controls]="'panel-' + p"
+        [tabindex]="pestania === p ? 0 : -1" (click)="pestania = p" (keydown)="moverPestania($event, p)"
+        class="-mb-px cursor-pointer rounded-t-xl border border-b-0 border-solid px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-foco"
+        [ngClass]="pestania === p ? 'border-superficie-linea bg-white text-marca-texto' : 'border-transparent bg-transparent text-tinta-media hover:text-marca-texto'">
+        {{ 'admin.pestanias.' + p | translate }}
+      </button>
+    }
+  </div>
+
+  <section [id]="'panel-' + pestania" role="tabpanel" [attr.aria-labelledby]="'pestania-' + pestania">
+    @switch (pestania) {
+      @case ('catalogo') { <app-admin-catalogo (cambio)="cargarResumen()"></app-admin-catalogo> }
+      @case ('comentarios') { <app-admin-comentarios (cambio)="cargarResumen()"></app-admin-comentarios> }
+      @case ('registro') { <app-admin-registro></app-admin-registro> }
+    }
+  </section>
+</main>

@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
+export type RolUsuario = 'usuario' | 'admin';
+
 export interface SessionUser {
   id: string;
   username: string;
   email: string;
+  /** Solo sirve para mostrar u ocultar el panel; los permisos reales los controla el backend. */
+  rol?: RolUsuario;
 }
 
 /**
@@ -41,6 +45,10 @@ export class IdUsuarioService {
 
   get isLoggedIn(): boolean {
     return this.currentSession !== null;
+  }
+
+  get esAdmin(): boolean {
+    return this.currentSession?.rol === 'admin';
   }
 
   setSession(session: SessionUser): void {
@@ -84,6 +92,7 @@ export class IdUsuarioService {
         id: parsed.id,
         username: parsed.username ?? '',
         email: parsed.email ?? '',
+        rol: parsed.rol === 'admin' ? 'admin' : 'usuario',
       };
     } catch {
       localStorage.removeItem(this.STORAGE_KEY);

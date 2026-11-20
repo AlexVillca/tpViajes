@@ -13,6 +13,7 @@ Núcleo
 - Sistema de comentarios por ciudad (crear, editar y eliminar los propios).
 - Favoritos: listas personalizadas de ciudades (crear, renombrar, eliminar).
 - Minijuego de banderas con ranking histórico de puntajes.
+- Panel de administración: editar el catálogo (países, atracciones e imágenes), ocultar países, revisar imágenes rotas, moderar comentarios y ver el registro de cambios.
 
 Seguridad
 - Autenticación con validación de contraseña en el backend (bcrypt).
@@ -61,6 +62,17 @@ Requisitos: Node 20.
 Se abre en el navegador (http://localhost:4200) y consume la API publicada en `https://api-deviaje.facuramallo.com.ar`. No hay que levantar base de datos ni backend local.
 
 Cuenta de prueba: usuario **admin**, contraseña **admin**.
+
+## Panel de administración
+
+Las cuentas son de rol `usuario` por defecto. El rol `admin` no se puede pedir desde la app: se asigna con un script, usando la configuración de base de datos del `.env`:
+
+```bash
+node db/hacer-admin.js <usuario o email>            # la hace admin
+node db/hacer-admin.js <usuario o email> --quitar   # la vuelve usuario común
+```
+
+Después de volver a iniciar sesión aparece "Administración" en el menú del usuario (ruta `/admin`). El backend controla el rol en cada pedido, así que sacarle el rol a alguien le quita el acceso en el momento. Cada cambio queda anotado en el registro (quién, qué y cuándo).
 
 ## Testing
 

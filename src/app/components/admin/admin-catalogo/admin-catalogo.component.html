@@ -1,0 +1,164 @@
+@if (cargando) {
+  <p class="m-0 py-6 text-center text-sm text-tinta-suave">{{ 'admin.cargando' | translate }}</p>
+} @else if (error) {
+  <p class="m-0 text-sm text-peligro" role="alert">{{ error | translate }}</p>
+} @else {
+  <!-- Revisión de imágenes de todo el catálogo -->
+  <div class="panel m-0 mb-5 flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+    <p class="m-0 text-sm text-tinta-suave">{{ 'admin.catalogo.revisarAyuda' | translate }}</p>
+    <button type="button" class="btn btn-secundario shrink-0" (click)="revisarImagenes(false)" [disabled]="revisando" [attr.aria-busy]="revisando">
+      {{ (revisando ? 'admin.catalogo.revisando' : 'admin.catalogo.revisarTodo') | translate: { hechas: progresoRevision, total: totalRevision } }}
+    </button>
+  </div>
+  @if (imagenesRotas) {
+    <div class="panel m-0 mb-5 px-4 py-3" role="status">
+      <p class="m-0 text-sm font-semibold" [class.text-peligro]="imagenesRotas.length" [class.text-exito]="!imagenesRotas.length">
+        {{ 'admin.catalogo.rotas' | translate: { n: imagenesRotas.length } }}
+      </p>
+      @if (imagenesRotas.length) {
+        <ul class="m-0 mt-2 max-h-48 list-none space-y-1 overflow-y-auto p-0 text-sm">
+          @for (r of imagenesRotas; track $index) {
+            <li><button type="button" class="enlace cursor-pointer border-0 bg-transparent p-0 text-left" (click)="irA(r)">{{ r.pais.nombre }} · {{ r.ciudad }} · {{ r.atraccion || ('admin.catalogo.sinNombre' | translate) }}</button></li>
+          }
+        </ul>
+      }
+    </div>
+  }
+
+  <div class="flex flex-col gap-5 lg:flex-row lg:items-start">
+    <!-- Lista de países -->
+    <aside class="lg:sticky lg:top-[88px] lg:w-[260px] lg:shrink-0" [attr.aria-label]="'admin.catalogo.paises' | translate">
+      <label class="sr-only" for="buscar-pais-admin">{{ 'admin.catalogo.buscar' | translate }}</label>
+      <input id="buscar-pais-admin" type="search" class="campo mb-2 w-full" [(ngModel)]="busqueda" [placeholder]="'admin.catalogo.buscar' | translate" />
+      <ul class="m-0 max-h-[40vh] list-none overflow-y-auto rounded-2xl border border-solid border-superficie-linea bg-white/80 p-1.5 lg:max-h-[calc(100vh-160px)]">
+        @for (p of paisesFiltrados; track p.id) {
+          <li>
+            <button type="button" (click)="elegir(p)" [attr.aria-current]="original?.id === p.id ? 'true' : null"
+              class="flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border-0 px-2.5 py-1.5 text-left text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-marca-foco"
+              [ngClass]="original?.id === p.id ? 'bg-marca text-white' : 'bg-transparent text-tinta-media hover:bg-superficie-clara'">
+              <span class="truncate">{{ p.nombre }}</span>
+              @if (!p.visible) {
+                <span class="shrink-0 rounded-full bg-peligro/15 px-2 py-0.5 text-[11px] font-semibold" [class.text-peligro]="original?.id !== p.id">{{ 'admin.catalogo.oculto' | translate }}</span>
+              }
+            </button>
+          </li>
+        }
+      </ul>
+    </aside>
+
+    <!-- Editor del país -->
+    <div id="editor-pais" class="min-w-0 flex-1">
+      @if (!borrador) {
+        <p class="panel m-0 px-4 py-8 text-center text-sm text-tinta-suave">{{ 'admin.catalogo.elegir' | translate }}</p>
+      } @else {
+        <div class="panel m-0 px-4 py-4 sm:px-6">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <h2 class="m-0 text-2xl font-bold">{{ borrador.nombre }}</h2>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="btn btn-secundario" (click)="revisarImagenes(true)" [disabled]="revisando">{{ 'admin.catalogo.revisarPais' | translate }}</button>
+              <button type="button" class="btn" [ngClass]="original!.visible ? 'btn-peligro' : 'btn-primario'" (click)="cambiarVisible(original!)">
+                {{ (original!.visible ? 'admin.catalogo.ocultar' : 'admin.catalogo.mostrar') | translate }}
+              </button>
+            </div>
+          </div>
+
+          <details class="mb-5 rounded-xl border border-solid border-superficie-linea bg-white/70 px-4 py-2">
+            <summary class="cursor-pointer py-1 text-sm font-semibold">{{ 'admin.catalogo.datosPais' | translate }}</summary>
+            <div class="mt-3 grid gap-3 sm:grid-cols-2">
+              @for (campo of camposPais; track campo) {
+                <label class="flex flex-col gap-1 text-sm font-semibold" [class.sm:col-span-2]="esLargo(campo)">
+                  {{ 'admin.campos.' + campo | translate }}
+                  @if (esLargo(campo)) {
+                    <textarea class="campo min-h-[80px] font-normal" [ngModel]="textoPais(campo)" (ngModelChange)="setTextoPais(campo, $event)" maxlength="3000"></textarea>
+                  } @else {
+                    <input class="campo font-normal" [ngModel]="textoPais(campo)" (ngModelChange)="setTextoPais(campo, $event)" maxlength="300" />
+                  }
+                </label>
+              }
+            </div>
+          </details>
+
+          @if (borrador.ciudades?.length) {
+            <label class="mb-4 flex flex-col gap-1 text-sm font-semibold sm:max-w-sm">
+              {{ 'admin.catalogo.ciudad' | translate }}
+              <select class="campo font-normal" [(ngModel)]="ciudadIndice">
+                @for (c of borrador.ciudades; track c.nombre; let i = $index) {
+                  <option [ngValue]="i">{{ c.nombre }} ({{ c.atracciones?.length ?? 0 }})</option>
+                }
+              </select>
+            </label>
+          }
+
+          @if (ciudad; as c) {
+            <ul class="m-0 list-none space-y-4 p-0">
+              @for (a of c.atracciones; track i; let i = $index) {
+                <li class="rounded-xl border border-solid border-superficie-linea bg-white px-4 py-4">
+                  <div class="grid gap-3 md:grid-cols-[180px_1fr]">
+                    <div>
+                      @if (a.imagen) {
+                        <img [src]="a.imagen" alt="" class="block aspect-[4/3] w-full rounded-lg border border-solid border-superficie-linea bg-superficie object-cover" loading="lazy" />
+                      } @else {
+                        <div class="flex aspect-[4/3] w-full items-center justify-center rounded-lg border border-dashed border-superficie-borde text-xs text-tinta-suave">{{ 'admin.catalogo.sinImagen' | translate }}</div>
+                      }
+                      @if (estadoDe(c.nombre, i); as estado) {
+                        <p class="m-0 mt-1 text-xs font-semibold" [ngClass]="estado === 'ok' ? 'text-exito' : 'text-peligro'">{{ 'admin.catalogo.estado.' + estado | translate }}</p>
+                      }
+                    </div>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                      <label class="flex flex-col gap-1 text-sm font-semibold">{{ 'admin.campos.nombre' | translate }}
+                        <input [id]="'atraccion-nombre-' + i" class="campo font-normal" [(ngModel)]="a.nombre" maxlength="160" required />
+                      </label>
+                      <label class="flex flex-col gap-1 text-sm font-semibold">{{ 'admin.campos.tipo' | translate }}
+                        <input class="campo font-normal" [(ngModel)]="a.tipo" maxlength="300" />
+                      </label>
+                      <label class="flex flex-col gap-1 text-sm font-semibold sm:col-span-2">{{ 'admin.campos.descripcion' | translate }}
+                        <textarea class="campo min-h-[70px] font-normal" [(ngModel)]="a.descripcion" maxlength="3000"></textarea>
+                      </label>
+                      <label class="flex flex-col gap-1 text-sm font-semibold sm:col-span-2">{{ 'admin.campos.imagen' | translate }}
+                        <input class="campo font-normal" type="url" [(ngModel)]="a.imagen" (change)="reprobar(a, i)" maxlength="1000" placeholder="https://..." />
+                      </label>
+                      <label class="flex flex-col gap-1 text-sm font-semibold">{{ 'admin.campos.horario' | translate }}
+                        <input class="campo font-normal" [(ngModel)]="a.horario" maxlength="300" />
+                      </label>
+                      <label class="flex flex-col gap-1 text-sm font-semibold">{{ 'admin.campos.paginaWeb' | translate }}
+                        <input class="campo font-normal" type="url" [(ngModel)]="a.paginaWeb" maxlength="1000" placeholder="https://..." />
+                      </label>
+                      <label class="flex flex-col gap-1 text-sm font-semibold">{{ 'admin.campos.latitud' | translate }}
+                        <input class="campo font-normal tabular-nums" inputmode="decimal" [ngModel]="a.ubicacion?.latitud" (ngModelChange)="setCoordenada(a, 'latitud', $event)" />
+                      </label>
+                      <label class="flex flex-col gap-1 text-sm font-semibold">{{ 'admin.campos.longitud' | translate }}
+                        <input class="campo font-normal tabular-nums" inputmode="decimal" [ngModel]="a.ubicacion?.longitud" (ngModelChange)="setCoordenada(a, 'longitud', $event)" />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mt-3 flex justify-end">
+                    <button type="button" class="btn btn-secundario text-peligro" (click)="atraccionABorrar = i">{{ 'admin.catalogo.quitarAtraccion' | translate }}</button>
+                  </div>
+                </li>
+              }
+            </ul>
+            <button type="button" class="btn btn-secundario mt-4" (click)="agregarAtraccion()">{{ 'admin.catalogo.agregarAtraccion' | translate }}</button>
+          }
+        </div>
+
+        <!-- Barra de guardado -->
+        <div class="sticky bottom-3 z-10 mt-4 flex flex-wrap items-center justify-end gap-3 rounded-2xl border border-solid border-superficie-linea bg-white/95 px-4 py-3 shadow-lg backdrop-blur">
+          <span class="mr-auto text-sm" [ngClass]="hayCambios ? 'font-semibold text-tinta' : 'text-tinta-suave'" aria-live="polite">
+            {{ (hayCambios ? 'admin.catalogo.sinGuardar' : 'admin.catalogo.alDia') | translate }}
+          </span>
+          <button type="button" class="btn btn-secundario" (click)="descartar()" [disabled]="!hayCambios || guardando">{{ 'admin.catalogo.descartar' | translate }}</button>
+          <button type="button" class="btn btn-primario" (click)="guardar()" [disabled]="!hayCambios || guardando" [attr.aria-busy]="guardando">{{ 'comun.guardar' | translate }}</button>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (paisPendiente) {
+    <app-pop-up-confirmar [texto]="'admin.catalogo.confirmarSalir'" [parametros]="{ pais: original?.nombre }"
+      (confirmar)="abrir(paisPendiente!)" (cancelar)="paisPendiente = null"></app-pop-up-confirmar>
+  }
+  @if (atraccionABorrar !== null) {
+    <app-pop-up-confirmar [texto]="'admin.catalogo.confirmarQuitar'" [parametros]="{ nombre: ciudad?.atracciones?.[atraccionABorrar]?.nombre }"
+      (confirmar)="borrarAtraccion()" (cancelar)="atraccionABorrar = null"></app-pop-up-confirmar>
+  }
+}

@@ -1,0 +1,31 @@
+@if (cargando) {
+  <p class="m-0 py-6 text-center text-sm text-tinta-suave">{{ 'admin.cargando' | translate }}</p>
+} @else if (error) {
+  <p class="m-0 text-sm text-peligro" role="alert">{{ error | translate }}</p>
+} @else if (!acciones.length) {
+  <p class="m-0 py-6 text-center text-sm text-tinta-suave">{{ 'admin.registro.vacio' | translate }}</p>
+} @else {
+  <div class="overflow-x-auto rounded-2xl border border-solid border-superficie-linea bg-white/80">
+    <table class="w-full border-collapse text-left text-sm">
+      <caption class="sr-only">{{ 'admin.pestanias.registro' | translate }}</caption>
+      <thead class="bg-superficie text-xs uppercase tracking-wide text-tinta-suave">
+        <tr>
+          <th scope="col" class="px-4 py-2 font-semibold">{{ 'admin.registro.fecha' | translate }}</th>
+          <th scope="col" class="px-4 py-2 font-semibold">{{ 'admin.registro.quien' | translate }}</th>
+          <th scope="col" class="px-4 py-2 font-semibold">{{ 'admin.registro.accion' | translate }}</th>
+          <th scope="col" class="px-4 py-2 font-semibold">{{ 'admin.registro.sobre' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (a of acciones; track a.id) {
+          <tr class="border-0 border-t border-solid border-superficie-linea">
+            <td class="whitespace-nowrap px-4 py-2 tabular-nums text-tinta-suave">{{ a.fecha | fecha }}</td>
+            <td class="px-4 py-2 font-semibold">{{ a.usuario }}</td>
+            <td class="px-4 py-2">{{ claveAccion(a.accion) | translate }}</td>
+            <td class="break-words px-4 py-2">{{ a.objetivo }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

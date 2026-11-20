@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { authGuard } from './core/auth/auth.guard';
+import { adminGuard } from './core/auth/admin.guard';
 
 // El inicio se carga con la app; el resto de las páginas se descarga recién cuando se visita
 // (carga diferida), así el paquete inicial es más liviano. Leaflet, por ejemplo, solo llega con /pais.
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'updateP', canActivate: [authGuard], loadComponent: () => import('./core/auth/update-password/update-password.component').then(m => m.UpdatePasswordComponent) },
   { path: 'fichaUser', canActivate: [authGuard], loadComponent: () => import('./core/auth/ficha-user/ficha-user.component').then(m => m.FichaUserComponent) },
   { path: 'editarPerfil', canActivate: [authGuard], loadComponent: () => import('./core/auth/editar-perfil/editar-perfil.component').then(m => m.EditarPerfilComponent) },
+  { path: 'admin', canActivate: [adminGuard], loadComponent: () => import('./components/admin/admin.component').then(m => m.AdminComponent) },
   { path: '**', redirectTo: '' }
 
 ];

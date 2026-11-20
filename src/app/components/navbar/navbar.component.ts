@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit{
   usuariosService = inject(UsuariosService);
   routerService = inject(Router);
   flag:boolean = false;
+  esAdmin = false;
   username: string | null = null;
   menuOpen: boolean = false;
   dropdownOpen: boolean = false;
@@ -54,6 +55,7 @@ export class NavbarComponent implements OnInit{
   ngOnInit() {
     this.idUsuarioService.session$.subscribe((session) => {
       this.flag = !!session;
+      this.esAdmin = session?.rol === 'admin';
       this.username = session?.username || null;
     });
 
