@@ -69,3 +69,6 @@ Thumbs.db
 # Setup de la base de datos: local durante la tesis, se vuelve al git despues de la defensa
 /database/
 /docker-compose.yml
+
+# Material de estudio personal (no se sube)
+docs-estudio/
