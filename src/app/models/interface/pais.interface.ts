@@ -72,6 +72,8 @@ export interface Atraccion {
   imagen?: string;
   /** Página del archivo en Wikimedia Commons, para dar crédito a la foto. */
   fuenteImagen?: string;
+  /** Autor y licencia de la foto ("Autor · CC BY 2.0") cuando no es de Wikimedia Commons. */
+  creditoImagen?: string;
   horario?: string;
   paginaWeb?: string;
   ubicacion?: {

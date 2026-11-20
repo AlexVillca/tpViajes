@@ -8,10 +8,17 @@ import { buildHttpError } from '../utils/http-error.util';
 /** Foto guardada en la app para una atracción: ruta local y archivo de origen en Wikimedia Commons. */
 interface ImagenLocal {
   imagen: string;
+  /** Archivo de Wikimedia Commons de donde salió la foto (el crédito es la página del archivo). */
   archivoCommons?: string | null;
+  /** Fotos de otras fuentes (Flickr): las licencias CC BY y CC BY-SA obligan a nombrar autor y licencia. */
+  credito?: { autor: string | null; licencia: string; fuente: string | null };
   /** Lo que tenía la base cuando se descargó la foto. Si un admin lo cambia después, gana lo de la base. */
   urlOriginal?: string;
 }
+
+/** Texto del crédito: "Autor · Licencia", o solo la licencia si no hay autor. */
+const textoCredito = (c: NonNullable<ImagenLocal['credito']>): string =>
+  c.autor ? `${c.autor} · ${c.licencia}` : c.licencia;
 
 /** Un valor que no es un link (vacío o texto de relleno como "url_imagen_x.jpg"). */
 const sinImagenReal = (valor: string | undefined): boolean =>
@@ -68,7 +75,8 @@ export class PaisesService {
             imagen: local.imagen,
             fuenteImagen: local.archivoCommons
               ? `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(local.archivoCommons)}`
-              : undefined
+              : local.credito?.fuente ?? undefined,
+            creditoImagen: local.credito ? textoCredito(local.credito) : undefined
           };
         })
       }))

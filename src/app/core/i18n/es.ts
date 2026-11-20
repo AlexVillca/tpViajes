@@ -201,6 +201,7 @@ export const es = {
     valoracion: 'Valoración:',
     imagen: 'Imagen de {{nombre}}',
     creditoFoto: 'Foto: Wikimedia Commons',
+    creditoFotoDe: 'Foto: {{credito}}',
     volverPais: 'Volver al país',
     verTodos: 'Ver todos los países'
   },

@@ -199,6 +199,7 @@ export const en: Diccionario = {
     valoracion: 'Rating:',
     imagen: 'Image of {{nombre}}',
     creditoFoto: 'Photo: Wikimedia Commons',
+    creditoFotoDe: 'Photo: {{credito}}',
     volverPais: 'Back to the country',
     verTodos: 'See all countries'
   },

@@ -54,7 +54,7 @@
             <figure class="m-0 mb-4" *ngIf="atraccion.imagen">
               <img class="block aspect-[4/3] h-auto w-full rounded-xl border border-solid border-superficie-linea object-cover shadow-sm" loading="lazy" [src]="atraccion.imagen" [alt]="'ciudad.imagen' | translate: { nombre: (atraccion | dato:'nombre') }" (error)="setImagenError($event)">
               <figcaption class="mt-1 text-right text-xs text-tinta-suave" *ngIf="atraccion.fuenteImagen">
-                <a class="enlace" [href]="atraccion.fuenteImagen" target="_blank" rel="noopener">{{ 'ciudad.creditoFoto' | translate }}</a>
+                <a class="enlace" [href]="atraccion.fuenteImagen" target="_blank" rel="noopener">{{ atraccion.creditoImagen ? ('ciudad.creditoFotoDe' | translate: { credito: atraccion.creditoImagen }) : ('ciudad.creditoFoto' | translate) }}</a>
               </figcaption>
             </figure>
             <div class="space-y-3 text-sm leading-relaxed text-tinta-suave">
