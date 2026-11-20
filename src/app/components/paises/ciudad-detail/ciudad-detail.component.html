@@ -51,7 +51,12 @@
               <h3 class="m-0 break-words text-lg font-bold leading-snug text-tinta">{{ atraccion | dato:'nombre' }}</h3>
             </div>
             <p class="m-0 mb-4 break-words text-sm leading-relaxed text-tinta-suave">{{ atraccion | dato:'descripcion' }}</p>
-            <img class="mb-4 block h-auto w-full rounded-xl border border-solid border-superficie-linea shadow-sm" *ngIf="atraccion.imagen" [src]="atraccion.imagen" [alt]="'ciudad.imagen' | translate: { nombre: (atraccion | dato:'nombre') }" (error)="setImagenError($event)">
+            <figure class="m-0 mb-4" *ngIf="atraccion.imagen">
+              <img class="block aspect-[4/3] h-auto w-full rounded-xl border border-solid border-superficie-linea object-cover shadow-sm" loading="lazy" [src]="atraccion.imagen" [alt]="'ciudad.imagen' | translate: { nombre: (atraccion | dato:'nombre') }" (error)="setImagenError($event)">
+              <figcaption class="mt-1 text-right text-xs text-tinta-suave" *ngIf="atraccion.fuenteImagen">
+                <a class="enlace" [href]="atraccion.fuenteImagen" target="_blank" rel="noopener">{{ 'ciudad.creditoFoto' | translate }}</a>
+              </figcaption>
+            </figure>
             <div class="space-y-3 text-sm leading-relaxed text-tinta-suave">
               <p class="m-0 break-words" *ngIf="atraccion.horario"><strong class="font-semibold text-tinta">{{ 'ciudad.horario' | translate }}</strong> {{ atraccion | dato:'horario' }}</p>
               <p class="m-0 break-words" *ngIf="atraccion.paginaWeb"><strong class="font-semibold text-tinta">{{ 'ciudad.paginaWeb' | translate }}</strong> <a [href]="atraccion.paginaWeb" target="_blank" rel="noopener" class="enlace ml-1 break-all">{{ atraccion.paginaWeb }}</a></p>

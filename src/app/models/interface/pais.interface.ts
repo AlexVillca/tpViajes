@@ -70,6 +70,8 @@ export interface Atraccion {
   nombre: string;
   descripcion?: string;
   imagen?: string;
+  /** Página del archivo en Wikimedia Commons, para dar crédito a la foto. */
+  fuenteImagen?: string;
   horario?: string;
   paginaWeb?: string;
   ubicacion?: {
