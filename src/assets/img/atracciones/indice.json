@@ -14,6 +14,11 @@
   "archivoCommons": "St._John's_Anglican_Church,_Belize_City.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/St._John%27s_Anglican_Church%2C_Belize_City.jpg/375px-St._John%27s_Anglican_Church%2C_Belize_City.jpg"
  },
+ "038b|San Ignacio|Cahal Pech": {
+  "imagen": "assets/img/atracciones/038b/san-ignacio--cahal-pech.webp",
+  "archivoCommons": "Cahal_Pech_Belize.jpg",
+  "urlOriginal": "https://www.cahalpech.com/wp-content/uploads/Cahal-Pech-Maya-Ruins.jpg"
+ },
  "038b|San Ignacio|Xunantunich": {
   "imagen": "assets/img/atracciones/038b/san-ignacio--xunantunich.webp",
   "archivoCommons": "Xunantunich_Belize_1_19.jpg",
@@ -119,10 +124,25 @@
   "archivoCommons": "Malta_-_Mdina_(Triq_San_Oswald)_02_ies.jpg",
   "urlOriginal": "url_imagen_mdina_dungeons.jpg"
  },
+ "0e36|Fez|Curtidurías de Chouara": {
+  "imagen": "assets/img/atracciones/0e36/fez--curtidurias-de-chouara.webp",
+  "archivoCommons": "Chouara_Tannery_-_154_-_Marokko_Handybilder_2018_-_Fes_(27347707917).jpg",
+  "urlOriginal": "https://www.voyages-au-maroc.org/wp-content/uploads/2022/09/tannerie-fes.jpg"
+ },
+ "0e36|Fez|Medina de Fez": {
+  "imagen": "assets/img/atracciones/0e36/fez--medina-de-fez.webp",
+  "archivoCommons": "2008-03-25_Fez_(Marokko).jpg",
+  "urlOriginal": "https://media.traveler.es/photos/646b1197fc70ecfb9b92f192/16:9/w_1920,c_limit/GettyImages-948695560.jpg"
+ },
  "0e36|Marrakech|Jardines de la Menara": {
   "imagen": "assets/img/atracciones/0e36/marrakech--jardines-de-la-menara.webp",
   "archivoCommons": "Marrakech,_Agdal_Gardens,_2007-08-01_retouched.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/7/7d/MD.BOUALAM_Sunset_El_Menara.jpg"
+ },
+ "0e36|Marrakech|Plaza Jemaa el-Fnaa": {
+  "imagen": "assets/img/atracciones/0e36/marrakech--plaza-jemaa-el-fnaa.webp",
+  "archivoCommons": "Djemaa_el_Fna.jpg",
+  "urlOriginal": "https://www.mymarrakechtours.com/pictures-site/blogs-pic/blog-85/place-jemaa-el-fna-marrakech-tombee-de-la-nuit.webp"
  },
  "0e97|Yaren|Anibare Bay": {
   "imagen": "assets/img/atracciones/0e97/yaren--anibare-bay.webp",
@@ -429,6 +449,11 @@
   "archivoCommons": "View_of_Vaduz.jpg",
   "urlOriginal": "url_imagen_castillo_vaduz.jpg"
  },
+ "3aca|La Fortuna|Catarata La Fortuna": {
+  "imagen": "assets/img/atracciones/3aca/la-fortuna--catarata-la-fortuna.webp",
+  "archivoCommons": "Lafortunawaterfall.jpg",
+  "urlOriginal": "https://i0.wp.com/montanaycorazon.com/wp-content/uploads/2024/04/IMG_8371.jpeg?resize=950%2C598&ssl=1"
+ },
  "3aca|La Fortuna|Volcán Arenal": {
   "imagen": "assets/img/atracciones/3aca/la-fortuna--volcan-arenal.webp",
   "archivoCommons": "Arenal_Volcano_as_seen_from_Monteverde.jpg",
@@ -508,6 +533,11 @@
   "imagen": "assets/img/atracciones/4222/ciudad-del-cabo--table-mountain.webp",
   "archivoCommons": "Table_Mountain_DanieVDM.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Cape_Town_Pano1.jpg/900px-Cape_Town_Pano1.jpg"
+ },
+ "4222|Johannesburgo|Museo del Apartheid": {
+  "imagen": "assets/img/atracciones/4222/johannesburgo--museo-del-apartheid.webp",
+  "archivoCommons": "South_Africa-Johannesburg-Apartheid_Museum001.jpg",
+  "urlOriginal": "https://cdn.getyourguide.com/img/location/587607133ad2a-wide.jpeg/49.webp"
  },
  "4222|Johannesburgo|Soweto": {
   "imagen": "assets/img/atracciones/4222/johannesburgo--soweto.webp",
@@ -674,6 +704,11 @@
   "archivoCommons": "Antigua_-_Arco.jpg",
   "urlOriginal": "https://lugaresantigua.com/assets/images/blog/23-007-datos-arco/1.jpg"
  },
+ "5bec|Antigua Guatemala|Convento de las Capuchinas": {
+  "imagen": "assets/img/atracciones/5bec/antigua-guatemala--convento-de-las-capuchinas.webp",
+  "archivoCommons": "Kapuzinerkonvent_Antigua,_Guatemala-6.JPG",
+  "urlOriginal": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/27/71/1e.jpg"
+ },
  "5bec|Ciudad de Guatemala|Palacio Nacional de la Cultura": {
   "imagen": "assets/img/atracciones/5bec/ciudad-de-guatemala--palacio-nacional-de-la-cultura.webp",
   "archivoCommons": "Guatemala_National_Palace_(reflection).jpg",
@@ -838,6 +873,11 @@
   "imagen": "assets/img/atracciones/7b2a/berlin--puerta-de-brandeburgo.webp",
   "archivoCommons": "Brandenburger_Tor_abends.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Brandenburger_Tor_abends.jpg"
+ },
+ "7b2a|Berlín|Reichstag": {
+  "imagen": "assets/img/atracciones/7b2a/berlin--reichstag.webp",
+  "archivoCommons": "Reichstagsgebäude_von_Westen.jpg",
+  "urlOriginal": "https://media.gettyimages.com/id/161820951/es/foto/reichstag-dome-berl%C3%ADn.jpg?s=612x612&w=0&k=20&c=sOBybQPwdcFaxDvdMqT3DwVKuf0zvvi57chNnCOvk7Y="
  },
  "7b2a|Múnich|Hofbräuhaus": {
   "imagen": "assets/img/atracciones/7b2a/munich--hofbrauhaus.webp",
@@ -1029,6 +1069,11 @@
   "archivoCommons": "Plaza_Botero_-_Medellín.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/4/47/Vista_de_Plaza_Botero%2C_Palacio_de_la_Cultura%2C_Medellin%2C_Colombia%2C_2017-04-11.jpg"
  },
+ "930c|El Cairo|Museo Egipcio": {
+  "imagen": "assets/img/atracciones/930c/el-cairo--museo-egipcio.webp",
+  "archivoCommons": "1897_bis_1902_wurde_das_Ägyptische_Museum_in_Kairo_gebaut._04.jpg",
+  "urlOriginal": "https://planegypttours.com/files/xlarge/371786680-El-Museo-Egipcio-en-El-Cairo.jpg"
+ },
  "930c|El Cairo|Pirámides de Giza": {
   "imagen": "assets/img/atracciones/930c/el-cairo--piramides-de-giza.webp",
   "archivoCommons": "All_Gizah_Pyramids.jpg",
@@ -1038,6 +1083,11 @@
   "imagen": "assets/img/atracciones/930c/luxor--templo-de-karnak.webp",
   "archivoCommons": "Karnak_Temples.jpg",
   "urlOriginal": "https://www.pacotesparaegito.com/images/wikis/1670767734wikiList.jpg"
+ },
+ "930c|Luxor|Valle de los Reyes": {
+  "imagen": "assets/img/atracciones/930c/luxor--valle-de-los-reyes.webp",
+  "archivoCommons": "Hike_above_Valley_of_the_Kings_(2347044735).jpg",
+  "urlOriginal": "https://miro.medium.com/v2/0*CwffTR50KB2_s097.jpg"
  },
  "9858|Budapest|Castillo de Buda": {
   "imagen": "assets/img/atracciones/9858/budapest--castillo-de-buda.webp",
@@ -1244,6 +1294,11 @@
   "archivoCommons": "Casain2.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Casain2.jpg"
  },
+ "bbf1|Tegucigalpa|Museo Nacional de Antropología e Historia": {
+  "imagen": "assets/img/atracciones/bbf1/tegucigalpa--museo-nacional-de-antropologia-e-historia.webp",
+  "archivoCommons": "Instituto_Hondureño_e_Antropología_e_Historia_Tegucigalpa.jpg",
+  "urlOriginal": "https://www.honduras.com/wp-content/uploads/2020/08/museo-de-antropolog%C3%ADa-e-historia-2-1024x683.jpg"
+ },
  "be69|La Habana|El Capitolio": {
   "imagen": "assets/img/atracciones/be69/la-habana--el-capitolio.webp",
   "archivoCommons": "Capitolio_Nacional_de_Cuba_(La_Habana).jpg",
@@ -1258,6 +1313,11 @@
   "imagen": "assets/img/atracciones/be69/varadero--playa-varadero.webp",
   "archivoCommons": "Blau_Varadero.JPG",
   "urlOriginal": "https://es.wikipedia.org/wiki/Varadero#/media/Archivo:Varaderobeach1.JPG"
+ },
+ "becd|San Salvador|Catedral Metropolitana de San Salvador": {
+  "imagen": "assets/img/atracciones/becd/san-salvador--catedral-metropolitana-de-san-salvador.webp",
+  "archivoCommons": "San_Salvador_-_El_Salvador_(50899440617).jpg",
+  "urlOriginal": "https://static.wixstatic.com/media/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png/v1/fill/w_640,h_488,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png"
  },
  "becd|Suchitoto|Lago Suchitlán": {
   "imagen": "assets/img/atracciones/becd/suchitoto--lago-suchitlan.webp",
@@ -1298,6 +1358,11 @@
   "imagen": "assets/img/atracciones/c29c/sidney--opera-de-sidney.webp",
   "archivoCommons": "Sydney_Australia._(21339175489).jpg",
   "urlOriginal": "url_imagen_opera_sidney.jpg"
+ },
+ "c2a4|Abu Dabi|Ferrari World": {
+  "imagen": "assets/img/atracciones/c2a4/abu-dabi--ferrari-world.webp",
+  "archivoCommons": "Ferrari_world_Abu_Dhabi.jpg",
+  "urlOriginal": "url_imagen_ferrari_world.jpg"
  },
  "c2a4|Abu Dabi|Mezquita Sheikh Zayed": {
   "imagen": "assets/img/atracciones/c2a4/abu-dabi--mezquita-sheikh-zayed.webp",
@@ -1414,6 +1479,11 @@
   "archivoCommons": "ManaguaNicCollage.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/2/20/Antigua_catedral_de_Managua.jpg"
  },
+ "ca2f|Managua|Palacio Nacional de la Cultura": {
+  "imagen": "assets/img/atracciones/ca2f/managua--palacio-nacional-de-la-cultura.webp",
+  "archivoCommons": "Palacio_Nacional_de_la_Cultura_de_Nicaragua.jpg",
+  "urlOriginal": "https://hotelloscisneros.com/wp-content/uploads/2016/09/Palacio-Nacional-de-la-Cultura-Hotel-Los-Cisneros.jpg"
+ },
  "cd6b|Taipéi|Taipei 101": {
   "imagen": "assets/img/atracciones/cd6b/taipei--taipei-101.webp",
   "archivoCommons": "Taipei_101_from_Xiangshan_20260927_(cropped).jpg",
@@ -1454,10 +1524,20 @@
   "archivoCommons": "Male'_Hukuru_Miskiy_1.jpg",
   "urlOriginal": "url_imagen_mezquita_viernes_male.jpg"
  },
+ "d586|Bocas del Toro|Isla Colón": {
+  "imagen": "assets/img/atracciones/d586/bocas-del-toro--isla-colon.webp",
+  "archivoCommons": "Isla_Colón_La_Mochila.jpg",
+  "urlOriginal": "https://go.bocasdeltoro.travel/wp-content/uploads/2024/10/isla-colon-panama-bocas-del-toro.jpg"
+ },
  "d586|Bocas del Toro|Parque Nacional Marino Isla Bastimentos": {
   "imagen": "assets/img/atracciones/d586/bocas-del-toro--parque-nacional-marino-isla-bastimentos.webp",
   "archivoCommons": "Isla_Bastimentos_La_Mochila.jpg",
   "urlOriginal": "https://es.wikipedia.org/wiki/Parque_nacional_Isla_Bastimentos#/media/Archivo:Isla_Bastimentos_La_Mochila.jpg"
+ },
+ "d586|Ciudad de Panamá|Canal de Panamá": {
+  "imagen": "assets/img/atracciones/d586/ciudad-de-panama--canal-de-panama.webp",
+  "archivoCommons": "Vessels_locking_into_the_Panama_Canal.jpg",
+  "urlOriginal": "https://web.splogistics.com/public/news/canal-de-panama-12761.jpg"
  },
  "d586|Ciudad de Panamá|Casco Viejo": {
   "imagen": "assets/img/atracciones/d586/ciudad-de-panama--casco-viejo.webp",
@@ -1579,10 +1659,20 @@
   "archivoCommons": "Tinganes_57.jpg",
   "urlOriginal": "url_imagen_tinganes_torshavn.jpg"
  },
+ "eea0|Hurghada|Giftun Island": {
+  "imagen": "assets/img/atracciones/eea0/hurghada--giftun-island.webp",
+  "archivoCommons": "Giftun_Soraya01.JPG",
+  "urlOriginal": "https://egypttimetravel.com/wp-content/uploads/2020/09/island-of-Giftun-1.jpg"
+ },
  "eea0|Sharm el-Sheikh|Monte Sinaí": {
   "imagen": "assets/img/atracciones/eea0/sharm-el-sheikh--monte-sinai.webp",
   "archivoCommons": "Sinai-Katharinenberg-162-Abstieg-Oase-2009-gje.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Mount_Moses.jpg/1920px-Mount_Moses.jpg"
+ },
+ "eea0|Sharm el-Sheikh|Parque Nacional Ras Mohammed": {
+  "imagen": "assets/img/atracciones/eea0/sharm-el-sheikh--parque-nacional-ras-mohammed.webp",
+  "archivoCommons": "Coral_reef_in_Ras_Muhammad_nature_park.JPG",
+  "urlOriginal": "https://media.tacdn.com/media/attractions-splice-spp-674x446/10/5f/e2/55.jpg"
  },
  "f091|Kioto|Fushimi Inari-taisha": {
   "imagen": "assets/img/atracciones/f091/kioto--fushimi-inari-taisha.webp",
