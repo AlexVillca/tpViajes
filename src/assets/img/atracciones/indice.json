@@ -209,6 +209,16 @@
   "archivoCommons": "Wat_Phra_Sing,_Chiang_Mai_(I).jpg",
   "urlOriginal": "url_imagen_wat_phra_singh.jpg"
  },
+ "1658|Gaborone|Delta del Okavango": {
+  "imagen": "assets/img/atracciones/1658/gaborone--delta-del-okavango.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Sara&Joachim",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/8942661@N02/2675181510"
+  },
+  "urlOriginal": "https://www.shutterstock.com/image-illustration/okavango-delta-beautiful-place-on-600nw-2056993142.jpg"
+ },
  "1658|Maun|Delta del Okavango": {
   "imagen": "assets/img/atracciones/1658/maun--delta-del-okavango.webp",
   "archivoCommons": "A_view_down_into_the_Okavango_Delta.jpg",
@@ -258,6 +268,16 @@
   "imagen": "assets/img/atracciones/1acc/aman--teatro-romano.webp",
   "archivoCommons": "Roman_theater_of_Amman_01.jpg",
   "urlOriginal": "url_imagen_teatro_romano_amman.jpg"
+ },
+ "1acc|Petra|El Monasterio (Ad-Deir)": {
+  "imagen": "assets/img/atracciones/1acc/petra--el-monasterio-ad-deir.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Following Hadrian",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/41523983@N08/49776699627"
+  },
+  "urlOriginal": "url_imagen_el_monasterio_petra.jpg"
  },
  "1acc|Petra|El Tesoro (Al-Khazneh)": {
   "imagen": "assets/img/atracciones/1acc/petra--el-tesoro-al-khazneh.webp",
@@ -354,6 +374,16 @@
   "archivoCommons": "Kara-kul_lake.jpg",
   "urlOriginal": "url_imagen_lago_karakul.jpg"
  },
+ "2973|Daca|Fuerte Lalbagh": {
+  "imagen": "assets/img/atracciones/2973/daca--fuerte-lalbagh.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Minhas Kamal",
+   "licencia": "CC0 1.0",
+   "fuente": "https://www.flickr.com/photos/153908724@N04/34129364493"
+  },
+  "urlOriginal": "url_imagen_fuerte_lalbagh_daca.jpg"
+ },
  "2973|Daca|Mezquita Baitul Mukarram": {
   "imagen": "assets/img/atracciones/2973/daca--mezquita-baitul-mukarram.webp",
   "archivoCommons": "Baitul_Mukarram_National_Mosque_in_2022.09.jpg",
@@ -374,6 +404,16 @@
   "archivoCommons": "Jellyfish_Lake_aerial_(March_2008).jpg",
   "urlOriginal": "url_imagen_jellyfish_lake_palaos.jpg"
  },
+ "2c4e|Koror|Rock Islands": {
+  "imagen": "assets/img/atracciones/2c4e/koror--rock-islands.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "mattk1979",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/24879135@N04/10059964185"
+  },
+  "urlOriginal": "url_imagen_rock_islands_palaos.jpg"
+ },
  "2d18|Creta|Palacio de Knossos": {
   "imagen": "assets/img/atracciones/2d18/creta--palacio-de-knossos.webp",
   "archivoCommons": "Knossos_voie_royale.JPG",
@@ -393,6 +433,16 @@
   "imagen": "assets/img/atracciones/2d76/dublin--trinity-college.webp",
   "archivoCommons": "Trinity_College_Dublin_Campanile.jpg",
   "urlOriginal": "url_imagen_trinity_college_dublin.jpg"
+ },
+ "2d76|Galway|Catedral de Galway": {
+  "imagen": "assets/img/atracciones/2d76/galway--catedral-de-galway.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Sharon Hahn Darlin",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/41980486@N07/52077816428"
+  },
+  "urlOriginal": "url_imagen_catedral_galway.jpg"
  },
  "2d76|Galway|Spanish Arch": {
   "imagen": "assets/img/atracciones/2d76/galway--spanish-arch.webp",
@@ -549,6 +599,16 @@
   "archivoCommons": "Fish, Resort Worlds Sentosa Aquarium, Singapore (10226708415).jpg",
   "urlOriginal": "url_imagen_sea_aquarium.jpg"
  },
+ "4533|Isla de Sentosa|Universal Studios Singapore": {
+  "imagen": "assets/img/atracciones/4533/isla-de-sentosa--universal-studios-singapore.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Studio Sarah Lou",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/86665756@N00/10123780345"
+  },
+  "urlOriginal": "url_imagen_universal_studios_singapore.jpg"
+ },
  "4533|Singapur|Jardines de la Bahía": {
   "imagen": "assets/img/atracciones/4533/singapur--jardines-de-la-bahia.webp",
   "archivoCommons": "Supertree_Grove,_Gardens_by_the_Bay,_Singapore_-_20120712-02.jpg",
@@ -603,6 +663,16 @@
   "imagen": "assets/img/atracciones/465f/isla-tanna--volcan-yasur.webp",
   "archivoCommons": "Mount_Yasur_eruption_2006,_Tanna_Island,_Vanuatu,_VAN_0516.jpg",
   "urlOriginal": "url_imagen_volcan_yasur.jpg"
+ },
+ "465f|Port Vila|Hideaway Island": {
+  "imagen": "assets/img/atracciones/465f/port-vila--hideaway-island.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "librarianidol",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/12938647@N00/3635388140"
+  },
+  "urlOriginal": "url_imagen_hideaway_island.jpg"
  },
  "4773|Almaty|Medeu": {
   "imagen": "assets/img/atracciones/4773/almaty--medeu.webp",
@@ -733,6 +803,16 @@
   "imagen": "assets/img/atracciones/6267/hammamet--medina-de-hammamet.webp",
   "archivoCommons": "Hammamet_-_001.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Hammamet_Medina.JPG"
+ },
+ "6267|Hammamet|Yasmine Hammamet": {
+  "imagen": "assets/img/atracciones/6267/hammamet--yasmine-hammamet.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Samuel Negredo",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/54688312@N00/126936142"
+  },
+  "urlOriginal": "https://www.openwaterpedia.com/images/9/9d/Yasmine_hammamet.jpg"
  },
  "6267|Túnez|Medina de Túnez": {
   "imagen": "assets/img/atracciones/6267/tunez--medina-de-tunez.webp",
@@ -909,6 +989,16 @@
   "archivoCommons": "Shwedagon-Pano.jpg",
   "urlOriginal": "url_imagen_pagoda_shwedagon.jpg"
  },
+ "7f24|Tallin|Casco antiguo de Tallin": {
+  "imagen": "assets/img/atracciones/7f24/tallin--casco-antiguo-de-tallin.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Haydn Blackey",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/54549113@N00/53122310953"
+  },
+  "urlOriginal": "url_imagen_casco_antiguo_tallin.jpg"
+ },
  "7f24|Tallin|Catedral de Alexander Nevsky": {
   "imagen": "assets/img/atracciones/7f24/tallin--catedral-de-alexander-nevsky.webp",
   "archivoCommons": "Catedral_de_Alejandro_Nevsky,_Tallin,_Estonia,_2012-08-11,_DD_46.JPG",
@@ -1003,6 +1093,16 @@
   "imagen": "assets/img/atracciones/8c0c/macao--senado-square.webp",
   "archivoCommons": "Centre_of_Makau.jpg",
   "urlOriginal": "url_imagen_senado_square_macao.jpg"
+ },
+ "8c0c|Torre de Macao|Plataforma de observación": {
+  "imagen": "assets/img/atracciones/8c0c/torre-de-macao--plataforma-de-observacion.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Alexander Savin",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/23802687@N06/4163986012"
+  },
+  "urlOriginal": "url_imagen_plataforma_observacion_torre_macao.jpg"
  },
  "8c0c|Torre de Macao|Ruinas de San Pablo": {
   "imagen": "assets/img/atracciones/8c0c/torre-de-macao--ruinas-de-san-pablo.webp",
@@ -1104,6 +1204,16 @@
   "archivoCommons": "Tihany_montage.jpg",
   "urlOriginal": "url_imagen_tihany.jpg"
  },
+ "9ce2|Bali|Arrozales de Tegalalang": {
+  "imagen": "assets/img/atracciones/9ce2/bali--arrozales-de-tegalalang.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "MrFlipsen",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/147092888@N08/29278827550"
+  },
+  "urlOriginal": "url_imagen_arrozales_tegalalang.jpg"
+ },
  "9ce2|Bali|Templo Uluwatu": {
   "imagen": "assets/img/atracciones/9ce2/bali--templo-uluwatu.webp",
   "archivoCommons": "Uluwatu_Temple.jpg",
@@ -1133,6 +1243,16 @@
   "imagen": "assets/img/atracciones/9fa8/ginebra--catedral-de-san-pedro.webp",
   "archivoCommons": "St_Pierre_Cathedral_(46717064755).jpg",
   "urlOriginal": "url_imagen_catedral_san_pedro_ginebra.jpg"
+ },
+ "9fa8|Ginebra|Jet d'Eau": {
+  "imagen": "assets/img/atracciones/9fa8/ginebra--jet-d-eau.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Andy Hay",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/29172291@N00/10471453596"
+  },
+  "urlOriginal": "url_imagen_jet_deau.jpg"
  },
  "9fa8|Zúrich|Kunsthaus Zürich": {
   "imagen": "assets/img/atracciones/9fa8/zurich--kunsthaus-zurich.webp",
@@ -1224,6 +1344,16 @@
   "archivoCommons": "LCT_From_Dongbaek_Island_2020.01.04.jpg",
   "urlOriginal": "url_imagen_playa_haeundae.jpg"
  },
+ "af29|Busan|Templo Beomeosa": {
+  "imagen": "assets/img/atracciones/af29/busan--templo-beomeosa.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "nosyjoe42",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/41765000@N06/4599902215"
+  },
+  "urlOriginal": "url_imagen_templo_beomeosa.jpg"
+ },
  "af29|Seúl|Bukchon Hanok Village": {
   "imagen": "assets/img/atracciones/af29/seul--bukchon-hanok-village.webp",
   "archivoCommons": "Bukchon_Hanok_Village_01.jpg",
@@ -1284,6 +1414,16 @@
   "archivoCommons": "Nicosia_city_Venitian_historic_ancient_walls_and_gardens_Republic_of_Cyprus.jpg",
   "urlOriginal": "url_imagen_murallas_venecianas_nicosia.jpg"
  },
+ "bb1c|Pafos|Roca de Afrodita": {
+  "imagen": "assets/img/atracciones/bb1c/pafos--roca-de-afrodita.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Glen Bowman",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/10978503@N00/2931770581"
+  },
+  "urlOriginal": "url_imagen_roca_afrodita.jpg"
+ },
  "bb1c|Pafos|Tumbas de los Reyes": {
   "imagen": "assets/img/atracciones/bb1c/pafos--tumbas-de-los-reyes.webp",
   "archivoCommons": "Tombs_of_the_Kings_(Paphos).jpg",
@@ -1293,6 +1433,16 @@
   "imagen": "assets/img/atracciones/bbf1/san-pedro-sula--museo-de-antropologia-e-historia.webp",
   "archivoCommons": "Casain2.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Casain2.jpg"
+ },
+ "bbf1|San Pedro Sula|Parque Central": {
+  "imagen": "assets/img/atracciones/bbf1/san-pedro-sula--parque-central.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Pixel Drip",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/94336982@N00/41480159"
+  },
+  "urlOriginal": "https://paradigma.hn/wp-content/uploads/2021/01/WhatsApp-Image-2021-01-22-at-10.22.35-AM.jpeg"
  },
  "bbf1|Tegucigalpa|Museo Nacional de Antropología e Historia": {
   "imagen": "assets/img/atracciones/bbf1/tegucigalpa--museo-nacional-de-antropologia-e-historia.webp",
@@ -1319,6 +1469,16 @@
   "archivoCommons": "San_Salvador_-_El_Salvador_(50899440617).jpg",
   "urlOriginal": "https://static.wixstatic.com/media/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png/v1/fill/w_640,h_488,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png"
  },
+ "becd|Suchitoto|Iglesia de Santa Lucía": {
+  "imagen": "assets/img/atracciones/becd/suchitoto--iglesia-de-santa-lucia.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "markhillary",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/56087830@N00/33652061456"
+  },
+  "urlOriginal": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/7d/e6/7a/iglesia-santa-lucia.jpg?w=1200&h=1200&s=1"
+ },
  "becd|Suchitoto|Lago Suchitlán": {
   "imagen": "assets/img/atracciones/becd/suchitoto--lago-suchitlan.webp",
   "archivoCommons": "Lago_Suchitlan_desde_Suchitoto.jpg",
@@ -1338,6 +1498,36 @@
   "imagen": "assets/img/atracciones/c04d/auckland--museo-de-auckland.webp",
   "archivoCommons": "Auckland_skyline_-_May_2024_(2).jpg",
   "urlOriginal": "url_imagen_museo_auckland.jpg"
+ },
+ "c04d|Auckland|Sky Tower": {
+  "imagen": "assets/img/atracciones/c04d/auckland--sky-tower.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Umedha Hettigoda",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/12679318@N05/11542693425"
+  },
+  "urlOriginal": "url_imagen_sky_tower_auckland.jpg"
+ },
+ "c04d|Queenstown|Lago Wakatipu": {
+  "imagen": "assets/img/atracciones/c04d/queenstown--lago-wakatipu.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Bernard Spragg",
+   "licencia": "CC0 1.0",
+   "fuente": "https://www.flickr.com/photos/88123769@N02/27480237416"
+  },
+  "urlOriginal": "url_imagen_lago_wakatipu.jpg"
+ },
+ "c04d|Queenstown|The Remarkables": {
+  "imagen": "assets/img/atracciones/c04d/queenstown--the-remarkables.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "Kiwi Tom",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/127665714@N08/15711337456"
+  },
+  "urlOriginal": "url_imagen_the_remarkables.jpg"
  },
  "c29c|Melbourne|Federation Square": {
   "imagen": "assets/img/atracciones/c29c/melbourne--federation-square.webp",
@@ -1419,6 +1609,16 @@
   "archivoCommons": "Phewa_Lake,_Pokhara,_Nepal.jpg",
   "urlOriginal": "url_imagen_lago_phewa.jpg"
  },
+ "c562|Pokhara|Pagoda de la Paz Mundial": {
+  "imagen": "assets/img/atracciones/c562/pokhara--pagoda-de-la-paz-mundial.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "untitled_folder",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/61998678@N00/14831297633"
+  },
+  "urlOriginal": "url_imagen_pagoda_paz_mundial.jpg"
+ },
  "c651|Paro|Monasterio Taktsang (Nido del Tigre)": {
   "imagen": "assets/img/atracciones/c651/paro--monasterio-taktsang-nido-del-tigre.webp",
   "archivoCommons": "Paro_Taktsang,_Bhutan_(edited).jpg",
@@ -1459,6 +1659,16 @@
   "archivoCommons": "Paratiisikuru_waterfall.JPG",
   "urlOriginal": "url_imagen_parque_nacional_urho_kekkonen.jpg"
  },
+ "ca1c|Disneyland Hong Kong|It's a Small World": {
+  "imagen": "assets/img/atracciones/ca1c/disneyland-hong-kong--it-s-a-small-world.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "kawaiikiri",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/91267459@N07/8476572755"
+  },
+  "urlOriginal": "url_imagen_its_a_small_world_disneyland_hong_kong.jpg"
+ },
  "ca1c|Disneyland Hong Kong|Space Mountain": {
   "imagen": "assets/img/atracciones/ca1c/disneyland-hong-kong--space-mountain.webp",
   "archivoCommons": "Hong_Kong_Disneyland_(23988762030).jpg",
@@ -1493,6 +1703,16 @@
   "imagen": "assets/img/atracciones/cd6b/taroko-gorge--santuario-de-la-primavera-eterna.webp",
   "archivoCommons": "Chang_Chun_Shrine_amk.jpg",
   "urlOriginal": "url_imagen_santuario_primavera_eterna.jpg"
+ },
+ "cd6b|Taroko Gorge|Túnel de las Nueve Curvas": {
+  "imagen": "assets/img/atracciones/cd6b/taroko-gorge--tunel-de-las-nueve-curvas.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "eazytraveler",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/84821235@N00/4401062074"
+  },
+  "urlOriginal": "url_imagen_tunel_nueve_curvas_taroko.jpg"
  },
  "cf94|Trakai|Castillo de Trakai": {
   "imagen": "assets/img/atracciones/cf94/trakai--castillo-de-trakai.webp",
@@ -1559,6 +1779,16 @@
   "archivoCommons": "Island_of_Saint-Louis-113799.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Island_of_Saint-Louis-113799.jpg/1280px-Island_of_Saint-Louis-113799.jpg"
  },
+ "dd00|Chuuk|Laguna Truk": {
+  "imagen": "assets/img/atracciones/dd00/chuuk--laguna-truk.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "mattk1979",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/24879135@N04/4019626612"
+  },
+  "urlOriginal": "url_imagen_laguna_truk.jpg"
+ },
  "dd00|Pohnpei|Nan Madol": {
   "imagen": "assets/img/atracciones/dd00/pohnpei--nan-madol.webp",
   "archivoCommons": "Nan_Madol_5.jpg",
@@ -1598,6 +1828,16 @@
   "imagen": "assets/img/atracciones/e286/ciudad-del-este--cataratas-del-iguazu-lado-paraguayo.webp",
   "archivoCommons": "Aerial_Foz_de_Iguaçu_26_Nov_2005.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/9/97/Foz_de_Igua%C3%A7u_27_Panorama_Nov_2005.jpg"
+ },
+ "e286|Ciudad del Este|Represa de Itaipú": {
+  "imagen": "assets/img/atracciones/e286/ciudad-del-este--represa-de-itaipu.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "ScottLilly",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/39194693@N04/6975771739"
+  },
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Itaipu_171.jpg/1280px-Itaipu_171.jpg"
  },
  "e5a3|Kuala Lumpur|Cuevas de Batu": {
   "imagen": "assets/img/atracciones/e5a3/kuala-lumpur--cuevas-de-batu.webp",
@@ -1658,6 +1898,16 @@
   "imagen": "assets/img/atracciones/eca1/torshavn--tinganes.webp",
   "archivoCommons": "Tinganes_57.jpg",
   "urlOriginal": "url_imagen_tinganes_torshavn.jpg"
+ },
+ "eea0|Hurghada|El Gouna": {
+  "imagen": "assets/img/atracciones/eea0/hurghada--el-gouna.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "RussellHarryLee",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/34200064@N08/3713436053"
+  },
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/b/bf/El_Gouna_R33.jpg"
  },
  "eea0|Hurghada|Giftun Island": {
   "imagen": "assets/img/atracciones/eea0/hurghada--giftun-island.webp",
@@ -1808,6 +2058,16 @@
   "imagen": "assets/img/atracciones/f756/taskent--mausoleo-de-kaffal-shashi.webp",
   "archivoCommons": "Mavzoley_Kaffal_Shashi_13-36.JPG",
   "urlOriginal": "url_imagen_mausoleo_kaffal_shashi.jpg"
+ },
+ "f756|Taskent|Plaza de la Independencia": {
+  "imagen": "assets/img/atracciones/f756/taskent--plaza-de-la-independencia.webp",
+  "archivoCommons": null,
+  "credito": {
+   "autor": "amanderson2",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/49399018@N00/45664488862"
+  },
+  "urlOriginal": "url_imagen_plaza_independencia_taskent.jpg"
  },
  "f835|Círculo Dorado|Cascada Gullfoss": {
   "imagen": "assets/img/atracciones/f835/circulo-dorado--cascada-gullfoss.webp",
