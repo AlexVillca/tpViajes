@@ -24,6 +24,11 @@
   "archivoCommons": "St._John's_Anglican_Church,_Belize_City.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/St._John%27s_Anglican_Church%2C_Belize_City.jpg/375px-St._John%27s_Anglican_Church%2C_Belize_City.jpg"
  },
+ "038b|Ciudad de Belice|Museo de Belice": {
+  "imagen": "assets/img/atracciones/038b/ciudad-de-belice--museo-de-belice.webp",
+  "archivoCommons": "Museum_of_Belize_2.jpg",
+  "urlOriginal": "https://d1ay7qnb0dqwzm.cloudfront.net/330627.900.737cd74e55.jpg"
+ },
  "038b|San Ignacio|Cahal Pech": {
   "imagen": "assets/img/atracciones/038b/san-ignacio--cahal-pech.webp",
   "archivoCommons": "Cahal_Pech_Belize.jpg",
@@ -163,6 +168,11 @@
   "imagen": "assets/img/atracciones/0f5a/funafuti--area-de-conservacion-de-funafuti.webp",
   "archivoCommons": "Vaiaku_Lagi_Hotel.jpg",
   "urlOriginal": "url_imagen_area_conservacion_funafuti.jpg"
+ },
+ "115b|Toronto|CN Tower": {
+  "imagen": "assets/img/atracciones/115b/toronto--cn-tower.webp",
+  "archivoCommons": "Toronto_-_ON_-_Toronto_Harbourfront7.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/9/96/Toronto_-_ON_-_Toronto_Harbourfront7.jpg"
  },
  "115b|Toronto|Royal Ontario Museum": {
   "imagen": "assets/img/atracciones/115b/toronto--royal-ontario-museum.webp",
@@ -399,10 +409,20 @@
   "archivoCommons": "National_Museum_of_Tajikistan_Национальный_музей_Таджикистана(0)_Осорхонаи_милли.jpg",
   "urlOriginal": "url_imagen_museo_nacional_tayikistan.jpg"
  },
+ "296c|Dusambé|Palacio Presidencial": {
+  "imagen": "assets/img/atracciones/296c/dusambe--palacio-presidencial.webp",
+  "archivoCommons": "Dushanbe_Presidential_Palace_01.jpg",
+  "urlOriginal": "url_imagen_palacio_presidencial_tayikistan.jpg"
+ },
  "296c|Pamir Highway|Lago Karakul": {
   "imagen": "assets/img/atracciones/296c/pamir-highway--lago-karakul.webp",
   "archivoCommons": "Kara-kul_lake.jpg",
   "urlOriginal": "url_imagen_lago_karakul.jpg"
+ },
+ "296c|Pamir Highway|Penjikent": {
+  "imagen": "assets/img/atracciones/296c/pamir-highway--penjikent.webp",
+  "archivoCommons": "Panjakent,RudakiMuseum.jpg",
+  "urlOriginal": "url_imagen_penjikent.jpg"
  },
  "2973|Daca|Fuerte Lalbagh": {
   "imagen": "assets/img/atracciones/2973/daca--fuerte-lalbagh.webp",
@@ -1539,6 +1559,11 @@
   },
   "urlOriginal": "https://paradigma.hn/wp-content/uploads/2021/01/WhatsApp-Image-2021-01-22-at-10.22.35-AM.jpeg"
  },
+ "bbf1|Tegucigalpa|Catedral Metropolitana de Tegucigalpa": {
+  "imagen": "assets/img/atracciones/bbf1/tegucigalpa--catedral-metropolitana-de-tegucigalpa.webp",
+  "archivoCommons": "Catedral_Metropolitana_de_San_Miguel_Arcángel_de_Tegucigalpa.jpg",
+  "urlOriginal": "https://live.staticflickr.com/65535/49579265401_48aaf068ce_b.jpg"
+ },
  "bbf1|Tegucigalpa|Museo Nacional de Antropología e Historia": {
   "imagen": "assets/img/atracciones/bbf1/tegucigalpa--museo-nacional-de-antropologia-e-historia.webp",
   "archivoCommons": "Instituto_Hondureño_e_Antropología_e_Historia_Tegucigalpa.jpg",
@@ -1563,6 +1588,11 @@
   "imagen": "assets/img/atracciones/becd/san-salvador--catedral-metropolitana-de-san-salvador.webp",
   "archivoCommons": "San_Salvador_-_El_Salvador_(50899440617).jpg",
   "urlOriginal": "https://static.wixstatic.com/media/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png/v1/fill/w_640,h_488,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/db9ecb_bd1149bef3b74161a5ccc17c1328266d~mv2.png"
+ },
+ "becd|San Salvador|Palacio Nacional": {
+  "imagen": "assets/img/atracciones/becd/san-salvador--palacio-nacional.webp",
+  "archivoCommons": "The_National_Palace_of_El_Salvador.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Palacio_Nacional_de_El_Salvador_en_2024.png/1200px-Palacio_Nacional_de_El_Salvador_en_2024.png"
  },
  "becd|Suchitoto|Iglesia de Santa Lucía": {
   "imagen": "assets/img/atracciones/becd/suchitoto--iglesia-de-santa-lucia.webp",
@@ -1804,6 +1834,11 @@
   "archivoCommons": "Palacio_Nacional_de_la_Cultura_de_Nicaragua.jpg",
   "urlOriginal": "https://hotelloscisneros.com/wp-content/uploads/2016/09/Palacio-Nacional-de-la-Cultura-Hotel-Los-Cisneros.jpg"
  },
+ "cd6b|Taipéi|Museo Nacional del Palacio": {
+  "imagen": "assets/img/atracciones/cd6b/taipei--museo-nacional-del-palacio.webp",
+  "archivoCommons": "NationalPalace_MuseumFrontView.jpg",
+  "urlOriginal": "url_imagen_museo_nacional_del_palacio_taipei.jpg"
+ },
  "cd6b|Taipéi|Taipei 101": {
   "imagen": "assets/img/atracciones/cd6b/taipei--taipei-101.webp",
   "archivoCommons": "Taipei_101_from_Xiangshan_20260927_(cropped).jpg",
@@ -1873,6 +1908,11 @@
   "imagen": "assets/img/atracciones/d586/ciudad-de-panama--casco-viejo.webp",
   "archivoCommons": "Casco_Antiguo_(San_Felipe)_-_Pamama.jpg",
   "urlOriginal": "https://es.wikipedia.org/wiki/Casco_Antiguo_de_Panam%C3%A1#/media/Archivo:Casco_Antiguo_(San_Felipe)_-_Pamama.jpg"
+ },
+ "d9c8|Honiara|Museo Nacional": {
+  "imagen": "assets/img/atracciones/d9c8/honiara--museo-nacional.webp",
+  "archivoCommons": "Honiara_Museum,_Mendana_Ave_Honiara.jpg",
+  "urlOriginal": "url_imagen_museo_nacional_islas_salomon.jpg"
  },
  "da29|Dakar|Isla de Gorée": {
   "imagen": "assets/img/atracciones/da29/dakar--isla-de-goree.webp",
