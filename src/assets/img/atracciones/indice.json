@@ -164,6 +164,16 @@
   "archivoCommons": "Living_on_a_Blue_Planet_-_Nauru.jpg",
   "urlOriginal": "url_imagen_anibare_bay.jpg"
  },
+ "0e97|Yaren|Laguna Buada": {
+  "imagen": "assets/img/atracciones/0e97/yaren--laguna-buada.webp",
+  "archivoCommons": "Buada Lagoon, Nauru 2007.jpg",
+  "urlOriginal": "https://commons.wikimedia.org/wiki/Special:FilePath/Buada_Lagoon,_Nauru_2007.jpg?width=960"
+ },
+ "0f5a|Funafuti|Laguna de Funafuti": {
+  "imagen": "assets/img/atracciones/0f5a/funafuti--laguna-de-funafuti.webp",
+  "archivoCommons": "Aerial view of Tuvalu’s capital, Funafuti, 2011. Tuvalu is a remote country of low lying atolls, making it vulnerable to climate change. Photo- Lily-Anne Homasi - DFAT (12779656093).jpg",
+  "urlOriginal": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_Tuvalu%E2%80%99s_capital%2C_Funafuti%2C_2011._Tuvalu_is_a_remote_country_of_low_lying_atolls%2C_making_it_vulnerable_to_climate_change._Photo-_Lily-Anne_Homasi_-_DFAT_%2812779656093%29.jpg?width=960"
+ },
  "0f5a|Funafuti|Área de Conservación de Funafuti": {
   "imagen": "assets/img/atracciones/0f5a/funafuti--area-de-conservacion-de-funafuti.webp",
   "archivoCommons": "Vaiaku_Lagi_Hotel.jpg",
@@ -1028,6 +1038,11 @@
    "fuente": "https://www.flickr.com/photos/169853883@N02/50981491531"
   },
   "urlOriginal": "url_imagen_parque_vigeland.jpg"
+ },
+ "6a6f|Nukualofa|Ha'amonga 'a Maui": {
+  "imagen": "assets/img/atracciones/6a6f/nukualofa--ha-amonga-a-maui.webp",
+  "archivoCommons": "Haʻamonga.jpg",
+  "urlOriginal": "https://commons.wikimedia.org/wiki/Special:FilePath/Ha%CA%BBamonga.jpg?width=960"
  },
  "6a6f|Nukualofa|Palacio Real": {
   "imagen": "assets/img/atracciones/6a6f/nukualofa--palacio-real.webp",
