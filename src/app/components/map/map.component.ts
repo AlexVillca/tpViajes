@@ -1,6 +1,15 @@
 import { Component, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 
+// El ícono por defecto de Leaflet busca sus imágenes (y la sombra) con una ruta que el build de Angular
+// no incluye: se copian a assets/leaflet (angular.json) y se le indica dónde están.
+L.Icon.Default.imagePath = '';
+L.Icon.Default.mergeOptions({
+  iconUrl: 'assets/leaflet/marker-icon.png',
+  iconRetinaUrl: 'assets/leaflet/marker-icon-2x.png',
+  shadowUrl: 'assets/leaflet/marker-shadow.png'
+});
+
 const escaparHtml = (texto: string) =>
   texto.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
