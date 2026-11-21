@@ -194,6 +194,11 @@
   "archivoCommons": "2006.07.04.cv.sv.MonteVerde.JPG",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2006.07.04.cv.sv.MonteVerde.JPG/1280px-2006.07.04.cv.sv.MonteVerde.JPG"
  },
+ "117f|Mindelo|Palacio del Gobernador": {
+  "imagen": "assets/img/atracciones/117f/mindelo--palacio-del-gobernador.webp",
+  "archivoCommons": "2006.07.12.cv.sv.mindelo.palacio.jpg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Palais_gouverneur_Mindelo.jpg/1280px-Palais_gouverneur_Mindelo.jpg"
+ },
  "117f|Praia|Plateau": {
   "imagen": "assets/img/atracciones/117f/praia--plateau.webp",
   "archivoCommons": "Praia-Palácio_Presidencial_(1).jpg",
@@ -444,6 +449,11 @@
   "archivoCommons": "Sundarban_Tiger.jpg",
   "urlOriginal": "url_imagen_sundarbans_national_park.jpg"
  },
+ "2a8f|Parque Nacional Gorkhi-Terelj|Monasterio de Aryabal": {
+  "imagen": "assets/img/atracciones/2a8f/parque-nacional-gorkhi-terelj--monasterio-de-aryabal.webp",
+  "archivoCommons": "Aryapala Initiation and Meditation Center Temple.JPG",
+  "urlOriginal": "url_imagen_monasterio_aryabal.jpg"
+ },
  "2a8f|Parque Nacional Gorkhi-Terelj|Roca de la Tortuga": {
   "imagen": "assets/img/atracciones/2a8f/parque-nacional-gorkhi-terelj--roca-de-la-tortuga.webp",
   "archivoCommons": "Turtle rock, Gorkhi-Terelj National Park.jpg",
@@ -568,6 +578,11 @@
   "imagen": "assets/img/atracciones/3637/vaduz--castillo-de-vaduz.webp",
   "archivoCommons": "View_of_Vaduz.jpg",
   "urlOriginal": "url_imagen_castillo_vaduz.jpg"
+ },
+ "3637|Vaduz|Museo Nacional de Liechtenstein": {
+  "imagen": "assets/img/atracciones/3637/vaduz--museo-nacional-de-liechtenstein.webp",
+  "archivoCommons": "Landesmuseum_Vaduz.jpg",
+  "urlOriginal": "url_imagen_museo_nacional_liechtenstein.jpg"
  },
  "3aca|La Fortuna|Catarata La Fortuna": {
   "imagen": "assets/img/atracciones/3aca/la-fortuna--catarata-la-fortuna.webp",
@@ -739,6 +754,16 @@
   "archivoCommons": "Mount_Yasur_eruption_2006,_Tanna_Island,_Vanuatu,_VAN_0516.jpg",
   "urlOriginal": "url_imagen_volcan_yasur.jpg"
  },
+ "465f|Port Vila|Cascadas Mele": {
+  "imagen": "assets/img/atracciones/465f/port-vila--cascadas-mele.webp",
+  "archivoCommons": null,
+  "urlOriginal": "url_imagen_cascadas_mele.jpg",
+  "credito": {
+   "autor": "uphillblok",
+   "licencia": "CC BY-SA 2.0",
+   "fuente": "https://www.flickr.com/photos/35803445@N07/38876748484/"
+  }
+ },
  "465f|Port Vila|Hideaway Island": {
   "imagen": "assets/img/atracciones/465f/port-vila--hideaway-island.webp",
   "archivoCommons": null,
@@ -858,6 +883,11 @@
   "imagen": "assets/img/atracciones/5bec/antigua-guatemala--convento-de-las-capuchinas.webp",
   "archivoCommons": "Kapuzinerkonvent_Antigua,_Guatemala-6.JPG",
   "urlOriginal": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/27/71/1e.jpg"
+ },
+ "5bec|Ciudad de Guatemala|Mapa en Relieve": {
+  "imagen": "assets/img/atracciones/5bec/ciudad-de-guatemala--mapa-en-relieve.webp",
+  "archivoCommons": "Mapa en Relieve Guatemala.JPG",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mapa_en_Relieve_de_Guatemala_-_51575580031.jpg/1920px-Mapa_en_Relieve_de_Guatemala_-_51575580031.jpg"
  },
  "5bec|Ciudad de Guatemala|Palacio Nacional de la Cultura": {
   "imagen": "assets/img/atracciones/5bec/ciudad-de-guatemala--palacio-nacional-de-la-cultura.webp",
@@ -1009,6 +1039,11 @@
   "archivoCommons": "Vava'u_beach2.jpg",
   "urlOriginal": "url_imagen_parque_nacional_marino_vava'u.jpg"
  },
+ "72b7|Arusha|Monte Meru": {
+  "imagen": "assets/img/atracciones/72b7/arusha--monte-meru.webp",
+  "archivoCommons": "Mt Meru from Momella gate 2006-02-12.jpeg",
+  "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/6/67/Mt_Meru.jpg"
+ },
  "72b7|Arusha|Parque Nacional Arusha": {
   "imagen": "assets/img/atracciones/72b7/arusha--parque-nacional-arusha.webp",
   "archivoCommons": "Look_at_Mt._Meru_Arusha_Tanzania.jpg",
@@ -1028,6 +1063,11 @@
   "imagen": "assets/img/atracciones/72fe/jurmala--parque-nacional-kemeri.webp",
   "archivoCommons": "Liela_Kemeru_taka_5jul03.JPG",
   "urlOriginal": "url_imagen_parque_nacional_kemeri.jpg"
+ },
+ "72fe|Jūrmala|Playa de Jūrmala": {
+  "imagen": "assets/img/atracciones/72fe/jurmala--playa-de-jurmala.webp",
+  "archivoCommons": "Jurmala 2017 05.jpg",
+  "urlOriginal": "url_imagen_playa_jurmala.jpg"
  },
  "72fe|Riga|Casco antiguo de Riga": {
   "imagen": "assets/img/atracciones/72fe/riga--casco-antiguo-de-riga.webp",
@@ -1108,6 +1148,11 @@
   "imagen": "assets/img/atracciones/8243/vanua-levu--savusavu.webp",
   "archivoCommons": "Savusavu.jpg",
   "urlOriginal": "url_imagen_savusavu_fiji.jpg"
+ },
+ "8243|Viti Levu|Coral Coast": {
+  "imagen": "assets/img/atracciones/8243/viti-levu--coral-coast.webp",
+  "archivoCommons": "2019-01-31 Coral coast, Viti Levu, Fiji 01.jpg",
+  "urlOriginal": "url_imagen_coral_coast_fiji.jpg"
  },
  "8243|Viti Levu|Nadi": {
   "imagen": "assets/img/atracciones/8243/viti-levu--nadi.webp",
@@ -1293,6 +1338,11 @@
   "imagen": "assets/img/atracciones/9858/budapest--parlamento-de-budapest.webp",
   "archivoCommons": "Budapest-Parliament-0001.jpg",
   "urlOriginal": "url_imagen_parlamento_budapest.jpg"
+ },
+ "9858|Lago Balaton|Balatonfüred": {
+  "imagen": "assets/img/atracciones/9858/lago-balaton--balatonfured.webp",
+  "archivoCommons": "Fountain. - Tagore Promenade, Balatonfüred.JPG",
+  "urlOriginal": "url_imagen_balatonfured.jpg"
  },
  "9858|Lago Balaton|Tihany": {
   "imagen": "assets/img/atracciones/9858/lago-balaton--tihany.webp",
@@ -1494,10 +1544,20 @@
   "archivoCommons": "Mitad_del_Mundo_01.jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mitad_del_Mundo_01.jpg/800px-Mitad_del_Mundo_01.jpg"
  },
+ "b2e2|Monte Hagen|Festival del Monte Hagen": {
+  "imagen": "assets/img/atracciones/b2e2/monte-hagen--festival-del-monte-hagen.webp",
+  "archivoCommons": "Mount Hagen Cultural Show, Papua New Guinea, 2009.jpg",
+  "urlOriginal": "url_imagen_festival_monte_hagen.jpg"
+ },
  "b2e2|Port Moresby|Jardín Botánico Nacional": {
   "imagen": "assets/img/atracciones/b2e2/port-moresby--jardin-botanico-nacional.webp",
   "archivoCommons": "Xylocarpus_granatum.jpg",
   "urlOriginal": "url_imagen_jardin_botanico_papua_nueva_guinea.jpg"
+ },
+ "b2e2|Port Moresby|Museo Nacional y Galería de Arte": {
+  "imagen": "assets/img/atracciones/b2e2/port-moresby--museo-nacional-y-galeria-de-arte.webp",
+  "archivoCommons": "Papua New Guinea National Museum May 2015.jpg",
+  "urlOriginal": "url_imagen_museo_nacional_papua_nueva_guinea.jpg"
  },
  "b725|Agra|Fuerte de Agra": {
   "imagen": "assets/img/atracciones/b725/agra--fuerte-de-agra.webp",
@@ -1578,6 +1638,11 @@
   "imagen": "assets/img/atracciones/be69/la-habana--la-habana-vieja.webp",
   "archivoCommons": "Habana_Vieja_de_noche.jpg",
   "urlOriginal": "https://es.wikipedia.org/wiki/La_Habana_Vieja#/media/Archivo:Habana_Vieja_de_noche.jpg"
+ },
+ "be69|Varadero|Cueva de Ambrosio": {
+  "imagen": "assets/img/atracciones/be69/varadero--cueva-de-ambrosio.webp",
+  "archivoCommons": "Cueva de Ambrosio.jpg",
+  "urlOriginal": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/6d/97/4a/inside-pictures-of-the.jpg?w=900&h=500&s=1"
  },
  "be69|Varadero|Playa Varadero": {
   "imagen": "assets/img/atracciones/be69/varadero--playa-varadero.webp",
@@ -1714,6 +1779,16 @@
   "archivoCommons": "Каракол,_дунганская_мечеть_сверху_(2).jpg",
   "urlOriginal": "url_imagen_karakol_issyk-kul.jpg"
  },
+ "c4e8|Beirut|Mezquita Mohammad Al-Amin": {
+  "imagen": "assets/img/atracciones/c4e8/beirut--mezquita-mohammad-al-amin.webp",
+  "archivoCommons": null,
+  "urlOriginal": "url_imagen_mezquita_mohammad_al-amin.jpg",
+  "credito": {
+   "autor": "Arian Zwegers",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/azwegers/6822615915/"
+  }
+ },
  "c4e8|Beirut|Museo Nacional de Beirut": {
   "imagen": "assets/img/atracciones/c4e8/beirut--museo-nacional-de-beirut.webp",
   "archivoCommons": "Beirut_Museum.jpg",
@@ -1824,6 +1899,11 @@
   "archivoCommons": "Catedral_de_Granada,_Nicaragua.jpg",
   "urlOriginal": "https://catedraldegranada.com/wp-content/uploads/Catedral_de_Granada_-_Arquitectura_exterior_1.jpg"
  },
+ "ca2f|Granada|Parque Nacional Volcán Mombacho": {
+  "imagen": "assets/img/atracciones/ca2f/granada--parque-nacional-volcan-mombacho.webp",
+  "archivoCommons": "Mombacho Volcano - From Granada City.JPG",
+  "urlOriginal": "https://nicadestino.com/wp-content/uploads/listing-uploads/gallery/2022/01/Volcan-Mombacho.jpg"
+ },
  "ca2f|Managua|Catedral de Managua": {
   "imagen": "assets/img/atracciones/ca2f/managua--catedral-de-managua.webp",
   "archivoCommons": "ManaguaNicCollage.jpg",
@@ -1879,6 +1959,11 @@
   "archivoCommons": "Vilnius_(Wilno)_-_cathedral.jpg",
   "urlOriginal": "url_imagen_catedral_vilna.jpg"
  },
+ "d3cf|Atolones|Atolón de Baa": {
+  "imagen": "assets/img/atracciones/d3cf/atolones--atolon-de-baa.webp",
+  "archivoCommons": "Baa atoll islands.JPG",
+  "urlOriginal": "url_imagen_atolón_baa.jpg"
+ },
  "d3cf|Atolones|Atolón de Malé Norte": {
   "imagen": "assets/img/atracciones/d3cf/atolones--atolon-de-male-norte.webp",
   "archivoCommons": "Hulele-airport.jpg",
@@ -1888,6 +1973,11 @@
   "imagen": "assets/img/atracciones/d3cf/male--mezquita-del-viernes-hukuru-miskiy.webp",
   "archivoCommons": "Male'_Hukuru_Miskiy_1.jpg",
   "urlOriginal": "url_imagen_mezquita_viernes_male.jpg"
+ },
+ "d3cf|Malé|Museo Nacional": {
+  "imagen": "assets/img/atracciones/d3cf/male--museo-nacional.webp",
+  "archivoCommons": "Male' National Museum Innen Königssitz.jpg",
+  "urlOriginal": "url_imagen_museo_nacional_male.jpg"
  },
  "d586|Bocas del Toro|Isla Colón": {
   "imagen": "assets/img/atracciones/d586/bocas-del-toro--isla-colon.webp",
@@ -1908,6 +1998,21 @@
   "imagen": "assets/img/atracciones/d586/ciudad-de-panama--casco-viejo.webp",
   "archivoCommons": "Casco_Antiguo_(San_Felipe)_-_Pamama.jpg",
   "urlOriginal": "https://es.wikipedia.org/wiki/Casco_Antiguo_de_Panam%C3%A1#/media/Archivo:Casco_Antiguo_(San_Felipe)_-_Pamama.jpg"
+ },
+ "d9c8|Guadalcanal|Ironbottom Sound": {
+  "imagen": "assets/img/atracciones/d9c8/guadalcanal--ironbottom-sound.webp",
+  "archivoCommons": "IronbottomSound.jpg",
+  "urlOriginal": "url_imagen_ironbottom_sound.jpg"
+ },
+ "d9c8|Honiara|Cascadas Mataniko": {
+  "imagen": "assets/img/atracciones/d9c8/honiara--cascadas-mataniko.webp",
+  "archivoCommons": null,
+  "urlOriginal": "url_imagen_cascadas_mataniko.jpg",
+  "credito": {
+   "autor": "rapidtravelchai",
+   "licencia": "CC BY 2.0",
+   "fuente": "https://www.flickr.com/photos/rapidtravelchai/8073763851/"
+  }
  },
  "d9c8|Honiara|Museo Nacional": {
   "imagen": "assets/img/atracciones/d9c8/honiara--museo-nacional.webp",
@@ -2139,6 +2244,11 @@
   "archivoCommons": "Buenos_Aires_(20234294752).jpg",
   "urlOriginal": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/ObeliscoBA2015.2.jpg/320px-ObeliscoBA2015.2.jpg"
  },
+ "f09c|Buenos Aires|Puente de la Mujer": {
+  "imagen": "assets/img/atracciones/f09c/buenos-aires--puente-de-la-mujer.webp",
+  "archivoCommons": "Puente_de_la_Mujer_and_Edificio_Republica.jpg",
+  "urlOriginal": "https://turismo.buenosaires.gob.ar/sites/turismo/files/puente-mujer-1500x610-2023.jpg"
+ },
  "f09c|Buenos Aires|Teatro Colón": {
   "imagen": "assets/img/atracciones/f09c/buenos-aires--teatro-colon.webp",
   "archivoCommons": "Fachada_del_Teatro_Colón_en_Buenos_Aires,_Argentina.jpg",
@@ -2289,10 +2399,20 @@
   "archivoCommons": "Badshahi_Mosque_33_(edited).jpg",
   "urlOriginal": "url_imagen_mezquita_badshahi.jpg"
  },
+ "ffb7|Christmas Island (Kiritimati)|Captain Cook Hotel": {
+  "imagen": "assets/img/atracciones/ffb7/christmas-island-kiritimati--captain-cook-hotel.webp",
+  "archivoCommons": "CCHBungalows.jpg",
+  "urlOriginal": "url_imagen_captain_cook_hotel.jpg"
+ },
  "ffb7|Tarawa Sur|Museo de Kiribati": {
   "imagen": "assets/img/atracciones/ffb7/tarawa-sur--museo-de-kiribati.webp",
   "archivoCommons": "Teburoro_Tito_in_Maldives_(cropped).jpg",
   "urlOriginal": "url_imagen_museo_kiribati.jpg"
+ },
+ "ffb7|Tarawa Sur|Parliament House": {
+  "imagen": "assets/img/atracciones/ffb7/tarawa-sur--parliament-house.webp",
+  "archivoCommons": "Kiribati Parlament mit Tafel.jpg",
+  "urlOriginal": "url_imagen_parliament_house_kiribati.jpg"
  },
  "fffa|Estambul (parte europea)|Mezquita Azul": {
   "imagen": "assets/img/atracciones/fffa/estambul-parte-europea--mezquita-azul.webp",
