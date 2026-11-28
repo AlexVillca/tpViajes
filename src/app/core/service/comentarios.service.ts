@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Comentario } from '../../models/interface/pais.interface';
@@ -15,8 +15,10 @@ export class ComentariosService {
 
   private apiUrl = `${environment.apiBaseUrl}/comentarios`;
 
-  getComentarios(): Observable<Comentario[]> {
-    return this.http.get<Comentario[]>(this.apiUrl).pipe(
+  /** Comentarios de una ciudad de un país (puede haber ciudades con el mismo nombre en países distintos). */
+  getComentarios(paisId: string, ciudad: string): Observable<Comentario[]> {
+    const params = new HttpParams().set('paisId', paisId).set('ciudad', ciudad);
+    return this.http.get<Comentario[]>(this.apiUrl, { params }).pipe(
       catchError(error => buildHttpError(error, 'mensajes.cargarComentarios'))
     );
   }

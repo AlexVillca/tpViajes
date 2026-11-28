@@ -44,12 +44,16 @@ export class RegisterComponent {
   emailInvalid:Boolean = false;
   userNameInvalid:Boolean = false;
   serverError = '';
+  /** Mientras se espera la respuesta, el botón queda desactivado: un doble clic no manda dos registros. */
+  enviando = false;
 
   onSubmit() {
+    if (this.enviando) { return; }
     this.emailInvalid = false;
     this.userNameInvalid = false;
     this.serverError = '';
     if (this.formulario.invalid) { return; }
+    this.enviando = true;
 
     this.user.username = this.formulario.get('username')?.value || "";
     this.user.email = this.formulario.get('email')?.value || "";
@@ -64,6 +68,7 @@ export class RegisterComponent {
         }, 4000);
       },
       error: (error) => {
+        this.enviando = false;
         if (error instanceof ErrorDatoEnUso) {
           if (error.campo === 'email') {
             this.emailInvalid = true;

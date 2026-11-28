@@ -3,13 +3,14 @@ import { BehaviorSubject, of } from 'rxjs';
 import { ComentariosListComponent } from './comentarios-list.component';
 import { ComentariosService } from '../../../../core/service/comentarios.service';
 import { CiudadDataService } from '../../../../core/service/ciudad-data.service';
+import { PaisDataService } from '../../../../core/service/pais-data.service';
 import { IdUsuarioService } from '../../../../core/service/id-usuario.service';
 import { Comentario } from '../../../../models/interface/pais.interface';
 import { proveerTraducciones } from '../../../../core/i18n/traducciones.providers';
 
 describe('ComentariosListComponent - paginación', () => {
   const comentarios: Comentario[] = Array.from({ length: 12 }, (_, i) => ({
-    id: String(i + 1), mensaje: `Comentario ${i + 1}`, ciudad: 'Fez', usuarioId: '9', usuario: 'otra'
+    id: String(i + 1), mensaje: `Comentario ${i + 1}`, ciudad: 'Fez', paisId: 'ma', usuarioId: '9', usuario: 'otra'
   }));
 
   function crear(lista: Comentario[] = comentarios) {
@@ -18,6 +19,7 @@ describe('ComentariosListComponent - paginación', () => {
       providers: [proveerTraducciones(),
         { provide: ComentariosService, useValue: { getComentarios: () => of(lista) } },
         { provide: CiudadDataService, useValue: { ciudad$: new BehaviorSubject({ nombre: 'Fez' }) } },
+        { provide: PaisDataService, useValue: { pais$: new BehaviorSubject({ id: 'ma', nombre: 'Marruecos' }) } },
         { provide: IdUsuarioService, useValue: { id$: of(null) } }
       ]
     });
@@ -58,5 +60,37 @@ describe('ComentariosListComponent - paginación', () => {
   it('no muestra la paginación cuando entran en una sola página', () => {
     const fixture = crear(comentarios.slice(0, 5));
     expect(fixture.nativeElement.querySelector('nav')).toBeNull();
+  });
+});
+
+describe('ComentariosListComponent - comentarios por país', () => {
+  it('pide los comentarios del país y la ciudad que se ven, y los vuelve a pedir al cambiar de ciudad', () => {
+    const ciudad$ = new BehaviorSubject({ nombre: 'Córdoba' });
+    const pais$ = new BehaviorSubject({ id: 'ar', nombre: 'Argentina' });
+    const getComentarios = jasmine.createSpy('getComentarios').and.callFake((paisId: string, ciudad: string) =>
+      of([{ id: '1', mensaje: `De ${ciudad} (${paisId})`, ciudad, paisId, usuarioId: '9', usuario: 'otra' }]));
+
+    TestBed.configureTestingModule({
+      imports: [ComentariosListComponent],
+      providers: [proveerTraducciones(),
+        { provide: ComentariosService, useValue: { getComentarios } },
+        { provide: CiudadDataService, useValue: { ciudad$ } },
+        { provide: PaisDataService, useValue: { pais$ } },
+        { provide: IdUsuarioService, useValue: { id$: of(null) } }
+      ]
+    });
+    const fixture = TestBed.createComponent(ComentariosListComponent);
+    fixture.detectChanges();
+
+    expect(getComentarios).toHaveBeenCalledOnceWith('ar', 'Córdoba');
+    expect(fixture.nativeElement.textContent).toContain('De Córdoba (ar)');
+
+    // Otra Córdoba, en otro país: se piden los comentarios de esa, no se mezclan con los anteriores.
+    pais$.next({ id: 'es', nombre: 'España' });
+    fixture.detectChanges();
+
+    expect(getComentarios).toHaveBeenCalledWith('es', 'Córdoba');
+    expect(fixture.nativeElement.textContent).toContain('De Córdoba (es)');
+    expect(fixture.nativeElement.textContent).not.toContain('De Córdoba (ar)');
   });
 });

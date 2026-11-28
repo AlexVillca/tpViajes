@@ -1,11 +1,14 @@
 import { IdUsuarioService } from './../../../../core/service/id-usuario.service';
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
+import { catchError, combineLatest, distinctUntilChanged, map, of, switchMap, tap } from 'rxjs';
 import { Comentario } from '../../../../models/interface/pais.interface';
 import { ComentariosService } from '../../../../core/service/comentarios.service';
 import { ComentariosComponent } from '../../comentarios/comentarios.component';
 import { CiudadDataService } from '../../../../core/service/ciudad-data.service';
+import { PaisDataService } from '../../../../core/service/pais-data.service';
 import { FeedbackService } from '../../../../core/service/feedback.service';
 import { PopUpConfirmarComponent } from '../../../utils/pop-up-confirmar/pop-up-confirmar.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -20,7 +23,6 @@ export class ComentariosListComponent implements OnInit {
   listaComentarios: Comentario[] = [];
 
   flag = false;
-  ciudadActual = '';
   currentUserId = '';
 
   cargando = false;
@@ -37,37 +39,47 @@ export class ComentariosListComponent implements OnInit {
   paginaActual = 1;
 
   cds = inject(CiudadDataService);
+  pds = inject(PaisDataService);
   cs = inject(ComentariosService);
   idUsuarioService = inject(IdUsuarioService);
   feedback = inject(FeedbackService);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.cargarComentarios();
-
     this.idUsuarioService.id$.subscribe((id) => {
       this.currentUserId = id ?? '';
       this.flag = !!id;
     });
 
-    this.cds.ciudad$.subscribe(ciudad => {
-      this.ciudadActual = ciudad?.nombre ?? '';
-      this.paginaActual = 1;
-    });
+    this.cargarComentarios();
   }
 
-  cargarComentarios(): void {
-    this.cargando = true;
-    this.errorCarga = '';
-
-    this.cs.getComentarios().subscribe({
-      next: (comentarios: Comentario[]) => {
-        this.listaComentarios = comentarios;
-        this.cargando = false;
-      },
-      error: (error) => {
-        this.errorCarga = error.message;
-        this.cargando = false;
-      }
+  /**
+   * Pide a la API solo los comentarios de la ciudad y el país que se están viendo, y los vuelve a pedir
+   * cada vez que cambia alguno de los dos. switchMap descarta la respuesta de una ciudad anterior si
+   * llega tarde, y takeUntilDestroyed corta todo al salir de la pantalla.
+   */
+  private cargarComentarios(): void {
+    combineLatest([this.pds.pais$, this.cds.ciudad$]).pipe(
+      map(([pais, ciudad]) => ({ paisId: pais?.id ?? '', ciudad: ciudad?.nombre ?? '' })),
+      distinctUntilChanged((a, b) => a.paisId === b.paisId && a.ciudad === b.ciudad),
+      tap(() => {
+        this.listaComentarios = [];
+        this.paginaActual = 1;
+        this.errorCarga = '';
+        this.cargando = true;
+      }),
+      switchMap(({ paisId, ciudad }) => !paisId || !ciudad ? of([]) :
+        this.cs.getComentarios(paisId, ciudad).pipe(
+          catchError(error => {
+            this.errorCarga = error.message;
+            return of([]);
+          })
+        )),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(comentarios => {
+      this.listaComentarios = comentarios;
+      this.cargando = false;
     });
   }
 
@@ -177,9 +189,8 @@ export class ComentariosListComponent implements OnInit {
     this.paginaActual = Math.min(this.totalPaginas, this.paginaActual + 1);
   }
 
+  /** La lista ya viene filtrada por la API: son solo los comentarios de esta ciudad de este país. */
   getComentariosDeCiudadActual(): Comentario[] {
-    return this.listaComentarios.filter(
-      (comentario) => comentario.ciudad === this.ciudadActual
-    );
+    return this.listaComentarios;
   }
 }

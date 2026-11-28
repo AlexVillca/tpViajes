@@ -28,3 +28,6 @@ jobs:
 
       - name: Tests unitarios (headless)
         run: npm run test:ci
+
+      - name: Tests del backend
+        run: npm run test:backend

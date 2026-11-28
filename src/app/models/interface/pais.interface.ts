@@ -62,6 +62,8 @@ export interface Comentario {
   id?: string;
   mensaje : string,
   ciudad : string,
+  /** País de la ciudad: con el nombre solo no alcanza, porque dos países pueden tener una ciudad con el mismo nombre. */
+  paisId?: string,
   usuarioId : string,
   usuario: string;
 }

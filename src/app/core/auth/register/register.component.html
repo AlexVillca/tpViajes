@@ -38,7 +38,7 @@
 
         <div *ngIf="serverError" class="mensaje-error" role="alert">{{ serverError | translate }}</div>
 
-        <button type="submit" class="btn btn-primario w-full">{{ 'registro.enviar' | translate }}</button>
+        <button type="submit" class="btn btn-primario w-full" [disabled]="enviando">{{ 'registro.enviar' | translate }}</button>
         <p class="m-0 text-center text-sm text-tinta-suave">{{ 'registro.conCuenta' | translate }} <a class="enlace" routerLink="/login">{{ 'registro.iniciaSesion' | translate }}</a></p>
       </form>
     }@else{

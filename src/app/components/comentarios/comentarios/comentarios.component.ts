@@ -82,6 +82,7 @@ export class ComentariosComponent {
       const nuevoComentario: Comentario = {
         mensaje: comentarioString,
         ciudad: this.nombreCiudad,
+        paisId: this.idPais,
         usuarioId: usuarioActual.id || '',
         usuario: usuarioActual.username
       };

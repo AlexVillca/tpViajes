@@ -177,6 +177,7 @@ const comentarioPublico = (row) => ({
   id: row.id,
   mensaje: row.mensaje,
   ciudad: row.ciudad,
+  paisId: row.pais_id,
   usuarioId: row.usuario_id,
   usuario: row.usuario
 });
@@ -236,6 +237,16 @@ async function datoEnUso(column, valor, idExcluido = null) {
   return filas.length > 0;
 }
 
+// Si llegan dos registros con el mismo dato a la vez (por ejemplo, un doble clic), los dos pasan el
+// control de datoEnUso y el segundo choca con el índice único de la base. Devuelve qué dato se repitió,
+// o null si el error es otro.
+function campoDuplicado(error) {
+  if (error?.code !== 'ER_DUP_ENTRY') return null;
+  if (/uq_usuarios_email/.test(error.sqlMessage || '')) return 'email';
+  if (/uq_usuarios_username/.test(error.sqlMessage || '')) return 'username';
+  return null;
+}
+
 // ---------- Middleware de autenticación ----------
 function requiereAuth(req, res, next) {
   const token = leerToken(req);
@@ -252,7 +263,8 @@ function requiereAuth(req, res, next) {
 
 // ---------- Límite de intentos de login ----------
 // Por cuenta (no por IP, porque detrás de un proxy todas las conexiones llegan desde la misma dirección): después de
-// MAX_FALLOS contraseñas incorrectas seguidas, esa cuenta queda frenada VENTANA_MS.
+// MAX_FALLOS contraseñas incorrectas seguidas, esa cuenta queda frenada VENTANA_MS. El contador se guarda con el id
+// de la cuenta, así que los intentos con el nombre de usuario y con el email suman al mismo contador.
 const MAX_FALLOS = 10;
 const VENTANA_MS = 15 * 60 * 1000;
 const intentosFallidos = new Map();
@@ -302,14 +314,15 @@ app.post('/login', h(async (req, res) => {
     return res.status(400).json({ error: 'Usuario y contraseña son requeridos.' });
   }
 
-  const clave = normalizar(identificador);
+  const encontrado = await buscarUsuarioPorIdentificador(identificador);
+  // Si la cuenta no existe, se cuenta por el texto escrito: igual se frena a quien prueba nombres al azar.
+  const clave = encontrado ? `cuenta:${encontrado.id}` : `texto:${normalizar(identificador)}`;
   const espera = segundosDeBloqueo(clave);
   if (espera > 0) {
     res.set('Retry-After', String(espera));
     return res.status(429).json({ error: 'Demasiados intentos. Probá de nuevo en unos minutos.' });
   }
 
-  const encontrado = await buscarUsuarioPorIdentificador(identificador);
   // Si la cuenta no existe se compara igual contra un hash cualquiera, para que la demora
   // no delate qué cuentas existen. Mismo 401 para los dos casos.
   const passwordValida = bcrypt.compareSync(String(password), encontrado?.password || HASH_DE_RELLENO);
@@ -428,10 +441,17 @@ app.post('/usuarios', h(async (req, res) => {
   // Siempre se hashea acá: no se acepta un hash armado por el cliente.
   const id = nuevoId();
   const hash = bcrypt.hashSync(password, SALT_ROUNDS);
-  await pool.query(
-    'INSERT INTO usuarios (id, username, email, password, mejor_puntaje, listas_favs) VALUES (?, ?, ?, ?, 0, ?)',
-    [id, username.trim(), email.trim(), hash, JSON.stringify(listas)]
-  );
+  try {
+    await pool.query(
+      'INSERT INTO usuarios (id, username, email, password, mejor_puntaje, listas_favs) VALUES (?, ?, ?, ?, 0, ?)',
+      [id, username.trim(), email.trim(), hash, JSON.stringify(listas)]
+    );
+  } catch (error) {
+    const campo = campoDuplicado(error);
+    if (!campo) throw error;
+    const mensaje = campo === 'email' ? 'El email ya está en uso.' : 'El nombre de usuario ya está en uso.';
+    return res.status(409).json({ error: mensaje, campo });
+  }
   const creado = await usuarioPorId(id);
   return res.status(201).json(usuarioPublico(creado));
 }));
@@ -497,11 +517,16 @@ app.get('/paises', h(async (req, res) => {
 // ============================================================
 // Comentarios
 // ============================================================
+// Los comentarios son de una ciudad de un país. Se filtra por los dos porque puede haber ciudades
+// con el mismo nombre en países distintos.
 app.get('/comentarios', h(async (req, res) => {
-  const { ciudad } = req.query;
+  const { ciudad, paisId } = req.query;
   let sql = 'SELECT * FROM comentarios';
+  const cond = [];
   const params = [];
-  if (ciudad) { sql += ' WHERE ciudad = ?'; params.push(ciudad); }
+  if (paisId) { cond.push('pais_id = ?'); params.push(paisId); }
+  if (ciudad) { cond.push('ciudad = ?'); params.push(ciudad); }
+  if (cond.length) sql += ' WHERE ' + cond.join(' AND ');
   sql += ' ORDER BY created_at ASC';
   const [filas] = await pool.query(sql, params);
   return res.json(filas.map(comentarioPublico));
@@ -510,13 +535,13 @@ app.get('/comentarios', h(async (req, res) => {
 // El autor es siempre el usuario de la sesión.
 app.post('/comentarios', requiereAuth, h(async (req, res) => {
   const { mensaje, ciudad, paisId } = req.body || {};
-  if (!mensaje || !ciudad) {
-    return res.status(400).json({ error: 'Faltan el mensaje o la ciudad.' });
+  if (!mensaje || !ciudad || !paisId) {
+    return res.status(400).json({ error: 'Faltan el mensaje, la ciudad o el país.' });
   }
   const id = nuevoId();
   await pool.query(
     'INSERT INTO comentarios (id, pais_id, ciudad, usuario_id, usuario, mensaje) VALUES (?, ?, ?, ?, ?, ?)',
-    [id, paisId ?? null, ciudad, req.usuario.id, req.usuario.username, mensaje]
+    [id, paisId, ciudad, req.usuario.id, req.usuario.username, mensaje]
   );
   const [filas] = await pool.query('SELECT * FROM comentarios WHERE id = ?', [id]);
   return res.status(201).json(comentarioPublico(filas[0]));
@@ -758,7 +783,7 @@ app.get('/admin/comentarios', requiereAdmin, h(async (req, res) => {
      ORDER BY c.created_at DESC LIMIT ?`,
     [limite]
   );
-  return res.json(filas.map(f => ({ ...comentarioPublico(f), paisId: f.pais_id, pais: f.pais_nombre, fecha: f.created_at })));
+  return res.json(filas.map(f => ({ ...comentarioPublico(f), pais: f.pais_nombre, fecha: f.created_at })));
 }));
 
 app.delete('/admin/comentarios/:id', requiereAdmin, h(async (req, res) => {
@@ -789,15 +814,21 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Error interno del servidor.' });
 });
 
-// Antes de aceptar pedidos se asegura que la base tenga lo que necesita el panel de administración.
-asegurarEsquema(pool)
-  .then(() => {
-    app.listen(PORT, HOST, () => {
-      console.log(`Backend de TpViajes corriendo en http://${HOST}:${PORT}`);
-      console.log(`Orígenes permitidos: ${ORIGENES_PERMITIDOS.join(', ')}`);
+// Con "node db/server.js" arranca el servidor. Los tests importan este archivo para usar la app sin
+// arrancarla ni conectarse a la base (ver db/test/server.test.js).
+if (require.main === module) {
+  // Antes de aceptar pedidos se asegura que la base tenga lo que necesita el panel de administración.
+  asegurarEsquema(pool)
+    .then(() => {
+      app.listen(PORT, HOST, () => {
+        console.log(`Backend de TpViajes corriendo en http://${HOST}:${PORT}`);
+        console.log(`Orígenes permitidos: ${ORIGENES_PERMITIDOS.join(', ')}`);
+      });
+    })
+    .catch(error => {
+      console.error('No se pudo preparar la base de datos:', error.message);
+      process.exit(1);
     });
-  })
-  .catch(error => {
-    console.error('No se pudo preparar la base de datos:', error.message);
-    process.exit(1);
-  });
+}
+
+module.exports = { app, pool };
